@@ -291,7 +291,7 @@ function getActiveCharacterFilter()
     {
         if (charFilterElement.checked)
         {
-            charFilters += charFilterElement.value;
+            charFilters.push(charFilterElement.value);
         }
     }
     return charFilters;
