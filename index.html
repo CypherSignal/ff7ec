@@ -11,9 +11,37 @@
     <title>FF7 Ever Crisis Weapon Database</title>
 </head>
 <h1>FF7EC Weapon Database</h1>
-<p class="note">Note: Click on the name of a column to sort the results.</p>
 <div class="DatabaseSearch">
-  <button onclick="ecSearch()" class="dropbtn">Database Search</button>
+
+  <table>
+    <tr>Character Filter:</tr>
+    <tr>
+      <td> <input onclick="refreshTable()" type="checkbox" id="char_filter_cloud" name="char_filter" value="Cloud">  <label for="char_filter_cloud">Cloud</label><br> </td>
+      <td> <input onclick="refreshTable()" type="checkbox" id="char_filter_barret" name="char_filter" value="Barret">  <label for="char_filter_barret">Barret</label><br> </td>
+      <td> <input onclick="refreshTable()" type="checkbox" id="char_filter_tifa" name="char_filter" value="Tifa">  <label for="char_filter_tifa">Tifa</label><br> </td>
+      <td> <input onclick="refreshTable()" type="checkbox" id="char_filter_aerith" name="char_filter" value="Aerith">  <label for="char_filter_aerith">Aerith</label><br> </td>
+    </tr>
+    <tr>
+      <td> <input onclick="refreshTable()" type="checkbox" id="char_filter_redxiii" name="char_filter" value="Red XIII">  <label for="char_filter_redxiii">Red XIII</label><br> </td>
+      <td> <input onclick="refreshTable()" type="checkbox" id="char_filter_yuffie" name="char_filter" value="Yuffie">  <label for="char_filter_yuffie">Yuffie</label><br> </td>
+      <td> <input onclick="refreshTable()" type="checkbox" id="char_filter_caitsith" name="char_filter" value="Cait Sith">  <label for="char_filter_caitsith">Cait Sith</label><br> </td>
+      <td> <input onclick="refreshTable()" type="checkbox" id="char_filter_vincent" name="char_filter" value="Vincent">  <label for="char_filter_vincent">Vincent</label><br> </td>
+    </tr>
+    <tr>
+      <td> <input onclick="refreshTable()" type="checkbox" id="char_filter_cid" name="char_filter" value="Cid">  <label for="char_filter_cid">Cid</label><br> </td>
+      <td> <input onclick="refreshTable()" type="checkbox" id="char_filter_zack" name="char_filter" value="Zack">  <label for="char_filter_zack">Zack</label><br> </td>
+      <td> <input onclick="refreshTable()" type="checkbox" id="char_filter_sephiroth" name="char_filter" value="Sephiroth">  <label for="char_filter_sephy">Sephiroth</label><br> </td>
+      <td> <input onclick="refreshTable()" type="checkbox" id="char_filter_glenn" name="char_filter" value="Glenn">  <label for="char_filter_glenn">Glenn</label><br> </td>
+    </tr>
+    <tr>
+      <td> <input onclick="refreshTable()" type="checkbox" id="char_filter_matt" name="char_filter" value="Matt">  <label for="char_filter_matt">Matt</label><br> </td>
+      <td> <input onclick="refreshTable()" type="checkbox" id="char_filter_lucia" name="char_filter" value="Lucia">  <label for="char_filter_lucia">Lucia</label><br> </td>
+      <td> <input onclick="refreshTable()" type="checkbox" id="char_filter_angeal" name="char_filter" value="Angeal">  <label for="char_filter_angeal">Angeal</label><br> </td>
+      <td> <input onclick="refreshTable()" type="checkbox" id="char_filter_sephirothog" name="char_filter" value="Sephiroth (Original)">  <label for="char_filter_sephirothog">Sephiroth (OG)</label><br> </td>
+    </tr>
+  </table>
+  <br>
+  <button onclick="clearFilter()" class="dropbtn">Database Search</button>
   <div id="ecDropdown" class="dropdown-content">
       <!--<input type="text" placeholder="Weapon Search.." id="userInput">-->
       <a onclick="filterFire()">Fire</a>
@@ -45,6 +73,10 @@
 </div>
 <div id="Output" class="output"></div>
 
-<footer><p>Special thanks to gianglt0227 for the GUI contribution.</p><p>For ongoing database addition/bugs, please contact Nilu(cia) on Unofficial FF7EC Discord.</p><p>For other bugs/additional filters, contact Cantiga on Discord &#169; 2024.</p></footer>
+<footer>
+  <p>Special thanks to gianglt0227 for the GUI contribution, and Cantiga for all prior development and maintenance.</p>
+  <p>For ongoing database additions/bugs, please contact Nilu(cia) on Unofficial FF7EC Discord.</p>
+  <p>For other bugs/additional filters, contact CypherSignal on Discord &#169; 2026.</p>
+</footer>
 </body>
 </html>

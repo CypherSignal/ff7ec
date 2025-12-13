@@ -11,10 +11,7 @@ const MATERIA_TABL_COL = 8;
 const UNIQUE_TABL_COL = 12;
 const MAX_POT_INDEX = 6;   // Index into the maxPot for sorting
 let weaponDatabase = [];
-function ecSearch() {  document.getElementById("ecDropdown").classList.toggle("show");
-    var divToPrint = document.getElementById('Output');                       
-    divToPrint.innerHTML = ''
-}
+let activeWeaponFilter = "";
 
 /* Create a table to display the result */
 function tableCreate(user_row, user_col, list, header) {
@@ -265,6 +262,41 @@ function findWeaponWithProperty(arr, propName, propValue) {
     return false;
 }
 
+function findWeaponWithCharacter(weapon, charFilters)
+{
+    // no char filter, then they're always a match
+    if (charFilters.length == 0)
+    {
+        return true;
+    }
+
+    // locate the charName element, and see if it matches any of the charFilters
+    for (var i = 0; i < weapon.length; i++)
+    {
+        if (weapon[i].name == "charName") 
+        {
+            let charName = weapon[i].value;
+            return charFilters.includes(charName);
+        }
+    }
+    return true;
+}
+
+function getActiveCharacterFilter()
+{
+    let charFilters = [];
+    const charFilterElements = document.getElementsByName("char_filter");
+
+    for (const charFilterElement of charFilterElements)
+    {
+        if (charFilterElement.checked)
+        {
+            charFilters += charFilterElement.value;
+        }
+    }
+    return charFilters;
+}
+
 function elementalCompare(a, b) {
     var aItem = parseFloat(a[MAX_POT_INDEX]);
     var bItem = parseFloat(b[MAX_POT_INDEX]);
@@ -276,92 +308,218 @@ function elementalCompare(a, b) {
     }
     return 0;
 }
-function filterFire() {
-    printElemWeapon("Fire");
+
+function refreshTable()
+{
+    console.log ("Refreshing table with filter \"" + activeWeaponFilter + "\"");
+
+    // clear the table(s) that may be there already
+    var divToPrint = document.getElementById('Output');
+    divToPrint.innerHTML = ''
+
+    // hide or reveal the root menu if we have a filter set or not
+    if (activeWeaponFilter == "")
+    {
+        document.getElementById("ecDropdown").classList.add("show");
+    }
+    else
+    {
+        document.getElementById("ecDropdown").classList.remove("show");
+    }
+
+    switch (activeWeaponFilter)
+    {
+        case "Fire": 
+            printElemWeapon("Fire");
+            break;
+        case "Ice": 
+            printElemWeapon("Ice");
+            break;
+        case "Lightning": 
+            printElemWeapon("Lightning");
+            break;
+        case "Water": 
+            printElemWeapon("Water");
+            break;
+        case "Wind": 
+            printElemWeapon("Wind");
+            break;
+        case "Earth": 
+            printElemWeapon("Earth");
+            break;
+        case "None": 
+            printElemWeapon("None");
+            break;
+        case "Limited":
+            printLimitedWeapon("", "Limited/Crossover Weapons:");
+            break;
+        case "DebuffMatk":
+            printWeaponEffect("[Debuff] MATK", "Weapon with [Debuff] MATK:");
+            break;
+        case "DebuffPdef":
+            printWeaponEffect("[Debuff] PDEF", "Weapon with [Debuff] PDEF:");
+            break;
+        case "DebuffMdef":
+            printWeaponEffect("[Debuff] MDEF", "Weapon with [Debuff] MDEF:");
+            break;
+        case "DebuffPatk":
+            printWeaponEffect("[Debuff] PATK", "Weapon with [Debuff] PATK:");
+            break;
+        case "BuffMatk":
+            printWeaponEffect("[Buff] MATK", "Weapon with [Buff] MATK:");
+            break;
+        case "BuffPdef":
+            printWeaponEffect("[Buff] PDEF", "Weapon with [Buff] PDEF:");
+            break;
+        case "BuffMdef":
+            printWeaponEffect("[Buff] MDEF", "Weapon with [Buff] MDEF:");
+            break;
+        case "BuffPatk":
+            printWeaponEffect("[Buff] PATK", "Weapon with [Buff] PATK:");
+            break;
+        case "BuffWex":
+            printWeaponEffect("[Buff] Weakness", "Weapon with Exploit Weakness:");
+            break;
+        case "Heal":
+            printHealWeapon();
+            break;
+        case "Provoke":
+            printProvokeWeapon();
+            break;
+        case "SigilCircle":
+            printWeaponMateria("Circle", "Weapon with ◯ Sigil Materia Slot:");
+            break;
+        case "SigilCross":
+            printWeaponMateria("X Sigil", "Weapon with ✕ Sigil Materia Slot:");
+            break;
+        case "SigilTriangle":
+            printWeaponMateria("Triangle", "Weapon with △ Sigil Materia Slot:");
+            break;
+        case "SigilDiamond":
+            printWeaponSigil("Diamond", "Weapon with ◊ Sigil Materia Slot:");
+            break;
+        case "UniqueEffect":
+            printUniqueEffectWeapon();
+            break;
+        case "All":
+            printAllWeapon("", "List of All Weapons:");
+            break;
+    }
 }
-function filterIce() {
-    printElemWeapon("Ice");
+
+function clearFilter()
+{ 
+    activeWeaponFilter = "";
+    refreshTable();
 }
 
-function filterLightning() {
-    printElemWeapon("Lightning");
+function filterFire()
+{
+    activeWeaponFilter = "Fire";
+    refreshTable();
 }
 
-function filterWater() {
-    printElemWeapon("Water");
+function filterIce()
+{
+    activeWeaponFilter = "Ice";
+    refreshTable();
 }
 
-function filterWind() {
-    printElemWeapon("Wind");
+function filterLightning()
+{
+    activeWeaponFilter = "Lightning";
+    refreshTable();
 }
 
-function filterEarth() {
-    printElemWeapon("Earth");
+function filterWater()
+{
+    activeWeaponFilter = "Water";
+    refreshTable();
 }
 
-function filterNonElem() {
-    printElemWeapon("None");
+function filterWind()
+{
+    activeWeaponFilter = "Wind";
+    refreshTable();
 }
 
-function filterLimited() {
-    printLimitedWeapon("", "Limited/Crossover Weapons:");
+function filterEarth()
+{
+    activeWeaponFilter = "Earth";
+    refreshTable();
 }
 
-/* I should clean this up and make only 1 function calling into all of these filters... */
-function filterMatkDown() {
-    document.getElementById("ecDropdown").classList.toggle("show");
-
-    var header = "Weapon with [Debuff] MATK:";
-    printWeaponEffect("[Debuff] MATK", header);
-}
-function filterPatkDown() {
-    document.getElementById("ecDropdown").classList.toggle("show");
-
-    var header = "Weapon with [Debuff] PATK:";
-    printWeaponEffect("[Debuff] PATK", header);
-}
-function filterPdefDown() {
-    document.getElementById("ecDropdown").classList.toggle("show");
-
-    var header = "Weapon with [Debuff] PDEF:";
-    printWeaponEffect("[Debuff] PDEF", header);
-}
-function filterMdefDown() {
-    document.getElementById("ecDropdown").classList.toggle("show");
-
-    var header = "Weapon with [Debuff] MDEF:";
-    printWeaponEffect("[Debuff] MDEF", header);
+function filterNonElem()
+{
+    activeWeaponFilter = "None";
+    refreshTable();
 }
 
-function filterPatkUp() {
-    document.getElementById("ecDropdown").classList.toggle("show");
-
-    var header = "Weapon with [Buff] PATK:";
-    printWeaponEffect("[Buff] PATK", header);
-}
-function filterMatkUp() {
-    document.getElementById("ecDropdown").classList.toggle("show");
-
-    var header = "Weapon with [Buff] MATK:";
-    printWeaponEffect("[Buff] MATK", header);
+function filterLimited()
+{
+    activeWeaponFilter = "Limited";
+    refreshTable();
 }
 
-function filterPdefUp() {
-    document.getElementById("ecDropdown").classList.toggle("show");
-
-    var header = "Weapon with [Buff] PDEF:";
-    printWeaponEffect("[Buff] PDEF", header);
+function filterMatkDown()
+{
+    activeWeaponFilter = "DebuffMatk";
+    refreshTable();
 }
-function filterMdefUp() {
-    document.getElementById("ecDropdown").classList.toggle("show");
 
-    var header = "Weapon with [Buff] MDEF:";
-    printWeaponEffect("[Buff] MDEF", header);
+function filterPatkDown()
+{
+    activeWeaponFilter = "DebuffPatk";
+    refreshTable();
+}
+
+function filterPdefDown()
+{
+    activeWeaponFilter = "DebuffPdef";
+    refreshTable();
+}
+
+function filterMdefDown()
+{
+    activeWeaponFilter = "DebuffMdef";
+    refreshTable();
+}
+
+function filterPatkUp()
+{
+    activeWeaponFilter = "BuffPatk";
+    refreshTable();
+}
+
+function filterMatkUp()
+{
+    activeWeaponFilter = "BuffMatk";
+    refreshTable();
+}
+
+function filterPdefUp()
+{
+    activeWeaponFilter = "BuffPdef";
+    refreshTable();
+}
+
+function filterMdefUp()
+{
+    activeWeaponFilter = "BuffMdef";
+    refreshTable();
 }
 
 function filterHeal() {
-    document.getElementById("ecDropdown").classList.toggle("show");
+    activeWeaponFilter = "Heal";
+    refreshTable();
+}
 
+function filterProvoke() {
+        activeWeaponFilter = "Provoke";
+    refreshTable();
+}
+
+function printHealWeapon() {
     var header = "Non-Regen Healing Weapon (> 25% Potency):";
     printWeaponElem("Heal", header);
 
@@ -371,9 +529,8 @@ function filterHeal() {
     var header = "Weapon with All (Cure) Materia Slot:";
     printWeaponMateria("All (Cure)", header);
 }
-function filterProvoke() {
-    document.getElementById("ecDropdown").classList.toggle("show");
 
+function printProvokeWeapon() {
     var header = "Provoke Weapon:";
     printWeaponEffect("[Buff] Provoke", header);
 
@@ -382,44 +539,37 @@ function filterProvoke() {
 }
 
 function filterExploitWeakness(){
-    document.getElementById("ecDropdown").classList.toggle("show");
-
-    var header = "Exploit Weakness Weapon:";
-    printWeaponEffect("[Buff] Weakness", header);
+    activeWeaponFilter = "BuffWex";
+    refreshTable();
 }
 
 function filterCircleSigilMateria() {
-    document.getElementById("ecDropdown").classList.toggle("show");
-
-    var header = "Weapon with ◯ Sigil Materia Slot:";
-    printWeaponMateria("Circle", header);
+    activeWeaponFilter = "SigilCircle";
+    refreshTable();
 }
 
 
 function filterTriangleSigilMateria() {
-    document.getElementById("ecDropdown").classList.toggle("show");
-
-    var header = "Weapon with △ Sigil Materia Slot:";
-    printWeaponMateria("Triangle", header);
+    activeWeaponFilter = "SigilTriangle";
+    refreshTable();
 }
 
 function filterXSigilMateria() {
-    document.getElementById("ecDropdown").classList.toggle("show");
-
-    var header = "Weapon with ✕ Sigil Materia Slot:";
-    printWeaponMateria("X Sigil", header);
+    activeWeaponFilter = "SigilCross";
+    refreshTable();
 }
 
 function filterDiamondMateria() {
-    document.getElementById("ecDropdown").classList.toggle("show");
-
-    var header = "Weapon with ◊ Sigil:";
-    printWeaponSigil("Diamond", header);
+    activeWeaponFilter = "SigilDiamond";
+    refreshTable();
 }
 
 function filterUniqueEffect() {
-    document.getElementById("ecDropdown").classList.toggle("show");
+    activeWeaponFilter = "UniqueEffect";
+    refreshTable();
+}
 
+function printUniqueEffectWeapon() {
     var header = "Weapon Applying Status:";
     printWeaponUniqueEffect("[Status Apply]", header);
 
@@ -437,15 +587,12 @@ function filterUniqueEffect() {
 }
 
 function filterAll() {
-    // Display everything...
-    var header = "List of All Weapons:";
-    printAllWeapon("", header);
-
-
+    activeWeaponFilter = "All";
+    refreshTable();
 }
 
 function printElemWeapon(elem) {
-    document.getElementById("ecDropdown").classList.toggle("show");
+    document.getElementById("ecDropdown").classList.remove("show");
     var elemResist, elemEnchant, elemMateria;
 
     if (elem == "Lightning") {
@@ -475,13 +622,16 @@ function printElemWeapon(elem) {
 }
 
 function printLimitedWeapon(elem, header) {
-    document.getElementById("ecDropdown").classList.toggle("show");
     readDatabase();
     let elemental;
     elemental = [["Weapon Name", "Char", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Condition"]];
 
+    let activeChars = getActiveCharacterFilter();
+
     for (var i = 0; i < weaponDatabase.length; i++) {
         var found = findWeaponWithProperty(weaponDatabase[i], 'gachaType', "L");
+        found = found && findWeaponWithCharacter(weaponDatabase[i], activeChars);
+
         if (found) {
             // Make a new row and push them into the list
             let row = [];
@@ -541,77 +691,80 @@ function printLimitedWeapon(elem, header) {
 }
 
 function printAllWeapon(elem, header) {
-    document.getElementById("ecDropdown").classList.toggle("show");
     readDatabase();
     let elemental;
     elemental = [["Weapon Name", "Char", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Type", "Condition"]];
+    let activeChars = getActiveCharacterFilter();
 
     for (var i = 0; i < weaponDatabase.length; i++) {
-//        var found = findWeaponWithProperty(weaponDatabase[i], 'gachaType', "L");
-//        if (found) {
+        var found = true;
+
+        found = found && findWeaponWithCharacter(weaponDatabase[i], activeChars);
+
+        if (found) {
             // Make a new row and push them into the list
-        let row = [];
+            let row = [];
 
-        row.push(getValueFromDatabaseItem(weaponDatabase[i], "name"));
-        row.push(getValueFromDatabaseItem(weaponDatabase[i], "charName"));
-        row.push(getValueFromDatabaseItem(weaponDatabase[i], "range"));
-        row.push(getValueFromDatabaseItem(weaponDatabase[i], "type"));
+            row.push(getValueFromDatabaseItem(weaponDatabase[i], "name"));
+            row.push(getValueFromDatabaseItem(weaponDatabase[i], "charName"));
+            row.push(getValueFromDatabaseItem(weaponDatabase[i], "range"));
+            row.push(getValueFromDatabaseItem(weaponDatabase[i], "type"));
 
-        var atb = getValueFromDatabaseItem(weaponDatabase[i], "atb");
-        row.push(atb);
+            var atb = getValueFromDatabaseItem(weaponDatabase[i], "atb");
+            row.push(atb);
 
-        row.push(getValueFromDatabaseItem(weaponDatabase[i], "element"));
+            row.push(getValueFromDatabaseItem(weaponDatabase[i], "element"));
 
-        var pot, maxPot;
+            var pot, maxPot;
 
-        pot = parseInt(getValueFromDatabaseItem(weaponDatabase[i], "potOb10"));
-        row.push(pot);
+            pot = parseInt(getValueFromDatabaseItem(weaponDatabase[i], "potOb10"));
+            row.push(pot);
 
-        maxPot = parseInt(getValueFromDatabaseItem(weaponDatabase[i], "maxPotOb10"));
-        row.push(maxPot);
-
-        // % per ATB
-        if (atb != 0) {
-            row.push((maxPot / atb).toFixed(0));
-        }
-        else {
+            maxPot = parseInt(getValueFromDatabaseItem(weaponDatabase[i], "maxPotOb10"));
             row.push(maxPot);
-        }
 
-        type = getValueFromDatabaseItem(weaponDatabase[i], "gachaType");
-        if (type == "L") {
-            row.push("Limited");
-        }
-        else if (type == "Y") {
-            row.push("Event");
-        }
-        else {
-            row.push("Featured");
-        }
-
-        if (elem != "Heal") {
-            // @todo: Need to figure out a good way to deal with this stupid weapon
-            if ((maxPot > pot) || (getValueFromDatabaseItem(weaponDatabase[i], "name") == "Bahamut Greatsword") ||
-                (getValueFromDatabaseItem(weaponDatabase[i], "name") == "Sabin's Claws") ||
-                (getValueFromDatabaseItem(weaponDatabase[i], "name") == "Blade of the Worthy") ||
-                (getValueFromDatabaseItem(weaponDatabase[i], "name") == "Umbral Blade")) {
-                // Check to see if DMG+ Condition is from Effect1 or Effect2 
-                if (findWeaponWithProperty(weaponDatabase[i], 'effect1', "DMG")) {
-                    row.push(getValueFromDatabaseItem(weaponDatabase[i], "condition1"));
-                }
-                else {
-                    row.push(getValueFromDatabaseItem(weaponDatabase[i], "condition2"));
-                }
+            // % per ATB
+            if (atb != 0) {
+                row.push((maxPot / atb).toFixed(0));
             }
             else {
-                row.push("");
+                row.push(maxPot);
             }
+
+            type = getValueFromDatabaseItem(weaponDatabase[i], "gachaType");
+            if (type == "L") {
+                row.push("Limited");
+            }
+            else if (type == "Y") {
+                row.push("Event");
+            }
+            else {
+                row.push("Featured");
+            }
+
+            if (elem != "Heal") {
+                // @todo: Need to figure out a good way to deal with this stupid weapon
+                if ((maxPot > pot) || (getValueFromDatabaseItem(weaponDatabase[i], "name") == "Bahamut Greatsword") ||
+                    (getValueFromDatabaseItem(weaponDatabase[i], "name") == "Sabin's Claws") ||
+                    (getValueFromDatabaseItem(weaponDatabase[i], "name") == "Blade of the Worthy") ||
+                    (getValueFromDatabaseItem(weaponDatabase[i], "name") == "Umbral Blade")) {
+                    // Check to see if DMG+ Condition is from Effect1 or Effect2 
+                    if (findWeaponWithProperty(weaponDatabase[i], 'effect1', "DMG")) {
+                        row.push(getValueFromDatabaseItem(weaponDatabase[i], "condition1"));
+                    }
+                    else {
+                        row.push(getValueFromDatabaseItem(weaponDatabase[i], "condition2"));
+                    }
+                }
+                else {
+                    row.push("");
+                }
+            }
+
+            elemental.push(row);
         }
 
-        elemental.push(row);
-//        }
 
-//        elemental.sort(elementalCompare);
     }
 
     tableCreate(elemental.length, elemental[0].length, elemental, header);
@@ -628,8 +781,13 @@ function printWeaponElem(elem, header) {
         elemental = [["Weapon Name", "Char", "AOE", "Type", "ATB", "Uses", "Target", "Pot%", "Max%", "% per ATB"]];
     }
 
+    let activeChars = getActiveCharacterFilter();
+
     for (var i = 0; i < weaponDatabase.length; i++) {
         var found = findWeaponWithProperty(weaponDatabase[i], 'element', elem);
+
+        found = found && findWeaponWithCharacter(weaponDatabase[i], activeChars);
+
         if (found) {
             if (elem == "Heal") {
                 // Low % heal is not worth it - set threshold at 50
@@ -702,9 +860,13 @@ function printWeaponElem(elem, header) {
 function printWeaponSigil(sigil, header) {
     readDatabase();
     let materia = [["Weapon Name", "Char", "AOE", "Type", "Elem", "ATB", "Uses", "Pot%", "Max%"]];
+    let activeChars = getActiveCharacterFilter();
 
     for (var i = 0; i < weaponDatabase.length; i++) {
-        if (findWeaponWithProperty(weaponDatabase[i], 'sigil', sigil)) {
+        var found = findWeaponWithProperty(weaponDatabase[i], 'sigil', sigil);
+        found = found && findWeaponWithCharacter(weaponDatabase[i], activeChars);
+
+        if (found) {
             let row = [];
             
             row.push(getValueFromDatabaseItem(weaponDatabase[i], "name"));
@@ -726,11 +888,16 @@ function printWeaponSigil(sigil, header) {
 function printWeaponMateria(elemMateria, header) {
     readDatabase();
     let materia = [["Weapon Name", "Char", "AOE", "Type", "Elem", "ATB", "Uses", "Pot%", "Max%"]];
+    let activeChars = getActiveCharacterFilter();
 
     for (var i = 0; i < weaponDatabase.length; i++) {
-        if (findWeaponWithProperty(weaponDatabase[i], 'support1', elemMateria) ||
-            findWeaponWithProperty(weaponDatabase[i], 'support2', elemMateria) ||
-            findWeaponWithProperty(weaponDatabase[i], 'support3', elemMateria)) {
+        var found = false;
+        found = found || findWeaponWithProperty(weaponDatabase[i], 'support1', elemMateria);
+        found = found || findWeaponWithProperty(weaponDatabase[i], 'support2', elemMateria);
+        found = found || findWeaponWithProperty(weaponDatabase[i], 'support3', elemMateria);
+        found = found && findWeaponWithCharacter(weaponDatabase[i], activeChars);
+
+        if (found) {
 
             let row = [];
             row.push(getValueFromDatabaseItem(weaponDatabase[i], "name"));
@@ -755,61 +922,66 @@ function printRegenWeapon(header) {
     let effect = [["Name", "Char", "Type", "ATB", "Uses", "AOE", "Target", "Duration (s)", "Pot%", "Max%", "% per ATB"]];
     var text = "Regen";
 
+    let activeChars = getActiveCharacterFilter();
+
     for (var i = 0; i < weaponDatabase.length; i++) {
-        if (findWeaponWithProperty(weaponDatabase[i], 'element', "Heal")) {
-            if ((found = findWeaponWithProperty(weaponDatabase[i], 'effect1', text)) || findWeaponWithProperty(weaponDatabase[i], 'effect2', text)) {
-                // Make a new row and push them into the list
-                let row = [];
+        var found = findWeaponWithProperty(weaponDatabase[i], 'element', "Heal");
+        var found1 = found && findWeaponWithProperty(weaponDatabase[i], 'effect1', text);
+        var found2 = found && findWeaponWithProperty(weaponDatabase[i], 'effect2', text);
+        found = (found1 || found2) && findWeaponWithCharacter(weaponDatabase[i], activeChars);
 
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "name"));
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "charName"));
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "type"));
+        if (found) {
+            // Make a new row and push them into the list
+            let row = [];
 
-                var atb = getValueFromDatabaseItem(weaponDatabase[i], "atb");
-                row.push(atb);
+            row.push(getValueFromDatabaseItem(weaponDatabase[i], "name"));
+            row.push(getValueFromDatabaseItem(weaponDatabase[i], "charName"));
+            row.push(getValueFromDatabaseItem(weaponDatabase[i], "type"));
 
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "uses"));
+            var atb = getValueFromDatabaseItem(weaponDatabase[i], "atb");
+            row.push(atb);
 
-                var dur, pot, maxPot;
+            row.push(getValueFromDatabaseItem(weaponDatabase[i], "uses"));
 
-                if (found) {
-                    row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect1Range"));
-                }
-                else {
-                    row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect2Range"));
-                }
-                if (found) {
-                    row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect1Target"));
+            var dur, pot, maxPot;
 
-                    dur = parseInt(getValueFromDatabaseItem(weaponDatabase[i], "effect1Dur"));
-                    row.push(dur);               
-                }
-                else {
-                    row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect2Target"));
-
-                    dur = parseInt(getValueFromDatabaseItem(weaponDatabase[i], "effect2Dur"));
-                    row.push(dur);
-                }
-
-                pot = parseInt(getValueFromDatabaseItem(weaponDatabase[i], "potOb10"));
-                row.push(pot);
-                maxPot = pot;   
-
-                if (dur != 0) {
-                    // Regen is 15% per tick every 3s + initial tick for total
-                    maxPot = Math.floor(dur / 3) * 15 + pot;
-                }
-                row.push(maxPot);
-
-                if (atb != 0) {
-                    row.push((maxPot / atb).toFixed(0));
-                }
-                else {
-                    row.push(maxPot);
-                }
-
-                effect.push(row);
+            if (found1) {
+                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect1Range"));
             }
+            else if (found2) {
+                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect2Range"));
+            }
+            if (found1) {
+                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect1Target"));
+
+                dur = parseInt(getValueFromDatabaseItem(weaponDatabase[i], "effect1Dur"));
+                row.push(dur);               
+            }
+            else if (found2) {
+                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect2Target"));
+
+                dur = parseInt(getValueFromDatabaseItem(weaponDatabase[i], "effect2Dur"));
+                row.push(dur);
+            }
+
+            pot = parseInt(getValueFromDatabaseItem(weaponDatabase[i], "potOb10"));
+            row.push(pot);
+            maxPot = pot;   
+
+            if (dur != 0) {
+                // Regen is 15% per tick every 3s + initial tick for total
+                maxPot = Math.floor(dur / 3) * 15 + pot;
+            }
+            row.push(maxPot);
+
+            if (atb != 0) {
+                row.push((maxPot / atb).toFixed(0));
+            }
+            else {
+                row.push(maxPot);
+            }
+
+            effect.push(row);
         }
     }
 
@@ -819,9 +991,16 @@ function printRegenWeapon(header) {
 function printWeaponEffect(text, header) {
     readDatabase();
     let effect = [["Name", "Char", "Type", "Elem", "ATB", "Uses", "AOE", "Target", "Pot", "Max Pot", "Duration (s)", "Condition"]];  
+    let activeChars = getActiveCharacterFilter();
+    
     for (var i = 0; i < weaponDatabase.length; i++) {
-        if ((found = findWeaponWithProperty(weaponDatabase[i], 'effect1', text)) || (found2 = findWeaponWithProperty(weaponDatabase[i], 'effect2', text))
-            || findWeaponWithProperty(weaponDatabase[i], 'effect3', text)) {
+        var found1 = findWeaponWithProperty(weaponDatabase[i], 'effect1', text);
+        var found2 = findWeaponWithProperty(weaponDatabase[i], 'effect2', text);
+        var found3 = findWeaponWithProperty(weaponDatabase[i], 'effect3', text);
+        var found = (found1 || found2 || found3);
+        found = found && findWeaponWithCharacter(weaponDatabase[i], activeChars);
+        
+        if (found) {
             // Make a new row and push them into the list
             let row = [];
 
@@ -833,16 +1012,16 @@ function printWeaponEffect(text, header) {
             row.push(getValueFromDatabaseItem(weaponDatabase[i], "atb"));
             row.push(getValueFromDatabaseItem(weaponDatabase[i], "uses"));
 
-            if (found) {
+            if (found1) {
                 row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect1Range"));
             }
             else if (found2) {
                 row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect2Range"));
             }
-            else {
+            else if (found3) {
                 row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect2Range"));
             }
-            if (found) {
+            if (found1) {
                 row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect1Target"));  
                 row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect1Pot"));
                 row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect1MaxPot"));
@@ -856,7 +1035,7 @@ function printWeaponEffect(text, header) {
                 row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect2Dur"));
                 row.push(getValueFromDatabaseItem(weaponDatabase[i], "condition2"));
             }
-            else {
+            else if (found3) {
                 row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect3Target"));
                 row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect3Pot"));
                 row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect3MaxPot"));
@@ -874,18 +1053,22 @@ function printWeaponEffect(text, header) {
 function printWeaponUniqueEffect(text, header) {
     readDatabase();
     let effect = [["Name", "Char", "AOE", "Type", "Elem", "ATB", "Uses", "Target1", "Effect1", "Condition1", "Target2", "Effect2", "Condition2"]];
-
+    let activeChars = getActiveCharacterFilter();
+    
     for (var i = 0; i < weaponDatabase.length; i++) {
-        if ((found = findWeaponWithProperty(weaponDatabase[i], 'effect1', text)) ||
-            findWeaponWithProperty(weaponDatabase[i], 'effect2', text)) {
+        var found1 = findWeaponWithProperty(weaponDatabase[i], 'effect1', text);
+        var found2 = findWeaponWithProperty(weaponDatabase[i], 'effect2', text);
+        var found = (found1 || found2);
+        found = found && findWeaponWithCharacter(weaponDatabase[i], activeChars);
+        if (found) {
             let row = [];
 
             row.push(getValueFromDatabaseItem(weaponDatabase[i], "name"));
             row.push(getValueFromDatabaseItem(weaponDatabase[i], "charName"));
-            if (found) {
+            if (found1) {
                 row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect1Range"));
             }
-            else {
+            else if (found2) {
                 row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect2Range"));
             }
 
