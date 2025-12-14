@@ -262,7 +262,7 @@ function findWeaponWithProperty(arr, propName, propValue) {
     return false;
 }
 
-function findWeaponWithCharacter(weapon, charFilters)
+function matchWeaponByCharacter(weapon, charFilters)
 {
     // no char filter, then they're always a match
     if (charFilters.length == 0)
@@ -271,15 +271,32 @@ function findWeaponWithCharacter(weapon, charFilters)
     }
 
     // locate the charName element, and see if it matches any of the charFilters
-    for (var i = 0; i < weapon.length; i++)
+    return charFilters.includes(getValueFromDatabaseItem(weapon, "charName"));
+}
+
+function matchWeaponByType(weapon, weaponTypeFilters)
+{
+    // no active filter, then they're always a match
+    if (weaponTypeFilters.length == 0)
     {
-        if (weapon[i].name == "charName") 
+        return true;
+    }
+
+    let weaponType = "";
+    if (getValueFromDatabaseItem(weapon, "uses") != "No Limit")
+    {
+        weaponType = "Ultimate";
+    }
+    else
+    {
+        switch (getValueFromDatabaseItem(weapon, "gachaType"))
         {
-            let charName = weapon[i].value;
-            return charFilters.includes(charName);
+            case "L": weaponType = "Limited"; break;
+            case "Y": weaponType = "Event"; break;
+            case "N": weaponType = "Featured"; break;
         }
     }
-    return true;
+    return weaponTypeFilters.includes(weaponType);
 }
 
 function getActiveCharacterFilter()
@@ -295,6 +312,22 @@ function getActiveCharacterFilter()
         }
     }
     return charFilters;
+}
+
+function getActiveWeaponTypeFilter()
+{
+    let weaponFilters = [];
+    const weaponFilterElements = document.getElementsByName("weapon_filter");
+
+    for (const weaponFilterElement of weaponFilterElements)
+    {
+        if (weaponFilterElement.checked)
+        {
+            weaponFilters.push(weaponFilterElement.value);
+        }
+    }
+
+    return weaponFilters;
 }
 
 function elementalCompare(a, b) {
@@ -627,10 +660,12 @@ function printLimitedWeapon(elem, header) {
     elemental = [["Weapon Name", "Char", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Condition"]];
 
     let activeChars = getActiveCharacterFilter();
+    let activeWeaponTypes = getActiveWeaponTypeFilter();
 
     for (var i = 0; i < weaponDatabase.length; i++) {
         var found = findWeaponWithProperty(weaponDatabase[i], 'gachaType', "L");
-        found = found && findWeaponWithCharacter(weaponDatabase[i], activeChars);
+        found = found && matchWeaponByCharacter(weaponDatabase[i], activeChars);
+        found = found && matchWeaponByType(weaponDatabase[i], activeWeaponTypes);
 
         if (found) {
             // Make a new row and push them into the list
@@ -695,11 +730,13 @@ function printAllWeapon(elem, header) {
     let elemental;
     elemental = [["Weapon Name", "Char", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Type", "Condition"]];
     let activeChars = getActiveCharacterFilter();
+    let activeWeaponTypes = getActiveWeaponTypeFilter();
 
     for (var i = 0; i < weaponDatabase.length; i++) {
         var found = true;
 
-        found = found && findWeaponWithCharacter(weaponDatabase[i], activeChars);
+        found = found && matchWeaponByCharacter(weaponDatabase[i], activeChars);
+        found = found && matchWeaponByType(weaponDatabase[i], activeWeaponTypes);
 
         if (found) {
             // Make a new row and push them into the list
@@ -782,11 +819,13 @@ function printWeaponElem(elem, header) {
     }
 
     let activeChars = getActiveCharacterFilter();
+    let activeWeaponTypes = getActiveWeaponTypeFilter();
 
     for (var i = 0; i < weaponDatabase.length; i++) {
         var found = findWeaponWithProperty(weaponDatabase[i], 'element', elem);
 
-        found = found && findWeaponWithCharacter(weaponDatabase[i], activeChars);
+        found = found && matchWeaponByCharacter(weaponDatabase[i], activeChars);
+        found = found && matchWeaponByType(weaponDatabase[i], activeWeaponTypes);
 
         if (found) {
             if (elem == "Heal") {
@@ -861,10 +900,12 @@ function printWeaponSigil(sigil, header) {
     readDatabase();
     let materia = [["Weapon Name", "Char", "AOE", "Type", "Elem", "ATB", "Uses", "Pot%", "Max%"]];
     let activeChars = getActiveCharacterFilter();
+    let activeWeaponTypes = getActiveWeaponTypeFilter();
 
     for (var i = 0; i < weaponDatabase.length; i++) {
         var found = findWeaponWithProperty(weaponDatabase[i], 'sigil', sigil);
-        found = found && findWeaponWithCharacter(weaponDatabase[i], activeChars);
+        found = found && matchWeaponByCharacter(weaponDatabase[i], activeChars);
+        found = found && matchWeaponByType(weaponDatabase[i], activeWeaponTypes);
 
         if (found) {
             let row = [];
@@ -889,13 +930,15 @@ function printWeaponMateria(elemMateria, header) {
     readDatabase();
     let materia = [["Weapon Name", "Char", "AOE", "Type", "Elem", "ATB", "Uses", "Pot%", "Max%"]];
     let activeChars = getActiveCharacterFilter();
+    let activeWeaponTypes = getActiveWeaponTypeFilter();
 
     for (var i = 0; i < weaponDatabase.length; i++) {
         var found = false;
         found = found || findWeaponWithProperty(weaponDatabase[i], 'support1', elemMateria);
         found = found || findWeaponWithProperty(weaponDatabase[i], 'support2', elemMateria);
         found = found || findWeaponWithProperty(weaponDatabase[i], 'support3', elemMateria);
-        found = found && findWeaponWithCharacter(weaponDatabase[i], activeChars);
+        found = found && matchWeaponByCharacter(weaponDatabase[i], activeChars);
+        found = found && matchWeaponByType(weaponDatabase[i], activeWeaponTypes);
 
         if (found) {
 
@@ -923,12 +966,14 @@ function printRegenWeapon(header) {
     var text = "Regen";
 
     let activeChars = getActiveCharacterFilter();
+    let activeWeaponTypes = getActiveWeaponTypeFilter();
 
     for (var i = 0; i < weaponDatabase.length; i++) {
         var found = findWeaponWithProperty(weaponDatabase[i], 'element', "Heal");
         var found1 = found && findWeaponWithProperty(weaponDatabase[i], 'effect1', text);
         var found2 = found && findWeaponWithProperty(weaponDatabase[i], 'effect2', text);
-        found = (found1 || found2) && findWeaponWithCharacter(weaponDatabase[i], activeChars);
+        found = (found1 || found2) && matchWeaponByCharacter(weaponDatabase[i], activeChars);
+        found = found && matchWeaponByType(weaponDatabase[i], activeWeaponTypes);
 
         if (found) {
             // Make a new row and push them into the list
@@ -992,13 +1037,15 @@ function printWeaponEffect(text, header) {
     readDatabase();
     let effect = [["Name", "Char", "Type", "Elem", "ATB", "Uses", "AOE", "Target", "Pot", "Max Pot", "Duration (s)", "Condition"]];  
     let activeChars = getActiveCharacterFilter();
+    let activeWeaponTypes = getActiveWeaponTypeFilter();
     
     for (var i = 0; i < weaponDatabase.length; i++) {
         var found1 = findWeaponWithProperty(weaponDatabase[i], 'effect1', text);
         var found2 = findWeaponWithProperty(weaponDatabase[i], 'effect2', text);
         var found3 = findWeaponWithProperty(weaponDatabase[i], 'effect3', text);
         var found = (found1 || found2 || found3);
-        found = found && findWeaponWithCharacter(weaponDatabase[i], activeChars);
+        found = found && matchWeaponByCharacter(weaponDatabase[i], activeChars);
+        found = found && matchWeaponByType(weaponDatabase[i], activeWeaponTypes);
         
         if (found) {
             // Make a new row and push them into the list
@@ -1054,12 +1101,14 @@ function printWeaponUniqueEffect(text, header) {
     readDatabase();
     let effect = [["Name", "Char", "AOE", "Type", "Elem", "ATB", "Uses", "Target1", "Effect1", "Condition1", "Target2", "Effect2", "Condition2"]];
     let activeChars = getActiveCharacterFilter();
+    let activeWeaponTypes = getActiveWeaponTypeFilter();
     
     for (var i = 0; i < weaponDatabase.length; i++) {
         var found1 = findWeaponWithProperty(weaponDatabase[i], 'effect1', text);
         var found2 = findWeaponWithProperty(weaponDatabase[i], 'effect2', text);
         var found = (found1 || found2);
-        found = found && findWeaponWithCharacter(weaponDatabase[i], activeChars);
+        found = found && matchWeaponByCharacter(weaponDatabase[i], activeChars);
+        found = found && matchWeaponByType(weaponDatabase[i], activeWeaponTypes);
         if (found) {
             let row = [];
 
