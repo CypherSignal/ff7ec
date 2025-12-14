@@ -201,11 +201,8 @@ footer {
 
 
 .filterTable {
-  width:550px;
-}
-
-.filterTable td {
-  width:120px;
+  width:480px;
+  table-layout: fixed;
 }
 
 
