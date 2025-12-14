@@ -13,8 +13,28 @@ const MAX_POT_INDEX = 6;   // Index into the maxPot for sorting
 let weaponDatabase = [];
 let activeWeaponFilter = "";
 
+function resetPerfReport()
+{
+    document.getElementById('perf_measurement').innerHTML = "Perf report:<br>";
+}
+
+function reportPerf(perfEvents)
+{
+    let perfText = "";
+
+    for (const perfEvent of perfEvents)
+    {
+        let perfLine = " - " + perfEvent[0] + ": " + (perfEvent[2] - perfEvent[1]).toFixed(1) + "ms";
+        console.log(perfLine);
+        perfText += perfLine + "<br>";
+    }
+    document.getElementById('perf_measurement').innerHTML += perfText;
+}
+
 /* Create a table to display the result */
 function tableCreate(user_row, user_col, list, header) {
+    let perfTableCreateStart = performance.now();
+
     //body reference 
     var body = document.getElementById('Output'); 
 
@@ -88,11 +108,19 @@ function tableCreate(user_row, user_col, list, header) {
 
     // put <table> in the <body>
     body.appendChild(tbl);
+    let perfTableCreateEnd = performance.now();
 
     new DataTable('#' + tblId, {
         paging: false
     });
+    let perfDataTableCreateEnd = performance.now();
+
     console.log("Created table: " + tblClassName);
+    
+    reportPerf([
+        ["DOM setup", perfTableCreateStart, perfTableCreateEnd],
+        ["Datatable init", perfTableCreateEnd, perfDataTableCreateEnd]
+    ]);
 }
 
 function sortTable(cell) {
@@ -171,6 +199,8 @@ function readDatabase() {
     if (weaponDatabase[0] != null) {
         return;
     }
+    resetPerfReport();
+    let start = performance.now();
 
     var location = window.location.href;
     var directoryPath = location.substring(0, location.lastIndexOf("/") + 1);
@@ -237,6 +267,11 @@ function readDatabase() {
             // console.log(weapData);
         }
     }
+    let end = performance.now();
+    
+    reportPerf([
+        ["Database load", start, end]
+    ]);
 }
 
 // Find elements in an array
@@ -344,6 +379,7 @@ function elementalCompare(a, b) {
 
 function refreshTable()
 {
+    resetPerfReport();
     console.log ("Refreshing table with filter \"" + activeWeaponFilter + "\"");
 
     // clear the table(s) that may be there already
