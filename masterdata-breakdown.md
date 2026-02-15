@@ -29,12 +29,18 @@ Describes each weapon's common/level-agnostic data
 Describes data for each active ability.
 
 - BaseAttackType: int 1-3
-    - Phys/Mag/Both
+    - 1: Phys
+    - 2: Mag
+    - 3: Both
 - ElementType: int (1-7)
-    - Major. obviously the element. Not sure what mapping is
+    - 1: Non-El
+    - 2:
+    - 3:
+    - 4:
+    - 5:
+    - 6:
+    - 7:
 - SkillEffectGroupId: SkillEffectGroup
-- "NameLanguageId": 540000010100101,
-    - The skill's name (won't need this)
 
 ### SkillEffectGroup
 
@@ -70,10 +76,6 @@ This is how one ability can do multiple things, e.g. "Apply damage" and "Apply s
 - IsInvertTriggerCondition: bool
     - Major. Ostensibly flips condition from, eg, "need hp > X" to "need hp < X"
 
-### WeaponRarity.json
-
-Describes the starting points and starting ability of each weapon at OB0, and growth rates on stats. Not relevant.
-
 ### WeaponUpgradeSkill.json
 
 Describes the OB-levels of each weapon, including r-abil points and which skill to use
@@ -85,6 +87,7 @@ Note: NOT KEYED ON ID!! Keyed on "WeaponId" and UpgradeCount (pick at OB1/6/10)
     OB level. Part of the key
 - WeaponSkillId: SkillWeapon
     - SkillWeapon item has a SkillActiveId: SkillActive
+    - SkillWeapon item has a SkillNotesSetId: SkillNotesSet
 - AddPassiveSkillPoint0: int
 - AddPassiveSkillPoint1: int
     - Both of these add onto the r-abilities from somewhere else
@@ -98,3 +101,15 @@ Describes link to base Id, cost, and use-count limit
     - ATB required
 - UseCountLimit: int
     - Use count limit. Costume ability limits. (Ultimate weapons are defined elsewhere!)
+
+### SkillNotesSet
+Technically has multiple objects per id, but for our intents and purposes we just need one
+
+- SkillNotesId: SkillNotes
+    - SkillNotes has "SkillNotesType" and "Count".
+    - Ostensibly used for *sigil break* on weapons!
+    - Skill notes ID of 1101 is Circle
+    - Skill notes Id of 2101 is triangle
+    - Skill notes id of 3101 is cross
+    - skill notes id of 4101 is diamond
+    - Error out if some other skill notes is detected; may need correction

@@ -100,8 +100,20 @@ skill_damage_data = load_masterdata_json("SkillDamageEffect.json")
 skill_status_effect_data = load_masterdata_json("SkillStatusConditionEffect.json")
 skill_buffdebuff_data = load_masterdata_json("SkillBuffDebuff.json")
 skill_status_change_effect_data = load_masterdata_json("SkillStatusChangeEffect.json")
+skill_weapon_data = load_masterdata_json("SkillWeapon.json")
+skill_active_data = load_masterdata_json("SkillActive.json")
+skill_notes_set_data = load_masterdata_json("SkillNotesSet.json")
+skill_notes_data = load_masterdata_json("SkillNotes.json")
 skill_effectgroup_data = load_skill_effect_group_json()
 weapon_upgrade_skill_data = load_weapon_upgrade_skill_json()
+
+# special-case the sigil effects from 'skill notes' dataset
+skill_notes_sigils = {
+    1101:"◯ Circle",
+    2101:"△ Triangle",
+    3101:"✕ Cross",
+    4101:"◊ Diamond",
+}
 
 print_perf_data("Load masterdata")
 
@@ -119,21 +131,66 @@ for weapon_obj in weapon_data.values():
     character_name = loc_table[character_obj["NameLanguageId"]]
     out_weapon["Character"] = strip_markup(character_name)
 
+    # fetch the "Base" weapon skill (basically what we have for Ults, or OB1 version of weapon)
+    weapon_is_ultimate = weapon_obj["WeaponEquipmentType"] == 1 # expected values are 0 for normal, 1 for ult
+    if (weapon_is_ultimate):
+        weapon_upgrade_skill_base_obj = weapon_upgrade_skill_data[weapon_obj["Id"]*100 + 0]
+    else:
+        weapon_upgrade_skill_base_obj = weapon_upgrade_skill_data[weapon_obj["Id"]*100 + 1]
+
+    skill_weapon_base_obj = skill_weapon_data[weapon_upgrade_skill_base_obj["WeaponSkillId"]]
+
+    if (weapon_is_ultimate):
+        print ("todo uwu")
+
+    if (not weapon_is_ultimate):
+        # non-ultimate weapons define ATB cost on skill-active obj
+        # (skilActive also defines use count, but only ultimates and costumes have limits right now)
+        skill_active_base_obj = skill_active_data[skill_weapon_base_obj["SkillActiveId"]]
+        out_weapon["Command ATB"] = skill_active_base_obj["Cost"]
+        
+        # as far as data setup goes now, SkillNotes/SkillNoteSet on player weapons appears to just be for sigil breaks
+        if (skill_weapon_base_obj["SkillNotesSetId"] != 0):
+            skill_notes_set_obj = skill_notes_set_data[skill_weapon_base_obj["SkillNotesSetId"]]
+            out_weapon["Command Sigil"] = skill_notes_sigils[skill_notes_set_obj["SkillNotesId"]]
+
+        # fetch the weapon skills at OB1/6/10
+        weapon_upgrade_skill_obj = [
+            weapon_upgrade_skill_data[weapon_obj["Id"]*100 + 1],
+            weapon_upgrade_skill_data[weapon_obj["Id"]*100 + 6],
+            weapon_upgrade_skill_data[weapon_obj["Id"]*100 + 10],
+        ]
+        skill_weapon_obj = [
+            skill_weapon_data[weapon_upgrade_skill_obj[0]["WeaponSkillId"]],
+            skill_weapon_data[weapon_upgrade_skill_obj[1]["WeaponSkillId"]],
+            skill_weapon_data[weapon_upgrade_skill_obj[2]["WeaponSkillId"]],
+        ]
+        skill_active_obj = [
+            skill_active_data[skill_weapon_obj[0]["SkillActiveId"]],
+            skill_active_data[skill_weapon_obj[1]["SkillActiveId"]],
+            skill_active_data[skill_weapon_obj[2]["SkillActiveId"]],
+        ]
+        
+
+
     out_weapons.append(out_weapon)
 
 print_perf_data("Transform weapondata")
 
 # with all of the weapon data transformed, write it out to csv
+csv_header = [
+    "Id",
+    "Name",
+    "Character",
+    "Command ATB",
+    "Use Limit",
+    "Command Sigil",
+]
+
 
 with open('weaponData-Staging.csv', 'w', newline='', encoding='utf-8') as csvfile:
-    csv_header = [
-        "Id",
-        "Name",
-        "Character",
-    ]
-
     csv_writer = csv.DictWriter(csvfile, csv_header, delimiter=',')
-    
+    csv_writer.writeheader()
     for out_weapon in out_weapons:
         csv_writer.writerow(out_weapon)
 
