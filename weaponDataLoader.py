@@ -248,6 +248,12 @@ special_gauge_types = [
     "Summon Gauge",
 ]
 
+additional_skill_types = [
+    "UNKNOWN",
+    "Limit Gauge",
+    "Summon Gauge",
+]
+
 print_perf_data("Load masterdata")
 
 # start transforming all of the data into our own dict of weaponId to summarized-info
@@ -414,7 +420,18 @@ for weapon_obj in weapon_data.values():
 
             case 7: # SkillAdditionalEffect (e.g. crits???)
                 skill_additional_effect_obj = skill_additional_effect_data[skill_effect_detail_id]
-                out_weapon[effect_detail_prefix] = "UNKNOWN ADDITIONAL EFFECT"  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
+                match skill_additional_effect_obj["SkillAdditionalType"]:
+                    case 14: # crits
+                        out_weapon[effect_detail_prefix] = "Crit Rate"
+                        out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_additional_effect_obj["MaxValue"]/10,0)) + "%"
+                    case 15: # additional damage when debuff on target
+                        out_weapon[effect_detail_prefix] = "When Debuff is on target, multiply damage"
+                        out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_additional_effect_obj["MaxValue"]/10,0)) + "%"
+                    case 16: # fixed dmg (phys)
+                        out_weapon[effect_detail_prefix] = "Deals Fixed Additional Phys. Damage"
+                        out_weapon[effect_detail_prefix + "_Pot"] = skill_additional_effect_obj["MaxValue"]
+                    case _:    
+                        out_weapon[effect_detail_prefix] = "UNKNOWN ADDITIONAL EFFECT TYPE " + str(skill_additional_effect_obj["SkillAdditionalType"]) + " on SkillEffectDetailId: " + str(skill_effect_detail_id)
 
             case 16: # SkillAtbChangeEffect (+ATB!)
                 skill_atbchange_effect_obj = skill_atbchange_effect_data[skill_effect_detail_id]
@@ -426,10 +443,10 @@ for weapon_obj in weapon_data.values():
                 match skill_special_gauge_change_obj["SkillSpecialGaugeChangeType"]:
                     case 1: # increases gauge
                         out_weapon[effect_detail_prefix] = "Increases " + skill_special_gauge_type
-                        out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_special_gauge_change_obj["PermilValue"] / 10,0))
+                        out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_special_gauge_change_obj["PermilValue"] / 10,0)) + "%"
                     case 2: # reduces gauge
                         out_weapon[effect_detail_prefix] = "Decreases " + skill_special_gauge_type
-                        out_weapon[effect_detail_prefix + "_Pot"] = "-" + str(round(skill_special_gauge_change_obj["PermilValue"] / 10,0))
+                        out_weapon[effect_detail_prefix + "_Pot"] = "-" + str(round(skill_special_gauge_change_obj["PermilValue"] / 10,0)) + "%"
                     case _:
                        out_weapon[effect_detail_prefix] = "UNKNOWN SPECIAL GAUGE CHANGE"  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
                 
@@ -438,10 +455,10 @@ for weapon_obj in weapon_data.values():
                 match skill_tactics_gauge_change_obj["SkillEffectGaugeChangeType"]:
                     case 1: # increases gauge
                         out_weapon[effect_detail_prefix] = "Increases Command Gauge"
-                        out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_tactics_gauge_change_obj["PermilValue"] / 10,0))
+                        out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_tactics_gauge_change_obj["PermilValue"] / 10,0)) + "%"
                     case 2: # reduces gauge
                         out_weapon[effect_detail_prefix] = "Decreases Command Gauge"
-                        out_weapon[effect_detail_prefix + "_Pot"] = "-" + str(round(skill_tactics_gauge_change_obj["PermilValue"] / 10,0))
+                        out_weapon[effect_detail_prefix + "_Pot"] = "-" + str(round(skill_tactics_gauge_change_obj["PermilValue"] / 10,0)) + "%"
                     case _:
                        out_weapon[effect_detail_prefix] = "UNKNOWN TACTICS GAUGE CHANGE"  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
 
@@ -457,7 +474,6 @@ for weapon_obj in weapon_data.values():
                 out_weapon[effect_detail_prefix + "_Pot"] = buffdebuff_tiers[skill_buffdebuff_enhance_obj["EnhanceEffectLevel"]]
                 out_weapon[effect_detail_prefix + "_PotMax"] = buffdebuff_tiers[skill_buffdebuff_enhance_obj["EnhanceEffectLevelMax"]]
                 out_weapon[effect_detail_prefix + "_Extend"] = skill_buffdebuff_enhance_obj["EnhanceDurationSec"]
-
 
             case _:
                 out_weapon[effect_detail_prefix] = "UNKNOWN EFFECT: " + str(skill_effect_obj["SkillEffectType"]) + " SkillEffectDetailId: " + str(skill_effect_detail_id)

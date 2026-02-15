@@ -1,455 +1,455 @@
 Id	Character	Name	Ability Element	Ability Pot. %	Ability Range	Ability Type	Command ATB	Command Sigil	Effect0	Effect0_Duration	Effect0_Extend	Effect0_Pot	Effect0_PotMax	Effect0_Range	Effect0_Type	Effect1	Effect1_Duration	Effect1_Extend	Effect1_Pot	Effect1_PotMax	Effect1_Range	Effect1_Type	Effect2	Effect2_Duration	Effect2_Extend	Effect2_Pot	Effect2_PotMax	Effect2_Range	Effect2_Type	Effect3	Effect3_Pot	Effect3_Range	Effect3_Type	GachaType
-1001	Cloud	Buster Sword	None	750.0	Single Enemy	Phys	4	✕ Cross	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101001042					Single Enemy	AdditionalEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101001043					Single Enemy	AdditionalEffect												Event
-1002	Cloud	Iron Blade	None	350.0	All Enemies	Phys	4		PATK Down	25	8	Mid	Mid	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101002043					All Enemies	AdditionalEffect												Featured
-1003	Cloud	Hardedge	None	510.0	Single Enemy	Phys	4		PDEF Down	25	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101003043					Single Enemy	AdditionalEffect												Featured
-1004	Cloud	Mythril Saber	None	940.0	Single Enemy	Mag	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101004042					Single Enemy	AdditionalEffect																			Featured
+1001	Cloud	Buster Sword	None	750.0	Single Enemy	Phys	4	✕ Cross	Crit Rate			10.0%		Single Enemy	AdditionalEffect	When Debuff is on target, multiply damage			150.0%		Single Enemy	AdditionalEffect												Event
+1002	Cloud	Iron Blade	None	350.0	All Enemies	Phys	4		PATK Down	25	8	Mid	Mid	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect												Featured
+1003	Cloud	Hardedge	None	510.0	Single Enemy	Phys	4		PDEF Down	25	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
+1004	Cloud	Mythril Saber	None	940.0	Single Enemy	Mag	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Featured
 1006	Cloud	Butterfly Edge	Heal	14.0	Single Ally	Mag	4		PDEF Up	38	12	High	High	Single Ally	BuffDebuff																			Featured
 1007	Cloud	Murasame	Lightning	750.0	Single Enemy	Phys	4																											Featured
-1008	Cloud	Organics	None	750.0	Single Enemy	Phys	4		Status Ailment: Stun	5	2			Single Enemy	StatusConditionEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101008043					Single Enemy	AdditionalEffect												Featured
+1008	Cloud	Organics	None	750.0	Single Enemy	Phys	4		Status Ailment: Stun	5	2			Single Enemy	StatusConditionEffect	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
 1009	Cloud	Crystal Sword	Heal	72.0	All Allies	Mag	5																											Featured
 1012	Cloud	Enhance Sword	Ice	520.0	All Enemies	Mag	4																											Featured
-1013	Cloud	Nail Bat	None	1600.0	Single Enemy	Phys	5		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101013042					Single Enemy	AdditionalEffect																			Event
-1015	Cloud	Apocalypse	None	940.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101015042					Single Enemy	AdditionalEffect																			Featured
+1013	Cloud	Nail Bat	None	1600.0	Single Enemy	Phys	5		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Event
+1015	Cloud	Apocalypse	None	940.0	Single Enemy	Phys	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Featured
 1020	Cloud	Maritime Sword	Water	750.0	Single Enemy	Phys	4																											Featured
 1021	Cloud	Full Throttle	Ice	1120.0	Single Enemy	Mag	4		MATK Up	30	10	Mid	High	Self	BuffDebuff	MDEF Down	30	10	Mid	High	Single Enemy	BuffDebuff												Featured
-1022	Cloud	Mystic Sword	None	420.0	Single Enemy	Mag	3		MATK Down	24	8	High	High	Single Enemy	BuffDebuff	PATK Down	24	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101022044					Single Enemy	AdditionalEffect					Featured
+1022	Cloud	Mystic Sword	None	420.0	Single Enemy	Mag	3		MATK Down	24	8	High	High	Single Enemy	BuffDebuff	PATK Down	24	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Featured
 1024	Cloud	Shiva's Blade	Ice	450.0	Single Enemy	Mag	4																											Grindable
 1025	Cloud	Bandaged Sword	Heal	7.0	All Allies	Mag	4		MDEF Up	14	4	High	High	All Allies	BuffDebuff																			Featured
 1028	Cloud	Skysplitter	Fire	850.0	Single Enemy	Phys	4																											Featured
-1029	Cloud	Zidane's Sword	None	1300.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101029042					Single Enemy	AdditionalEffect																			Event
+1029	Cloud	Zidane's Sword	None	1300.0	Single Enemy	Phys	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Event
 1030	Cloud	Holiday Cheer	Earth	290.0	All Enemies	Mag	4																											Event
 1031	Cloud	Stream Saber	Ice	1020.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 101031042					All Allies	StatusChangeEffect																			Limited
 1032	Cloud	Igneous Saber	Fire	290.0	All Enemies	Mag	4																											Event
-1033	Cloud	Glavenus Sword	None	850.0	Single Enemy	Phys	4		PDEF Down	30	10	Mid	Mid	Single Enemy	BuffDebuff	PATK Up	35	7	High	High	Self	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101033044					Single Enemy	AdditionalEffect					Limited
+1033	Cloud	Glavenus Sword	None	850.0	Single Enemy	Phys	4		PDEF Down	30	10	Mid	Mid	Single Enemy	BuffDebuff	PATK Up	35	7	High	High	Self	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Limited
 1034	Cloud	Rune Blade	Ice	290.0	All Enemies	Mag	4																											Event
 1035	Cloud	Burning Oar	Fire	450.0	Single Enemy	Phys	4																											Event
-1036	Cloud	Bahamut Greatsword	None	800.0	All Enemies	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 101036042					Self	StatusChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101036043					All Enemies	AdditionalEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101036044					All Enemies	AdditionalEffect					Limited
+1036	Cloud	Bahamut Greatsword	None	800.0	All Enemies	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 101036042					Self	StatusChangeEffect	Crit Rate			10.0%		All Enemies	AdditionalEffect	Deals Fixed Additional Phys. Damage			40000		All Enemies	AdditionalEffect					Limited
 1037	Cloud	Ultimate Buster Sword	None	1000.0	Single Enemy	Both	0		PATK Down	30	30	High	High	Single Enemy	BuffDebuff	MATK Down	30	30	High	High	Single Enemy	BuffDebuff												Ultimate
-1038	Cloud	Locke's Sword	None	1010.0	Single Enemy	Phys	3		Fire Damage Up	55	11	High	High	Self	BuffDebuff	Ice Damage Up	55	11	High	High	Self	BuffDebuff	Lightning Damage Up	55	11	High	High	Self	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101038045		Single Enemy	AdditionalEffect	Limited
-1039	Cloud	Holiday Blade	Wind	940.0	Single Enemy	Mag	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101039042					Single Enemy	AdditionalEffect																			Featured
-1040	Cloud	Chocobo Paddle	None	250.0	All Enemies	Mag	4		Fire Resistance Down	35	8	Low	Mid	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101040043					All Enemies	AdditionalEffect												Event
-1042	Cloud	Sleek Saber	None	250.0	All Enemies	Mag	4		PDEF Down	35	8	Low	Mid	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101042043					All Enemies	AdditionalEffect												Event
-1044	Cloud	Erdrick's Sword	Lightning	720.0	All Enemies	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101044042					All Enemies	AdditionalEffect	Status Ailment: Enfeeble	30	10			All Enemies	StatusConditionEffect	MATK Down	30	10	Mid	High	All Enemies	BuffDebuff					Limited
+1038	Cloud	Locke's Sword	None	1010.0	Single Enemy	Phys	3		Fire Damage Up	55	11	High	High	Self	BuffDebuff	Ice Damage Up	55	11	High	High	Self	BuffDebuff	Lightning Damage Up	55	11	High	High	Self	BuffDebuff	Crit Rate	10.0%	Single Enemy	AdditionalEffect	Limited
+1039	Cloud	Holiday Blade	Wind	940.0	Single Enemy	Mag	4		When Debuff is on target, multiply damage			120.0%		Single Enemy	AdditionalEffect																			Featured
+1040	Cloud	Chocobo Paddle	None	250.0	All Enemies	Mag	4		Fire Resistance Down	35	8	Low	Mid	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect												Event
+1042	Cloud	Sleek Saber	None	250.0	All Enemies	Mag	4		PDEF Down	35	8	Low	Mid	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect												Event
+1044	Cloud	Erdrick's Sword	Lightning	720.0	All Enemies	Phys	4		When Debuff is on target, multiply damage			150.0%		All Enemies	AdditionalEffect	Status Ailment: Enfeeble	30	10			All Enemies	StatusConditionEffect	MATK Down	30	10	Mid	High	All Enemies	BuffDebuff					Limited
 1045	Cloud	Radblade	Water	450.0	Single Enemy	Phys	4																											Event
-1046	Cloud	Umbral Blade	None	430.0	All Enemies	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101046042					All Enemies	AdditionalEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101046043					All Enemies	AdditionalEffect												Event
+1046	Cloud	Umbral Blade	None	430.0	All Enemies	Phys	4		Deals Fixed Additional Phys. Damage			10000		All Enemies	AdditionalEffect	Crit Rate			10.0%		All Enemies	AdditionalEffect												Event
 1047	Cloud	Ragnarok	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 101047012					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 101047013					Self	StatusChangeEffect	ATB+3					All Allies	AtbChangeEffect					Ultimate
-1048	Cloud	Fusion Sword	None	1340.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 101048042					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 101048043					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 101048044					Self	StatusChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101048045		Single Enemy	AdditionalEffect	Limited
-1049	Cloud	Crimson Blitz	None	800.0	Single Enemy	Mag	3		Status Ailment: Ice Weakness	60	20	+30.0%		Single Enemy	StatusConditionEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 101049043					All Allies	StatusChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 101049044					Single Enemy	AdditionalEffect					Limited
+1048	Cloud	Fusion Sword	None	1340.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 101048042					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 101048043					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 101048044					Self	StatusChangeEffect	Crit Rate	10.0%	Single Enemy	AdditionalEffect	Limited
+1049	Cloud	Crimson Blitz	None	800.0	Single Enemy	Mag	3		Status Ailment: Ice Weakness	60	20	+30.0%		Single Enemy	StatusConditionEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 101049043					All Allies	StatusChangeEffect	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Limited
 1050	Cloud	Cruel Successor	Earth	1340.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 101050042					All Allies	StatusChangeEffect																			Limited
-2001	Barret	Gatling Gun	None	750.0	Single Enemy	Phys	4	✕ Cross	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 102001042					Single Enemy	AdditionalEffect																			Featured
+2001	Barret	Gatling Gun	None	750.0	Single Enemy	Phys	4	✕ Cross	Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Featured
 2002	Barret	Assault Gun	Heal	7.0	All Allies	Phys	4		PDEF Up	14	4	High	High	All Allies	BuffDebuff																			Featured
 2007	Barret	Heavy Vulcan	Heal	14.0	Single Ally	Mag	4		MDEF Up	38	12	High	High	Single Ally	BuffDebuff																			Featured
 2008	Barret	Microlaser	Heal	14.0	Single Ally	Mag	4		MATK Up	38	12	High	High	Single Ally	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 102026042					Single Ally	StatusChangeEffect												Featured
-2010	Barret	W Machine	None	510.0	Single Enemy	Phys	4		PDEF Down	25	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 102010043					Single Enemy	AdditionalEffect												Featured
-2011	Barret	Solid Bazooka	None	510.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 102011042					Single Enemy	AdditionalEffect	MATK Down	25	8	High	High	Single Enemy	BuffDebuff												Featured
-2012	Barret	Enemy Launcher	None	650.0	All Enemies	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 102012042					All Enemies	AdditionalEffect																			Featured
-2013	Barret	Max Ray	None	750.0	Single Enemy	Mag	4	◊ Diamond	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 102013042					Single Enemy	AdditionalEffect																			Featured
+2010	Barret	W Machine	None	510.0	Single Enemy	Phys	4		PDEF Down	25	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
+2011	Barret	Solid Bazooka	None	510.0	Single Enemy	Phys	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect	MATK Down	25	8	High	High	Single Enemy	BuffDebuff												Featured
+2012	Barret	Enemy Launcher	None	650.0	All Enemies	Phys	4		Crit Rate			10.0%		All Enemies	AdditionalEffect																			Featured
+2013	Barret	Max Ray	None	750.0	Single Enemy	Mag	4	◊ Diamond	Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Featured
 2015	Barret	Flame Projector	Fire	520.0	All Enemies	Mag	4																											Featured
 2017	Barret	Electrocannon	Lightning	540.0	All Enemies	Mag	4		PATK Down	30	10	Mid	High	All Enemies	BuffDebuff	MATK Down	30	10	Mid	Mid	All Enemies	BuffDebuff												Featured
-2018	Barret	Heavy Hauser	None	940.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 102018042					Single Enemy	AdditionalEffect																			Featured
+2018	Barret	Heavy Hauser	None	940.0	Single Enemy	Phys	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Featured
 2019	Barret	Lefko Kypseli	Heal	14.0	Single Ally	Mag	4		PDEF Up	38	12	Mid	High	Single Ally	BuffDebuff																			Event
-2020	Barret	Rocket Punch	None	500.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 102020042					Single Enemy	AdditionalEffect																			Event
-2021	Barret	Sharkslayer	None	420.0	Single Enemy	Phys	3	◊ Diamond	Fire Resistance Down	24	8	High	High	Single Enemy	BuffDebuff	Water Resistance Down	24	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 102021044					Single Enemy	AdditionalEffect					Featured
+2020	Barret	Rocket Punch	None	500.0	Single Enemy	Phys	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Event
+2021	Barret	Sharkslayer	None	420.0	Single Enemy	Phys	3	◊ Diamond	Fire Resistance Down	24	8	High	High	Single Enemy	BuffDebuff	Water Resistance Down	24	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Featured
 2022	Barret	Shiva Cannon	Ice	450.0	Single Enemy	Mag	4																											Grindable
-2024	Barret	Hell House Cannon	None	360.0	Single Enemy	Mag	4		MDEF Down	28	9	Low	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 102024043					Single Enemy	AdditionalEffect												Event
+2024	Barret	Hell House Cannon	None	360.0	Single Enemy	Mag	4		MDEF Down	28	9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
 2025	Barret	Siege Cannon	Water	290.0	All Enemies	Mag	4																											Event
 2027	Barret	Leviathan Buster	Water	450.0	Single Enemy	Mag	4																											Grindable
 2029	Barret	Rhad Cannon	Heal	14.0	Single Ally	Mag	4		PATK Up	44	14	Low	Mid	Single Ally	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 102029042					Single Ally	StatusChangeEffect												Event
 2031	Barret	Ultimate Gatling Gun	Heal	5.0	All Allies	Phys	0		PDEF Up	20	20	High	High	All Allies	BuffDebuff																			Ultimate
 2032	Barret	Escutcheon Cannon	Heal	8.0	All Allies	Mag	4		MDEF Up	20	6	High	High	All Allies	BuffDebuff	MATK Up	20	6	High	High	All Allies	BuffDebuff												Featured
-2033	Barret	Sunrise Cannon	None	780.0	All Enemies	Phys	4		Fire Resistance Up	30	10	Mid	High	All Allies	BuffDebuff	Lightning Resistance Up	30	10	Mid	High	All Allies	BuffDebuff	PDEF Up	30	10	Mid	High	All Allies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 102033045		All Enemies	AdditionalEffect	Featured
-2035	Barret	Fafnir Rifle	None	540.0	All Enemies	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 102035042					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 102035043					Self	StatusChangeEffect	PDEF Up	20	6	Mid	High	All Allies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 102035045		All Enemies	AdditionalEffect	Limited
+2033	Barret	Sunrise Cannon	None	780.0	All Enemies	Phys	4		Fire Resistance Up	30	10	Mid	High	All Allies	BuffDebuff	Lightning Resistance Up	30	10	Mid	High	All Allies	BuffDebuff	PDEF Up	30	10	Mid	High	All Allies	BuffDebuff	Crit Rate	10.0%	All Enemies	AdditionalEffect	Featured
+2035	Barret	Fafnir Rifle	None	540.0	All Enemies	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 102035042					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 102035043					Self	StatusChangeEffect	PDEF Up	20	6	Mid	High	All Allies	BuffDebuff	Crit Rate	10.0%	All Enemies	AdditionalEffect	Limited
 2036	Barret	Missing Score	Heal	5.0	All Allies	Mag	0		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 102036011					All Allies	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 102036012					All Allies	StatusChangeEffect												Ultimate
 2038	Barret	Teacher's Paper Fan	Wind	500.0	All Enemies	Phys	3		Wind Resistance Down	30	10	High	High	All Enemies	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 102038043					Self	StatusChangeEffect												Limited
 2039	Barret	Hook Launcher	Lightning	290.0	All Enemies	Mag	4																											Event
-2040	Barret	Quad Gatling Gun	None	360.0	Single Enemy	Mag	4		PDEF Down	28	9	Low	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 102040043					Single Enemy	AdditionalEffect												Event
-3001	Tifa	Leather Gloves	None	540.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 103006042					Single Enemy	AdditionalEffect	PATK Down	25	8	High	High	Single Enemy	BuffDebuff												Featured
+2040	Barret	Quad Gatling Gun	None	360.0	Single Enemy	Mag	4		PDEF Down	28	9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
+3001	Tifa	Leather Gloves	None	540.0	Single Enemy	Phys	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect	PATK Down	25	8	High	High	Single Enemy	BuffDebuff												Featured
 3005	Tifa	Grand Gloves	Heal	132.0	Self	Phys	5		Removes Ailment: Poison, Ailment: Silence					Self	CancelEffect																			Featured
-3006	Tifa	Sonic Striker	None	990.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 103001042					Single Enemy	AdditionalEffect																			Featured
-3007	Tifa	Tiger Fangs	None	540.0	Single Enemy	Phys	4		MATK Down	25	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 103007043					Single Enemy	AdditionalEffect												Featured
+3006	Tifa	Sonic Striker	None	990.0	Single Enemy	Phys	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Featured
+3007	Tifa	Tiger Fangs	None	540.0	Single Enemy	Phys	4		MATK Down	25	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
 3010	Tifa	Crystal Gloves	Lightning	500.0	All Enemies	Mag	4																											Featured
 3011	Tifa	Motor Drive	Wind	790.0	Single Enemy	Phys	4																											Featured
-3013	Tifa	Kaiser Knuckles	None	480.0	Single Enemy	Mag	4		MDEF Down	25	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 103013043					Single Enemy	AdditionalEffect												Featured
+3013	Tifa	Kaiser Knuckles	None	480.0	Single Enemy	Mag	4		MDEF Down	25	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
 3014	Tifa	Work Gloves	Heal	14.0	Self	Mag	4		PDEF Up	35	11	High	High	Self	BuffDebuff	PATK Up	35	11	High	High	Self	BuffDebuff												Event
-3015	Tifa	Powersoul	None	900.0	Single Enemy	Mag	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 103015042					Single Enemy	AdditionalEffect																			Featured
+3015	Tifa	Powersoul	None	900.0	Single Enemy	Mag	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Featured
 3019	Tifa	Lifeguard Wraps	Heal	55.0	All Allies	Mag	4																											Featured
-3020	Tifa	Feathered Gloves	None	420.0	Single Enemy	Phys	3		MDEF Down	24	8	Mid	Mid	Single Enemy	BuffDebuff	Water Damage Up	35	7	High	High	Self	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 103020044					Single Enemy	AdditionalEffect					Featured
-3024	Tifa	Bahamut Knuckles	None	450.0	Single Enemy	Mag	4	◊ Diamond	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 103024042					Single Enemy	AdditionalEffect																			Grindable
+3020	Tifa	Feathered Gloves	None	420.0	Single Enemy	Phys	3		MDEF Down	24	8	Mid	Mid	Single Enemy	BuffDebuff	Water Damage Up	35	7	High	High	Self	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Featured
+3024	Tifa	Bahamut Knuckles	None	450.0	Single Enemy	Mag	4	◊ Diamond	Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Grindable
 3025	Tifa	Holy Flame Gloves	Ice	800.0	Single Enemy	Phys	4																											Featured
-3027	Tifa	Amarant's Claws	None	720.0	Single Enemy	Phys	4		PATK Up	40	8	High	High	Self	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 103027043					Single Enemy	AdditionalEffect	MATK Down	30	10	Mid	High	Single Enemy	BuffDebuff					Event
+3027	Tifa	Amarant's Claws	None	720.0	Single Enemy	Phys	4		PATK Up	40	8	High	High	Self	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect	MATK Down	30	10	Mid	High	Single Enemy	BuffDebuff					Event
 3028	Tifa	Bunny Gloves	Water	850.0	Single Enemy	Mag	4		MATK Up	35	7	Low	High	Self	BuffDebuff																			Featured
 3029	Tifa	Oven Mitts	Heal	14.0	Single Ally	Mag	4		PATK Up	44	14	Low	Mid	Single Ally	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 103029042					Single Ally	StatusChangeEffect												Event
-3030	Tifa	Turks' Gloves	None	360.0	Single Enemy	Mag	4		PDEF Down	28	9	Low	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 103030043					Single Enemy	AdditionalEffect												Event
-3031	Tifa	Guide Gloves	None	1300.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 103031042					Single Enemy	AdditionalEffect																			Event
+3030	Tifa	Turks' Gloves	None	360.0	Single Enemy	Mag	4		PDEF Down	28	9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
+3031	Tifa	Guide Gloves	None	1300.0	Single Enemy	Phys	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Event
 3032	Tifa	Kirin Gloves	Lightning	940.0	Single Enemy	Mag	4		MATK Up	35	7	Mid	Mid	Self	BuffDebuff																			Limited
-3033	Tifa	Shell Knuckles	Fire	940.0	Single Enemy	Mag	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 103033042					Single Enemy	AdditionalEffect																			Featured
-3034	Tifa	Steward Gloves	None	360.0	Single Enemy	Mag	4		PATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 103034043					Single Enemy	AdditionalEffect												Event
-3035	Tifa	Bahamut Fangs	None	1100.0	Single Enemy	Mag	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 103035042					Self	StatusChangeEffect	MATK Up	25	8	Mid	High	All Allies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 103035044					Single Enemy	AdditionalEffect					Limited
+3033	Tifa	Shell Knuckles	Fire	940.0	Single Enemy	Mag	4		When Debuff is on target, multiply damage			120.0%		Single Enemy	AdditionalEffect																			Featured
+3034	Tifa	Steward Gloves	None	360.0	Single Enemy	Mag	4		PATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
+3035	Tifa	Bahamut Fangs	None	1100.0	Single Enemy	Mag	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 103035042					Self	StatusChangeEffect	MATK Up	25	8	Mid	High	All Allies	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Limited
 3036	Tifa	Black Cat's Paws	Lightning	290.0	All Enemies	Mag	4																											Event
 3037	Tifa	Ultimate Leather Gloves	None	1000.0	Single Enemy	Both	0		PATK Up	30	30	Mid	Mid	All Allies	BuffDebuff	MATK Up	30	30	Mid	Mid	All Allies	BuffDebuff												Ultimate
-3038	Tifa	Sabin's Claws	None	800.0	All Enemies	Phys	4		PATK Up	30	10	Mid	High	Self	BuffDebuff	MATK Up	30	10	Mid	High	Self	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 103038044					All Enemies	AdditionalEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 103038045		All Enemies	AdditionalEffect	Limited
-3039	Tifa	Blue Daffodil Gloves	None	1100.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 103039042					Self	StatusChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 103039043					Single Enemy	AdditionalEffect												Limited
+3038	Tifa	Sabin's Claws	None	800.0	All Enemies	Phys	4		PATK Up	30	10	Mid	High	Self	BuffDebuff	MATK Up	30	10	Mid	High	Self	BuffDebuff	Deals Fixed Additional Phys. Damage			40000		All Enemies	AdditionalEffect	Crit Rate	10.0%	All Enemies	AdditionalEffect	Limited
+3039	Tifa	Blue Daffodil Gloves	None	1100.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 103039042					Self	StatusChangeEffect	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Limited
 3040	Tifa	Premium Heart	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 103040012					Self	StatusChangeEffect																			Ultimate
 3041	Tifa	Odin Gloves	Wind	450.0	Single Enemy	Mag	4																											Grindable
 3042	Tifa	Gauntlets of the Worthy	Earth	1120.0	Single Enemy	Phys	4		Earth Damage Up	25	8	Mid	High	All Allies	BuffDebuff	ATB+3					Self	AtbChangeEffect												Limited
-3043	Tifa	Járngreipr	None	250.0	All Enemies	Mag	4		PDEF Down	35	8	Low	Mid	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 103043043					All Enemies	AdditionalEffect												Event
+3043	Tifa	Járngreipr	None	250.0	All Enemies	Mag	4		PDEF Down	35	8	Low	Mid	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect												Event
 3045	Tifa	Penance Gloves	Fire	290.0	All Enemies	Mag	4																											Event
 3046	Tifa	Shining Gloves	Water	1120.0	Single Enemy	Phys	4		PATK Down	30	10	Mid	High	Single Enemy	BuffDebuff	MATK Down	30	10	Mid	High	Single Enemy	BuffDebuff												Featured
 3047	Tifa	Class President's Bracelet	Wind	1060.0	Single Enemy	Phys	4		PATK Up	25	8	Mid	High	All Allies	BuffDebuff																			Limited
-3048	Tifa	Striped Moogle Gloves	None	360.0	Single Enemy	Mag	4		MATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 103048043					Single Enemy	AdditionalEffect												Event
-3049	Tifa	Leather Combat Gloves	None	1340.0	All Enemies	Mag	4		Status Ailment: Enfeeble	60	12			All Enemies	StatusConditionEffect	Applied Stats Buff Tier Increased		10	Low	Extra High	All Allies	BuffDebuffEnhance	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 103049044					All Enemies	AdditionalEffect					Limited
+3048	Tifa	Striped Moogle Gloves	None	360.0	Single Enemy	Mag	4		MATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
+3049	Tifa	Leather Combat Gloves	None	1340.0	All Enemies	Mag	4		Status Ailment: Enfeeble	60	12			All Enemies	StatusConditionEffect	Applied Stats Buff Tier Increased		10	Low	Extra High	All Allies	BuffDebuffEnhance	Crit Rate			10.0%		All Enemies	AdditionalEffect					Limited
 3050	Tifa	Lightning's Gloves	Ice	1340.0	Single Enemy	Mag	4		Ice Resistance Down	25	8	Mid	High	Single Enemy	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 103050043					Self	StatusChangeEffect												Limited
-3052	Tifa	Demon's Impetus	None	1340.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 103052042					Self	StatusChangeEffect	PATK Up	60	20	High	High	All Allies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 103052044					Single Enemy	AdditionalEffect					Limited
+3052	Tifa	Demon's Impetus	None	1340.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 103052042					Self	StatusChangeEffect	PATK Up	60	20	High	High	All Allies	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Limited
 4001	Aerith	Guard Stick	Heal	15.0	Single Ally	Mag	4		MDEF Up	38	12	High	High	Single Ally	BuffDebuff																			Featured
 4002	Aerith	Silver Staff	Ice	540.0	All Enemies	Mag	4																											Featured
-4003	Aerith	Striking Staff	None	900.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 104003042					Single Enemy	AdditionalEffect																			Featured
+4003	Aerith	Striking Staff	None	900.0	Single Enemy	Phys	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Featured
 4004	Aerith	Mythril Rod	Heal	10.0	All Allies	Mag	5		PDEF Up	14	4	Mid	Mid	All Allies	BuffDebuff	MDEF Up	14	4	Mid	Mid	All Allies	BuffDebuff												Featured
-4005	Aerith	Full Metal Staff	None	340.0	All Enemies	Phys	4		PATK Down	25	8	Mid	Mid	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 104005043					All Enemies	AdditionalEffect												Featured
+4005	Aerith	Full Metal Staff	None	340.0	All Enemies	Phys	4		PATK Down	25	8	Mid	Mid	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect												Featured
 4007	Aerith	Prism Rod	Wind	800.0	Single Enemy	Mag	4																											Featured
 4008	Aerith	Fairy Tale	Heal	75.0	All Allies	Mag	5																											Featured
 4009	Aerith	Wizard Staff	Lightning	540.0	All Enemies	Mag	4																											Featured
 4010	Aerith	Wizer Staff	Earth	540.0	All Enemies	Mag	4																											Featured
-4014	Aerith	Sun Umbrella	None	540.0	Single Enemy	Mag	4		PDEF Down	25	8	Mid	Mid	Single Enemy	BuffDebuff	MDEF Down	25	8	Mid	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 104014044					Single Enemy	AdditionalEffect					Featured
-4015	Aerith	Floral Wand	None	420.0	Single Enemy	Phys	3		PDEF Down	24	8	Mid	Mid	Single Enemy	BuffDebuff	Wind Resistance Down	24	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 104015044					Single Enemy	AdditionalEffect					Featured
+4014	Aerith	Sun Umbrella	None	540.0	Single Enemy	Mag	4		PDEF Down	25	8	Mid	Mid	Single Enemy	BuffDebuff	MDEF Down	25	8	Mid	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Featured
+4015	Aerith	Floral Wand	None	420.0	Single Enemy	Phys	3		PDEF Down	24	8	Mid	Mid	Single Enemy	BuffDebuff	Wind Resistance Down	24	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Featured
 4016	Aerith	Umbrella	Heal	110.0	Single Ally	Mag	4		Removes PATK Down, MATK Down					Single Ally	CancelEffect																			Event
-4018	Aerith	Sea Dragon Staff	None	360.0	Single Enemy	Mag	4		Water Resistance Down	28	9	Mid	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 104018043					Single Enemy	AdditionalEffect												Grindable
+4018	Aerith	Sea Dragon Staff	None	360.0	Single Enemy	Mag	4		Water Resistance Down	28	9	Mid	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Grindable
 4019	Aerith	Chocobo Staff	Heal	14.0	Single Ally	Mag	4		MDEF Up	38	12	Mid	High	Single Ally	BuffDebuff																			Event
 4020	Aerith	Snowflake	Ice	540.0	Single Enemy	Mag	4		MDEF Down	30	10	Mid	High	Single Enemy	BuffDebuff																			Featured
 4021	Aerith	Ramuh's Staff	Lightning	480.0	Single Enemy	Mag	4																											Grindable
 4022	Aerith	Garnet's Rod	Heal	14.0	Single Ally	Mag	3		MATK Up	38	12	High	High	Single Ally	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 104022042					Single Ally	StatusChangeEffect												Event
-4023	Aerith	Egg Staff	Fire	630.0	All Enemies	Mag	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 104023042					All Enemies	AdditionalEffect																			Featured
-4024	Aerith	Dawn's Prayers	None	360.0	Single Enemy	Mag	4		PDEF Down	28	9	Low	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 104024043					Single Enemy	AdditionalEffect												Event
+4023	Aerith	Egg Staff	Fire	630.0	All Enemies	Mag	4		When Debuff is on target, multiply damage			130.0%		All Enemies	AdditionalEffect																			Featured
+4024	Aerith	Dawn's Prayers	None	360.0	Single Enemy	Mag	4		PDEF Down	28	9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
 4025	Aerith	Kamura Wand	Heal	8.0	All Allies	Mag	4		PATK Up	20	6	High	High	All Allies	BuffDebuff	MDEF Up	20	6	High	High	All Allies	BuffDebuff												Limited
 4026	Aerith	Radrod	Water	290.0	All Enemies	Mag	4																											Event
 4027	Aerith	Hell House Rod	Ice	290.0	All Enemies	Mag	4																											Event
 4028	Aerith	Citric Wand	Heal	10.0	Single Ally	Mag	3		Ice Damage Up	30	10	High	High	Single Ally	BuffDebuff	MATK Up	30	10	Mid	High	Single Ally	BuffDebuff												Featured
 4029	Aerith	Bahamut Rod	Heal	60.0	All Allies	Mag	5		PDEF Up	20	5	Mid	Mid	All Allies	BuffDebuff	ATB+1					Other Allies	AtbChangeEffect												Limited
 4030	Aerith	Ultimate Guard Stick	Heal	51.0	All Allies	Mag	0		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 104030012					All Allies	StatusChangeEffect	Removes PATK Down, MATK Down					All Allies	CancelEffect												Ultimate
-4031	Aerith	Terra's Rod	None	750.0	All Enemies	Mag	4		Fire Resistance Down	35	11	High	High	All Enemies	BuffDebuff	Ice Resistance Down	35	11	High	High	All Enemies	BuffDebuff	Lightning Resistance Down	35	11	High	High	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 104031045		All Enemies	AdditionalEffect	Limited
+4031	Aerith	Terra's Rod	None	750.0	All Enemies	Mag	4		Fire Resistance Down	35	11	High	High	All Enemies	BuffDebuff	Ice Resistance Down	35	11	High	High	All Enemies	BuffDebuff	Lightning Resistance Down	35	11	High	High	All Enemies	BuffDebuff	Crit Rate	10.0%	All Enemies	AdditionalEffect	Limited
 4032	Aerith	Titan Rod	Earth	450.0	Single Enemy	Mag	4																											Grindable
-4033	Aerith	Crimson Staff	None	750.0	All Enemies	Mag	4		MATK Up	20	6	High	High	All Allies	BuffDebuff	MDEF Down	35	11	High	High	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 104033044					All Enemies	AdditionalEffect					Limited
+4033	Aerith	Crimson Staff	None	750.0	All Enemies	Mag	4		MATK Up	20	6	High	High	All Allies	BuffDebuff	MDEF Down	35	11	High	High	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect					Limited
 4034	Aerith	Gambanteinn	Heal	60.0	All Allies	Mag	5		PATK Up	16	5	Mid	High	All Allies	BuffDebuff	ATB+1					Other Allies	AtbChangeEffect												Limited
-4035	Aerith	Noblesse Rod	None	360.0	Single Enemy	Mag	4		PATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 104035043					Single Enemy	AdditionalEffect												Event
+4035	Aerith	Noblesse Rod	None	360.0	Single Enemy	Mag	4		PATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
 4036	Aerith	Princess Guard	Heal	14.0	All Allies	Mag	0		ATB+3					All Allies	AtbChangeEffect																			Ultimate
 4038	Aerith	Mermaid Rod	Heal	8.0	All Allies	Mag	4		PATK Up	25	8	Mid	High	All Allies	BuffDebuff	Lightning Damage Up	25	8	Mid	High	All Allies	BuffDebuff												Featured
-4039	Aerith	Supreme Sage's Staff	None	890.0	All Enemies	Mag	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 104039042					All Enemies	AdditionalEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 104039043					All Allies	StatusChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 104039044					All Enemies	AdditionalEffect	Decreases Summon Gauge	-100.0	Self	SpecialGaugeChangeEffect	Limited
-4040	Aerith	Team Leader's Bamboo Sword	Water	530.0	All Enemies	Mag	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 104040042					All Enemies	AdditionalEffect	Water Damage Up	25	8	High	High	All Allies	BuffDebuff												Limited
-4041	Aerith	Magatsuchi Rod	None	360.0	Single Enemy	Mag	4		MATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 104041043					Single Enemy	AdditionalEffect												Event
-4042	Aerith	Lightning's Rod	Heal	8.0	All Allies	Mag	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 104042041					All Allies	StatusChangeEffect	PDEF Up	25	8	High	High	All Allies	BuffDebuff	Increases Command Gauge			75.0		Self	TacticsGaugeChangeEffect					Limited
-4043	Aerith	Staff of the Possessed	None	920.0	All Enemies	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 104043042					All Allies	StatusChangeEffect	Water Resistance Down	30	10	High	High	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 104043044					All Enemies	AdditionalEffect					Limited
+4039	Aerith	Supreme Sage's Staff	None	890.0	All Enemies	Mag	4		Deals Fixed Additional Phys. Damage			80000		All Enemies	AdditionalEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 104039043					All Allies	StatusChangeEffect	Crit Rate			10.0%		All Enemies	AdditionalEffect	Decreases Summon Gauge	-100.0%	Self	SpecialGaugeChangeEffect	Limited
+4040	Aerith	Team Leader's Bamboo Sword	Water	530.0	All Enemies	Mag	4		When Debuff is on target, multiply damage			140.0%		All Enemies	AdditionalEffect	Water Damage Up	25	8	High	High	All Allies	BuffDebuff												Limited
+4041	Aerith	Magatsuchi Rod	None	360.0	Single Enemy	Mag	4		MATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
+4042	Aerith	Lightning's Rod	Heal	8.0	All Allies	Mag	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 104042041					All Allies	StatusChangeEffect	PDEF Up	25	8	High	High	All Allies	BuffDebuff	Increases Command Gauge			75.0%		Self	TacticsGaugeChangeEffect					Limited
+4043	Aerith	Staff of the Possessed	None	920.0	All Enemies	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 104043042					All Allies	StatusChangeEffect	Water Resistance Down	30	10	High	High	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect					Limited
 4044	Aerith	Abraxas	None	1000.0	All Enemies	Both	0		Applied Stats Debuff Tier Increased		30	Mid	Extra High	All Enemies	BuffDebuffEnhance	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 104044013					All Allies	StatusChangeEffect												Ultimate
 4045	Aerith	Rousing Wizer Staff	Heal	8.0	All Allies	Mag	4		PATK Up	20	6	Mid	High	All Allies	BuffDebuff	MDEF Up	20	6	High	High	All Allies	BuffDebuff												Event
 5001	Red XIII	Sleek Collar	Heal	7.0	All Allies	Mag	4		MDEF Up	14	4	High	High	All Allies	BuffDebuff																			Featured
-5004	Red XIII	Silver Collar	None	320.0	Single Enemy	Phys	3	◊ Diamond	Wind Resistance Down	24	8	High	High	Single Enemy	BuffDebuff	Water Resistance Down	24	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 105004044					Single Enemy	AdditionalEffect					Featured
-5005	Red XIII	Gold Collar	None	350.0	All Enemies	Mag	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 105009042					All Enemies	AdditionalEffect	MDEF Down	25	8	Mid	Mid	All Enemies	BuffDebuff												Featured
+5004	Red XIII	Silver Collar	None	320.0	Single Enemy	Phys	3	◊ Diamond	Wind Resistance Down	24	8	High	High	Single Enemy	BuffDebuff	Water Resistance Down	24	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Featured
+5005	Red XIII	Gold Collar	None	350.0	All Enemies	Mag	4		Crit Rate			10.0%		All Enemies	AdditionalEffect	MDEF Down	25	8	Mid	Mid	All Enemies	BuffDebuff												Featured
 5009	Red XIII	Platinum Collar	Heal	11.0	All Allies	Mag	5		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 105005041					All Allies	StatusChangeEffect																			Featured
 5016	Red XIII	Noble Collar	Water	520.0	All Enemies	Mag	4																											Featured
-5017	Red XIII	Ivy Collar	None	420.0	Single Enemy	Phys	3		Fire Resistance Down	24	8	High	High	Single Enemy	BuffDebuff	Ice Resistance Down	24	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 105017044					Single Enemy	AdditionalEffect					Featured
+5017	Red XIII	Ivy Collar	None	420.0	Single Enemy	Phys	3		Fire Resistance Down	24	8	High	High	Single Enemy	BuffDebuff	Ice Resistance Down	24	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Featured
 5018	Red XIII	Rage Collar	Fire	750.0	Single Enemy	Phys	4																											Featured
-5019	Red XIII	Leather Collar	None	940.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 105019042					Single Enemy	AdditionalEffect																			Featured
+5019	Red XIII	Leather Collar	None	940.0	Single Enemy	Phys	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Featured
 5020	Red XIII	Rubber Collar	Heal	115.0	Single Ally	Mag	5																											Featured
-5021	Red XIII	Junk Collar	None	510.0	Single Enemy	Phys	4		MATK Down	25	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 105021043					Single Enemy	AdditionalEffect												Featured
+5021	Red XIII	Junk Collar	None	510.0	Single Enemy	Phys	4		MATK Down	25	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
 5023	Red XIII	Canyon Collar	Wind	500.0	All Enemies	Mag	4		MDEF Down	30	10	Mid	High	All Enemies	BuffDebuff																			Featured
 5024	Red XIII	Pilot's Collar	Heal	60.0	All Allies	Mag	5		MDEF Up	14	4	Mid	High	All Allies	BuffDebuff																			Featured
-5026	Red XIII	Iron Collar	None	360.0	Single Enemy	Mag	4		PDEF Down	28	9	Low	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 105026043					Single Enemy	AdditionalEffect												Event
-5027	Red XIII	Headphones	None	540.0	All Enemies	Mag	4		Removes MDEF Up					All Enemies	CancelEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 105027043					All Enemies	AdditionalEffect												Event
-5028	Red XIII	Seaside Collar	None	510.0	Single Enemy	Phys	4		Lightning Resistance Down	21	7	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 105028043					Single Enemy	AdditionalEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 105028044					Self	StatusChangeEffect					Featured
-5031	Red XIII	Hell House Collar	None	360.0	Single Enemy	Mag	4		MDEF Down	28	9	Low	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 105031043					Single Enemy	AdditionalEffect												Event
-5032	Red XIII	Flame Dragon's Band	None	360.0	Single Enemy	Mag	4		Fire Resistance Down	28	9	Mid	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 105032043					Single Enemy	AdditionalEffect												Grindable
+5026	Red XIII	Iron Collar	None	360.0	Single Enemy	Mag	4		PDEF Down	28	9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
+5027	Red XIII	Headphones	None	540.0	All Enemies	Mag	4		Removes MDEF Up					All Enemies	CancelEffect	Crit Rate			10.0%		All Enemies	AdditionalEffect												Event
+5028	Red XIII	Seaside Collar	None	510.0	Single Enemy	Phys	4		Lightning Resistance Down	21	7	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 105028044					Self	StatusChangeEffect					Featured
+5031	Red XIII	Hell House Collar	None	360.0	Single Enemy	Mag	4		MDEF Down	28	9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
+5032	Red XIII	Flame Dragon's Band	None	360.0	Single Enemy	Mag	4		Fire Resistance Down	28	9	Mid	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Grindable
 5033	Red XIII	Egg Collar	Fire	290.0	All Enemies	Mag	4																											Event
 5034	Red XIII	Amethyst Collar	Ice	290.0	All Enemies	Mag	4																											Event
-5035	Red XIII	Steward Collar	None	360.0	Single Enemy	Mag	4		PATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 105035043					Single Enemy	AdditionalEffect												Event
+5035	Red XIII	Steward Collar	None	360.0	Single Enemy	Mag	4		PATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
 5036	Red XIII	Ultimate Leather Collar	Heal	27.0	All Allies	Mag	0		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 105036012					All Allies	StatusChangeEffect																			Ultimate
 5037	Red XIII	Kefka's Collar	Lightning	290.0	All Enemies	Mag	4																											Event
 5038	Red XIII	Brilliant Collar	Heal	8.0	All Allies	Mag	4		MATK Up	25	8	Mid	High	All Allies	BuffDebuff	Wind Damage Up	25	8	Mid	High	All Allies	BuffDebuff												Featured
 5040	Red XIII	Pirate Collar	Heal	60.0	All Allies	Mag	5		MATK Up	25	8	Mid	High	All Allies	BuffDebuff	Lightning Damage Up	25	8	Mid	High	All Allies	BuffDebuff	ATB+1					Other Allies	AtbChangeEffect					Limited
 5041	Red XIII	Limited Moon	Heal	111.0	All Allies	Mag	0		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 105041012					All Allies	StatusChangeEffect																			Ultimate
 5042	Red XIII	Great Sabrecat Collar	Lightning	440.0	All Enemies	Mag	3		PDEF Down	24	8	Mid	Mid	All Enemies	BuffDebuff	MDEF Down	24	8	Mid	Mid	All Enemies	BuffDebuff												Event
-5043	Red XIII	Tsviet Collar	None	240.0	All Enemies	Mag	4		Wind Resistance Down	35	8	Low	Mid	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 105043043					All Enemies	AdditionalEffect												Event
-5044	Red XIII	Patissier's Collar	None	920.0	All Enemies	Phys	4		Status Ailment: Enfeeble	40	13			All Enemies	StatusConditionEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 105044043					All Allies	StatusChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 105044044					All Enemies	AdditionalEffect					Featured
-6001	Yuffie	4-Point Shuriken	None	350.0	All Enemies	Phys	4		PATK Down	25	8	Mid	Mid	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 106001043					All Enemies	AdditionalEffect												Featured
-6002	Yuffie	Boomerang	None	510.0	Single Enemy	Phys	4		Fire Resistance Down	25	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 106009043					Single Enemy	AdditionalEffect												Featured
-6003	Yuffie	Pinwheel	None	510.0	Single Enemy	Phys	4		Ice Resistance Down	25	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 106003043					Single Enemy	AdditionalEffect												Featured
+5043	Red XIII	Tsviet Collar	None	240.0	All Enemies	Mag	4		Wind Resistance Down	35	8	Low	Mid	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect												Event
+5044	Red XIII	Patissier's Collar	None	920.0	All Enemies	Phys	4		Status Ailment: Enfeeble	40	13			All Enemies	StatusConditionEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 105044043					All Allies	StatusChangeEffect	Crit Rate			10.0%		All Enemies	AdditionalEffect					Featured
+6001	Yuffie	4-Point Shuriken	None	350.0	All Enemies	Phys	4		PATK Down	25	8	Mid	Mid	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect												Featured
+6002	Yuffie	Boomerang	None	510.0	Single Enemy	Phys	4		Fire Resistance Down	25	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
+6003	Yuffie	Pinwheel	None	510.0	Single Enemy	Phys	4		Ice Resistance Down	25	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
 6004	Yuffie	Razor Ring	Earth	520.0	All Enemies	Mag	4																											Featured
-6005	Yuffie	Hawkeye	Earth	850.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 106005042					Single Enemy	AdditionalEffect																			Featured
+6005	Yuffie	Hawkeye	Earth	850.0	Single Enemy	Phys	4		When Debuff is on target, multiply damage			120.0%		Single Enemy	AdditionalEffect																			Featured
 6006	Yuffie	Crystal Cross	Heal	14.0	Single Ally	Mag	4		MATK Up	38	12	High	High	Single Ally	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 106015042					Single Ally	StatusChangeEffect												Featured
-6007	Yuffie	Wind Slash	None	510.0	Single Enemy	Phys	4		Lightning Resistance Down	25	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 106007043					Single Enemy	AdditionalEffect												Featured
-6008	Yuffie	Twin Viper	None	510.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 106008042					Single Enemy	AdditionalEffect	Status Ailment: Poison	30	7			Single Enemy	StatusConditionEffect												Featured
+6007	Yuffie	Wind Slash	None	510.0	Single Enemy	Phys	4		Lightning Resistance Down	25	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
+6008	Yuffie	Twin Viper	None	510.0	Single Enemy	Phys	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect	Status Ailment: Poison	30	7			Single Enemy	StatusConditionEffect												Featured
 6009	Yuffie	Spiral Shuriken	Ice	800.0	Single Enemy	Phys	4																											Featured
 6010	Yuffie	Magic Shuriken	Wind	520.0	All Enemies	Phys	4																											Featured
 6014	Yuffie	Diner Tray	Wind	850.0	Single Enemy	Phys	4																											Featured
 6015	Yuffie	Arctic Star	Heal	14.0	Single Ally	Mag	4		PATK Up	30	10	High	High	Single Ally	BuffDebuff	PATK Up	30	10	Mid	High	Self	BuffDebuff												Featured
-6016	Yuffie	Bamboo Ring	None	500.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 106016042					Single Enemy	AdditionalEffect																			Event
-6019	Yuffie	Little Red Wreath	Ice	940.0	Single Enemy	Mag	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 106019042					Single Enemy	AdditionalEffect																			Featured
+6016	Yuffie	Bamboo Ring	None	500.0	Single Enemy	Phys	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Event
+6019	Yuffie	Little Red Wreath	Ice	940.0	Single Enemy	Mag	4		When Debuff is on target, multiply damage			120.0%		Single Enemy	AdditionalEffect																			Featured
 6022	Yuffie	Chariot Wheel	Water	290.0	All Enemies	Mag	4																											Event
 6024	Yuffie	Leviathan Cutter	Water	450.0	Single Enemy	Mag	4																											Grindable
 6026	Yuffie	Striped Moogle Float	Fire	700.0	All Enemies	Phys	4		Fire Damage Up	35	7	Low	High	Self	BuffDebuff																			Featured
 6027	Yuffie	Cactuar Fan	Ice	290.0	All Enemies	Mag	4																											Event
-6028	Yuffie	Bahamut Cutter	None	1080.0	Single Enemy	Phys	4		MDEF Up	25	8	Mid	High	All Allies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 106028043					Single Enemy	AdditionalEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 106028044					Single Enemy	AdditionalEffect					Limited
+6028	Yuffie	Bahamut Cutter	None	1080.0	Single Enemy	Phys	4		MDEF Up	25	8	Mid	High	All Allies	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect	When Debuff is on target, multiply damage			130.0%		Single Enemy	AdditionalEffect					Limited
 6029	Yuffie	Ultimate 4-Point Shuriken	None	1000.0	Single Enemy	Both	0		PATK Up	30	30	High	High	Self	BuffDebuff	MATK Up	30	30	High	High	Self	BuffDebuff												Ultimate
 6030	Yuffie	Holiday Bell	Wind	620.0	Single Enemy	Mag	4		Wind Resistance Down	30	10	Low	High	Single Enemy	BuffDebuff	MDEF Down	30	10	Low	High	Single Enemy	BuffDebuff												Featured
-6031	Yuffie	Mallet of Luck	None	250.0	All Enemies	Mag	4		Fire Resistance Down	35	8	Low	Mid	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 106031043					All Enemies	AdditionalEffect												Event
+6031	Yuffie	Mallet of Luck	None	250.0	All Enemies	Mag	4		Fire Resistance Down	35	8	Low	Mid	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect												Event
 6032	Yuffie	Conformer	None	2000.0	Single Enemy	Both	0		PDEF Down	30	30	High	High	Single Enemy	BuffDebuff	MDEF Down	30	30	High	High	Single Enemy	BuffDebuff	ATB+7					Self	AtbChangeEffect					Ultimate
 6033	Yuffie	Bird of Prey	Water	940.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 106033042					Self	StatusChangeEffect																			Limited
-6034	Yuffie	Risanautr	None	360.0	Single Enemy	Mag	4		Earth Resistance Down	28	9	Mid	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 106034043					Single Enemy	AdditionalEffect												Event
+6034	Yuffie	Risanautr	None	360.0	Single Enemy	Mag	4		Earth Resistance Down	28	9	Mid	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
 6035	Yuffie	Watch of the Hunt	Lightning	540.0	All Enemies	Mag	4		PATK Down	30	10	Mid	High	All Enemies	BuffDebuff	PDEF Up	20	6	Mid	High	All Allies	BuffDebuff												Featured
-6036	Yuffie	Rocker's Guitar	Ice	600.0	Single Enemy	Mag	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 106036042					All Allies	StatusChangeEffect	Increases Command Gauge			20.0		Self	TacticsGaugeChangeEffect												Featured
-6037	Yuffie	Striped Moogle Flag	None	360.0	Single Enemy	Mag	4		MATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 106037043					Single Enemy	AdditionalEffect												Event
+6036	Yuffie	Rocker's Guitar	Ice	600.0	Single Enemy	Mag	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 106036042					All Allies	StatusChangeEffect	Increases Command Gauge			20.0%		Self	TacticsGaugeChangeEffect												Featured
+6037	Yuffie	Striped Moogle Flag	None	360.0	Single Enemy	Mag	4		MATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
 6038	Yuffie	Uber 4-Point Shuriken	Earth	1340.0	Single Enemy	Mag	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 106038042					All Allies	StatusChangeEffect																			Limited
-6039	Yuffie	Fatum Ex Machina	None	1340.0	Single Enemy	Phys	4		Status Ailment: Enfeeble	60	20			Single Enemy	StatusConditionEffect	PATK Down	60	20	High	High	Single Enemy	BuffDebuff	Earth Resistance Down	60	20	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 106039045		Single Enemy	AdditionalEffect	Limited
-6040	Yuffie	Heirloom Brush	None	1340.0	Single Enemy	Mag	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 106040042					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 106040043					Self	StatusChangeEffect	Applied Stats Buff Tier Increased		10	Low	Extra High	All Allies	BuffDebuffEnhance	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 106040045		Single Enemy	AdditionalEffect	Limited
+6039	Yuffie	Fatum Ex Machina	None	1340.0	Single Enemy	Phys	4		Status Ailment: Enfeeble	60	20			Single Enemy	StatusConditionEffect	PATK Down	60	20	High	High	Single Enemy	BuffDebuff	Earth Resistance Down	60	20	High	High	Single Enemy	BuffDebuff	Crit Rate	10.0%	Single Enemy	AdditionalEffect	Limited
+6040	Yuffie	Heirloom Brush	None	1340.0	Single Enemy	Mag	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 106040042					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 106040043					Self	StatusChangeEffect	Applied Stats Buff Tier Increased		10	Low	Extra High	All Allies	BuffDebuffEnhance	Crit Rate	10.0%	Single Enemy	AdditionalEffect	Limited
 6041	Yuffie	Winged Chakram	Lightning	1340.0	Single Enemy	Phys	4		PDEF Down	25	8	Mid	High	Single Enemy	BuffDebuff	Lightning Damage Up	25	8	Mid	High	All Allies	BuffDebuff	ATB+2					All Allies	AtbChangeEffect					Featured
 6043	Yuffie	Rising Sun	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 106043012					Self	StatusChangeEffect	ATB+3					All Allies	AtbChangeEffect												Ultimate
-7001	Cait Sith	Yellow Megaphone	None	700.0	Single Enemy	Phys	5		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 107001042					Single Enemy	AdditionalEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 107001043					Single Enemy	AdditionalEffect												Featured
+7001	Cait Sith	Yellow Megaphone	None	700.0	Single Enemy	Phys	5		Crit Rate			30.0%		Single Enemy	AdditionalEffect	When Debuff is on target, multiply damage			300.0%		Single Enemy	AdditionalEffect												Featured
 7002	Cait Sith	Green Megaphone	Water	620.0	Single Enemy	Mag	4		Water Resistance Down	30	10	High	High	Single Enemy	BuffDebuff																			Featured
 7003	Cait Sith	Blue Megaphone	Ice	520.0	All Enemies	Mag	4																											Featured
 7004	Cait Sith	Red Megaphone	Fire	520.0	All Enemies	Mag	4																											Featured
 7005	Cait Sith	Crystal Megaphone	Heal	14.0	Single Ally	Mag	4		PDEF Up	38	12	High	High	Single Ally	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 107005042					Single Ally	StatusChangeEffect												Featured
-7008	Cait Sith	Silver Megaphone	None	510.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 107008042					Single Enemy	AdditionalEffect	PDEF Down	30	10	Low	Low	Single Enemy	BuffDebuff	PDEF Down	30	10	High	High	Single Enemy	BuffDebuff					Featured
-7009	Cait Sith	Gold Megaphone	None	510.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 107009042					Single Enemy	AdditionalEffect	Fire Resistance Down	25	8	High	High	Single Enemy	BuffDebuff	MATK Down	60	20	High	High	Single Enemy	BuffDebuff					Featured
-7010	Cait Sith	Battle Trumpet	None	350.0	All Enemies	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 107010042					All Enemies	AdditionalEffect	MATK Down	25	8	Mid	Mid	All Enemies	BuffDebuff	PATK Down	60	20	High	High	All Enemies	BuffDebuff					Featured
+7008	Cait Sith	Silver Megaphone	None	510.0	Single Enemy	Phys	4		Crit Rate			20.0%		Single Enemy	AdditionalEffect	PDEF Down	30	10	Low	Low	Single Enemy	BuffDebuff	PDEF Down	30	10	High	High	Single Enemy	BuffDebuff					Featured
+7009	Cait Sith	Gold Megaphone	None	510.0	Single Enemy	Phys	4		Crit Rate			20.0%		Single Enemy	AdditionalEffect	Fire Resistance Down	25	8	High	High	Single Enemy	BuffDebuff	MATK Down	60	20	High	High	Single Enemy	BuffDebuff					Featured
+7010	Cait Sith	Battle Trumpet	None	350.0	All Enemies	Phys	4		Crit Rate			20.0%		All Enemies	AdditionalEffect	MATK Down	25	8	Mid	Mid	All Enemies	BuffDebuff	PATK Down	60	20	High	High	All Enemies	BuffDebuff					Featured
 7011	Cait Sith	Trumpet Shell	Heal	8.0	All Allies	Mag	4		PATK Up	20	6	Mid	Mid	All Allies	BuffDebuff	MATK Up	20	6	Mid	Mid	All Allies	BuffDebuff												Event
 7014	Cait Sith	Marching Horn	Heal	14.0	Single Ally	Mag	4		PATK Up	38	12	High	High	Single Ally	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 107014042					Single Ally	StatusChangeEffect												Featured
 7015	Cait Sith	Nocturne Horn	Wind	780.0	All Enemies	Mag	4		Wind Resistance Down	25	8	Mid	High	All Enemies	BuffDebuff	MDEF Down	25	8	Mid	High	All Enemies	BuffDebuff												Featured
 7017	Cait Sith	Cool Cat's Megaphone	Lightning	710.0	Single Enemy	Phys	4		Status Ailment: Enfeeble	60	12			Single Enemy	StatusConditionEffect	PATK Up	20	6	Mid	High	All Allies	BuffDebuff												Limited
-7019	Cait Sith	Witch's Broom	None	420.0	Single Enemy	Phys	3		MDEF Down	24	8	Mid	Mid	Single Enemy	BuffDebuff	Lightning Resistance Down	24	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 107019044					Single Enemy	AdditionalEffect					Featured
+7019	Cait Sith	Witch's Broom	None	420.0	Single Enemy	Phys	3		MDEF Down	24	8	Mid	Mid	Single Enemy	BuffDebuff	Lightning Resistance Down	24	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Featured
 7022	Cait Sith	Flower Vase	Heal	14.0	Single Ally	Mag	4		MATK Up	38	12	High	High	Single Ally	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 107002042					Single Ally	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 107002044					Single Ally	StatusChangeEffect					Featured
 7023	Cait Sith	Catsmegaphone	Heal	14.0	Single Ally	Mag	4		PATK Up	44	14	Low	Mid	Single Ally	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 107023042					Single Ally	StatusChangeEffect												Event
 7024	Cait Sith	Humus Megaphone	Wind	290.0	All Enemies	Mag	4																											Event
 7025	Cait Sith	Fireworks Megaphone	Ice	290.0	All Enemies	Mag	4																											Event
-7026	Cait Sith	Alba Megaphone	None	390.0	All Enemies	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 107026042					All Enemies	AdditionalEffect																			Event
-7027	Cait Sith	Icebolt Megaphone	None	340.0	Single Enemy	Mag	4		Ice Resistance Down	25	8	Mid	Mid	Single Enemy	BuffDebuff	Lightning Resistance Down	25	8	Mid	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 107027044					Single Enemy	AdditionalEffect					Grindable
-7028	Cait Sith	Ultimate Yellow Megaphone	Heal	5.0	Single Ally	Mag	0		Increases Limit Gauge			30.0		Single Ally	SpecialGaugeChangeEffect																			Ultimate
+7026	Cait Sith	Alba Megaphone	None	390.0	All Enemies	Phys	4		Crit Rate			10.0%		All Enemies	AdditionalEffect																			Event
+7027	Cait Sith	Icebolt Megaphone	None	340.0	Single Enemy	Mag	4		Ice Resistance Down	25	8	Mid	Mid	Single Enemy	BuffDebuff	Lightning Resistance Down	25	8	Mid	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Grindable
+7028	Cait Sith	Ultimate Yellow Megaphone	Heal	5.0	Single Ally	Mag	0		Increases Limit Gauge			30.0%		Single Ally	SpecialGaugeChangeEffect																			Ultimate
 7029	Cait Sith	Quina Megaphone	Heal	8.0	All Allies	Mag	4		PATK Up	20	6	High	High	All Allies	BuffDebuff	PDEF Up	20	6	High	High	All Allies	BuffDebuff												Event
-7031	Cait Sith	Stilva Megaphone	None	250.0	All Enemies	Mag	4		Ice Resistance Down	35	8	Low	Mid	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 107031043					All Enemies	AdditionalEffect												Event
+7031	Cait Sith	Stilva Megaphone	None	250.0	All Enemies	Mag	4		Ice Resistance Down	35	8	Low	Mid	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect												Event
 7032	Cait Sith	HP Shout	None	1000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 107032012					All Allies	StatusChangeEffect																			Ultimate
-7033	Cait Sith	Spirit Demon Megaphone	None	250.0	All Enemies	Mag	4		PATK Down	35	8	Low	Mid	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 107033043					All Enemies	AdditionalEffect												Event
+7033	Cait Sith	Spirit Demon Megaphone	None	250.0	All Enemies	Mag	4		PATK Down	35	8	Low	Mid	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect												Event
 8001	Vincent	Transgressor	Wind	1340.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 108017042					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 108017043					Self	StatusChangeEffect												Featured
 8002	Vincent	Cath Palug	Ice	520.0	All Enemies	Mag	4																											Featured
-8003	Vincent	Gilded Age	Heal	14.0	Self	Mag	4		Increases Limit Gauge			10.0		Self	SpecialGaugeChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 108003043					Self	StatusChangeEffect												Featured
-8004	Vincent	S1976C	None	540.0	All Enemies	Mag	4		PATK Down	25	8	Mid	High	All Enemies	BuffDebuff	MATK Down	25	8	Mid	High	All Enemies	BuffDebuff	Increases Limit Gauge			3.0		Self	SpecialGaugeChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 108004045		All Enemies	AdditionalEffect	Featured
-8005	Vincent	Shortbarrel	Wind	400.0	Single Enemy	Phys	4		Increases Limit Gauge			4.0		Self	SpecialGaugeChangeEffect																			Featured
-8007	Vincent	T03 Model N	None	300.0	Single Enemy	Phys	2		Increases Limit Gauge			2.0		Self	SpecialGaugeChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 108007043					Single Enemy	AdditionalEffect												Featured
-8008	Vincent	Sawed-Off GS	Heal	16.0	Self	Mag	4		MATK Up	38	12	High	High	Self	BuffDebuff	MDEF Up	38	12	High	High	Self	BuffDebuff	Increases Limit Gauge			3.0		Self	SpecialGaugeChangeEffect					Featured
-8009	Vincent	Chiron	None	510.0	Single Enemy	Phys	4		Earth Resistance Down	35	11	High	High	Single Enemy	BuffDebuff	Increases Limit Gauge			3.0		Self	SpecialGaugeChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 108009044					Single Enemy	AdditionalEffect					Featured
-8010	Vincent	Double Stem E	None	520.0	All Enemies	Mag	4		Increases Limit Gauge			3.0		Self	SpecialGaugeChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 108010043					All Enemies	AdditionalEffect	Status Ailment: Poison	25	6			All Enemies	StatusConditionEffect					Featured
-8012	Vincent	White Dog	Earth	940.0	Single Enemy	Mag	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 108012042					Single Enemy	AdditionalEffect	Increases Limit Gauge			5.0		Self	SpecialGaugeChangeEffect												Limited
-8013	Vincent	Kugelblitz	None	750.0	All Enemies	Mag	4		MDEF Down	35	11	High	High	All Enemies	BuffDebuff	Earth Damage Up	45	9	High	High	Self	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 108013044					All Enemies	AdditionalEffect	Increases Limit Gauge	5.0	Self	SpecialGaugeChangeEffect	Featured
-8014	Vincent	Silver Rifle	None	700.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 108014042					Single Enemy	AdditionalEffect	Increases Limit Gauge			3.0		Self	SpecialGaugeChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 108014044					Single Enemy	AdditionalEffect					Event
-8015	Vincent	Hugin & Munin	None	1300.0	Single Enemy	Mag	4		Increases Limit Gauge			5.0		Self	SpecialGaugeChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 108015043					Single Enemy	AdditionalEffect												Featured
-8016	Vincent	Crow Familiar	Lightning	940.0	Single Enemy	Mag	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 108016042					Single Enemy	AdditionalEffect	Increases Limit Gauge			5.0		Self	SpecialGaugeChangeEffect												Featured
-8017	Vincent	Quicksilver	None	750.0	Single Enemy	Phys	4		Increases Limit Gauge			5.0		Self	SpecialGaugeChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 108001043					Single Enemy	AdditionalEffect												Featured
-8018	Vincent	Icebolt Shooter	None	340.0	Single Enemy	Mag	4		Ice Resistance Down	25	8	Mid	Mid	Single Enemy	BuffDebuff	Lightning Resistance Down	25	8	Mid	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 108018044					Single Enemy	AdditionalEffect					Grindable
-8019	Vincent	Ultimate Quicksilver	None	1000.0	Single Enemy	Both	0		Increases Limit Gauge			40.0		Self	SpecialGaugeChangeEffect																			Ultimate
+8003	Vincent	Gilded Age	Heal	14.0	Self	Mag	4		Increases Limit Gauge			10.0%		Self	SpecialGaugeChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 108003043					Self	StatusChangeEffect												Featured
+8004	Vincent	S1976C	None	540.0	All Enemies	Mag	4		PATK Down	25	8	Mid	High	All Enemies	BuffDebuff	MATK Down	25	8	Mid	High	All Enemies	BuffDebuff	Increases Limit Gauge			3.0%		Self	SpecialGaugeChangeEffect	Crit Rate	10.0%	All Enemies	AdditionalEffect	Featured
+8005	Vincent	Shortbarrel	Wind	400.0	Single Enemy	Phys	4		Increases Limit Gauge			4.0%		Self	SpecialGaugeChangeEffect																			Featured
+8007	Vincent	T03 Model N	None	300.0	Single Enemy	Phys	2		Increases Limit Gauge			2.0%		Self	SpecialGaugeChangeEffect	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
+8008	Vincent	Sawed-Off GS	Heal	16.0	Self	Mag	4		MATK Up	38	12	High	High	Self	BuffDebuff	MDEF Up	38	12	High	High	Self	BuffDebuff	Increases Limit Gauge			3.0%		Self	SpecialGaugeChangeEffect					Featured
+8009	Vincent	Chiron	None	510.0	Single Enemy	Phys	4		Earth Resistance Down	35	11	High	High	Single Enemy	BuffDebuff	Increases Limit Gauge			3.0%		Self	SpecialGaugeChangeEffect	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Featured
+8010	Vincent	Double Stem E	None	520.0	All Enemies	Mag	4		Increases Limit Gauge			3.0%		Self	SpecialGaugeChangeEffect	Crit Rate			10.0%		All Enemies	AdditionalEffect	Status Ailment: Poison	25	6			All Enemies	StatusConditionEffect					Featured
+8012	Vincent	White Dog	Earth	940.0	Single Enemy	Mag	4		When Debuff is on target, multiply damage			120.0%		Single Enemy	AdditionalEffect	Increases Limit Gauge			5.0%		Self	SpecialGaugeChangeEffect												Limited
+8013	Vincent	Kugelblitz	None	750.0	All Enemies	Mag	4		MDEF Down	35	11	High	High	All Enemies	BuffDebuff	Earth Damage Up	45	9	High	High	Self	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect	Increases Limit Gauge	5.0%	Self	SpecialGaugeChangeEffect	Featured
+8014	Vincent	Silver Rifle	None	700.0	Single Enemy	Phys	4		When Debuff is on target, multiply damage			150.0%		Single Enemy	AdditionalEffect	Increases Limit Gauge			3.0%		Self	SpecialGaugeChangeEffect	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Event
+8015	Vincent	Hugin & Munin	None	1300.0	Single Enemy	Mag	4		Increases Limit Gauge			5.0%		Self	SpecialGaugeChangeEffect	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
+8016	Vincent	Crow Familiar	Lightning	940.0	Single Enemy	Mag	4		When Debuff is on target, multiply damage			120.0%		Single Enemy	AdditionalEffect	Increases Limit Gauge			5.0%		Self	SpecialGaugeChangeEffect												Featured
+8017	Vincent	Quicksilver	None	750.0	Single Enemy	Phys	4		Increases Limit Gauge			5.0%		Self	SpecialGaugeChangeEffect	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
+8018	Vincent	Icebolt Shooter	None	340.0	Single Enemy	Mag	4		Ice Resistance Down	25	8	Mid	Mid	Single Enemy	BuffDebuff	Lightning Resistance Down	25	8	Mid	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Grindable
+8019	Vincent	Ultimate Quicksilver	None	1000.0	Single Enemy	Both	0		Increases Limit Gauge			40.0%		Self	SpecialGaugeChangeEffect																			Ultimate
 8020	Vincent	Rhad Gun	Heal	14.0	Single Ally	Mag	4		PATK Up	44	14	Low	Mid	Single Ally	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 108020042					Single Ally	StatusChangeEffect												Event
 8021	Vincent	Eligor Gun	Ice	290.0	All Enemies	Mag	4																											Event
-8022	Vincent	Holiday Garm	Fire	940.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 108022042					Single Enemy	AdditionalEffect	Increases Limit Gauge			5.0		Self	SpecialGaugeChangeEffect												Featured
-8023	Vincent	Noblesse Automatic	None	360.0	Single Enemy	Mag	4		PATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 108023043					Single Enemy	AdditionalEffect												Event
-8024	Vincent	Gun of the Worthy	Ice	1120.0	Single Enemy	Phys	4		Status Ailment: Ice Weakness	150	0	+50.0%		Single Enemy	StatusConditionEffect	Increases Limit Gauge			5.0		Self	SpecialGaugeChangeEffect												Limited
-8025	Vincent	Death Penalty	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 108025012					All Allies	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 108025013					All Allies	StatusChangeEffect	Increases Limit Gauge			20.0		Self	SpecialGaugeChangeEffect					Ultimate
+8022	Vincent	Holiday Garm	Fire	940.0	Single Enemy	Phys	4		When Debuff is on target, multiply damage			120.0%		Single Enemy	AdditionalEffect	Increases Limit Gauge			5.0%		Self	SpecialGaugeChangeEffect												Featured
+8023	Vincent	Noblesse Automatic	None	360.0	Single Enemy	Mag	4		PATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
+8024	Vincent	Gun of the Worthy	Ice	1120.0	Single Enemy	Phys	4		Status Ailment: Ice Weakness	150	0	+50.0%		Single Enemy	StatusConditionEffect	Increases Limit Gauge			5.0%		Self	SpecialGaugeChangeEffect												Limited
+8025	Vincent	Death Penalty	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 108025012					All Allies	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 108025013					All Allies	StatusChangeEffect	Increases Limit Gauge			20.0%		Self	SpecialGaugeChangeEffect					Ultimate
 8026	Vincent	Electro Peashooter	Lightning	290.0	All Enemies	Mag	4																											Event
-8027	Vincent	Galian Roar	None	800.0	Single Enemy	Mag	3		Status Ailment: Enfeeble	60	12			Single Enemy	StatusConditionEffect	MDEF Down	35	11	Mid	High	Single Enemy	BuffDebuff	MATK Up	35	11	Mid	High	All Allies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 108027045		Single Enemy	AdditionalEffect	Featured
-8029	Vincent	Fomalhaut	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 108029012					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 108029013					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 108029014					All Allies	StatusChangeEffect	Increases Limit Gauge	100.0	Self	SpecialGaugeChangeEffect	Ultimate
-9001	Cid	Spear	None	750.0	Single Enemy	Phys	4		Status Ailment: Stop	8	3			Single Enemy	StatusConditionEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 109001043					Single Enemy	AdditionalEffect												Featured
-9002	Cid	Slash Lance	None	540.0	All Enemies	Phys	4		PDEF Up	20	6	High	High	All Allies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 109002043					All Enemies	AdditionalEffect												Featured
-9003	Cid	Trident	None	620.0	Single Enemy	Phys	4		Status Ailment: Poison	30	7			Single Enemy	StatusConditionEffect	Status Ailment: Stop	5	3			Single Enemy	StatusConditionEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 109003044					Single Enemy	AdditionalEffect					Featured
-9004	Cid	Pole Axe	None	540.0	All Enemies	Phys	4		PATK Down	25	8	Mid	High	All Enemies	BuffDebuff	MATK Down	25	8	Mid	High	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 109004044					All Enemies	AdditionalEffect					Featured
+8027	Vincent	Galian Roar	None	800.0	Single Enemy	Mag	3		Status Ailment: Enfeeble	60	12			Single Enemy	StatusConditionEffect	MDEF Down	35	11	Mid	High	Single Enemy	BuffDebuff	MATK Up	35	11	Mid	High	All Allies	BuffDebuff	Crit Rate	10.0%	Single Enemy	AdditionalEffect	Featured
+8029	Vincent	Fomalhaut	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 108029012					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 108029013					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 108029014					All Allies	StatusChangeEffect	Increases Limit Gauge	100.0%	Self	SpecialGaugeChangeEffect	Ultimate
+9001	Cid	Spear	None	750.0	Single Enemy	Phys	4		Status Ailment: Stop	8	3			Single Enemy	StatusConditionEffect	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
+9002	Cid	Slash Lance	None	540.0	All Enemies	Phys	4		PDEF Up	20	6	High	High	All Allies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect												Featured
+9003	Cid	Trident	None	620.0	Single Enemy	Phys	4		Status Ailment: Poison	30	7			Single Enemy	StatusConditionEffect	Status Ailment: Stop	5	3			Single Enemy	StatusConditionEffect	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Featured
+9004	Cid	Pole Axe	None	540.0	All Enemies	Phys	4		PATK Down	25	8	Mid	High	All Enemies	BuffDebuff	MATK Down	25	8	Mid	High	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect					Featured
 9005	Cid	Partisan	Wind	520.0	All Enemies	Mag	4																											Featured
 9006	Cid	Viper Halberd	Heal	16.0	Self	Mag	4		PDEF Up	38	12	High	High	Self	BuffDebuff	MDEF Up	38	12	High	High	Self	BuffDebuff												Featured
-9008	Cid	Radiant Lance	None	750.0	Single Enemy	Phys	4		Increases Command Gauge			20.0		Self	TacticsGaugeChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 109008043					Single Enemy	AdditionalEffect												Featured
-9010	Cid	Dragoon Lance	Lightning	670.0	All Enemies	Mag	4		Lightning Resistance Down	30	10	Mid	High	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 109010043					All Enemies	AdditionalEffect												Featured
+9008	Cid	Radiant Lance	None	750.0	Single Enemy	Phys	4		Increases Command Gauge			20.0%		Self	TacticsGaugeChangeEffect	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
+9010	Cid	Dragoon Lance	Lightning	670.0	All Enemies	Mag	4		Lightning Resistance Down	30	10	Mid	High	All Enemies	BuffDebuff	When Debuff is on target, multiply damage			120.0%		All Enemies	AdditionalEffect												Featured
 9011	Cid	Scimitar	Heal	14.0	Single Ally	Mag	4		PATK Up	30	10	Mid	High	Single Ally	BuffDebuff	MATK Up	30	10	Mid	High	Single Ally	BuffDebuff	Ice Damage Up	30	10	Mid	High	Single Ally	BuffDebuff					Featured
-9012	Cid	Flayer	None	420.0	Single Enemy	Phys	3	◊ Diamond	Status Ailment: Stop	5	3			Single Enemy	StatusConditionEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 109012043					Single Enemy	AdditionalEffect												Featured
-9015	Cid	Rocket Lance	None	620.0	Single Enemy	Mag	4		Status Ailment: Enfeeble	70	14			Single Enemy	StatusConditionEffect	Ice Resistance Down	35	11	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 109015044					Single Enemy	AdditionalEffect					Limited
-9016	Cid	Mop	None	540.0	All Enemies	Phys	4		Status Ailment: Stop	5	3			All Enemies	StatusConditionEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 109016043					All Enemies	AdditionalEffect												Event
-9018	Cid	Ultimate Spear	Heal	5.0	Single Ally	Mag	0		Increases Limit Gauge			20.0		Single Ally	SpecialGaugeChangeEffect	PATK Up	30	30	High	High	Single Ally	BuffDebuff												Ultimate
+9012	Cid	Flayer	None	420.0	Single Enemy	Phys	3	◊ Diamond	Status Ailment: Stop	5	3			Single Enemy	StatusConditionEffect	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
+9015	Cid	Rocket Lance	None	620.0	Single Enemy	Mag	4		Status Ailment: Enfeeble	70	14			Single Enemy	StatusConditionEffect	Ice Resistance Down	35	11	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Limited
+9016	Cid	Mop	None	540.0	All Enemies	Phys	4		Status Ailment: Stop	5	3			All Enemies	StatusConditionEffect	Crit Rate			10.0%		All Enemies	AdditionalEffect												Event
+9018	Cid	Ultimate Spear	Heal	5.0	Single Ally	Mag	0		Increases Limit Gauge			20.0%		Single Ally	SpecialGaugeChangeEffect	PATK Up	30	30	High	High	Single Ally	BuffDebuff												Ultimate
 9019	Cid	Odin Spear	Wind	450.0	Single Enemy	Mag	4																											Grindable
 9020	Cid	Lance of the Hunt	Ice	290.0	All Enemies	Mag	4																											Event
-9024	Cid	Captain's Spear	None	360.0	Single Enemy	Mag	4		PDEF Down	28	9	Low	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 109024043					Single Enemy	AdditionalEffect												Event
+9024	Cid	Captain's Spear	None	360.0	Single Enemy	Mag	4		PDEF Down	28	9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
 9025	Cid	Venus Gospel	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 109025012					All Allies	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 109025013					All Allies	StatusChangeEffect	ATB+2					All Allies	AtbChangeEffect					Ultimate
 9026	Cid	Antler Pike	Lightning	920.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 109026042					All Allies	StatusChangeEffect	ATB+2					All Allies	AtbChangeEffect												Featured
 9028	Cid	Patissier's Spear	Ice	920.0	Single Enemy	Phys	4		PATK Down	30	10	High	High	Single Enemy	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 109028043					All Allies	StatusChangeEffect												Featured
-20001	Zack	Type-99 Longsword	None	750.0	Single Enemy	Phys	4	◯ Circle	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 120001042					Single Enemy	AdditionalEffect																			Featured
+20001	Zack	Type-99 Longsword	None	750.0	Single Enemy	Phys	4	◯ Circle	Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Featured
 20002	Zack	Buster Sword Origin	None	860.0	Single Enemy	Phys	4																											Event
-20003	Zack	Beach Parasol	None	560.0	Single Enemy	Mag	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 120003042					Single Enemy	AdditionalEffect																			Event
+20003	Zack	Beach Parasol	None	560.0	Single Enemy	Mag	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Event
 20004	Zack	Enhance Sword (Z)	Heal	143.0	Single Ally	Mag	5																											Featured
 20005	Zack	Defender	Heal	14.0	Single Ally	Mag	4		PDEF Up	38	12	High	High	Single Ally	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 120005042					Single Ally	StatusChangeEffect												Featured
 20006	Zack	Crystal Sword (Z)	Fire	520.0	All Enemies	Mag	4																											Featured
 20007	Zack	Falchion	Wind	520.0	All Enemies	Phys	4																											Featured
-20008	Zack	Zweihander	None	940.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 120008042					Single Enemy	AdditionalEffect																			Featured
-20009	Zack	Arc Sword	None	510.0	Single Enemy	Mag	4		MDEF Down	25	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 120009043					Single Enemy	AdditionalEffect												Featured
-20010	Zack	Cutlass	None	510.0	Single Enemy	Phys	4		PDEF Down	25	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 120010043					Single Enemy	AdditionalEffect												Featured
-20011	Zack	Ceremonial Sword (Z)	None	1400.0	Single Enemy	Phys	5		PATK Up	35	7	High	High	Self	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 120011043					Single Enemy	AdditionalEffect												Featured
+20008	Zack	Zweihander	None	940.0	Single Enemy	Phys	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Featured
+20009	Zack	Arc Sword	None	510.0	Single Enemy	Mag	4		MDEF Down	25	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
+20010	Zack	Cutlass	None	510.0	Single Enemy	Phys	4		PDEF Down	25	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
+20011	Zack	Ceremonial Sword (Z)	None	1400.0	Single Enemy	Phys	5		PATK Up	35	7	High	High	Self	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
 20012	Zack	Battering Sword	Wind	1340.0	Single Enemy	Mag	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 120018042					All Allies	StatusChangeEffect																			Featured
-20013	Zack	Bouquet	None	400.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 120013042					Single Enemy	AdditionalEffect																			Event
+20013	Zack	Bouquet	None	400.0	Single Enemy	Phys	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Event
 20014	Zack	Pressure Ridge	Ice	620.0	Single Enemy	Phys	4		Ice Resistance Down	30	10	High	High	Single Enemy	BuffDebuff																			Featured
-20015	Zack	Iron Greatsword	None	360.0	Single Enemy	Mag	4		PDEF Down	28	9	Low	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 120015043					Single Enemy	AdditionalEffect												Event
+20015	Zack	Iron Greatsword	None	360.0	Single Enemy	Mag	4		PDEF Down	28	9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
 20016	Zack	Ifrit's Sword	Fire	450.0	Single Enemy	Mag	4																											Grindable
-20018	Zack	Twinkling Star	None	540.0	Single Enemy	Phys	4		MATK Down	30	10	Mid	High	Single Enemy	BuffDebuff	PDEF Down	30	10	Mid	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 120012044					Single Enemy	AdditionalEffect					Featured
-20019	Zack	Black Whiskers	None	540.0	Single Enemy	Phys	4		PDEF Down	30	10	Mid	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 120019043					Single Enemy	AdditionalEffect	Water Resistance Down	30	10	Mid	High	Single Enemy	BuffDebuff					Featured
+20018	Zack	Twinkling Star	None	540.0	Single Enemy	Phys	4		MATK Down	30	10	Mid	High	Single Enemy	BuffDebuff	PDEF Down	30	10	Mid	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Featured
+20019	Zack	Black Whiskers	None	540.0	Single Enemy	Phys	4		PDEF Down	30	10	Mid	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect	Water Resistance Down	30	10	Mid	High	Single Enemy	BuffDebuff					Featured
 20020	Zack	Stream Guard	Fire	1020.0	Single Enemy	Mag	4		MDEF Down	25	8	Mid	High	Single Enemy	BuffDebuff	MATK Up	25	8	Mid	High	All Allies	BuffDebuff												Limited
-20023	Zack	Zinogre Blade	Lightning	940.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 120023042					Single Enemy	AdditionalEffect																			Limited
+20023	Zack	Zinogre Blade	Lightning	940.0	Single Enemy	Phys	4		When Debuff is on target, multiply damage			120.0%		Single Enemy	AdditionalEffect																			Limited
 20024	Zack	Carrot Sword	Fire	290.0	All Enemies	Mag	4																											Event
-20025	Zack	Alba Blade	None	390.0	All Enemies	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 120025042					All Enemies	AdditionalEffect																			Event
+20025	Zack	Alba Blade	None	390.0	All Enemies	Phys	4		Crit Rate			10.0%		All Enemies	AdditionalEffect																			Event
 20026	Zack	Ultimate Type-99 Longsword	None	1000.0	Single Enemy	Both	0		PDEF Down	30	30	High	High	Single Enemy	BuffDebuff	MDEF Down	30	30	High	High	Single Enemy	BuffDebuff												Ultimate
-20027	Zack	Beatrix Sword	Wind	940.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 120027042					Single Enemy	AdditionalEffect																			Event
+20027	Zack	Beatrix Sword	Wind	940.0	Single Enemy	Phys	4		When Debuff is on target, multiply damage			120.0%		Single Enemy	AdditionalEffect																			Event
 20028	Zack	Durandal	None	2000.0	Single Enemy	Both	0		ATB+3					Self	AtbChangeEffect	PATK Up	30	30	High	High	Self	BuffDebuff	MATK Up	30	30	High	High	Self	BuffDebuff					Ultimate
 20029	Zack	White Tree	Wind	290.0	All Enemies	Mag	4																											Event
 20031	Zack	Sword of the Hunt	Ice	800.0	All Enemies	Mag	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 120031042					Self	StatusChangeEffect																			Featured
 20032	Zack	Zenithian Sword	Fire	1120.0	Single Enemy	Phys	4		Status Ailment: Fire Weakness	60	12	+30.0%		Single Enemy	StatusConditionEffect	MDEF Up	30	10	Mid	High	All Allies	BuffDebuff												Limited
-20033	Zack	Buster Sword Origin	None	860.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 120033042					Single Enemy	AdditionalEffect																			Event
-20034	Zack	Surfer Blade	None	740.0	All Enemies	Phys	4		PDEF Down	40	13	High	High	All Enemies	BuffDebuff	PATK Up	40	13	High	High	All Allies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 120034044					All Enemies	AdditionalEffect					Featured
-20035	Zack	Magatsuchi Blade	None	360.0	Single Enemy	Mag	4		MATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 120035043					Single Enemy	AdditionalEffect												Event
-20036	Zack	Virtuous Contract	None	250.0	All Enemies	Mag	4		Earth Resistance Down	35	8	Low	Mid	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 120036043					All Enemies	AdditionalEffect												Event
-20037	Zack	Rousing Arc Sword	Lightning	900.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 120037042					Single Enemy	AdditionalEffect																			Event
-49001	Sephiroth	Nameless	None	240.0	Single Enemy	Phys	2		MDEF Down	14	4	Mid	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149003043					Single Enemy	AdditionalEffect												Featured
+20033	Zack	Buster Sword Origin	None	860.0	Single Enemy	Phys	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Event
+20034	Zack	Surfer Blade	None	740.0	All Enemies	Phys	4		PDEF Down	40	13	High	High	All Enemies	BuffDebuff	PATK Up	40	13	High	High	All Allies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect					Featured
+20035	Zack	Magatsuchi Blade	None	360.0	Single Enemy	Mag	4		MATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
+20036	Zack	Virtuous Contract	None	250.0	All Enemies	Mag	4		Earth Resistance Down	35	8	Low	Mid	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect												Event
+20037	Zack	Rousing Arc Sword	Lightning	900.0	Single Enemy	Phys	4		When Debuff is on target, multiply damage			120.0%		Single Enemy	AdditionalEffect																			Event
+49001	Sephiroth	Nameless	None	240.0	Single Enemy	Phys	2		MDEF Down	14	4	Mid	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
 49002	Sephiroth	Edged Wings	Ice	800.0	Single Enemy	Mag	4																											Featured
-49003	Sephiroth	Glaireid	None	650.0	All Enemies	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149001042					All Enemies	AdditionalEffect																			Featured
+49003	Sephiroth	Glaireid	None	650.0	All Enemies	Phys	4		Crit Rate			10.0%		All Enemies	AdditionalEffect																			Featured
 49004	Sephiroth	Aonibi	Heal	16.0	Self	Mag	4		MATK Up	44	14	High	High	Self	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 149004042					Self	StatusChangeEffect												Featured
-49005	Sephiroth	Northern Lights	None	510.0	Single Enemy	Phys	4		PATK Down	25	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149005043					Single Enemy	AdditionalEffect												Featured
+49005	Sephiroth	Northern Lights	None	510.0	Single Enemy	Phys	4		PATK Down	25	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
 49006	Sephiroth	Prototype Crimson Blade	Fire	520.0	All Enemies	Mag	4																											Featured
 49007	Sephiroth	CC Alloy Sword	Lightning	520.0	All Enemies	Mag	4																											Featured
 49008	Sephiroth	Mythril Type-0 Katana	Heal	16.0	Self	Phys	4		PDEF Up	44	14	High	High	Self	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 149008042					Self	StatusChangeEffect												Featured
-49009	Sephiroth	Shinra Blade: Model I	None	940.0	Single Enemy	Mag	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149009042					Single Enemy	AdditionalEffect																			Featured
+49009	Sephiroth	Shinra Blade: Model I	None	940.0	Single Enemy	Mag	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Featured
 49010	Sephiroth	Tempest	Water	700.0	Single Enemy	Phys	4		Water Resistance Down	30	10	High	High	Single Enemy	BuffDebuff																			Featured
-49011	Sephiroth	Shinra Military Sword	None	420.0	Single Enemy	Phys	3		PATK Up	35	7	Mid	Mid	Self	BuffDebuff	Wind Damage Up	35	7	High	High	Self	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149011044					Single Enemy	AdditionalEffect					Featured
+49011	Sephiroth	Shinra Military Sword	None	420.0	Single Enemy	Phys	3		PATK Up	35	7	Mid	Mid	Self	BuffDebuff	Wind Damage Up	35	7	High	High	Self	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Featured
 49012	Sephiroth	Torn Wing	Heal	14.0	Single Ally	Mag	4		PDEF Up	38	12	Mid	High	Single Ally	BuffDebuff																			Event
-49013	Sephiroth	World Tree Bough	None	700.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149013042					Single Enemy	AdditionalEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149013043					Single Enemy	AdditionalEffect												Event
+49013	Sephiroth	World Tree Bough	None	700.0	Single Enemy	Phys	4		When Debuff is on target, multiply damage			150.0%		Single Enemy	AdditionalEffect	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
 49015	Sephiroth	Dark Heavens	Wind	800.0	Single Enemy	Phys	4																											Featured
-49016	Sephiroth	Kuja's Spirit Blade	None	540.0	All Enemies	Mag	4		MATK Down	30	10	Mid	High	All Enemies	BuffDebuff	PATK Down	30	10	Mid	High	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149016044					All Enemies	AdditionalEffect					Event
-49017	Sephiroth	Radiant Edge	None	540.0	Single Enemy	Phys	4		PDEF Down	30	10	Mid	Mid	Single Enemy	BuffDebuff	Fire Resistance Down	30	10	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149017044					Single Enemy	AdditionalEffect					Featured
-49018	Sephiroth	Protector's Blade	None	900.0	All Enemies	Mag	4	◊ Diamond	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149018042					All Enemies	AdditionalEffect	MDEF Down	40	13	High	High	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149018044					All Enemies	AdditionalEffect					Limited
-49019	Sephiroth	Flame Dragon Blade	None	360.0	Single Enemy	Mag	4		Fire Resistance Down	28	9	Mid	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149019043					Single Enemy	AdditionalEffect												Grindable
+49016	Sephiroth	Kuja's Spirit Blade	None	540.0	All Enemies	Mag	4		MATK Down	30	10	Mid	High	All Enemies	BuffDebuff	PATK Down	30	10	Mid	High	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect					Event
+49017	Sephiroth	Radiant Edge	None	540.0	Single Enemy	Phys	4		PDEF Down	30	10	Mid	Mid	Single Enemy	BuffDebuff	Fire Resistance Down	30	10	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Featured
+49018	Sephiroth	Protector's Blade	None	900.0	All Enemies	Mag	4	◊ Diamond	When Debuff is on target, multiply damage			130.0%		All Enemies	AdditionalEffect	MDEF Down	40	13	High	High	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect					Limited
+49019	Sephiroth	Flame Dragon Blade	None	360.0	Single Enemy	Mag	4		Fire Resistance Down	28	9	Mid	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Grindable
 49020	Sephiroth	Ashura	Fire	290.0	All Enemies	Mag	4																											Event
-49022	Sephiroth	Humus Saber	None	240.0	All Enemies	Mag	4		Wind Resistance Down	35	8	Low	Mid	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149022043					All Enemies	AdditionalEffect												Event
-49023	Sephiroth	Shinra Wyvern Blade	None	250.0	All Enemies	Mag	4		Fire Resistance Down	35	8	Low	Mid	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149023043					All Enemies	AdditionalEffect												Event
+49022	Sephiroth	Humus Saber	None	240.0	All Enemies	Mag	4		Wind Resistance Down	35	8	Low	Mid	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect												Event
+49023	Sephiroth	Shinra Wyvern Blade	None	250.0	All Enemies	Mag	4		Fire Resistance Down	35	8	Low	Mid	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect												Event
 49024	Sephiroth	Blue Bramble	Earth	700.0	Single Enemy	Mag	4		Earth Resistance Down	30	10	High	High	Single Enemy	BuffDebuff																			Featured
-49026	Sephiroth	Ultimate Nameless	None	1500.0	Single Enemy	Both	0		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149026012					Single Enemy	AdditionalEffect																			Ultimate
+49026	Sephiroth	Ultimate Nameless	None	1500.0	Single Enemy	Both	0		When Debuff is on target, multiply damage			200.0%		Single Enemy	AdditionalEffect																			Ultimate
 49027	Sephiroth	Genji Blade	None	2000.0	Single Enemy	Both	0		PATK Up	30	30	Extra High	Extra High	Self	BuffDebuff	MATK Up	30	30	Extra High	Extra High	Self	BuffDebuff												Ultimate
-49028	Sephiroth	Edgar's Coiled Blade	Water	940.0	Single Enemy	Mag	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149028042					Single Enemy	AdditionalEffect																			Limited
+49028	Sephiroth	Edgar's Coiled Blade	Water	940.0	Single Enemy	Mag	4		When Debuff is on target, multiply damage			120.0%		Single Enemy	AdditionalEffect																			Limited
 49029	Sephiroth	Wintercrest Blade	Wind	290.0	All Enemies	Mag	4																											Event
-49030	Sephiroth	Blade of the Worthy	None	1010.0	All Enemies	Mag	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149030042					All Enemies	AdditionalEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 149030043					Self	StatusChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149030044					All Enemies	AdditionalEffect					Limited
-49031	Sephiroth	Withering Blaze	Fire	700.0	Single Enemy	Mag	4		Fire Resistance Down	30	10	Low	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149031043					Single Enemy	AdditionalEffect												Featured
+49030	Sephiroth	Blade of the Worthy	None	1010.0	All Enemies	Mag	4		Deals Fixed Additional Phys. Damage			40000		All Enemies	AdditionalEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 149030043					Self	StatusChangeEffect	Crit Rate			10.0%		All Enemies	AdditionalEffect					Limited
+49031	Sephiroth	Withering Blaze	Fire	700.0	Single Enemy	Mag	4		Fire Resistance Down	30	10	Low	High	Single Enemy	BuffDebuff	When Debuff is on target, multiply damage			120.0%		Single Enemy	AdditionalEffect												Featured
 49032	Sephiroth	Serrated Remiges	Wind	1120.0	Single Enemy	Mag	4		Status Ailment: Enfeeble	30	10			Single Enemy	StatusConditionEffect																			Featured
-49033	Sephiroth	Pandemonic Sword	Lightning	800.0	All Enemies	Mag	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149033042					All Enemies	AdditionalEffect	PATK Down	30	10	Mid	High	All Enemies	BuffDebuff	MATK Up	30	10	Mid	High	All Allies	BuffDebuff					Limited
-49034	Sephiroth	Folding Ruler	None	250.0	All Enemies	Mag	4		PDEF Down	35	8	Low	Mid	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149034043					All Enemies	AdditionalEffect												Event
+49033	Sephiroth	Pandemonic Sword	Lightning	800.0	All Enemies	Mag	4		When Debuff is on target, multiply damage			120.0%		All Enemies	AdditionalEffect	PATK Down	30	10	Mid	High	All Enemies	BuffDebuff	MATK Up	30	10	Mid	High	All Allies	BuffDebuff					Limited
+49034	Sephiroth	Folding Ruler	None	250.0	All Enemies	Mag	4		PDEF Down	35	8	Low	Mid	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect												Event
 49035	Sephiroth	Sōba	Ice	1340.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 149035042					All Allies	StatusChangeEffect																			Limited
 49037	Sephiroth	Overture	Water	1340.0	Single Enemy	Phys	4		PDEF Down	25	8	Mid	High	Single Enemy	BuffDebuff	Water Damage Up	25	8	Mid	High	All Allies	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 149037044					All Allies	StatusChangeEffect					Limited
-49039	Sephiroth	Phoenix Odachi	None	1340.0	Single Enemy	Mag	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 149039042					All Allies	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 149039043					All Allies	StatusChangeEffect	ATB+3					Self	AtbChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 149039045		Single Enemy	AdditionalEffect	Limited
-50001	Glenn	Personal Style	None	940.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 150001042					Single Enemy	AdditionalEffect																			Featured
+49039	Sephiroth	Phoenix Odachi	None	1340.0	Single Enemy	Mag	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 149039042					All Allies	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 149039043					All Allies	StatusChangeEffect	ATB+3					Self	AtbChangeEffect	Crit Rate	10.0%	Single Enemy	AdditionalEffect	Limited
+50001	Glenn	Personal Style	None	940.0	Single Enemy	Phys	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Featured
 50002	Glenn	Crewkicker	Fire	750.0	Single Enemy	Phys	4																											Featured
 50003	Glenn	Jiggy Fam	Earth	520.0	All Enemies	Mag	4																											Featured
 50004	Glenn	Hardcore Squad	Heal	9.0	All Allies	Mag	5		PDEF Up	14	4	Mid	Mid	All Allies	BuffDebuff	MDEF Up	14	4	Mid	Mid	All Allies	BuffDebuff												Featured
-50005	Glenn	Rest in Peace	None	750.0	Single Enemy	Phys	4	◊ Diamond	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 150005042					Single Enemy	AdditionalEffect																			Featured
-50006	Glenn	Slay the Day	None	420.0	Single Enemy	Phys	3		PDEF Down	24	8	Mid	Mid	Single Enemy	BuffDebuff	Water Damage Up	35	7	High	High	Self	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 150006044					Single Enemy	AdditionalEffect					Featured
-50007	Glenn	Ultimatic	None	1040.0	Single Enemy	Phys	4	◯ Circle	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 150007042					Single Enemy	AdditionalEffect																			Featured
-50008	Glenn	Piece of Cake	None	510.0	Single Enemy	Phys	4		PDEF Down	25	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 150008043					Single Enemy	AdditionalEffect												Featured
+50005	Glenn	Rest in Peace	None	750.0	Single Enemy	Phys	4	◊ Diamond	Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Featured
+50006	Glenn	Slay the Day	None	420.0	Single Enemy	Phys	3		PDEF Down	24	8	Mid	Mid	Single Enemy	BuffDebuff	Water Damage Up	35	7	High	High	Self	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Featured
+50007	Glenn	Ultimatic	None	1040.0	Single Enemy	Phys	4	◯ Circle	Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Featured
+50008	Glenn	Piece of Cake	None	510.0	Single Enemy	Phys	4		PDEF Down	25	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
 50010	Glenn	Shockbuster	Lightning	520.0	All Enemies	Mag	4																											Featured
-50011	Glenn	Apology in Hell	None	940.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 150011042					Single Enemy	AdditionalEffect																			Featured
-50012	Glenn	Pirate's Glaive	None	800.0	All Enemies	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 150012042					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 150012043					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 150012044					All Allies	StatusChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 150012045		All Enemies	AdditionalEffect	Featured
-50013	Glenn	Blade of Ruin	Ice	940.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 150013042					Self	StatusChangeEffect	Increases Command Gauge			20.0		Self	TacticsGaugeChangeEffect												Featured
-50014	Glenn	Squeaky Hammer	None	700.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 150014042					Single Enemy	AdditionalEffect																			Event
+50011	Glenn	Apology in Hell	None	940.0	Single Enemy	Phys	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Featured
+50012	Glenn	Pirate's Glaive	None	800.0	All Enemies	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 150012042					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 150012043					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 150012044					All Allies	StatusChangeEffect	Crit Rate	10.0%	All Enemies	AdditionalEffect	Featured
+50013	Glenn	Blade of Ruin	Ice	940.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 150013042					Self	StatusChangeEffect	Increases Command Gauge			20.0%		Self	TacticsGaugeChangeEffect												Featured
+50014	Glenn	Squeaky Hammer	None	700.0	Single Enemy	Phys	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Event
 50015	Glenn	Inferno Grave	Fire	450.0	Single Enemy	Mag	4																											Grindable
 50016	Glenn	Pumpkin Lamppost	Heal	14.0	Single Ally	Mag	4		PATK Up	38	12	High	High	Single Ally	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 150016042					Single Ally	StatusChangeEffect												Featured
-50018	Glenn	Thousand Waves	None	560.0	Single Enemy	Mag	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 150018042					Single Enemy	AdditionalEffect																			Event
-50019	Glenn	Steiner's Blade	None	360.0	Single Enemy	Phys	4		PATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 150019043					Single Enemy	AdditionalEffect												Event
+50018	Glenn	Thousand Waves	None	560.0	Single Enemy	Mag	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Event
+50019	Glenn	Steiner's Blade	None	360.0	Single Enemy	Phys	4		PATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
 50020	Glenn	Stream Slasher	Water	900.0	Single Enemy	Phys	4	◊ Diamond	PDEF Down	25	8	High	High	Single Enemy	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 150020043					All Allies	StatusChangeEffect												Limited
-50021	Glenn	Best Wishes	None	360.0	Single Enemy	Mag	4		PDEF Down	28	9	Low	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 150021043					Single Enemy	AdditionalEffect												Event
+50021	Glenn	Best Wishes	None	360.0	Single Enemy	Mag	4		PDEF Down	28	9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
 50022	Glenn	Radglaive	Water	290.0	All Enemies	Mag	4																											Event
 50023	Glenn	Silver Sol Buster	Fire	290.0	All Enemies	Mag	4																											Event
 50024	Glenn	Ultimate Personal Style	Heal	5.0	All Allies	Mag	0		MDEF Up	20	20	High	High	All Allies	BuffDebuff																			Ultimate
-50026	Glenn	Stilva Glaive	None	250.0	All Enemies	Mag	4		Ice Resistance Down	35	8	Low	Mid	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 150026043					All Enemies	AdditionalEffect												Event
+50026	Glenn	Stilva Glaive	None	250.0	All Enemies	Mag	4		Ice Resistance Down	35	8	Low	Mid	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect												Event
 50027	Glenn	Ogrekiller	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 150027012					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 150027013					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 150027014					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 150027015		Self	StatusChangeEffect	Ultimate
-50029	Glenn	Set Square	None	250.0	All Enemies	Mag	4		PDEF Down	35	8	Low	Mid	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 150029043					All Enemies	AdditionalEffect												Event
+50029	Glenn	Set Square	None	250.0	All Enemies	Mag	4		PDEF Down	35	8	Low	Mid	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect												Event
 50030	Glenn	Desperado Glaive	Earth	620.0	Single Enemy	Phys	3		PATK Down	30	10	High	High	Single Enemy	BuffDebuff	Earth Resistance Down	30	10	High	High	Single Enemy	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 150030044					Self	StatusChangeEffect					Featured
 50031	Glenn	Snow's Bardiche	Ice	920.0	Single Enemy	Mag	4		Status Ailment: Enfeeble	60	12			Single Enemy	StatusConditionEffect	MATK Down	35	11	Mid	High	Single Enemy	BuffDebuff	MDEF Up	35	11	Mid	High	All Allies	BuffDebuff					Limited
-51001	Matt	Broadsword: Axis	None	900.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 151001042					Single Enemy	AdditionalEffect																			Featured
+51001	Matt	Broadsword: Axis	None	900.0	Single Enemy	Phys	4		Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Featured
 51002	Matt	Orthodox Raven	Water	540.0	All Enemies	Mag	4																											Featured
 51003	Matt	Absolute Royal	Ice	540.0	All Enemies	Mag	4																											Featured
 51004	Matt	Prime Number	Heal	75.0	All Allies	Mag	5																											Featured
 51005	Matt	Espee Rapiere Next-G	Heal	150.0	Single Ally	Mag	5																											Featured
 51006	Matt	Core Defender	Heal	8.0	All Allies	Mag	4		MDEF Up	14	4	High	High	All Allies	BuffDebuff																			Featured
 51007	Matt	Centipede	Heal	60.0	All Allies	Mag	5		PDEF Up	14	4	Mid	High	All Allies	BuffDebuff																			Featured
-51008	Matt	Stingray	None	540.0	Single Enemy	Mag	4		MDEF Down	25	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 151008043					Single Enemy	AdditionalEffect												Featured
-51009	Matt	Killer Hornet	None	720.0	Single Enemy	Phys	4	◊ Diamond	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 151009042					Single Enemy	AdditionalEffect																			Featured
+51008	Matt	Stingray	None	540.0	Single Enemy	Mag	4		MDEF Down	25	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
+51009	Matt	Killer Hornet	None	720.0	Single Enemy	Phys	4	◊ Diamond	Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Featured
 51010	Matt	Bramble Spine	Heal	14.0	Single Ally	Mag	4		PATK Up	38	12	High	High	Single Ally	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 151011042					Single Ally	StatusChangeEffect												Featured
 51012	Matt	Syringe Rapier	Heal	8.0	All Allies	Mag	4		MDEF Up	14	4	Mid	High	All Allies	BuffDebuff	PDEF Up	14	4	Mid	High	All Allies	BuffDebuff												Featured
-51013	Matt	Foam Sword	None	620.0	Single Enemy	Phys	4		Removes PDEF Up					Single Enemy	CancelEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 151013043					Single Enemy	AdditionalEffect												Event
-51015	Matt	Slick Beetle	None	480.0	Single Enemy	Phys	4		PATK Down	25	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 151015043					Single Enemy	AdditionalEffect												Featured
-51016	Matt	Bahamut Rapier	None	450.0	Single Enemy	Mag	4	◊ Diamond	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 151016042					Single Enemy	AdditionalEffect																			Grindable
+51013	Matt	Foam Sword	None	620.0	Single Enemy	Phys	4		Removes PDEF Up					Single Enemy	CancelEffect	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
+51015	Matt	Slick Beetle	None	480.0	Single Enemy	Phys	4		PATK Down	25	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
+51016	Matt	Bahamut Rapier	None	450.0	Single Enemy	Mag	4	◊ Diamond	Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Grindable
 51017	Matt	Holiday Cane	Earth	290.0	All Enemies	Mag	4																											Event
 51018	Matt	Giant Fork	Heal	14.0	Single Ally	Mag	4		PATK Up	44	14	Low	Mid	Single Ally	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 151018042					Single Ally	StatusChangeEffect												Event
 51020	Matt	Humus Rapier	Wind	290.0	All Enemies	Mag	4																											Event
-51021	Matt	Nautilus Spiral	None	420.0	Single Enemy	Phys	3	◊ Diamond	Ice Resistance Down	24	8	High	High	Single Enemy	BuffDebuff	Lightning Resistance Down	24	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 151021044					Single Enemy	AdditionalEffect					Featured
+51021	Matt	Nautilus Spiral	None	420.0	Single Enemy	Phys	3	◊ Diamond	Ice Resistance Down	24	8	High	High	Single Enemy	BuffDebuff	Lightning Resistance Down	24	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Featured
 51022	Matt	Firefish	Fire	450.0	Single Enemy	Phys	4																											Event
 51023	Matt	Deroplatys	Heal	48.0	All Allies	Mag	4		PATK Up	20	6	Mid	High	All Allies	BuffDebuff	MDEF Up	20	6	High	High	All Allies	BuffDebuff												Limited
 51024	Matt	Ultimate Broadsword: Axis	Heal	11.0	All Allies	Mag	0		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 151024012					All Allies	StatusChangeEffect	Removes PDEF Down, MDEF Down					All Allies	CancelEffect												Ultimate
 51025	Matt	Candle Rapier	Lightning	290.0	All Enemies	Mag	4																											Event
 51026	Matt	Luminary Sword	Heal	8.0	All Allies	Mag	4		MATK Up	30	10	Low	High	All Allies	BuffDebuff	Fire Damage Up	30	10	Low	High	All Allies	BuffDebuff												Featured
-51027	Matt	Hrotti	None	360.0	Single Enemy	Mag	4		Earth Resistance Down	28	9	Mid	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 151027043					Single Enemy	AdditionalEffect												Event
+51027	Matt	Hrotti	None	360.0	Single Enemy	Mag	4		Earth Resistance Down	28	9	Mid	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
 51029	Matt	Gladius	Heal	41.0	All Allies	Mag	0		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 151029012					All Allies	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 151029013					Self	StatusChangeEffect												Ultimate
-51031	Matt	Dragontail Sword	None	360.0	Single Enemy	Mag	4		PATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 151031043					Single Enemy	AdditionalEffect												Event
+51031	Matt	Dragontail Sword	None	360.0	Single Enemy	Mag	4		PATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
 51032	Matt	Desperado Rapier	Heal	60.0	All Allies	Mag	5		Lightning Resistance Up	30	10	Mid	High	All Allies	BuffDebuff	Wind Resistance Up	30	10	Mid	High	All Allies	BuffDebuff	PATK Up	30	10	Mid	High	All Allies	BuffDebuff					Featured
-52001	Lucia	V39	None	690.0	All Enemies	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 152001042					All Enemies	AdditionalEffect																			Featured
+52001	Lucia	V39	None	690.0	All Enemies	Phys	4		Crit Rate			10.0%		All Enemies	AdditionalEffect																			Featured
 52002	Lucia	Pulse Gun	Wind	500.0	All Enemies	Mag	4																											Featured
 52003	Lucia	Serpent Eater	Water	790.0	Single Enemy	Phys	4																											Featured
 52004	Lucia	Thunderbird	Lightning	540.0	Single Enemy	Mag	4		MDEF Down	30	10	Mid	High	Single Enemy	BuffDebuff																			Featured
 52005	Lucia	Tranquilizer Gun	Heal	165.0	Self	Mag	5		Removes Ailment: Poison, Ailment: Darkness					Self	CancelEffect																			Featured
 52006	Lucia	SSR1976	Heal	14.0	Single Ally	Mag	4		MDEF Up	38	12	High	High	Single Ally	BuffDebuff																			Featured
-52007	Lucia	Mad Minute	None	540.0	Single Enemy	Phys	4		MATK Down	25	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 152007043					Single Enemy	AdditionalEffect												Featured
-52009	Lucia	Bald Eagle	None	540.0	Single Enemy	Phys	4		Ice Resistance Down	25	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 152009043					Single Enemy	AdditionalEffect												Featured
-52010	Lucia	Black Rifle	None	790.0	Single Enemy	Phys	4		Status Ailment: Silence	5	2			Single Enemy	StatusConditionEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 152010043					Single Enemy	AdditionalEffect												Featured
-52013	Lucia	Nightjar	None	420.0	Single Enemy	Mag	3	◊ Diamond	PDEF Down	24	8	High	High	Single Enemy	BuffDebuff	MDEF Down	24	8	Mid	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 152013044					Single Enemy	AdditionalEffect					Featured
-52014	Lucia	Rubber Band Gun	None	620.0	Single Enemy	Phys	4		Increases Command Gauge			20.0		Self	TacticsGaugeChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 152014043					Single Enemy	AdditionalEffect												Event
-52015	Lucia	Featherscatter	None	360.0	Single Enemy	Mag	4		PATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 152015043					Single Enemy	AdditionalEffect												Event
-52016	Lucia	Barn Swallow	None	790.0	Single Enemy	Phys	4	◊ Diamond	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 152016042					Single Enemy	AdditionalEffect																			Featured
+52007	Lucia	Mad Minute	None	540.0	Single Enemy	Phys	4		MATK Down	25	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
+52009	Lucia	Bald Eagle	None	540.0	Single Enemy	Phys	4		Ice Resistance Down	25	8	High	High	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
+52010	Lucia	Black Rifle	None	790.0	Single Enemy	Phys	4		Status Ailment: Silence	5	2			Single Enemy	StatusConditionEffect	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Featured
+52013	Lucia	Nightjar	None	420.0	Single Enemy	Mag	3	◊ Diamond	PDEF Down	24	8	High	High	Single Enemy	BuffDebuff	MDEF Down	24	8	Mid	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Featured
+52014	Lucia	Rubber Band Gun	None	620.0	Single Enemy	Phys	4		Increases Command Gauge			20.0%		Self	TacticsGaugeChangeEffect	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
+52015	Lucia	Featherscatter	None	360.0	Single Enemy	Mag	4		PATK Down	28	9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
+52016	Lucia	Barn Swallow	None	790.0	Single Enemy	Phys	4	◊ Diamond	Crit Rate			10.0%		Single Enemy	AdditionalEffect																			Featured
 52017	Lucia	Pumpkin Blaster	Heal	14.0	Single Ally	Mag	4		MDEF Up	38	12	Mid	High	Single Ally	BuffDebuff																			Event
 52019	Lucia	Rifle of Levin	Lightning	420.0	Single Enemy	Mag	4																											Grindable
 52020	Lucia	Holiday Revolver	Earth	800.0	Single Enemy	Mag	4																											Featured
 52021	Lucia	Vivi's Magical Gun	Fire	290.0	All Enemies	Mag	4																											Event
 52022	Lucia	Rose Musket	Fire	620.0	Single Enemy	Mag	4		MDEF Down	30	10	High	High	Single Enemy	BuffDebuff																			Featured
-52023	Lucia	Turks' Rifle	None	360.0	Single Enemy	Mag	4		PDEF Down	28	9	Low	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 152023043					Single Enemy	AdditionalEffect												Event
+52023	Lucia	Turks' Rifle	None	360.0	Single Enemy	Mag	4		PDEF Down	28	9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
 52025	Lucia	Marine Shooter	None	560.0	All Enemies	Phys	4		PATK Down	30	10	Mid	High	All Enemies	BuffDebuff	Fire Resistance Down	30	10	High	High	All Enemies	BuffDebuff												Featured
 52026	Lucia	Ultimate V39	Heal	5.0	Single Ally	Mag	0		PATK Up	30	30	High	High	Single Ally	BuffDebuff	MATK Up	30	30	High	High	Single Ally	BuffDebuff												Ultimate
 52027	Lucia	Eligor Rifle	Ice	290.0	All Enemies	Mag	4																											Event
 52029	Lucia	Rifle of the Hunt	Earth	620.0	Single Enemy	Phys	4		Earth Resistance Down	30	10	Mid	High	Single Enemy	BuffDebuff	PDEF Down	30	10	Mid	High	Single Enemy	BuffDebuff												Featured
-52030	Lucia	Spirit Demon Rifle	None	250.0	All Enemies	Mag	4		PATK Down	35	8	Low	Mid	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 152030043					All Enemies	AdditionalEffect												Event
+52030	Lucia	Spirit Demon Rifle	None	250.0	All Enemies	Mag	4		PATK Down	35	8	Low	Mid	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect												Event
 52031	Lucia	Shinra Ceremonial Rifle	Fire	840.0	Single Enemy	Phys	4		Status Ailment: Enfeeble	60	12			Single Enemy	StatusConditionEffect	Fire Damage Up	20	6	Mid	High	All Allies	BuffDebuff	ATB+2					All Allies	AtbChangeEffect					Limited
 52032	Lucia	Aldebaran	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 152032012					All Allies	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 152032013					All Allies	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 152032014					All Allies	StatusChangeEffect					Ultimate
 52034	Lucia	Desperado Rifle	Ice	780.0	All Enemies	Phys	4		PDEF Down	20	6	Mid	High	All Enemies	BuffDebuff	Ice Damage Up	20	6	Mid	High	All Allies	BuffDebuff												Featured
-56001	Angeal	Type-90 Longsword	None	750.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156001042					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156001043					Self	StatusChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 156001044					Single Enemy	AdditionalEffect					Featured
-56002	Angeal	Greatsword (A)	None	540.0	All Enemies	Phys	4		PDEF Down	30	10	High	High	All Enemies	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156002043					Self	StatusChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 156002044					All Enemies	AdditionalEffect					Featured
-56003	Angeal	Type-91 Two-Hander	None	420.0	Single Enemy	Mag	3	◊ Diamond	PATK Down	24	8	Mid	High	Single Enemy	BuffDebuff	MATK Down	24	8	Mid	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 156003044					Single Enemy	AdditionalEffect					Featured
-56004	Angeal	Shinra Greatsword: Model I	None	620.0	Single Enemy	Phys	4		Earth Resistance Down	30	10	High	High	Single Enemy	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156004043					Self	StatusChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 156004044					Single Enemy	AdditionalEffect					Featured
+56001	Angeal	Type-90 Longsword	None	750.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156001042					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156001043					Self	StatusChangeEffect	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Featured
+56002	Angeal	Greatsword (A)	None	540.0	All Enemies	Phys	4		PDEF Down	30	10	High	High	All Enemies	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156002043					Self	StatusChangeEffect	Crit Rate			10.0%		All Enemies	AdditionalEffect					Featured
+56003	Angeal	Type-91 Two-Hander	None	420.0	Single Enemy	Mag	3	◊ Diamond	PATK Down	24	8	Mid	High	Single Enemy	BuffDebuff	MATK Down	24	8	Mid	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Featured
+56004	Angeal	Shinra Greatsword: Model I	None	620.0	Single Enemy	Phys	4		Earth Resistance Down	30	10	High	High	Single Enemy	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156004043					Self	StatusChangeEffect	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Featured
 56005	Angeal	CC Alloy Greatsword	Lightning	900.0	Single Enemy	Mag	4																											Featured
 56006	Angeal	Stalwart Integrity	Heal	8.0	All Allies	Mag	4		PDEF Up	20	6	High	High	All Allies	BuffDebuff	PATK Up	20	6	High	High	All Allies	BuffDebuff												Featured
 56007	Angeal	Innocent Warrior	Fire	520.0	All Enemies	Mag	4																											Featured
 56008	Angeal	Gargantuan Monolith	Heal	16.0	Self	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156008041					Self	StatusChangeEffect	MDEF Up	44	14	High	High	Self	BuffDebuff												Featured
 56009	Angeal	Sequoiadendron	Earth	600.0	Single Enemy	Phys	4																											Featured
 56010	Angeal	Tranquility	Water	940.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156010042					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156010043					Self	StatusChangeEffect												Limited
-56011	Angeal	Orchard Shovel	None	490.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156011042					Self	StatusChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 156011043					Single Enemy	AdditionalEffect												Event
+56011	Angeal	Orchard Shovel	None	490.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156011042					Self	StatusChangeEffect	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Event
 56012	Angeal	Ultimate Type-90 Longsword	Heal	5.0	All Allies	Mag	0		PDEF Up	20	20	Mid	High	All Allies	BuffDebuff	MDEF Up	20	20	Mid	High	All Allies	BuffDebuff												Ultimate
 56013	Angeal	Cyan's Blade	Ice	450.0	Single Enemy	Phys	4																											Event
 56014	Angeal	Mythril Slasher	Water	580.0	All Enemies	Mag	4		Water Resistance Down	30	10	Mid	High	All Enemies	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156014043					Self	StatusChangeEffect												Featured
 56015	Angeal	Volcanic Heat	Fire	620.0	Single Enemy	Phys	4		Fire Resistance Down	30	10	High	High	Single Enemy	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156015043					Self	StatusChangeEffect												Featured
 56016	Angeal	Titan Blade	Earth	450.0	Single Enemy	Mag	4																											Grindable
-56017	Angeal	Turks' Blade	None	250.0	All Enemies	Mag	4		PATK Down	35	8	Low	Mid	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 156017043					All Enemies	AdditionalEffect												Event
+56017	Angeal	Turks' Blade	None	250.0	All Enemies	Mag	4		PATK Down	35	8	Low	Mid	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect												Event
 56019	Angeal	Greatsword of the Worthy	Heal	8.0	All Allies	Mag	4		PDEF Up	20	6	Mid	High	All Allies	BuffDebuff	MDEF Up	20	6	Mid	High	All Allies	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156019044					All Allies	StatusChangeEffect					Limited
 56020	Angeal	Blade of the Hunt	Ice	290.0	All Enemies	Mag	4																											Event
 56021	Angeal	Penance Blade	Fire	290.0	All Enemies	Mag	4																											Event
-56022	Angeal	Inflatable Buster Sword	None	640.0	All Enemies	Phys	4		Status Ailment: Water Weakness	60	12	+30.0%		All Enemies	StatusConditionEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156022043					Self	StatusChangeEffect	PDEF Up	25	8	High	High	All Allies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 156022045		All Enemies	AdditionalEffect	Featured
+56022	Angeal	Inflatable Buster Sword	None	640.0	All Enemies	Phys	4		Status Ailment: Water Weakness	60	12	+30.0%		All Enemies	StatusConditionEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156022043					Self	StatusChangeEffect	PDEF Up	25	8	High	High	All Allies	BuffDebuff	Crit Rate	10.0%	All Enemies	AdditionalEffect	Featured
 56023	Angeal	Rhad Blade	Water	290.0	All Enemies	Mag	4																											Event
 56025	Angeal	Balmung	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156025012					All Allies	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156025013					All Allies	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156025014					Self	StatusChangeEffect					Ultimate
 56026	Angeal	Ghost Ensis	Earth	780.0	All Enemies	Mag	4		Earth Resistance Down	25	8	Mid	High	All Enemies	BuffDebuff	Earth Damage Up	25	8	Mid	High	All Allies	BuffDebuff												Featured
 56027	Angeal	Master Tonberry's Blade	Heal	14.0	Single Ally	Mag	4		PATK Up	44	14	Low	Mid	Single Ally	BuffDebuff	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 156027042					Single Ally	StatusChangeEffect												Event
-56028	Angeal	Lightning's Sword	None	700.0	Single Enemy	Phys	4		PATK Down	25	8	Mid	Mid	Single Enemy	BuffDebuff	PDEF Up	25	8	Mid	Mid	All Allies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 156028044					Single Enemy	AdditionalEffect					Event
-56029	Angeal	Sea Dragon Greatsword	None	360.0	Single Enemy	Mag	4		Water Resistance Down	28	9	Mid	Mid	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 156029043					Single Enemy	AdditionalEffect												Grindable
-60001	Sephiroth (Original)	Masamune	None	800.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 160001042					Single Enemy	AdditionalEffect	PDEF Down	25	8	High	High	Single Enemy	BuffDebuff	MDEF Down	25	8	High	High	Single Enemy	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 160001045		Single Enemy	AdditionalEffect	Featured
+56028	Angeal	Lightning's Sword	None	700.0	Single Enemy	Phys	4		PATK Down	25	8	Mid	Mid	Single Enemy	BuffDebuff	PDEF Up	25	8	Mid	Mid	All Allies	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect					Event
+56029	Angeal	Sea Dragon Greatsword	None	360.0	Single Enemy	Mag	4		Water Resistance Down	28	9	Mid	Mid	Single Enemy	BuffDebuff	Crit Rate			10.0%		Single Enemy	AdditionalEffect												Grindable
+60001	Sephiroth (Original)	Masamune	None	800.0	Single Enemy	Phys	4		Deals Fixed Additional Phys. Damage			60000		Single Enemy	AdditionalEffect	PDEF Down	25	8	High	High	Single Enemy	BuffDebuff	MDEF Down	25	8	High	High	Single Enemy	BuffDebuff	Crit Rate	10.0%	Single Enemy	AdditionalEffect	Featured
 60002	Sephiroth (Original)	Shiranui	Fire	1340.0	Single Enemy	Mag	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 160002042					All Allies	StatusChangeEffect																			Limited
 60003	Sephiroth (Original)	Osafune	Water	1340.0	Single Enemy	Mag	4		MATK Up	25	8	Mid	High	All Allies	BuffDebuff																			Featured
-60004	Sephiroth (Original)	Kotetsu	None	540.0	All Enemies	Phys	4		PATK Down	40	13	High	High	All Enemies	BuffDebuff	MATK Down	40	13	High	High	All Enemies	BuffDebuff	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 160004044					All Enemies	AdditionalEffect					Featured
-60005	Sephiroth (Original)	Kikuichimonji	None	1340.0	All Enemies	Mag	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 160005042					All Allies	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 160005043					All Allies	StatusChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 160005044					All Enemies	AdditionalEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 160005045		Self	StatusChangeEffect	Limited
+60004	Sephiroth (Original)	Kotetsu	None	540.0	All Enemies	Phys	4		PATK Down	40	13	High	High	All Enemies	BuffDebuff	MATK Down	40	13	High	High	All Enemies	BuffDebuff	Crit Rate			10.0%		All Enemies	AdditionalEffect					Featured
+60005	Sephiroth (Original)	Kikuichimonji	None	1340.0	All Enemies	Mag	4		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 160005042					All Allies	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 160005043					All Allies	StatusChangeEffect	Crit Rate			10.0%		All Enemies	AdditionalEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 160005045		Self	StatusChangeEffect	Limited
 60006	Sephiroth (Original)	Ultimate Masamune	None	1000.0	Single Enemy	Both	0		MDEF Down	30	10	High	High	Single Enemy	BuffDebuff	MATK Up	30	10	High	High	Self	BuffDebuff												Ultimate
-60007	Sephiroth (Original)	Muramasa	None	1340.0	All Enemies	Mag	4		Status Ailment: Single-Tgt. Phys. Dmg. Rcvd. Up	60	20	+50.0%		All Enemies	StatusConditionEffect	Status Ailment: Single-Tgt. Mat. Dmg. Rcvd. Up	60	20	+50.0%		All Enemies	StatusConditionEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 160007044					All Allies	StatusChangeEffect	UNKNOWN ADDITIONAL EFFECT SkillEffectDetailId: 160007045		All Enemies	AdditionalEffect	Limited
+60007	Sephiroth (Original)	Muramasa	None	1340.0	All Enemies	Mag	4		Status Ailment: Single-Tgt. Phys. Dmg. Rcvd. Up	60	20	+50.0%		All Enemies	StatusConditionEffect	Status Ailment: Single-Tgt. Mat. Dmg. Rcvd. Up	60	20	+50.0%		All Enemies	StatusConditionEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 160007044					All Allies	StatusChangeEffect	Crit Rate	10.0%	All Enemies	AdditionalEffect	Limited
 60008	Sephiroth (Original)	Heaven's Cloud	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 160008012					Self	StatusChangeEffect	UNKNOWN SKILL STATUS CHANGE SkillEffectDetailId: 160008013					Self	StatusChangeEffect												Ultimate
 60009	Sephiroth (Original)	Divine Steed Blade	Earth	290.0	All Enemies	Mag	4																											Event
