@@ -115,6 +115,15 @@ skill_notes_sigils = {
     4101:"◊ Diamond",
 }
 
+# gacha-types for the Weapon.json WeaponType 
+weapon_gacha_types = [
+    "Featured",
+    "Grindable",
+    "Event",
+    "Limited",
+    # ultimate is not included since those are identified differently
+]
+
 print_perf_data("Load masterdata")
 
 # start transforming all of the data into our own dict of weaponId to summarized-info
@@ -141,7 +150,8 @@ for weapon_obj in weapon_data.values():
     skill_weapon_base_obj = skill_weapon_data[weapon_upgrade_skill_base_obj["WeaponSkillId"]]
 
     if (weapon_is_ultimate):
-        print ("todo uwu")
+        out_weapon["Command ATB"] = 0
+        out_weapon["GachaType"] = "Ultimate"
 
     if (not weapon_is_ultimate):
         # non-ultimate weapons define ATB cost on skill-active obj
@@ -153,6 +163,8 @@ for weapon_obj in weapon_data.values():
         if (skill_weapon_base_obj["SkillNotesSetId"] != 0):
             skill_notes_set_obj = skill_notes_set_data[skill_weapon_base_obj["SkillNotesSetId"]]
             out_weapon["Command Sigil"] = skill_notes_sigils[skill_notes_set_obj["SkillNotesId"]]
+
+        out_weapon["GachaType"] = weapon_gacha_types[weapon_obj["WeaponType"]]
 
         # fetch the weapon skills at OB1/6/10
         weapon_upgrade_skill_obj = [
@@ -170,26 +182,30 @@ for weapon_obj in weapon_data.values():
             skill_active_data[skill_weapon_obj[1]["SkillActiveId"]],
             skill_active_data[skill_weapon_obj[2]["SkillActiveId"]],
         ]
-        
-
-
     out_weapons.append(out_weapon)
 
 print_perf_data("Transform weapondata")
 
 # with all of the weapon data transformed, write it out to csv
-csv_header = [
-    "Id",
-    "Name",
-    "Character",
-    "Command ATB",
-    "Use Limit",
-    "Command Sigil",
-]
 
+# add columns for every field we may have across the set of weapons
+out_weapon_fields = set()
+for out_weapon in out_weapons:
+    out_weapon_fields |= out_weapon.keys()
+
+# we want some columns locked at the front of the list, 
+# so remove them from the set above, then add every other field to the list
+out_sorted_weapon_fields = [
+    "Id",
+    "Character",
+    "Name",
+]
+for field in out_sorted_weapon_fields:
+    out_weapon_fields.remove(field)
+out_sorted_weapon_fields.extend(sorted(out_weapon_fields))
 
 with open('weaponData-Staging.csv', 'w', newline='', encoding='utf-8') as csvfile:
-    csv_writer = csv.DictWriter(csvfile, csv_header, delimiter=',')
+    csv_writer = csv.DictWriter(csvfile, out_sorted_weapon_fields, delimiter=',')
     csv_writer.writeheader()
     for out_weapon in out_weapons:
         csv_writer.writerow(out_weapon)
