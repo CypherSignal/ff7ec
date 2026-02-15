@@ -225,8 +225,27 @@ buffdebuff_tiers = [
     "Low",
     "Mid",
     "High",
-    "Very High",
+    "Extra High",
     "Extreme",
+]
+
+skilleffect_types = {
+    1:"DamageEffect",
+    2:"StatusConditionEffect",
+    3:"BuffDebuff",
+    5:"StatusChangeEffect",
+    6:"CancelEffect",
+    7:"AdditionalEffect",
+    16:"AtbChangeEffect",
+    26:"SpecialGaugeChangeEffect",
+    30:"TacticsGaugeChangeEffect",
+    31:"BuffDebuffEnhance",
+}
+
+special_gauge_types = [
+    "UNKNOWN",
+    "Limit Gauge",
+    "Summon Gauge",
 ]
 
 print_perf_data("Load masterdata")
@@ -335,6 +354,7 @@ for weapon_obj in weapon_data.values():
         skill_effect_detail_id = skill_effect_obj["SkillEffectDetailId"]
         effect_detail_prefix = "Effect" + skill_effect_suffix
         out_weapon[effect_detail_prefix + "_Range"] = target_types[skill_effect_obj["TargetType"]]
+        out_weapon[effect_detail_prefix + "_Type"] = skilleffect_types[skill_effect_obj["SkillEffectType"]]
         match skill_effect_obj["SkillEffectType"]:
             case 1: # Damage effect
                 out_weapon[effect_detail_prefix] = "EXTRA DAMAGE EFFECT"
@@ -345,8 +365,7 @@ for weapon_obj in weapon_data.values():
                 if (skill_status_condition_type in status_effect_types):
                     out_weapon[effect_detail_prefix] = "Status Ailment: " + status_effect_types[skill_status_condition_type]
                 else:
-                    out_weapon[effect_detail_prefix] = "Status Ailment: UNKNOWN STATUS: " + str(skill_status_condition_type)
-                    print("Warning: Unknown status - " + str(skill_status_condition_type))
+                    out_weapon[effect_detail_prefix] = "Status Ailment: UNKNOWN STATUS: " + str(skill_status_condition_type)  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
 
                 out_weapon[effect_detail_prefix + "_Duration"] = str(skill_status_condition_obj["MaxDurationSec"])
                 out_weapon[effect_detail_prefix + "_Extend"] = str(skill_status_condition_obj["MaxDuplicationDurationSec"])
@@ -359,17 +378,16 @@ for weapon_obj in weapon_data.values():
                 if (skill_buffdebuff_type in buffdebuff_types):
                     out_weapon[effect_detail_prefix] = buffdebuff_types[skill_buffdebuff_type]
                 else:
-                    out_weapon[effect_detail_prefix] = "UNKNOWN BUFF/DEBUFF: " + str(skill_buffdebuff_type)
-                    print("Warning: Unknown BUFF/DEBUFF - " + str(skill_buffdebuff_type))
+                    out_weapon[effect_detail_prefix] = "UNKNOWN BUFF/DEBUFF: " + str(skill_buffdebuff_type)  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
 
                 out_weapon[effect_detail_prefix + "_Duration"] = str(skill_buffdebuff_obj["MaxDurationSec"])
                 out_weapon[effect_detail_prefix + "_Extend"] = str(skill_buffdebuff_obj["MaxDuplicationDurationSec"])
                 out_weapon[effect_detail_prefix + "_Pot"] = buffdebuff_tiers[skill_buffdebuff_obj["TriggerEffectLevel"]]
-                out_weapon[effect_detail_prefix + "_MaxPot"] = buffdebuff_tiers[skill_buffdebuff_obj["TriggerEffectLevelMax"]]
+                out_weapon[effect_detail_prefix + "_PotMax"] = buffdebuff_tiers[skill_buffdebuff_obj["TriggerEffectLevelMax"]]
 
             case 5: # SkillStatusChangeEffect (e.g. exploit weakness)
                 skill_status_change_obj = skill_status_change_effect_data[skill_effect_detail_id]
-                out_weapon[effect_detail_prefix] = "UNKNOWN SKILL STATUS CHANGE"
+                out_weapon[effect_detail_prefix] = "UNKNOWN SKILL STATUS CHANGE"  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
 
             case 6: # SkillCancelEffect (e.g. removes buff/debuff or removes status)
                 skill_cancel_effect_obj = skill_cancel_effect_data[skill_effect_detail_id]
@@ -396,28 +414,53 @@ for weapon_obj in weapon_data.values():
 
             case 7: # SkillAdditionalEffect (e.g. crits???)
                 skill_additional_effect_obj = skill_additional_effect_data[skill_effect_detail_id]
-                out_weapon[effect_detail_prefix] = "UNKNOWN ADDITIONAL EFFECT"
+                out_weapon[effect_detail_prefix] = "UNKNOWN ADDITIONAL EFFECT"  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
 
             case 16: # SkillAtbChangeEffect (+ATB!)
                 skill_atbchange_effect_obj = skill_atbchange_effect_data[skill_effect_detail_id]
-                out_weapon[effect_detail_prefix] = "UNKNOWN ATB CHANGE"
+                out_weapon[effect_detail_prefix] = "ATB+" + str(skill_atbchange_effect_obj["Value"])
                 
             case 26: # SkillSpecialGaugeChangeEffect (+Limit/summon bar)
                 skill_special_gauge_change_obj = skill_special_gauge_change_data[skill_effect_detail_id]
-                out_weapon[effect_detail_prefix] = "UNKNOWN SPECIAL GAUGE CHANGE"
+                skill_special_gauge_type = special_gauge_types[skill_special_gauge_change_obj["TargetSkillSpecialType"]]
+                match skill_special_gauge_change_obj["SkillSpecialGaugeChangeType"]:
+                    case 1: # increases gauge
+                        out_weapon[effect_detail_prefix] = "Increases " + skill_special_gauge_type
+                        out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_special_gauge_change_obj["PermilValue"] / 10,0))
+                    case 2: # reduces gauge
+                        out_weapon[effect_detail_prefix] = "Decreases " + skill_special_gauge_type
+                        out_weapon[effect_detail_prefix + "_Pot"] = "-" + str(round(skill_special_gauge_change_obj["PermilValue"] / 10,0))
+                    case _:
+                       out_weapon[effect_detail_prefix] = "UNKNOWN SPECIAL GAUGE CHANGE"  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
                 
             case 30: # SkillTacticsGaugeChangeEffect (+Stance change)
                 skill_tactics_gauge_change_obj = skill_tactics_gauge_change_data[skill_effect_detail_id]
-                out_weapon[effect_detail_prefix] = "UNKNOWN TACTICS GAUGE CHANGE"
+                match skill_tactics_gauge_change_obj["SkillEffectGaugeChangeType"]:
+                    case 1: # increases gauge
+                        out_weapon[effect_detail_prefix] = "Increases Command Gauge"
+                        out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_tactics_gauge_change_obj["PermilValue"] / 10,0))
+                    case 2: # reduces gauge
+                        out_weapon[effect_detail_prefix] = "Decreases Command Gauge"
+                        out_weapon[effect_detail_prefix + "_Pot"] = "-" + str(round(skill_tactics_gauge_change_obj["PermilValue"] / 10,0))
+                    case _:
+                       out_weapon[effect_detail_prefix] = "UNKNOWN TACTICS GAUGE CHANGE"  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
 
             case 31: # SkillBuffDebuffEnhance (AC Gloves, Abraxas)
                 skill_buffdebuff_enhance_obj = skill_buffdebuff_enhance_data[skill_effect_detail_id]
-                out_weapon[effect_detail_prefix] = "UNKNOWN BUFF/DEBUFF ENHANCE"
+                match skill_buffdebuff_enhance_obj["BuffDebuffEnhanceType"]:
+                    case 1: # increases gauge
+                        out_weapon[effect_detail_prefix] = "Applied Stats Buff Tier Increased"
+                    case 2: # reduces gauge
+                        out_weapon[effect_detail_prefix] = "Applied Stats Debuff Tier Increased"
+                    case _:
+                        out_weapon[effect_detail_prefix] = "UNKNOWN BUFF/DEBUFF ENHANCE"  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
+                out_weapon[effect_detail_prefix + "_Pot"] = buffdebuff_tiers[skill_buffdebuff_enhance_obj["EnhanceEffectLevel"]]
+                out_weapon[effect_detail_prefix + "_PotMax"] = buffdebuff_tiers[skill_buffdebuff_enhance_obj["EnhanceEffectLevelMax"]]
+                out_weapon[effect_detail_prefix + "_Extend"] = skill_buffdebuff_enhance_obj["EnhanceDurationSec"]
+
+
             case _:
                 out_weapon[effect_detail_prefix] = "UNKNOWN EFFECT: " + str(skill_effect_obj["SkillEffectType"]) + " SkillEffectDetailId: " + str(skill_effect_detail_id)
-                print("Warning: Unknown effect - " + str(skill_effect_obj["SkillEffectType"])  + " SkillEffectDetailId: " + str(skill_effect_detail_id))
-                
-
 
     out_weapons.append(out_weapon)
 
