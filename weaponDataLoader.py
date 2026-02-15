@@ -91,20 +91,22 @@ print_perf_data("Load Localization")
 # any "NameLanguageId" should map to a value in the loc_table
 
 # load up all of the main data we need
-weapon_data = load_masterdata_json("Weapon.json")
 character_data = load_masterdata_json("Character.json")
 materia_support_data = load_masterdata_json("MateriaSupport.json")
-skill_passive_data = load_masterdata_json("SkillPassive.json")
-skill_base_data = load_masterdata_json("SkillBase.json")
-skill_damage_data = load_masterdata_json("SkillDamageEffect.json")
-skill_status_effect_data = load_masterdata_json("SkillStatusConditionEffect.json")
-skill_buffdebuff_data = load_masterdata_json("SkillBuffDebuff.json")
-skill_status_change_effect_data = load_masterdata_json("SkillStatusChangeEffect.json")
-skill_weapon_data = load_masterdata_json("SkillWeapon.json")
 skill_active_data = load_masterdata_json("SkillActive.json")
-skill_notes_set_data = load_masterdata_json("SkillNotesSet.json")
-skill_notes_data = load_masterdata_json("SkillNotes.json")
+skill_additional_effect_data = load_masterdata_json("SkillAdditionalEffect.json")
+skill_base_data = load_masterdata_json("SkillBase.json")
+skill_buffdebuff_data = load_masterdata_json("SkillBuffDebuff.json")
 skill_effect_data = load_masterdata_json("SkillEffect.json")
+skill_damage_data = load_masterdata_json("SkillDamageEffect.json")
+skill_notes_data = load_masterdata_json("SkillNotes.json")
+skill_notes_set_data = load_masterdata_json("SkillNotesSet.json")
+skill_passive_data = load_masterdata_json("SkillPassive.json")
+skill_status_change_effect_data = load_masterdata_json("SkillStatusChangeEffect.json")
+skill_status_effect_data = load_masterdata_json("SkillStatusConditionEffect.json")
+skill_weapon_data = load_masterdata_json("SkillWeapon.json")
+weapon_data = load_masterdata_json("Weapon.json")
+
 skill_effectgroup_data = load_skill_effect_group_json()
 weapon_upgrade_skill_data = load_weapon_upgrade_skill_json()
 
@@ -157,8 +159,64 @@ target_types = [
 ]
 
 status_effect_types = {
+    1:"Poison",
+    3:"Silence",
+    5:"Stun",
     16:"Enfeeble",
+    17:"Stop",
+    18:"Fire Weakness",
+    19:"Ice Weakness",
+    20:"Lightning Weakness",
+    21:"Earth Weakness",
+    22:"Water Weakness",
+    23:"Wind Weakness",
+    27:"Single-Tgt. Phys. Dmg. Rcvd. Up",
+    28:"Single-Tgt. Mat. Dmg. Rcvd. Up",
+    # TODO: need to fill this out as effects come online; not sure what the mapping is
 }
+
+buffdebuff_types = {
+    1: "PATK Up",
+    2: "PDEF Up",
+    3: "MATK Up",
+    4: "MDEF Up",
+    5: "PATK Down",
+    6: "PDEF Down",
+    7: "MATK Down",
+    8: "MDEF Down",
+    11: "Fire Resistance Up",
+    12: "Fire Resistance Down",
+    13: "Ice Resistance Up",
+    14: "Ice Resistance Down",
+    15: "Lightning Resistance Up",
+    16: "Lightning Resistance Down",
+    17: "Earth Resistance Up",
+    18: "Earth Resistance Down",
+    19: "Water Resistance Up",
+    20: "Water Resistance Down",
+    21: "Wind Resistance Up",
+    22: "Wind Resistance Down",
+    27: "Fire Damage Up",
+    28: "Fire Damage Down",
+    29: "Ice Damage Up",
+    30: "Ice Damage Down",
+    31: "Lightning Damage Up",
+    32: "Lightning Damage Down",
+    33: "Earth Damage Up",
+    34: "Earth Damage Down",
+    35: "Water Damage Up",
+    36: "Water Damage Down",
+    37: "Wind Damage Up",
+    38: "Wind Damage Down",
+}
+
+buffdebuff_tiers = [
+    "Low",
+    "Mid",
+    "High",
+    "Very High",
+    "Extreme",
+]
 
 print_perf_data("Load masterdata")
 
@@ -264,18 +322,51 @@ for weapon_obj in weapon_data.values():
     for skill_effect_idx,skill_effect_obj in enumerate(skill_effect_objs):
         skill_effect_suffix = str(skill_effect_idx)
         skill_effect_detail_id = skill_effect_obj["SkillEffectDetailId"]
-        out_weapon["Effect" + skill_effect_suffix + "_Range"] = target_types[skill_effect_obj["TargetType"]]
+        effect_detail_prefix = "Effect" + skill_effect_suffix
+        out_weapon[effect_detail_prefix + "_Range"] = target_types[skill_effect_obj["TargetType"]]
         match skill_effect_obj["SkillEffectType"]:
             case 1: # Damage effect
-                out_weapon["Effect" + skill_effect_suffix] = "EXTRA DAMAGE EFFECT"
+                out_weapon[effect_detail_prefix] = "EXTRA DAMAGE EFFECT"
+                print("Warning: Extra damage effect detected")
             case 2: # Status Condition effect
                 skill_status_condition_obj = skill_status_effect_data[skill_effect_detail_id]
-                out_weapon["Effect" + skill_effect_suffix] = "Status Ailment: " + (status_effect_types.get(skill_status_condition_obj["SkillStatusConditionType"], "UNKNOWN STATUS: " + str(skill_status_condition_obj["SkillStatusConditionType"])))
-                out_weapon["Effect" + skill_effect_suffix + "_Duration"] = str(skill_status_condition_obj["MaxDurationSec"])
+                skill_status_condition_type = skill_status_condition_obj["SkillStatusConditionType"]
+                if (skill_status_condition_type in status_effect_types):
+                    out_weapon[effect_detail_prefix] = "Status Ailment: " + status_effect_types[skill_status_condition_type]
+                else:
+                    out_weapon[effect_detail_prefix] = "Status Ailment: UNKNOWN STATUS: " + str(skill_status_condition_type)
+                    print("Warning: Unknown status - " + str(skill_status_condition_type))
+
+                out_weapon[effect_detail_prefix + "_Duration"] = str(skill_status_condition_obj["MaxDurationSec"])
+                out_weapon[effect_detail_prefix + "_Extend"] = str(skill_status_condition_obj["MaxDuplicationDurationSec"])
                 if (skill_status_condition_obj["EffectCoefficient"] != 0):
-                    out_weapon["Effect" + skill_effect_suffix + "_Pot"] = "+" + str(round(skill_status_condition_obj["EffectCoefficient"] / 10,0)) + "%"
+                    out_weapon[effect_detail_prefix + "_Pot"] = "+" + str(round(skill_status_condition_obj["EffectCoefficient"] / 10,0)) + "%"
+
+            case 3: # SkillBuffDebuff 
+                skill_buffdebuff_obj = skill_buffdebuff_data[skill_effect_detail_id]
+                skill_buffdebuff_type = skill_buffdebuff_obj["SkillBuffDebuffType"]
+                if (skill_buffdebuff_type in buffdebuff_types):
+                    out_weapon[effect_detail_prefix] = buffdebuff_types[skill_buffdebuff_type]
+                else:
+                    out_weapon[effect_detail_prefix] = "UNKNOWN BUFF/DEBUFF: " + str(skill_buffdebuff_type)
+                    print("Warning: Unknown BUFF/DEBUFF - " + str(skill_buffdebuff_type))
+
+                out_weapon[effect_detail_prefix + "_Duration"] = str(skill_buffdebuff_obj["MaxDurationSec"])
+                out_weapon[effect_detail_prefix + "_Extend"] = str(skill_buffdebuff_obj["MaxDuplicationDurationSec"])
+                out_weapon[effect_detail_prefix + "_Pot"] = buffdebuff_tiers[skill_buffdebuff_obj["TriggerEffectLevel"]]
+                out_weapon[effect_detail_prefix + "_MaxPot"] = buffdebuff_tiers[skill_buffdebuff_obj["TriggerEffectLevelMax"]]
+
+            case 5: # SkillStatusChangeEffect (e.g. exploit weakness)
+                skill_status_change_obj = skill_status_change_effect_data[skill_effect_detail_id]
+                out_weapon[effect_detail_prefix] = "UNKOWN SKILL STATUS CHANGE"
+
+            case 7: # SkillAdditionalEffect (e.g. crits???)
+                skill_additional_effect_obj = skill_additional_effect_data[skill_effect_detail_id]
+                out_weapon[effect_detail_prefix] = "UNKOWN ADDITIONAL EFFECT"
+
             case _:
-                out_weapon["Effect" + skill_effect_suffix] = "UNKNOWN EFFECT: " + str(skill_effect_obj["SkillEffectType"])
+                out_weapon[effect_detail_prefix] = "UNKNOWN EFFECT: " + str(skill_effect_obj["SkillEffectType"])
+                print("Warning: Unknown effect - " + str(skill_effect_obj["SkillEffectType"]))
                 
 
 
