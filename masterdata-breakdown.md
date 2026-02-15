@@ -63,10 +63,9 @@ This is how one ability can do multiple things, e.g. "Apply damage" and "Apply s
     - 3: SkillBuffDebuff
     - 4: SkillEnemyPhaseEffect
     - 5: SkillStatusChangeEffect
-    - 6: SkillCancelEffect (??? probably just for enemies)
+    - 6: SkillCancelEffect 
     - 7: SkillAdditionalEffect 
-    - 17: SkillForceGauge
-    - 33: SkillChainGaugeEffect (???)
+
 - SkillEffectDetailId: 
     - id for more info, depending on SkillEffectType. That defines what table to look up
 - TriggerType: int

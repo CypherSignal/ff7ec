@@ -34,12 +34,12 @@ def load_masterdata_json(json_file_name):
         new_dict[data_obj["Id"]] = data_obj
     return new_dict
 
-# helper function to load the SkillEffectGroup data
-# returns a dict that returns dict mapping SkillGroupId to an array of SkillEffectIds
-def load_skill_effect_group_json():
+# helper function to load "group" data
+# returns a dict that returns dict mapping the "Id" to an array of other Ids, specified by 'child_id' name
+def load_group_json(json_file_name, child_id):
     global json_path
     # load the json
-    with open(json_path + "/MasterData/gl/SkillEffectGroup.json", 'r', encoding='utf-8') as file:
+    with open(json_path + "/MasterData/gl/" + json_file_name, 'r', encoding='utf-8') as file:
         json_data = json.load(file)
 
     # the json_data should contain an array of objects
@@ -49,7 +49,7 @@ def load_skill_effect_group_json():
         group_id = data_obj["Id"]
         if not group_id in new_dict:
             new_dict[group_id] = []
-        new_dict[group_id].append(data_obj["SkillEffectId"])
+        new_dict[group_id].append(data_obj[child_id])
     return new_dict
 
 
@@ -97,6 +97,7 @@ skill_active_data = load_masterdata_json("SkillActive.json")
 skill_additional_effect_data = load_masterdata_json("SkillAdditionalEffect.json")
 skill_base_data = load_masterdata_json("SkillBase.json")
 skill_buffdebuff_data = load_masterdata_json("SkillBuffDebuff.json")
+skill_cancel_effect_data = load_masterdata_json("SkillCancelEffect.json")
 skill_effect_data = load_masterdata_json("SkillEffect.json")
 skill_damage_data = load_masterdata_json("SkillDamageEffect.json")
 skill_notes_data = load_masterdata_json("SkillNotes.json")
@@ -107,7 +108,11 @@ skill_status_effect_data = load_masterdata_json("SkillStatusConditionEffect.json
 skill_weapon_data = load_masterdata_json("SkillWeapon.json")
 weapon_data = load_masterdata_json("Weapon.json")
 
-skill_effectgroup_data = load_skill_effect_group_json()
+buffdebuff_group_data = load_group_json("BuffDebuffGroup.json", "SkillBuffDebuffType")
+skill_effectgroup_data = load_group_json("SkillEffectGroup.json", "SkillEffectId")
+status_condition_group_data = load_group_json("StatusConditionGroup.json", "SkillStatusConditionType")
+status_change_group_data = load_group_json("StatusChangeGroup.json", "SkillStatusChangeType")
+
 weapon_upgrade_skill_data = load_weapon_upgrade_skill_json()
 
 # special-case the sigil effects from 'skill notes' dataset
@@ -161,6 +166,7 @@ target_types = [
 status_effect_types = {
     1:"Poison",
     3:"Silence",
+    4:"Darkness",
     5:"Stun",
     16:"Enfeeble",
     17:"Stop",
@@ -359,11 +365,34 @@ for weapon_obj in weapon_data.values():
 
             case 5: # SkillStatusChangeEffect (e.g. exploit weakness)
                 skill_status_change_obj = skill_status_change_effect_data[skill_effect_detail_id]
-                out_weapon[effect_detail_prefix] = "UNKOWN SKILL STATUS CHANGE"
+                out_weapon[effect_detail_prefix] = "UNKNOWN SKILL STATUS CHANGE"
+
+            case 6: # SkillCancelEffect (e.g. removes buff/debuff or removes status)
+                skill_cancel_effect_obj = skill_cancel_effect_data[skill_effect_detail_id]
+                skill_status_condition_type = skill_status_condition_obj["SkillStatusConditionType"]
+                
+                # the skillCancelEffect will point to a BuffDebuffGroupId -- a list of buffs to cancel --
+                # and a StatusConditionGroupId -- a list of status effects to cancel -- and a StatusChangeGroupId
+                # which is also a list of things to cancel. 
+                # Therefore, we want the effect description to be assembled one effect at a time
+                skill_cancel_effect = "Removes "
+
+                if (skill_cancel_effect_obj["BuffDebuffGroupId"] != 0):
+                    for idx in buffdebuff_group_data[skill_cancel_effect_obj["BuffDebuffGroupId"]]:
+                        skill_cancel_effect += buffdebuff_types[idx] + ", "
+                if (skill_cancel_effect_obj["StatusConditionGroupId"] != 0):
+                    for idx in status_condition_group_data[skill_cancel_effect_obj["StatusConditionGroupId"]]:
+                        skill_cancel_effect += "Ailment: " + status_effect_types[idx] + ", "
+                if (skill_cancel_effect_obj["StatusChangeGroupId"] != 0):
+                 for idx in status_change_group_data[skill_cancel_effect_obj["StatusChangeGroupId"]]:
+                       skill_cancel_effect += buffdebuff_types[idx] + ", "
+                
+                skill_cancel_effect = skill_cancel_effect[:-2] # trim the final ", "
+                out_weapon[effect_detail_prefix] = skill_cancel_effect
 
             case 7: # SkillAdditionalEffect (e.g. crits???)
                 skill_additional_effect_obj = skill_additional_effect_data[skill_effect_detail_id]
-                out_weapon[effect_detail_prefix] = "UNKOWN ADDITIONAL EFFECT"
+                out_weapon[effect_detail_prefix] = "UNKNOWN ADDITIONAL EFFECT"
 
             case _:
                 out_weapon[effect_detail_prefix] = "UNKNOWN EFFECT: " + str(skill_effect_obj["SkillEffectType"])
@@ -393,8 +422,8 @@ for field in out_sorted_weapon_fields:
     out_weapon_fields.remove(field)
 out_sorted_weapon_fields.extend(sorted(out_weapon_fields))
 
-with open('weaponData-Staging.csv', 'w', newline='', encoding='utf-8') as csvfile:
-    csv_writer = csv.DictWriter(csvfile, out_sorted_weapon_fields, delimiter=',')
+with open('weaponData-Staging.tsv', 'w', newline='', encoding='utf-8') as csvfile:
+    csv_writer = csv.DictWriter(csvfile, out_sorted_weapon_fields, delimiter='\t')
     csv_writer.writeheader()
     for out_weapon in out_weapons:
         csv_writer.writerow(out_weapon)
