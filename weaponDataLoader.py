@@ -95,16 +95,20 @@ character_data = load_masterdata_json("Character.json")
 materia_support_data = load_masterdata_json("MateriaSupport.json")
 skill_active_data = load_masterdata_json("SkillActive.json")
 skill_additional_effect_data = load_masterdata_json("SkillAdditionalEffect.json")
+skill_atbchange_effect_data = load_masterdata_json("SkillAtbChangeEffect.json")
 skill_base_data = load_masterdata_json("SkillBase.json")
 skill_buffdebuff_data = load_masterdata_json("SkillBuffDebuff.json")
+skill_buffdebuff_enhance_data = load_masterdata_json("SkillBuffDebuffEnhance.json")
 skill_cancel_effect_data = load_masterdata_json("SkillCancelEffect.json")
 skill_effect_data = load_masterdata_json("SkillEffect.json")
 skill_damage_data = load_masterdata_json("SkillDamageEffect.json")
 skill_notes_data = load_masterdata_json("SkillNotes.json")
 skill_notes_set_data = load_masterdata_json("SkillNotesSet.json")
 skill_passive_data = load_masterdata_json("SkillPassive.json")
+skill_special_gauge_change_data = load_masterdata_json("SkillSpecialGaugeChangeEffect.json")
 skill_status_change_effect_data = load_masterdata_json("SkillStatusChangeEffect.json")
 skill_status_effect_data = load_masterdata_json("SkillStatusConditionEffect.json")
+skill_tactics_gauge_change_data = load_masterdata_json("SkillTacticsGaugeChangeEffect.json")
 skill_weapon_data = load_masterdata_json("SkillWeapon.json")
 weapon_data = load_masterdata_json("Weapon.json")
 
@@ -394,9 +398,24 @@ for weapon_obj in weapon_data.values():
                 skill_additional_effect_obj = skill_additional_effect_data[skill_effect_detail_id]
                 out_weapon[effect_detail_prefix] = "UNKNOWN ADDITIONAL EFFECT"
 
+            case 16: # SkillAtbChangeEffect (+ATB!)
+                skill_atbchange_effect_obj = skill_atbchange_effect_data[skill_effect_detail_id]
+                out_weapon[effect_detail_prefix] = "UNKNOWN ATB CHANGE"
+                
+            case 26: # SkillSpecialGaugeChangeEffect (+Limit/summon bar)
+                skill_special_gauge_change_obj = skill_special_gauge_change_data[skill_effect_detail_id]
+                out_weapon[effect_detail_prefix] = "UNKNOWN SPECIAL GAUGE CHANGE"
+                
+            case 30: # SkillTacticsGaugeChangeEffect (+Stance change)
+                skill_tactics_gauge_change_obj = skill_tactics_gauge_change_data[skill_effect_detail_id]
+                out_weapon[effect_detail_prefix] = "UNKNOWN TACTICS GAUGE CHANGE"
+
+            case 31: # SkillBuffDebuffEnhance (AC Gloves, Abraxas)
+                skill_buffdebuff_enhance_obj = skill_buffdebuff_enhance_data[skill_effect_detail_id]
+                out_weapon[effect_detail_prefix] = "UNKNOWN BUFF/DEBUFF ENHANCE"
             case _:
-                out_weapon[effect_detail_prefix] = "UNKNOWN EFFECT: " + str(skill_effect_obj["SkillEffectType"])
-                print("Warning: Unknown effect - " + str(skill_effect_obj["SkillEffectType"]))
+                out_weapon[effect_detail_prefix] = "UNKNOWN EFFECT: " + str(skill_effect_obj["SkillEffectType"]) + " SkillEffectDetailId: " + str(skill_effect_detail_id)
+                print("Warning: Unknown effect - " + str(skill_effect_obj["SkillEffectType"])  + " SkillEffectDetailId: " + str(skill_effect_detail_id))
                 
 
 

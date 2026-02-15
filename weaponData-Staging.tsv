@@ -32,7 +32,7 @@ Id	Character	Name	Ability Element	Ability Pot. %	Ability Range	Ability Type	Comm
 1044	Cloud	Erdrick's Sword	Lightning	720.0	All Enemies	Phys	4		UNKNOWN ADDITIONAL EFFECT					All Enemies	Status Ailment: Enfeeble	30	10			All Enemies	MATK Down	30	10	Very High	High	All Enemies			Limited
 1045	Cloud	Radblade	Water	450.0	Single Enemy	Phys	4																						Event
 1046	Cloud	Umbral Blade	None	430.0	All Enemies	Phys	4		UNKNOWN ADDITIONAL EFFECT					All Enemies	UNKNOWN ADDITIONAL EFFECT					All Enemies									Event
-1047	Cloud	Ragnarok	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN EFFECT: 16					All Allies			Ultimate
+1047	Cloud	Ragnarok	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN ATB CHANGE					All Allies			Ultimate
 1048	Cloud	Fusion Sword	None	1340.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN ADDITIONAL EFFECT	Single Enemy	Limited
 1049	Cloud	Crimson Blitz	None	800.0	Single Enemy	Mag	3		Status Ailment: Ice Weakness	60	20		+30.0%	Single Enemy	UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN ADDITIONAL EFFECT					Single Enemy			Limited
 1050	Cloud	Cruel Successor	Earth	1340.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE					All Allies															Limited
@@ -91,13 +91,13 @@ Id	Character	Name	Ability Element	Ability Pot. %	Ability Range	Ability Type	Comm
 3039	Tifa	Blue Daffodil Gloves	None	1100.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Limited
 3040	Tifa	Premium Heart	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE					Self															Ultimate
 3041	Tifa	Odin Gloves	Wind	450.0	Single Enemy	Mag	4																						Grindable
-3042	Tifa	Gauntlets of the Worthy	Earth	1120.0	Single Enemy	Phys	4		Earth Damage Up	25	8	Very High	High	All Allies	UNKNOWN EFFECT: 16					Self									Limited
+3042	Tifa	Gauntlets of the Worthy	Earth	1120.0	Single Enemy	Phys	4		Earth Damage Up	25	8	Very High	High	All Allies	UNKNOWN ATB CHANGE					Self									Limited
 3043	Tifa	Járngreipr	None	250.0	All Enemies	Mag	4		PDEF Down	35	8	High	Mid	All Enemies	UNKNOWN ADDITIONAL EFFECT					All Enemies									Event
 3045	Tifa	Penance Gloves	Fire	290.0	All Enemies	Mag	4																						Event
 3046	Tifa	Shining Gloves	Water	1120.0	Single Enemy	Phys	4		PATK Down	30	10	Very High	High	Single Enemy	MATK Down	30	10	Very High	High	Single Enemy									Featured
 3047	Tifa	Class President's Bracelet	Wind	1060.0	Single Enemy	Phys	4		PATK Up	25	8	Very High	High	All Allies															Limited
 3048	Tifa	Striped Moogle Gloves	None	360.0	Single Enemy	Mag	4		MATK Down	28	9	High	Mid	Single Enemy	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Event
-3049	Tifa	Leather Combat Gloves	None	1340.0	All Enemies	Mag	4		Status Ailment: Enfeeble	60	12			All Enemies	UNKNOWN EFFECT: 31					All Allies	UNKNOWN ADDITIONAL EFFECT					All Enemies			Limited
+3049	Tifa	Leather Combat Gloves	None	1340.0	All Enemies	Mag	4		Status Ailment: Enfeeble	60	12			All Enemies	UNKNOWN BUFF/DEBUFF ENHANCE					All Allies	UNKNOWN ADDITIONAL EFFECT					All Enemies			Limited
 3050	Tifa	Lightning's Gloves	Ice	1340.0	Single Enemy	Mag	4		Ice Resistance Down	25	8	Very High	High	Single Enemy	UNKNOWN SKILL STATUS CHANGE					Self									Limited
 3052	Tifa	Demon's Impetus	None	1340.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE					Self	PATK Up	60	20	Very High	Very High	All Allies	UNKNOWN ADDITIONAL EFFECT					Single Enemy			Limited
 4001	Aerith	Guard Stick	Heal	15.0	Single Ally	Mag	4		MDEF Up	38	12	Very High	Very High	Single Ally															Featured
@@ -123,21 +123,21 @@ Id	Character	Name	Ability Element	Ability Pot. %	Ability Range	Ability Type	Comm
 4026	Aerith	Radrod	Water	290.0	All Enemies	Mag	4																						Event
 4027	Aerith	Hell House Rod	Ice	290.0	All Enemies	Mag	4																						Event
 4028	Aerith	Citric Wand	Heal	10.0	Single Ally	Mag	3		Ice Damage Up	30	10	Very High	Very High	Single Ally	MATK Up	30	10	Very High	High	Single Ally									Featured
-4029	Aerith	Bahamut Rod	Heal	60.0	All Allies	Mag	5		PDEF Up	20	5	High	High	All Allies	UNKNOWN EFFECT: 16					Other Allies									Limited
+4029	Aerith	Bahamut Rod	Heal	60.0	All Allies	Mag	5		PDEF Up	20	5	High	High	All Allies	UNKNOWN ATB CHANGE					Other Allies									Limited
 4030	Aerith	Ultimate Guard Stick	Heal	51.0	All Allies	Mag	0		UNKNOWN SKILL STATUS CHANGE					All Allies	Removes PATK Down, MATK Down					All Allies									Ultimate
 4031	Aerith	Terra's Rod	None	750.0	All Enemies	Mag	4		Fire Resistance Down	35	11	Very High	Very High	All Enemies	Ice Resistance Down	35	11	Very High	Very High	All Enemies	Lightning Resistance Down	35	11	Very High	Very High	All Enemies	UNKNOWN ADDITIONAL EFFECT	All Enemies	Limited
 4032	Aerith	Titan Rod	Earth	450.0	Single Enemy	Mag	4																						Grindable
 4033	Aerith	Crimson Staff	None	750.0	All Enemies	Mag	4		MATK Up	20	6	Very High	Very High	All Allies	MDEF Down	35	11	Very High	Very High	All Enemies	UNKNOWN ADDITIONAL EFFECT					All Enemies			Limited
-4034	Aerith	Gambanteinn	Heal	60.0	All Allies	Mag	5		PATK Up	16	5	Very High	High	All Allies	UNKNOWN EFFECT: 16					Other Allies									Limited
+4034	Aerith	Gambanteinn	Heal	60.0	All Allies	Mag	5		PATK Up	16	5	Very High	High	All Allies	UNKNOWN ATB CHANGE					Other Allies									Limited
 4035	Aerith	Noblesse Rod	None	360.0	Single Enemy	Mag	4		PATK Down	28	9	High	Mid	Single Enemy	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Event
-4036	Aerith	Princess Guard	Heal	14.0	All Allies	Mag	0		UNKNOWN EFFECT: 16					All Allies															Ultimate
+4036	Aerith	Princess Guard	Heal	14.0	All Allies	Mag	0		UNKNOWN ATB CHANGE					All Allies															Ultimate
 4038	Aerith	Mermaid Rod	Heal	8.0	All Allies	Mag	4		PATK Up	25	8	Very High	High	All Allies	Lightning Damage Up	25	8	Very High	High	All Allies									Featured
-4039	Aerith	Supreme Sage's Staff	None	890.0	All Enemies	Mag	4		UNKNOWN ADDITIONAL EFFECT					All Enemies	UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN ADDITIONAL EFFECT					All Enemies	UNKNOWN EFFECT: 26	Self	Limited
+4039	Aerith	Supreme Sage's Staff	None	890.0	All Enemies	Mag	4		UNKNOWN ADDITIONAL EFFECT					All Enemies	UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN ADDITIONAL EFFECT					All Enemies	UNKNOWN SPECIAL GAUGE CHANGE	Self	Limited
 4040	Aerith	Team Leader's Bamboo Sword	Water	530.0	All Enemies	Mag	4		UNKNOWN ADDITIONAL EFFECT					All Enemies	Water Damage Up	25	8	Very High	Very High	All Allies									Limited
 4041	Aerith	Magatsuchi Rod	None	360.0	Single Enemy	Mag	4		MATK Down	28	9	High	Mid	Single Enemy	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Event
-4042	Aerith	Lightning's Rod	Heal	8.0	All Allies	Mag	4		UNKNOWN SKILL STATUS CHANGE					All Allies	PDEF Up	25	8	Very High	Very High	All Allies	UNKNOWN EFFECT: 30					Self			Limited
+4042	Aerith	Lightning's Rod	Heal	8.0	All Allies	Mag	4		UNKNOWN SKILL STATUS CHANGE					All Allies	PDEF Up	25	8	Very High	Very High	All Allies	UNKNOWN TACTICS GAUGE CHANGE					Self			Limited
 4043	Aerith	Staff of the Possessed	None	920.0	All Enemies	Phys	4		UNKNOWN SKILL STATUS CHANGE					All Allies	Water Resistance Down	30	10	Very High	Very High	All Enemies	UNKNOWN ADDITIONAL EFFECT					All Enemies			Limited
-4044	Aerith	Abraxas	None	1000.0	All Enemies	Both	0		UNKNOWN EFFECT: 31					All Enemies	UNKNOWN SKILL STATUS CHANGE					All Allies									Ultimate
+4044	Aerith	Abraxas	None	1000.0	All Enemies	Both	0		UNKNOWN BUFF/DEBUFF ENHANCE					All Enemies	UNKNOWN SKILL STATUS CHANGE					All Allies									Ultimate
 4045	Aerith	Rousing Wizer Staff	Heal	8.0	All Allies	Mag	4		PATK Up	20	6	Very High	High	All Allies	MDEF Up	20	6	Very High	Very High	All Allies									Event
 5001	Red XIII	Sleek Collar	Heal	7.0	All Allies	Mag	4		MDEF Up	14	4	Very High	Very High	All Allies															Featured
 5004	Red XIII	Silver Collar	None	320.0	Single Enemy	Phys	3	◊ Diamond	Wind Resistance Down	24	8	Very High	Very High	Single Enemy	Water Resistance Down	24	8	Very High	Very High	Single Enemy	UNKNOWN ADDITIONAL EFFECT					Single Enemy			Featured
@@ -162,7 +162,7 @@ Id	Character	Name	Ability Element	Ability Pot. %	Ability Range	Ability Type	Comm
 5036	Red XIII	Ultimate Leather Collar	Heal	27.0	All Allies	Mag	0		UNKNOWN SKILL STATUS CHANGE					All Allies															Ultimate
 5037	Red XIII	Kefka's Collar	Lightning	290.0	All Enemies	Mag	4																						Event
 5038	Red XIII	Brilliant Collar	Heal	8.0	All Allies	Mag	4		MATK Up	25	8	Very High	High	All Allies	Wind Damage Up	25	8	Very High	High	All Allies									Featured
-5040	Red XIII	Pirate Collar	Heal	60.0	All Allies	Mag	5		MATK Up	25	8	Very High	High	All Allies	Lightning Damage Up	25	8	Very High	High	All Allies	UNKNOWN EFFECT: 16					Other Allies			Limited
+5040	Red XIII	Pirate Collar	Heal	60.0	All Allies	Mag	5		MATK Up	25	8	Very High	High	All Allies	Lightning Damage Up	25	8	Very High	High	All Allies	UNKNOWN ATB CHANGE					Other Allies			Limited
 5041	Red XIII	Limited Moon	Heal	111.0	All Allies	Mag	0		UNKNOWN SKILL STATUS CHANGE					All Allies															Ultimate
 5042	Red XIII	Great Sabrecat Collar	Lightning	440.0	All Enemies	Mag	3		PDEF Down	24	8	High	High	All Enemies	MDEF Down	24	8	High	High	All Enemies									Event
 5043	Red XIII	Tsviet Collar	None	240.0	All Enemies	Mag	4		Wind Resistance Down	35	8	High	Mid	All Enemies	UNKNOWN ADDITIONAL EFFECT					All Enemies									Event
@@ -189,17 +189,17 @@ Id	Character	Name	Ability Element	Ability Pot. %	Ability Range	Ability Type	Comm
 6029	Yuffie	Ultimate 4-Point Shuriken	None	1000.0	Single Enemy	Both	0		PATK Up	30	30	Very High	Very High	Self	MATK Up	30	30	Very High	Very High	Self									Ultimate
 6030	Yuffie	Holiday Bell	Wind	620.0	Single Enemy	Mag	4		Wind Resistance Down	30	10	Very High	Mid	Single Enemy	MDEF Down	30	10	Very High	Mid	Single Enemy									Featured
 6031	Yuffie	Mallet of Luck	None	250.0	All Enemies	Mag	4		Fire Resistance Down	35	8	High	Mid	All Enemies	UNKNOWN ADDITIONAL EFFECT					All Enemies									Event
-6032	Yuffie	Conformer	None	2000.0	Single Enemy	Both	0		PDEF Down	30	30	Very High	Very High	Single Enemy	MDEF Down	30	30	Very High	Very High	Single Enemy	UNKNOWN EFFECT: 16					Self			Ultimate
+6032	Yuffie	Conformer	None	2000.0	Single Enemy	Both	0		PDEF Down	30	30	Very High	Very High	Single Enemy	MDEF Down	30	30	Very High	Very High	Single Enemy	UNKNOWN ATB CHANGE					Self			Ultimate
 6033	Yuffie	Bird of Prey	Water	940.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE					Self															Limited
 6034	Yuffie	Risanautr	None	360.0	Single Enemy	Mag	4		Earth Resistance Down	28	9	High	High	Single Enemy	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Event
 6035	Yuffie	Watch of the Hunt	Lightning	540.0	All Enemies	Mag	4		PATK Down	30	10	Very High	High	All Enemies	PDEF Up	20	6	Very High	High	All Allies									Featured
-6036	Yuffie	Rocker's Guitar	Ice	600.0	Single Enemy	Mag	4		UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN EFFECT: 30					Self									Featured
+6036	Yuffie	Rocker's Guitar	Ice	600.0	Single Enemy	Mag	4		UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN TACTICS GAUGE CHANGE					Self									Featured
 6037	Yuffie	Striped Moogle Flag	None	360.0	Single Enemy	Mag	4		MATK Down	28	9	High	Mid	Single Enemy	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Event
 6038	Yuffie	Uber 4-Point Shuriken	Earth	1340.0	Single Enemy	Mag	4		UNKNOWN SKILL STATUS CHANGE					All Allies															Limited
 6039	Yuffie	Fatum Ex Machina	None	1340.0	Single Enemy	Phys	4		Status Ailment: Enfeeble	60	20			Single Enemy	PATK Down	60	20	Very High	Very High	Single Enemy	Earth Resistance Down	60	20	Very High	Very High	Single Enemy	UNKNOWN ADDITIONAL EFFECT	Single Enemy	Limited
-6040	Yuffie	Heirloom Brush	None	1340.0	Single Enemy	Mag	4		UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN EFFECT: 31					All Allies	UNKNOWN ADDITIONAL EFFECT	Single Enemy	Limited
-6041	Yuffie	Winged Chakram	Lightning	1340.0	Single Enemy	Phys	4		PDEF Down	25	8	Very High	High	Single Enemy	Lightning Damage Up	25	8	Very High	High	All Allies	UNKNOWN EFFECT: 16					All Allies			Featured
-6043	Yuffie	Rising Sun	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN EFFECT: 16					All Allies									Ultimate
+6040	Yuffie	Heirloom Brush	None	1340.0	Single Enemy	Mag	4		UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN BUFF/DEBUFF ENHANCE					All Allies	UNKNOWN ADDITIONAL EFFECT	Single Enemy	Limited
+6041	Yuffie	Winged Chakram	Lightning	1340.0	Single Enemy	Phys	4		PDEF Down	25	8	Very High	High	Single Enemy	Lightning Damage Up	25	8	Very High	High	All Allies	UNKNOWN ATB CHANGE					All Allies			Featured
+6043	Yuffie	Rising Sun	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN ATB CHANGE					All Allies									Ultimate
 7001	Cait Sith	Yellow Megaphone	None	700.0	Single Enemy	Phys	5		UNKNOWN ADDITIONAL EFFECT					Single Enemy	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Featured
 7002	Cait Sith	Green Megaphone	Water	620.0	Single Enemy	Mag	4		Water Resistance Down	30	10	Very High	Very High	Single Enemy															Featured
 7003	Cait Sith	Blue Megaphone	Ice	520.0	All Enemies	Mag	4																						Featured
@@ -219,55 +219,55 @@ Id	Character	Name	Ability Element	Ability Pot. %	Ability Range	Ability Type	Comm
 7025	Cait Sith	Fireworks Megaphone	Ice	290.0	All Enemies	Mag	4																						Event
 7026	Cait Sith	Alba Megaphone	None	390.0	All Enemies	Phys	4		UNKNOWN ADDITIONAL EFFECT					All Enemies															Event
 7027	Cait Sith	Icebolt Megaphone	None	340.0	Single Enemy	Mag	4		Ice Resistance Down	25	8	High	High	Single Enemy	Lightning Resistance Down	25	8	High	High	Single Enemy	UNKNOWN ADDITIONAL EFFECT					Single Enemy			Grindable
-7028	Cait Sith	Ultimate Yellow Megaphone	Heal	5.0	Single Ally	Mag	0		UNKNOWN EFFECT: 26					Single Ally															Ultimate
+7028	Cait Sith	Ultimate Yellow Megaphone	Heal	5.0	Single Ally	Mag	0		UNKNOWN SPECIAL GAUGE CHANGE					Single Ally															Ultimate
 7029	Cait Sith	Quina Megaphone	Heal	8.0	All Allies	Mag	4		PATK Up	20	6	Very High	Very High	All Allies	PDEF Up	20	6	Very High	Very High	All Allies									Event
 7031	Cait Sith	Stilva Megaphone	None	250.0	All Enemies	Mag	4		Ice Resistance Down	35	8	High	Mid	All Enemies	UNKNOWN ADDITIONAL EFFECT					All Enemies									Event
 7032	Cait Sith	HP Shout	None	1000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE					All Allies															Ultimate
 7033	Cait Sith	Spirit Demon Megaphone	None	250.0	All Enemies	Mag	4		PATK Down	35	8	High	Mid	All Enemies	UNKNOWN ADDITIONAL EFFECT					All Enemies									Event
 8001	Vincent	Transgressor	Wind	1340.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN SKILL STATUS CHANGE					Self									Featured
 8002	Vincent	Cath Palug	Ice	520.0	All Enemies	Mag	4																						Featured
-8003	Vincent	Gilded Age	Heal	14.0	Self	Mag	4		UNKNOWN EFFECT: 26					Self	UNKNOWN SKILL STATUS CHANGE					Self									Featured
-8004	Vincent	S1976C	None	540.0	All Enemies	Mag	4		PATK Down	25	8	Very High	High	All Enemies	MATK Down	25	8	Very High	High	All Enemies	UNKNOWN EFFECT: 26					Self	UNKNOWN ADDITIONAL EFFECT	All Enemies	Featured
-8005	Vincent	Shortbarrel	Wind	400.0	Single Enemy	Phys	4		UNKNOWN EFFECT: 26					Self															Featured
-8007	Vincent	T03 Model N	None	300.0	Single Enemy	Phys	2		UNKNOWN EFFECT: 26					Self	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Featured
-8008	Vincent	Sawed-Off GS	Heal	16.0	Self	Mag	4		MATK Up	38	12	Very High	Very High	Self	MDEF Up	38	12	Very High	Very High	Self	UNKNOWN EFFECT: 26					Self			Featured
-8009	Vincent	Chiron	None	510.0	Single Enemy	Phys	4		Earth Resistance Down	35	11	Very High	Very High	Single Enemy	UNKNOWN EFFECT: 26					Self	UNKNOWN ADDITIONAL EFFECT					Single Enemy			Featured
-8010	Vincent	Double Stem E	None	520.0	All Enemies	Mag	4		UNKNOWN EFFECT: 26					Self	UNKNOWN ADDITIONAL EFFECT					All Enemies	Status Ailment: Poison	25	6			All Enemies			Featured
-8012	Vincent	White Dog	Earth	940.0	Single Enemy	Mag	4		UNKNOWN ADDITIONAL EFFECT					Single Enemy	UNKNOWN EFFECT: 26					Self									Limited
-8013	Vincent	Kugelblitz	None	750.0	All Enemies	Mag	4		MDEF Down	35	11	Very High	Very High	All Enemies	Earth Damage Up	45	9	Very High	Very High	Self	UNKNOWN ADDITIONAL EFFECT					All Enemies	UNKNOWN EFFECT: 26	Self	Featured
-8014	Vincent	Silver Rifle	None	700.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT					Single Enemy	UNKNOWN EFFECT: 26					Self	UNKNOWN ADDITIONAL EFFECT					Single Enemy			Event
-8015	Vincent	Hugin & Munin	None	1300.0	Single Enemy	Mag	4		UNKNOWN EFFECT: 26					Self	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Featured
-8016	Vincent	Crow Familiar	Lightning	940.0	Single Enemy	Mag	4		UNKNOWN ADDITIONAL EFFECT					Single Enemy	UNKNOWN EFFECT: 26					Self									Featured
-8017	Vincent	Quicksilver	None	750.0	Single Enemy	Phys	4		UNKNOWN EFFECT: 26					Self	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Featured
+8003	Vincent	Gilded Age	Heal	14.0	Self	Mag	4		UNKNOWN SPECIAL GAUGE CHANGE					Self	UNKNOWN SKILL STATUS CHANGE					Self									Featured
+8004	Vincent	S1976C	None	540.0	All Enemies	Mag	4		PATK Down	25	8	Very High	High	All Enemies	MATK Down	25	8	Very High	High	All Enemies	UNKNOWN SPECIAL GAUGE CHANGE					Self	UNKNOWN ADDITIONAL EFFECT	All Enemies	Featured
+8005	Vincent	Shortbarrel	Wind	400.0	Single Enemy	Phys	4		UNKNOWN SPECIAL GAUGE CHANGE					Self															Featured
+8007	Vincent	T03 Model N	None	300.0	Single Enemy	Phys	2		UNKNOWN SPECIAL GAUGE CHANGE					Self	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Featured
+8008	Vincent	Sawed-Off GS	Heal	16.0	Self	Mag	4		MATK Up	38	12	Very High	Very High	Self	MDEF Up	38	12	Very High	Very High	Self	UNKNOWN SPECIAL GAUGE CHANGE					Self			Featured
+8009	Vincent	Chiron	None	510.0	Single Enemy	Phys	4		Earth Resistance Down	35	11	Very High	Very High	Single Enemy	UNKNOWN SPECIAL GAUGE CHANGE					Self	UNKNOWN ADDITIONAL EFFECT					Single Enemy			Featured
+8010	Vincent	Double Stem E	None	520.0	All Enemies	Mag	4		UNKNOWN SPECIAL GAUGE CHANGE					Self	UNKNOWN ADDITIONAL EFFECT					All Enemies	Status Ailment: Poison	25	6			All Enemies			Featured
+8012	Vincent	White Dog	Earth	940.0	Single Enemy	Mag	4		UNKNOWN ADDITIONAL EFFECT					Single Enemy	UNKNOWN SPECIAL GAUGE CHANGE					Self									Limited
+8013	Vincent	Kugelblitz	None	750.0	All Enemies	Mag	4		MDEF Down	35	11	Very High	Very High	All Enemies	Earth Damage Up	45	9	Very High	Very High	Self	UNKNOWN ADDITIONAL EFFECT					All Enemies	UNKNOWN SPECIAL GAUGE CHANGE	Self	Featured
+8014	Vincent	Silver Rifle	None	700.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT					Single Enemy	UNKNOWN SPECIAL GAUGE CHANGE					Self	UNKNOWN ADDITIONAL EFFECT					Single Enemy			Event
+8015	Vincent	Hugin & Munin	None	1300.0	Single Enemy	Mag	4		UNKNOWN SPECIAL GAUGE CHANGE					Self	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Featured
+8016	Vincent	Crow Familiar	Lightning	940.0	Single Enemy	Mag	4		UNKNOWN ADDITIONAL EFFECT					Single Enemy	UNKNOWN SPECIAL GAUGE CHANGE					Self									Featured
+8017	Vincent	Quicksilver	None	750.0	Single Enemy	Phys	4		UNKNOWN SPECIAL GAUGE CHANGE					Self	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Featured
 8018	Vincent	Icebolt Shooter	None	340.0	Single Enemy	Mag	4		Ice Resistance Down	25	8	High	High	Single Enemy	Lightning Resistance Down	25	8	High	High	Single Enemy	UNKNOWN ADDITIONAL EFFECT					Single Enemy			Grindable
-8019	Vincent	Ultimate Quicksilver	None	1000.0	Single Enemy	Both	0		UNKNOWN EFFECT: 26					Self															Ultimate
+8019	Vincent	Ultimate Quicksilver	None	1000.0	Single Enemy	Both	0		UNKNOWN SPECIAL GAUGE CHANGE					Self															Ultimate
 8020	Vincent	Rhad Gun	Heal	14.0	Single Ally	Mag	4		PATK Up	44	14	High	Mid	Single Ally	UNKNOWN SKILL STATUS CHANGE					Single Ally									Event
 8021	Vincent	Eligor Gun	Ice	290.0	All Enemies	Mag	4																						Event
-8022	Vincent	Holiday Garm	Fire	940.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT					Single Enemy	UNKNOWN EFFECT: 26					Self									Featured
+8022	Vincent	Holiday Garm	Fire	940.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT					Single Enemy	UNKNOWN SPECIAL GAUGE CHANGE					Self									Featured
 8023	Vincent	Noblesse Automatic	None	360.0	Single Enemy	Mag	4		PATK Down	28	9	High	Mid	Single Enemy	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Event
-8024	Vincent	Gun of the Worthy	Ice	1120.0	Single Enemy	Phys	4		Status Ailment: Ice Weakness	150	0		+50.0%	Single Enemy	UNKNOWN EFFECT: 26					Self									Limited
-8025	Vincent	Death Penalty	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN EFFECT: 26					Self			Ultimate
+8024	Vincent	Gun of the Worthy	Ice	1120.0	Single Enemy	Phys	4		Status Ailment: Ice Weakness	150	0		+50.0%	Single Enemy	UNKNOWN SPECIAL GAUGE CHANGE					Self									Limited
+8025	Vincent	Death Penalty	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN SPECIAL GAUGE CHANGE					Self			Ultimate
 8026	Vincent	Electro Peashooter	Lightning	290.0	All Enemies	Mag	4																						Event
 8027	Vincent	Galian Roar	None	800.0	Single Enemy	Mag	3		Status Ailment: Enfeeble	60	12			Single Enemy	MDEF Down	35	11	Very High	High	Single Enemy	MATK Up	35	11	Very High	High	All Allies	UNKNOWN ADDITIONAL EFFECT	Single Enemy	Featured
-8029	Vincent	Fomalhaut	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN EFFECT: 26	Self	Ultimate
+8029	Vincent	Fomalhaut	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN SPECIAL GAUGE CHANGE	Self	Ultimate
 9001	Cid	Spear	None	750.0	Single Enemy	Phys	4		Status Ailment: Stop	8	3			Single Enemy	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Featured
 9002	Cid	Slash Lance	None	540.0	All Enemies	Phys	4		PDEF Up	20	6	Very High	Very High	All Allies	UNKNOWN ADDITIONAL EFFECT					All Enemies									Featured
 9003	Cid	Trident	None	620.0	Single Enemy	Phys	4		Status Ailment: Poison	30	7			Single Enemy	Status Ailment: Stop	5	3			Single Enemy	UNKNOWN ADDITIONAL EFFECT					Single Enemy			Featured
 9004	Cid	Pole Axe	None	540.0	All Enemies	Phys	4		PATK Down	25	8	Very High	High	All Enemies	MATK Down	25	8	Very High	High	All Enemies	UNKNOWN ADDITIONAL EFFECT					All Enemies			Featured
 9005	Cid	Partisan	Wind	520.0	All Enemies	Mag	4																						Featured
 9006	Cid	Viper Halberd	Heal	16.0	Self	Mag	4		PDEF Up	38	12	Very High	Very High	Self	MDEF Up	38	12	Very High	Very High	Self									Featured
-9008	Cid	Radiant Lance	None	750.0	Single Enemy	Phys	4		UNKNOWN EFFECT: 30					Self	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Featured
+9008	Cid	Radiant Lance	None	750.0	Single Enemy	Phys	4		UNKNOWN TACTICS GAUGE CHANGE					Self	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Featured
 9010	Cid	Dragoon Lance	Lightning	670.0	All Enemies	Mag	4		Lightning Resistance Down	30	10	Very High	High	All Enemies	UNKNOWN ADDITIONAL EFFECT					All Enemies									Featured
 9011	Cid	Scimitar	Heal	14.0	Single Ally	Mag	4		PATK Up	30	10	Very High	High	Single Ally	MATK Up	30	10	Very High	High	Single Ally	Ice Damage Up	30	10	Very High	High	Single Ally			Featured
 9012	Cid	Flayer	None	420.0	Single Enemy	Phys	3	◊ Diamond	Status Ailment: Stop	5	3			Single Enemy	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Featured
 9015	Cid	Rocket Lance	None	620.0	Single Enemy	Mag	4		Status Ailment: Enfeeble	70	14			Single Enemy	Ice Resistance Down	35	11	Very High	Very High	Single Enemy	UNKNOWN ADDITIONAL EFFECT					Single Enemy			Limited
 9016	Cid	Mop	None	540.0	All Enemies	Phys	4		Status Ailment: Stop	5	3			All Enemies	UNKNOWN ADDITIONAL EFFECT					All Enemies									Event
-9018	Cid	Ultimate Spear	Heal	5.0	Single Ally	Mag	0		UNKNOWN EFFECT: 26					Single Ally	PATK Up	30	30	Very High	Very High	Single Ally									Ultimate
+9018	Cid	Ultimate Spear	Heal	5.0	Single Ally	Mag	0		UNKNOWN SPECIAL GAUGE CHANGE					Single Ally	PATK Up	30	30	Very High	Very High	Single Ally									Ultimate
 9019	Cid	Odin Spear	Wind	450.0	Single Enemy	Mag	4																						Grindable
 9020	Cid	Lance of the Hunt	Ice	290.0	All Enemies	Mag	4																						Event
 9024	Cid	Captain's Spear	None	360.0	Single Enemy	Mag	4		PDEF Down	28	9	High	Mid	Single Enemy	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Event
-9025	Cid	Venus Gospel	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN EFFECT: 16					All Allies			Ultimate
-9026	Cid	Antler Pike	Lightning	920.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN EFFECT: 16					All Allies									Featured
+9025	Cid	Venus Gospel	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN ATB CHANGE					All Allies			Ultimate
+9026	Cid	Antler Pike	Lightning	920.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN ATB CHANGE					All Allies									Featured
 9028	Cid	Patissier's Spear	Ice	920.0	Single Enemy	Phys	4		PATK Down	30	10	Very High	Very High	Single Enemy	UNKNOWN SKILL STATUS CHANGE					All Allies									Featured
 20001	Zack	Type-99 Longsword	None	750.0	Single Enemy	Phys	4	◯ Circle	UNKNOWN ADDITIONAL EFFECT					Single Enemy															Featured
 20002	Zack	Buster Sword Origin	None	860.0	Single Enemy	Phys	4																						Event
@@ -293,7 +293,7 @@ Id	Character	Name	Ability Element	Ability Pot. %	Ability Range	Ability Type	Comm
 20025	Zack	Alba Blade	None	390.0	All Enemies	Phys	4		UNKNOWN ADDITIONAL EFFECT					All Enemies															Event
 20026	Zack	Ultimate Type-99 Longsword	None	1000.0	Single Enemy	Both	0		PDEF Down	30	30	Very High	Very High	Single Enemy	MDEF Down	30	30	Very High	Very High	Single Enemy									Ultimate
 20027	Zack	Beatrix Sword	Wind	940.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT					Single Enemy															Event
-20028	Zack	Durandal	None	2000.0	Single Enemy	Both	0		UNKNOWN EFFECT: 16					Self	PATK Up	30	30	Very High	Very High	Self	MATK Up	30	30	Very High	Very High	Self			Ultimate
+20028	Zack	Durandal	None	2000.0	Single Enemy	Both	0		UNKNOWN ATB CHANGE					Self	PATK Up	30	30	Very High	Very High	Self	MATK Up	30	30	Very High	Very High	Self			Ultimate
 20029	Zack	White Tree	Wind	290.0	All Enemies	Mag	4																						Event
 20031	Zack	Sword of the Hunt	Ice	800.0	All Enemies	Mag	4		UNKNOWN SKILL STATUS CHANGE					Self															Featured
 20032	Zack	Zenithian Sword	Fire	1120.0	Single Enemy	Phys	4		Status Ailment: Fire Weakness	60	12		+30.0%	Single Enemy	MDEF Up	30	10	Very High	High	All Allies									Limited
@@ -335,7 +335,7 @@ Id	Character	Name	Ability Element	Ability Pot. %	Ability Range	Ability Type	Comm
 49034	Sephiroth	Folding Ruler	None	250.0	All Enemies	Mag	4		PDEF Down	35	8	High	Mid	All Enemies	UNKNOWN ADDITIONAL EFFECT					All Enemies									Event
 49035	Sephiroth	Sōba	Ice	1340.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE					All Allies															Limited
 49037	Sephiroth	Overture	Water	1340.0	Single Enemy	Phys	4		PDEF Down	25	8	Very High	High	Single Enemy	Water Damage Up	25	8	Very High	High	All Allies	UNKNOWN SKILL STATUS CHANGE					All Allies			Limited
-49039	Sephiroth	Phoenix Odachi	None	1340.0	Single Enemy	Mag	4		UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN EFFECT: 16					Self	UNKNOWN ADDITIONAL EFFECT	Single Enemy	Limited
+49039	Sephiroth	Phoenix Odachi	None	1340.0	Single Enemy	Mag	4		UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN ATB CHANGE					Self	UNKNOWN ADDITIONAL EFFECT	Single Enemy	Limited
 50001	Glenn	Personal Style	None	940.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT					Single Enemy															Featured
 50002	Glenn	Crewkicker	Fire	750.0	Single Enemy	Phys	4																						Featured
 50003	Glenn	Jiggy Fam	Earth	520.0	All Enemies	Mag	4																						Featured
@@ -347,7 +347,7 @@ Id	Character	Name	Ability Element	Ability Pot. %	Ability Range	Ability Type	Comm
 50010	Glenn	Shockbuster	Lightning	520.0	All Enemies	Mag	4																						Featured
 50011	Glenn	Apology in Hell	None	940.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT					Single Enemy															Featured
 50012	Glenn	Pirate's Glaive	None	800.0	All Enemies	Phys	4		UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN ADDITIONAL EFFECT	All Enemies	Featured
-50013	Glenn	Blade of Ruin	Ice	940.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN EFFECT: 30					Self									Featured
+50013	Glenn	Blade of Ruin	Ice	940.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN TACTICS GAUGE CHANGE					Self									Featured
 50014	Glenn	Squeaky Hammer	None	700.0	Single Enemy	Phys	4		UNKNOWN ADDITIONAL EFFECT					Single Enemy															Event
 50015	Glenn	Inferno Grave	Fire	450.0	Single Enemy	Mag	4																						Grindable
 50016	Glenn	Pumpkin Lamppost	Heal	14.0	Single Ally	Mag	4		PATK Up	38	12	Very High	Very High	Single Ally	UNKNOWN SKILL STATUS CHANGE					Single Ally									Featured
@@ -400,7 +400,7 @@ Id	Character	Name	Ability Element	Ability Pot. %	Ability Range	Ability Type	Comm
 52009	Lucia	Bald Eagle	None	540.0	Single Enemy	Phys	4		Ice Resistance Down	25	8	Very High	Very High	Single Enemy	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Featured
 52010	Lucia	Black Rifle	None	790.0	Single Enemy	Phys	4		Status Ailment: Silence	5	2			Single Enemy	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Featured
 52013	Lucia	Nightjar	None	420.0	Single Enemy	Mag	3	◊ Diamond	PDEF Down	24	8	Very High	Very High	Single Enemy	MDEF Down	24	8	High	High	Single Enemy	UNKNOWN ADDITIONAL EFFECT					Single Enemy			Featured
-52014	Lucia	Rubber Band Gun	None	620.0	Single Enemy	Phys	4		UNKNOWN EFFECT: 30					Self	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Event
+52014	Lucia	Rubber Band Gun	None	620.0	Single Enemy	Phys	4		UNKNOWN TACTICS GAUGE CHANGE					Self	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Event
 52015	Lucia	Featherscatter	None	360.0	Single Enemy	Mag	4		PATK Down	28	9	High	Mid	Single Enemy	UNKNOWN ADDITIONAL EFFECT					Single Enemy									Event
 52016	Lucia	Barn Swallow	None	790.0	Single Enemy	Phys	4	◊ Diamond	UNKNOWN ADDITIONAL EFFECT					Single Enemy															Featured
 52017	Lucia	Pumpkin Blaster	Heal	14.0	Single Ally	Mag	4		MDEF Up	38	12	Very High	High	Single Ally															Event
@@ -414,7 +414,7 @@ Id	Character	Name	Ability Element	Ability Pot. %	Ability Range	Ability Type	Comm
 52027	Lucia	Eligor Rifle	Ice	290.0	All Enemies	Mag	4																						Event
 52029	Lucia	Rifle of the Hunt	Earth	620.0	Single Enemy	Phys	4		Earth Resistance Down	30	10	Very High	High	Single Enemy	PDEF Down	30	10	Very High	High	Single Enemy									Featured
 52030	Lucia	Spirit Demon Rifle	None	250.0	All Enemies	Mag	4		PATK Down	35	8	High	Mid	All Enemies	UNKNOWN ADDITIONAL EFFECT					All Enemies									Event
-52031	Lucia	Shinra Ceremonial Rifle	Fire	840.0	Single Enemy	Phys	4		Status Ailment: Enfeeble	60	12			Single Enemy	Fire Damage Up	20	6	Very High	High	All Allies	UNKNOWN EFFECT: 16					All Allies			Limited
+52031	Lucia	Shinra Ceremonial Rifle	Fire	840.0	Single Enemy	Phys	4		Status Ailment: Enfeeble	60	12			Single Enemy	Fire Damage Up	20	6	Very High	High	All Allies	UNKNOWN ATB CHANGE					All Allies			Limited
 52032	Lucia	Aldebaran	None	2000.0	Single Enemy	Both	0		UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN SKILL STATUS CHANGE					All Allies	UNKNOWN SKILL STATUS CHANGE					All Allies			Ultimate
 52034	Lucia	Desperado Rifle	Ice	780.0	All Enemies	Phys	4		PDEF Down	20	6	Very High	High	All Enemies	Ice Damage Up	20	6	Very High	High	All Allies									Featured
 56001	Angeal	Type-90 Longsword	None	750.0	Single Enemy	Phys	4		UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN SKILL STATUS CHANGE					Self	UNKNOWN ADDITIONAL EFFECT					Single Enemy			Featured
