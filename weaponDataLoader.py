@@ -184,7 +184,7 @@ for weapon_obj in weapon_data.values():
     skill_base_base_obj = skill_base_data[weapon_skill_base_id]
     
     # save out all c.ability data that is agnostic of  weapon being ult/OB1/6/10
-    out_weapon["Type"] = attack_types[skill_base_base_obj["BaseAttackType"]]
+    out_weapon["Ability Type"] = attack_types[skill_base_base_obj["BaseAttackType"]]
 
     skill_effect_objs = []
     if (not weapon_is_ultimate):
@@ -247,10 +247,13 @@ for weapon_obj in weapon_data.values():
     # output data for the damage effect
     out_weapon["Ability Range"] = target_types[skill_effect_damage_obj["TargetType"]]
     skill_damage_effect_damage_obj = skill_damage_data[skill_effect_damage_obj["SkillEffectDetailId"]]
-    out_weapon["Ability Pot. %"] = skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 10
-    if (skill_damage_effect_damage_obj["SkillHealType"] == 1):
+    if (skill_effect_damage_obj["TargetType"] >= 3 and skill_effect_damage_obj["TargetType"] <= 6 ):
+        # TODO: skill_damage_effect_damage_obj["SkillHealType"] == 0 or 1 changes something?
+        # Only "targets allies" determines if the attack heals or not
+        out_weapon["Ability Pot. %"] = round(skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 22,0)
         out_weapon["Ability Element"] = "Heal" 
     else:
+        out_weapon["Ability Pot. %"] = skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 10
         out_weapon["Ability Element"] = element_types[skill_damage_effect_damage_obj["ElementType"]]
 
     # output data for each skill effect
