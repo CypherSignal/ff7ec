@@ -124,6 +124,24 @@ weapon_gacha_types = [
     # ultimate is not included since those are identified differently
 ]
 
+# damage-types for weapon ability (for skillbase.json)
+attack_types = [
+    "Phys",
+    "Mag",
+    "Both",
+]
+
+# element-types for weapon ability (for skillbase.json)
+element_types = [
+    "None",
+    "Fire",
+    "Ice",
+    "Lightning",
+    "Earth",
+    "Water",
+    "Wind",
+]
+
 print_perf_data("Load masterdata")
 
 # start transforming all of the data into our own dict of weaponId to summarized-info
@@ -147,24 +165,26 @@ for weapon_obj in weapon_data.values():
     else:
         weapon_upgrade_skill_base_obj = weapon_upgrade_skill_data[weapon_obj["Id"]*100 + 1]
 
-    skill_weapon_base_obj = skill_weapon_data[weapon_upgrade_skill_base_obj["WeaponSkillId"]]
-
-    if (weapon_is_ultimate):
-        out_weapon["Command ATB"] = 0
-        out_weapon["GachaType"] = "Ultimate"
+    weapon_skill_base_id = weapon_upgrade_skill_base_obj["WeaponSkillId"]
+    skill_weapon_base_obj = skill_weapon_data[weapon_skill_base_id]
+    skill_base_base_obj = skill_base_data[weapon_skill_base_id]
+    
+    # save out all c.ability data that is agnostic of  weapon being ult/OB1/6/10
+    out_weapon["Type"] = attack_types[skill_base_base_obj["BaseAttackType"] - 1] # BaseAttackType is 1-3, not 0-2
+    out_weapon["Element"] = element_types[skill_base_base_obj["ElementType"] - 1] # ElementType is 1-3, not 0-2
 
     if (not weapon_is_ultimate):
-        # non-ultimate weapons define ATB cost on skill-active obj
-        # (skilActive also defines use count, but only ultimates and costumes have limits right now)
+        # non-ultimate weapons define ATB cost on the skill-active obj
+        # (skillActive also defines use count, but only ultimates and costumes have limits right now)
         skill_active_base_obj = skill_active_data[skill_weapon_base_obj["SkillActiveId"]]
         out_weapon["Command ATB"] = skill_active_base_obj["Cost"]
+        out_weapon["GachaType"] = weapon_gacha_types[weapon_obj["WeaponType"]]
         
         # as far as data setup goes now, SkillNotes/SkillNoteSet on player weapons appears to just be for sigil breaks
         if (skill_weapon_base_obj["SkillNotesSetId"] != 0):
             skill_notes_set_obj = skill_notes_set_data[skill_weapon_base_obj["SkillNotesSetId"]]
             out_weapon["Command Sigil"] = skill_notes_sigils[skill_notes_set_obj["SkillNotesId"]]
 
-        out_weapon["GachaType"] = weapon_gacha_types[weapon_obj["WeaponType"]]
 
         # fetch the weapon skills at OB1/6/10
         weapon_upgrade_skill_obj = [
@@ -182,6 +202,13 @@ for weapon_obj in weapon_data.values():
             skill_active_data[skill_weapon_obj[1]["SkillActiveId"]],
             skill_active_data[skill_weapon_obj[2]["SkillActiveId"]],
         ]
+
+    # ultimate weapons need some extra handling since they don't have "SkillActives", nor OB levels
+    if (weapon_is_ultimate):
+        out_weapon["Command ATB"] = 0
+        out_weapon["GachaType"] = "Ultimate"
+
+
     out_weapons.append(out_weapon)
 
 print_perf_data("Transform weapondata")
