@@ -3,7 +3,7 @@
 import json
 import argparse
 import time
-import csv 
+import csv
 import re
 
 parser = argparse.ArgumentParser(prog='WeaponDataLoader', description='Converts FF7EC-Data into a csv file for the weapon db')
@@ -27,7 +27,7 @@ def load_masterdata_json(json_file_name):
     # load the json
     with open(json_path + "/MasterData/gl/" + json_file_name, 'r', encoding='utf-8') as file:
         json_data = json.load(file)
-    
+
     # the json_data should contain an array of objects (each a dict), so iterate over them and add them to a dict
     new_dict = {}
     for data_obj in json_data:
@@ -41,8 +41,8 @@ def load_skill_effect_group_json():
     # load the json
     with open(json_path + "/MasterData/gl/SkillEffectGroup.json", 'r', encoding='utf-8') as file:
         json_data = json.load(file)
-    
-    # the json_data should contain an array of objects 
+
+    # the json_data should contain an array of objects
     # ...but the output has to be a dict of arrays
     new_dict = {}
     for data_obj in json_data:
@@ -60,7 +60,7 @@ def load_weapon_upgrade_skill_json():
     # load the json
     with open(json_path + "/MasterData/gl/WeaponUpgradeSkill.json", 'r', encoding='utf-8') as file:
         json_data = json.load(file)
-    
+
     # the json_data should contain an array of objects (each a dict),
     # ...but we need to create a key based on combination of WeaponId and UpgradeCount
     new_dict = {}
@@ -116,7 +116,7 @@ skill_notes_sigils = {
     4101:"◊ Diamond",
 }
 
-# gacha-types for the Weapon.json WeaponType 
+# gacha-types for the Weapon.json WeaponType
 weapon_gacha_types = [
     "Featured",
     "Grindable",
@@ -156,6 +156,10 @@ target_types = [
     "All Enemies + Allies",
 ]
 
+status_effect_types = {
+    16:"Enfeeble",
+}
+
 print_perf_data("Load masterdata")
 
 # start transforming all of the data into our own dict of weaponId to summarized-info
@@ -163,7 +167,7 @@ out_weapons = []
 
 for weapon_obj in weapon_data.values():
     out_weapon = {}
-    
+
     out_weapon["Id"] = weapon_obj["Id"]
     out_weapon["Name"] = loc_table[weapon_obj["NameLanguageId"]]
 
@@ -182,7 +186,7 @@ for weapon_obj in weapon_data.values():
     weapon_skill_base_id = weapon_upgrade_skill_base_obj["WeaponSkillId"]
     skill_weapon_base_obj = skill_weapon_data[weapon_skill_base_id]
     skill_base_base_obj = skill_base_data[weapon_skill_base_id]
-    
+
     # save out all c.ability data that is agnostic of  weapon being ult/OB1/6/10
     out_weapon["Ability Type"] = attack_types[skill_base_base_obj["BaseAttackType"]]
 
@@ -193,7 +197,7 @@ for weapon_obj in weapon_data.values():
         skill_active_base_obj = skill_active_data[skill_weapon_base_obj["SkillActiveId"]]
         out_weapon["Command ATB"] = skill_active_base_obj["Cost"]
         out_weapon["GachaType"] = weapon_gacha_types[weapon_obj["WeaponType"]]
-        
+
         # as far as data setup goes now, SkillNotes/SkillNoteSet on player weapons appears to just be for sigil breaks
         if (skill_weapon_base_obj["SkillNotesSetId"] != 0):
             skill_notes_set_obj = skill_notes_set_data[skill_weapon_base_obj["SkillNotesSetId"]]
@@ -251,7 +255,7 @@ for weapon_obj in weapon_data.values():
         # TODO: skill_damage_effect_damage_obj["SkillHealType"] == 0 or 1 changes something?
         # Only "targets allies" determines if the attack heals or not
         out_weapon["Ability Pot. %"] = round(skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 22,0)
-        out_weapon["Ability Element"] = "Heal" 
+        out_weapon["Ability Element"] = "Heal"
     else:
         out_weapon["Ability Pot. %"] = skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 10
         out_weapon["Ability Element"] = element_types[skill_damage_effect_damage_obj["ElementType"]]
@@ -259,7 +263,21 @@ for weapon_obj in weapon_data.values():
     # output data for each skill effect
     for skill_effect_idx,skill_effect_obj in enumerate(skill_effect_objs):
         skill_effect_suffix = str(skill_effect_idx)
-        out_weapon["EffectRange_" + skill_effect_suffix] = target_types[skill_effect_obj["TargetType"]]
+        skill_effect_detail_id = skill_effect_obj["SkillEffectDetailId"]
+        out_weapon["Effect" + skill_effect_suffix + "_Range"] = target_types[skill_effect_obj["TargetType"]]
+        match skill_effect_obj["SkillEffectType"]:
+            case 1: # Damage effect
+                out_weapon["Effect" + skill_effect_suffix] = "EXTRA DAMAGE EFFECT"
+            case 2: # Status Condition effect
+                skill_status_condition_obj = skill_status_effect_data[skill_effect_detail_id]
+                out_weapon["Effect" + skill_effect_suffix] = "Status Ailment: " + (status_effect_types.get(skill_status_condition_obj["SkillStatusConditionType"], "UNKNOWN STATUS: " + str(skill_status_condition_obj["SkillStatusConditionType"])))
+                out_weapon["Effect" + skill_effect_suffix + "_Duration"] = str(skill_status_condition_obj["MaxDurationSec"])
+                if (skill_status_condition_obj["EffectCoefficient"] != 0):
+                    out_weapon["Effect" + skill_effect_suffix + "_Pot"] = "+" + str(round(skill_status_condition_obj["EffectCoefficient"] / 10,0)) + "%"
+            case _:
+                out_weapon["Effect" + skill_effect_suffix] = "UNKNOWN EFFECT: " + str(skill_effect_obj["SkillEffectType"])
+                
+
 
     out_weapons.append(out_weapon)
 
@@ -272,7 +290,7 @@ out_weapon_fields = set()
 for out_weapon in out_weapons:
     out_weapon_fields |= out_weapon.keys()
 
-# we want some columns locked at the front of the list, 
+# we want some columns locked at the front of the list,
 # so remove them from the set above, then add every other field to the list
 out_sorted_weapon_fields = [
     "Id",
