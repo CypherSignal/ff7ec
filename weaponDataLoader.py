@@ -211,6 +211,7 @@ buffdebuff_types = {
 }
 
 buffdebuff_tiers = [
+    "UNKNOWN TIER"
     "Low",
     "Mid",
     "High",
