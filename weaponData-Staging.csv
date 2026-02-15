@@ -1,454 +1,455 @@
-1001,Buster Sword,Cloud
-1002,Iron Blade,Cloud
-1003,Hardedge,Cloud
-1004,Mythril Saber,Cloud
-1006,Butterfly Edge,Cloud
-1007,Murasame,Cloud
-1008,Organics,Cloud
-1009,Crystal Sword,Cloud
-1012,Enhance Sword,Cloud
-1013,Nail Bat,Cloud
-1015,Apocalypse,Cloud
-1020,Maritime Sword,Cloud
-1021,Full Throttle,Cloud
-1022,Mystic Sword,Cloud
-1024,Shiva's Blade,Cloud
-1025,Bandaged Sword,Cloud
-1028,Skysplitter,Cloud
-1029,Zidane's Sword,Cloud
-1030,Holiday Cheer,Cloud
-1031,Stream Saber,Cloud
-1032,Igneous Saber,Cloud
-1033,Glavenus Sword,Cloud
-1034,Rune Blade,Cloud
-1035,Burning Oar,Cloud
-1036,Bahamut Greatsword,Cloud
-1037,Ultimate Buster Sword,Cloud
-1038,Locke's Sword,Cloud
-1039,Holiday Blade,Cloud
-1040,Chocobo Paddle,Cloud
-1042,Sleek Saber,Cloud
-1044,Erdrick's Sword,Cloud
-1045,Radblade,Cloud
-1046,Umbral Blade,Cloud
-1047,Ragnarok,Cloud
-1048,Fusion Sword,Cloud
-1049,Crimson Blitz,Cloud
-1050,Cruel Successor,Cloud
-2001,Gatling Gun,Barret
-2002,Assault Gun,Barret
-2007,Heavy Vulcan,Barret
-2008,Microlaser,Barret
-2010,W Machine,Barret
-2011,Solid Bazooka,Barret
-2012,Enemy Launcher,Barret
-2013,Max Ray,Barret
-2015,Flame Projector,Barret
-2017,Electrocannon,Barret
-2018,Heavy Hauser,Barret
-2019,Lefko Kypseli,Barret
-2020,Rocket Punch,Barret
-2021,Sharkslayer,Barret
-2022,Shiva Cannon,Barret
-2024,Hell House Cannon,Barret
-2025,Siege Cannon,Barret
-2027,Leviathan Buster,Barret
-2029,Rhad Cannon,Barret
-2031,Ultimate Gatling Gun,Barret
-2032,Escutcheon Cannon,Barret
-2033,Sunrise Cannon,Barret
-2035,Fafnir Rifle,Barret
-2036,Missing Score,Barret
-2038,Teacher's Paper Fan,Barret
-2039,Hook Launcher,Barret
-2040,Quad Gatling Gun,Barret
-3001,Leather Gloves,Tifa
-3005,Grand Gloves,Tifa
-3006,Sonic Striker,Tifa
-3007,Tiger Fangs,Tifa
-3010,Crystal Gloves,Tifa
-3011,Motor Drive,Tifa
-3013,Kaiser Knuckles,Tifa
-3014,Work Gloves,Tifa
-3015,Powersoul,Tifa
-3019,Lifeguard Wraps,Tifa
-3020,Feathered Gloves,Tifa
-3024,Bahamut Knuckles,Tifa
-3025,Holy Flame Gloves,Tifa
-3027,Amarant's Claws,Tifa
-3028,Bunny Gloves,Tifa
-3029,Oven Mitts,Tifa
-3030,Turks' Gloves,Tifa
-3031,Guide Gloves,Tifa
-3032,Kirin Gloves,Tifa
-3033,Shell Knuckles,Tifa
-3034,Steward Gloves,Tifa
-3035,Bahamut Fangs,Tifa
-3036,Black Cat's Paws,Tifa
-3037,Ultimate Leather Gloves,Tifa
-3038,Sabin's Claws,Tifa
-3039,Blue Daffodil Gloves,Tifa
-3040,Premium Heart,Tifa
-3041,Odin Gloves,Tifa
-3042,Gauntlets of the Worthy,Tifa
-3043,Járngreipr,Tifa
-3045,Penance Gloves,Tifa
-3046,Shining Gloves,Tifa
-3047,Class President's Bracelet,Tifa
-3048,Striped Moogle Gloves,Tifa
-3049,Leather Combat Gloves,Tifa
-3050,Lightning's Gloves,Tifa
-3052,Demon's Impetus,Tifa
-4001,Guard Stick,Aerith
-4002,Silver Staff,Aerith
-4003,Striking Staff,Aerith
-4004,Mythril Rod,Aerith
-4005,Full Metal Staff,Aerith
-4007,Prism Rod,Aerith
-4008,Fairy Tale,Aerith
-4009,Wizard Staff,Aerith
-4010,Wizer Staff,Aerith
-4014,Sun Umbrella,Aerith
-4015,Floral Wand,Aerith
-4016,Umbrella,Aerith
-4018,Sea Dragon Staff,Aerith
-4019,Chocobo Staff,Aerith
-4020,Snowflake,Aerith
-4021,Ramuh's Staff,Aerith
-4022,Garnet's Rod,Aerith
-4023,Egg Staff,Aerith
-4024,Dawn's Prayers,Aerith
-4025,Kamura Wand,Aerith
-4026,Radrod,Aerith
-4027,Hell House Rod,Aerith
-4028,Citric Wand,Aerith
-4029,Bahamut Rod,Aerith
-4030,Ultimate Guard Stick,Aerith
-4031,Terra's Rod,Aerith
-4032,Titan Rod,Aerith
-4033,Crimson Staff,Aerith
-4034,Gambanteinn,Aerith
-4035,Noblesse Rod,Aerith
-4036,Princess Guard,Aerith
-4038,Mermaid Rod,Aerith
-4039,Supreme Sage's Staff,Aerith
-4040,Team Leader's Bamboo Sword,Aerith
-4041,Magatsuchi Rod,Aerith
-4042,Lightning's Rod,Aerith
-4043,Staff of the Possessed,Aerith
-4044,Abraxas,Aerith
-4045,Rousing Wizer Staff,Aerith
-5001,Sleek Collar,Red XIII
-5004,Silver Collar,Red XIII
-5005,Gold Collar,Red XIII
-5009,Platinum Collar,Red XIII
-5016,Noble Collar,Red XIII
-5017,Ivy Collar,Red XIII
-5018,Rage Collar,Red XIII
-5019,Leather Collar,Red XIII
-5020,Rubber Collar,Red XIII
-5021,Junk Collar,Red XIII
-5023,Canyon Collar,Red XIII
-5024,Pilot's Collar,Red XIII
-5026,Iron Collar,Red XIII
-5027,Headphones,Red XIII
-5028,Seaside Collar,Red XIII
-5031,Hell House Collar,Red XIII
-5032,Flame Dragon's Band,Red XIII
-5033,Egg Collar,Red XIII
-5034,Amethyst Collar,Red XIII
-5035,Steward Collar,Red XIII
-5036,Ultimate Leather Collar,Red XIII
-5037,Kefka's Collar,Red XIII
-5038,Brilliant Collar,Red XIII
-5040,Pirate Collar,Red XIII
-5041,Limited Moon,Red XIII
-5042,Great Sabrecat Collar,Red XIII
-5043,Tsviet Collar,Red XIII
-5044,Patissier's Collar,Red XIII
-6001,4-Point Shuriken,Yuffie
-6002,Boomerang,Yuffie
-6003,Pinwheel,Yuffie
-6004,Razor Ring,Yuffie
-6005,Hawkeye,Yuffie
-6006,Crystal Cross,Yuffie
-6007,Wind Slash,Yuffie
-6008,Twin Viper,Yuffie
-6009,Spiral Shuriken,Yuffie
-6010,Magic Shuriken,Yuffie
-6014,Diner Tray,Yuffie
-6015,Arctic Star,Yuffie
-6016,Bamboo Ring,Yuffie
-6019,Little Red Wreath,Yuffie
-6022,Chariot Wheel,Yuffie
-6024,Leviathan Cutter,Yuffie
-6026,Striped Moogle Float,Yuffie
-6027,Cactuar Fan,Yuffie
-6028,Bahamut Cutter,Yuffie
-6029,Ultimate 4-Point Shuriken,Yuffie
-6030,Holiday Bell,Yuffie
-6031,Mallet of Luck,Yuffie
-6032,Conformer,Yuffie
-6033,Bird of Prey,Yuffie
-6034,Risanautr,Yuffie
-6035,Watch of the Hunt,Yuffie
-6036,Rocker's Guitar,Yuffie
-6037,Striped Moogle Flag,Yuffie
-6038,Uber 4-Point Shuriken,Yuffie
-6039,Fatum Ex Machina,Yuffie
-6040,Heirloom Brush,Yuffie
-6041,Winged Chakram,Yuffie
-6043,Rising Sun,Yuffie
-7001,Yellow Megaphone,Cait Sith
-7002,Green Megaphone,Cait Sith
-7003,Blue Megaphone,Cait Sith
-7004,Red Megaphone,Cait Sith
-7005,Crystal Megaphone,Cait Sith
-7008,Silver Megaphone,Cait Sith
-7009,Gold Megaphone,Cait Sith
-7010,Battle Trumpet,Cait Sith
-7011,Trumpet Shell,Cait Sith
-7014,Marching Horn,Cait Sith
-7015,Nocturne Horn,Cait Sith
-7017,Cool Cat's Megaphone,Cait Sith
-7019,Witch's Broom,Cait Sith
-7022,Flower Vase,Cait Sith
-7023,Catsmegaphone,Cait Sith
-7024,Humus Megaphone,Cait Sith
-7025,Fireworks Megaphone,Cait Sith
-7026,Alba Megaphone,Cait Sith
-7027,Icebolt Megaphone,Cait Sith
-7028,Ultimate Yellow Megaphone,Cait Sith
-7029,Quina Megaphone,Cait Sith
-7031,Stilva Megaphone,Cait Sith
-7032,HP Shout,Cait Sith
-7033,Spirit Demon Megaphone,Cait Sith
-8001,Transgressor,Vincent
-8002,Cath Palug,Vincent
-8003,Gilded Age,Vincent
-8004,S1976C,Vincent
-8005,Shortbarrel,Vincent
-8007,T03 Model N,Vincent
-8008,Sawed-Off GS,Vincent
-8009,Chiron,Vincent
-8010,Double Stem E,Vincent
-8012,White Dog,Vincent
-8013,Kugelblitz,Vincent
-8014,Silver Rifle,Vincent
-8015,Hugin & Munin,Vincent
-8016,Crow Familiar,Vincent
-8017,Quicksilver,Vincent
-8018,Icebolt Shooter,Vincent
-8019,Ultimate Quicksilver,Vincent
-8020,Rhad Gun,Vincent
-8021,Eligor Gun,Vincent
-8022,Holiday Garm,Vincent
-8023,Noblesse Automatic,Vincent
-8024,Gun of the Worthy,Vincent
-8025,Death Penalty,Vincent
-8026,Electro Peashooter,Vincent
-8027,Galian Roar,Vincent
-8029,Fomalhaut,Vincent
-9001,Spear,Cid
-9002,Slash Lance,Cid
-9003,Trident,Cid
-9004,Pole Axe,Cid
-9005,Partisan,Cid
-9006,Viper Halberd,Cid
-9008,Radiant Lance,Cid
-9010,Dragoon Lance,Cid
-9011,Scimitar,Cid
-9012,Flayer,Cid
-9015,Rocket Lance,Cid
-9016,Mop,Cid
-9018,Ultimate Spear,Cid
-9019,Odin Spear,Cid
-9020,Lance of the Hunt,Cid
-9024,Captain's Spear,Cid
-9025,Venus Gospel,Cid
-9026,Antler Pike,Cid
-9028,Patissier's Spear,Cid
-20001,Type-99 Longsword,Zack
-20002,Buster Sword Origin,Zack
-20003,Beach Parasol,Zack
-20004,Enhance Sword (Z),Zack
-20005,Defender,Zack
-20006,Crystal Sword (Z),Zack
-20007,Falchion,Zack
-20008,Zweihander,Zack
-20009,Arc Sword,Zack
-20010,Cutlass,Zack
-20011,Ceremonial Sword (Z),Zack
-20012,Battering Sword,Zack
-20013,Bouquet,Zack
-20014,Pressure Ridge,Zack
-20015,Iron Greatsword,Zack
-20016,Ifrit's Sword,Zack
-20018,Twinkling Star,Zack
-20019,Black Whiskers,Zack
-20020,Stream Guard,Zack
-20023,Zinogre Blade,Zack
-20024,Carrot Sword,Zack
-20025,Alba Blade,Zack
-20026,Ultimate Type-99 Longsword,Zack
-20027,Beatrix Sword,Zack
-20028,Durandal,Zack
-20029,White Tree,Zack
-20031,Sword of the Hunt,Zack
-20032,Zenithian Sword,Zack
-20033,Buster Sword Origin,Zack
-20034,Surfer Blade,Zack
-20035,Magatsuchi Blade,Zack
-20036,Virtuous Contract,Zack
-20037,Rousing Arc Sword,Zack
-49001,Nameless,Sephiroth
-49002,Edged Wings,Sephiroth
-49003,Glaireid,Sephiroth
-49004,Aonibi,Sephiroth
-49005,Northern Lights,Sephiroth
-49006,Prototype Crimson Blade,Sephiroth
-49007,CC Alloy Sword,Sephiroth
-49008,Mythril Type-0 Katana,Sephiroth
-49009,Shinra Blade: Model I,Sephiroth
-49010,Tempest,Sephiroth
-49011,Shinra Military Sword,Sephiroth
-49012,Torn Wing,Sephiroth
-49013,World Tree Bough,Sephiroth
-49015,Dark Heavens,Sephiroth
-49016,Kuja's Spirit Blade,Sephiroth
-49017,Radiant Edge,Sephiroth
-49018,Protector's Blade,Sephiroth
-49019,Flame Dragon Blade,Sephiroth
-49020,Ashura,Sephiroth
-49022,Humus Saber,Sephiroth
-49023,Shinra Wyvern Blade,Sephiroth
-49024,Blue Bramble,Sephiroth
-49026,Ultimate Nameless,Sephiroth
-49027,Genji Blade,Sephiroth
-49028,Edgar's Coiled Blade,Sephiroth
-49029,Wintercrest Blade,Sephiroth
-49030,Blade of the Worthy,Sephiroth
-49031,Withering Blaze,Sephiroth
-49032,Serrated Remiges,Sephiroth
-49033,Pandemonic Sword,Sephiroth
-49034,Folding Ruler,Sephiroth
-49035,Sōba,Sephiroth
-49037,Overture,Sephiroth
-49039,Phoenix Odachi,Sephiroth
-50001,Personal Style,Glenn
-50002,Crewkicker,Glenn
-50003,Jiggy Fam,Glenn
-50004,Hardcore Squad,Glenn
-50005,Rest in Peace,Glenn
-50006,Slay the Day,Glenn
-50007,Ultimatic,Glenn
-50008,Piece of Cake,Glenn
-50010,Shockbuster,Glenn
-50011,Apology in Hell,Glenn
-50012,Pirate's Glaive,Glenn
-50013,Blade of Ruin,Glenn
-50014,Squeaky Hammer,Glenn
-50015,Inferno Grave,Glenn
-50016,Pumpkin Lamppost,Glenn
-50018,Thousand Waves,Glenn
-50019,Steiner's Blade,Glenn
-50020,Stream Slasher,Glenn
-50021,Best Wishes,Glenn
-50022,Radglaive,Glenn
-50023,Silver Sol Buster,Glenn
-50024,Ultimate Personal Style,Glenn
-50026,Stilva Glaive,Glenn
-50027,Ogrekiller,Glenn
-50029,Set Square,Glenn
-50030,Desperado Glaive,Glenn
-50031,Snow's Bardiche,Glenn
-51001,Broadsword: Axis,Matt
-51002,Orthodox Raven,Matt
-51003,Absolute Royal,Matt
-51004,Prime Number,Matt
-51005,Espee Rapiere Next-G,Matt
-51006,Core Defender,Matt
-51007,Centipede,Matt
-51008,Stingray,Matt
-51009,Killer Hornet,Matt
-51010,Bramble Spine,Matt
-51012,Syringe Rapier,Matt
-51013,Foam Sword,Matt
-51015,Slick Beetle,Matt
-51016,Bahamut Rapier,Matt
-51017,Holiday Cane,Matt
-51018,Giant Fork,Matt
-51020,Humus Rapier,Matt
-51021,Nautilus Spiral,Matt
-51022,Firefish,Matt
-51023,Deroplatys,Matt
-51024,Ultimate Broadsword: Axis,Matt
-51025,Candle Rapier,Matt
-51026,Luminary Sword,Matt
-51027,Hrotti,Matt
-51029,Gladius,Matt
-51031,Dragontail Sword,Matt
-51032,Desperado Rapier,Matt
-52001,V39,Lucia
-52002,Pulse Gun,Lucia
-52003,Serpent Eater,Lucia
-52004,Thunderbird,Lucia
-52005,Tranquilizer Gun,Lucia
-52006,SSR1976,Lucia
-52007,Mad Minute,Lucia
-52009,Bald Eagle,Lucia
-52010,Black Rifle,Lucia
-52013,Nightjar,Lucia
-52014,Rubber Band Gun,Lucia
-52015,Featherscatter,Lucia
-52016,Barn Swallow,Lucia
-52017,Pumpkin Blaster,Lucia
-52019,Rifle of Levin,Lucia
-52020,Holiday Revolver,Lucia
-52021,Vivi's Magical Gun,Lucia
-52022,Rose Musket,Lucia
-52023,Turks' Rifle,Lucia
-52025,Marine Shooter,Lucia
-52026,Ultimate V39,Lucia
-52027,Eligor Rifle,Lucia
-52029,Rifle of the Hunt,Lucia
-52030,Spirit Demon Rifle,Lucia
-52031,Shinra Ceremonial Rifle,Lucia
-52032,Aldebaran,Lucia
-52034,Desperado Rifle,Lucia
-56001,Type-90 Longsword,Angeal
-56002,Greatsword (A),Angeal
-56003,Type-91 Two-Hander,Angeal
-56004,Shinra Greatsword: Model I,Angeal
-56005,CC Alloy Greatsword,Angeal
-56006,Stalwart Integrity,Angeal
-56007,Innocent Warrior,Angeal
-56008,Gargantuan Monolith,Angeal
-56009,Sequoiadendron,Angeal
-56010,Tranquility,Angeal
-56011,Orchard Shovel,Angeal
-56012,Ultimate Type-90 Longsword,Angeal
-56013,Cyan's Blade,Angeal
-56014,Mythril Slasher,Angeal
-56015,Volcanic Heat,Angeal
-56016,Titan Blade,Angeal
-56017,Turks' Blade,Angeal
-56019,Greatsword of the Worthy,Angeal
-56020,Blade of the Hunt,Angeal
-56021,Penance Blade,Angeal
-56022,Inflatable Buster Sword,Angeal
-56023,Rhad Blade,Angeal
-56025,Balmung,Angeal
-56026,Ghost Ensis,Angeal
-56027,Master Tonberry's Blade,Angeal
-56028,Lightning's Sword,Angeal
-56029,Sea Dragon Greatsword,Angeal
-60001,Masamune,Sephiroth (Original)
-60002,Shiranui,Sephiroth (Original)
-60003,Osafune,Sephiroth (Original)
-60004,Kotetsu,Sephiroth (Original)
-60005,Kikuichimonji,Sephiroth (Original)
-60006,Ultimate Masamune,Sephiroth (Original)
-60007,Muramasa,Sephiroth (Original)
-60008,Heaven's Cloud,Sephiroth (Original)
-60009,Divine Steed Blade,Sephiroth (Original)
+Id,Character,Name,Ability Element,Ability Pot. %,Ability Range,Ability Type,Command ATB,Command Sigil,Effect0,Effect0_Duration,Effect0_Extend,Effect0_MaxPot,Effect0_Pot,Effect0_Range,Effect1,Effect1_Duration,Effect1_Extend,Effect1_MaxPot,Effect1_Pot,Effect1_Range,Effect2,Effect2_Duration,Effect2_Extend,Effect2_MaxPot,Effect2_Pot,Effect2_Range,Effect3,Effect3_Range,GachaType
+1001,Cloud,Buster Sword,None,750.0,Single Enemy,Phys,4,✕ Cross,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+1002,Cloud,Iron Blade,None,350.0,All Enemies,Phys,4,,PATK Down,25,8,High,High,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Featured
+1003,Cloud,Hardedge,None,510.0,Single Enemy,Phys,4,,PDEF Down,25,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+1004,Cloud,Mythril Saber,None,940.0,Single Enemy,Mag,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+1006,Cloud,Butterfly Edge,Heal,14.0,Single Ally,Mag,4,,PDEF Up,38,12,Very High,Very High,Single Ally,,,,,,,,,,,,,,,Featured
+1007,Cloud,Murasame,Lightning,750.0,Single Enemy,Phys,4,,,,,,,,,,,,,,,,,,,,,,Featured
+1008,Cloud,Organics,None,750.0,Single Enemy,Phys,4,,Status Ailment: Stun,5,2,,,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+1009,Cloud,Crystal Sword,Heal,72.0,All Allies,Mag,5,,,,,,,,,,,,,,,,,,,,,,Featured
+1012,Cloud,Enhance Sword,Ice,520.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+1013,Cloud,Nail Bat,None,1600.0,Single Enemy,Phys,5,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Event
+1015,Cloud,Apocalypse,None,940.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+1020,Cloud,Maritime Sword,Water,750.0,Single Enemy,Phys,4,,,,,,,,,,,,,,,,,,,,,,Featured
+1021,Cloud,Full Throttle,Ice,1120.0,Single Enemy,Mag,4,,MATK Up,30,10,Very High,High,Self,MDEF Down,30,10,Very High,High,Single Enemy,,,,,,,,,Featured
+1022,Cloud,Mystic Sword,None,420.0,Single Enemy,Mag,3,,MATK Down,24,8,Very High,Very High,Single Enemy,PATK Down,24,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Featured
+1024,Cloud,Shiva's Blade,Ice,450.0,Single Enemy,Mag,4,,,,,,,,,,,,,,,,,,,,,,Grindable
+1025,Cloud,Bandaged Sword,Heal,7.0,All Allies,Mag,4,,MDEF Up,14,4,Very High,Very High,All Allies,,,,,,,,,,,,,,,Featured
+1028,Cloud,Skysplitter,Fire,850.0,Single Enemy,Phys,4,,,,,,,,,,,,,,,,,,,,,,Featured
+1029,Cloud,Zidane's Sword,None,1300.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Event
+1030,Cloud,Holiday Cheer,Earth,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+1031,Cloud,Stream Saber,Ice,1020.0,Single Enemy,Phys,4,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,,,,,,,,,,,,,,,Limited
+1032,Cloud,Igneous Saber,Fire,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+1033,Cloud,Glavenus Sword,None,850.0,Single Enemy,Phys,4,,PDEF Down,30,10,High,High,Single Enemy,PATK Up,35,7,Very High,Very High,Self,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Limited
+1034,Cloud,Rune Blade,Ice,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+1035,Cloud,Burning Oar,Fire,450.0,Single Enemy,Phys,4,,,,,,,,,,,,,,,,,,,,,,Event
+1036,Cloud,Bahamut Greatsword,None,800.0,All Enemies,Phys,4,,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,Limited
+1037,Cloud,Ultimate Buster Sword,None,1000.0,Single Enemy,Both,0,,PATK Down,30,30,Very High,Very High,Single Enemy,MATK Down,30,30,Very High,Very High,Single Enemy,,,,,,,,,Ultimate
+1038,Cloud,Locke's Sword,None,1010.0,Single Enemy,Phys,3,,Fire Damage Up,55,11,Very High,Very High,Self,Ice Damage Up,55,11,Very High,Very High,Self,Lightning Damage Up,55,11,Very High,Very High,Self,UNKOWN ADDITIONAL EFFECT,Single Enemy,Limited
+1039,Cloud,Holiday Blade,Wind,940.0,Single Enemy,Mag,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+1040,Cloud,Chocobo Paddle,None,250.0,All Enemies,Mag,4,,Fire Resistance Down,35,8,High,Mid,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Event
+1042,Cloud,Sleek Saber,None,250.0,All Enemies,Mag,4,,PDEF Down,35,8,High,Mid,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Event
+1044,Cloud,Erdrick's Sword,Lightning,720.0,All Enemies,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,Status Ailment: Enfeeble,30,10,,,All Enemies,MATK Down,30,10,Very High,High,All Enemies,,,Limited
+1045,Cloud,Radblade,Water,450.0,Single Enemy,Phys,4,,,,,,,,,,,,,,,,,,,,,,Event
+1046,Cloud,Umbral Blade,None,430.0,All Enemies,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Event
+1047,Cloud,Ragnarok,None,2000.0,Single Enemy,Both,0,,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKNOWN EFFECT: 16,,,,,All Allies,,,Ultimate
+1048,Cloud,Fusion Sword,None,1340.0,Single Enemy,Phys,4,,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN ADDITIONAL EFFECT,Single Enemy,Limited
+1049,Cloud,Crimson Blitz,None,800.0,Single Enemy,Mag,3,,Status Ailment: Ice Weakness,60,20,,+30.0%,Single Enemy,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Limited
+1050,Cloud,Cruel Successor,Earth,1340.0,Single Enemy,Phys,4,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,,,,,,,,,,,,,,,Limited
+2001,Barret,Gatling Gun,None,750.0,Single Enemy,Phys,4,✕ Cross,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+2002,Barret,Assault Gun,Heal,7.0,All Allies,Phys,4,,PDEF Up,14,4,Very High,Very High,All Allies,,,,,,,,,,,,,,,Featured
+2007,Barret,Heavy Vulcan,Heal,14.0,Single Ally,Mag,4,,MDEF Up,38,12,Very High,Very High,Single Ally,,,,,,,,,,,,,,,Featured
+2008,Barret,Microlaser,Heal,14.0,Single Ally,Mag,4,,MATK Up,38,12,Very High,Very High,Single Ally,UNKOWN SKILL STATUS CHANGE,,,,,Single Ally,,,,,,,,,Featured
+2010,Barret,W Machine,None,510.0,Single Enemy,Phys,4,,PDEF Down,25,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+2011,Barret,Solid Bazooka,None,510.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,MATK Down,25,8,Very High,Very High,Single Enemy,,,,,,,,,Featured
+2012,Barret,Enemy Launcher,None,650.0,All Enemies,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,,,,,,,Featured
+2013,Barret,Max Ray,None,750.0,Single Enemy,Mag,4,◊ Diamond,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+2015,Barret,Flame Projector,Fire,520.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+2017,Barret,Electrocannon,Lightning,540.0,All Enemies,Mag,4,,PATK Down,30,10,Very High,High,All Enemies,MATK Down,30,10,High,High,All Enemies,,,,,,,,,Featured
+2018,Barret,Heavy Hauser,None,940.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+2019,Barret,Lefko Kypseli,Heal,14.0,Single Ally,Mag,4,,PDEF Up,38,12,Very High,High,Single Ally,,,,,,,,,,,,,,,Event
+2020,Barret,Rocket Punch,None,500.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Event
+2021,Barret,Sharkslayer,None,420.0,Single Enemy,Phys,3,◊ Diamond,Fire Resistance Down,24,8,Very High,Very High,Single Enemy,Water Resistance Down,24,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Featured
+2022,Barret,Shiva Cannon,Ice,450.0,Single Enemy,Mag,4,,,,,,,,,,,,,,,,,,,,,,Grindable
+2024,Barret,Hell House Cannon,None,360.0,Single Enemy,Mag,4,,MDEF Down,28,9,High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+2025,Barret,Siege Cannon,Water,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+2027,Barret,Leviathan Buster,Water,450.0,Single Enemy,Mag,4,,,,,,,,,,,,,,,,,,,,,,Grindable
+2029,Barret,Rhad Cannon,Heal,14.0,Single Ally,Mag,4,,PATK Up,44,14,High,Mid,Single Ally,UNKOWN SKILL STATUS CHANGE,,,,,Single Ally,,,,,,,,,Event
+2031,Barret,Ultimate Gatling Gun,Heal,5.0,All Allies,Phys,0,,PDEF Up,20,20,Very High,Very High,All Allies,,,,,,,,,,,,,,,Ultimate
+2032,Barret,Escutcheon Cannon,Heal,8.0,All Allies,Mag,4,,MDEF Up,20,6,Very High,Very High,All Allies,MATK Up,20,6,Very High,Very High,All Allies,,,,,,,,,Featured
+2033,Barret,Sunrise Cannon,None,780.0,All Enemies,Phys,4,,Fire Resistance Up,30,10,Very High,High,All Allies,Lightning Resistance Up,30,10,Very High,High,All Allies,PDEF Up,30,10,Very High,High,All Allies,UNKOWN ADDITIONAL EFFECT,All Enemies,Featured
+2035,Barret,Fafnir Rifle,None,540.0,All Enemies,Phys,4,,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN SKILL STATUS CHANGE,,,,,Self,PDEF Up,20,6,Very High,High,All Allies,UNKOWN ADDITIONAL EFFECT,All Enemies,Limited
+2036,Barret,Missing Score,Heal,5.0,All Allies,Mag,0,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,,,,,,,,,Ultimate
+2038,Barret,Teacher's Paper Fan,Wind,500.0,All Enemies,Phys,3,,Wind Resistance Down,30,10,Very High,Very High,All Enemies,UNKOWN SKILL STATUS CHANGE,,,,,Self,,,,,,,,,Limited
+2039,Barret,Hook Launcher,Lightning,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+2040,Barret,Quad Gatling Gun,None,360.0,Single Enemy,Mag,4,,PDEF Down,28,9,High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+3001,Tifa,Leather Gloves,None,540.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,PATK Down,25,8,Very High,Very High,Single Enemy,,,,,,,,,Featured
+3005,Tifa,Grand Gloves,Heal,132.0,Self,Phys,5,,UNKNOWN EFFECT: 6,,,,,Self,,,,,,,,,,,,,,,Featured
+3006,Tifa,Sonic Striker,None,990.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+3007,Tifa,Tiger Fangs,None,540.0,Single Enemy,Phys,4,,MATK Down,25,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+3010,Tifa,Crystal Gloves,Lightning,500.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+3011,Tifa,Motor Drive,Wind,790.0,Single Enemy,Phys,4,,,,,,,,,,,,,,,,,,,,,,Featured
+3013,Tifa,Kaiser Knuckles,None,480.0,Single Enemy,Mag,4,,MDEF Down,25,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+3014,Tifa,Work Gloves,Heal,14.0,Self,Mag,4,,PDEF Up,35,11,Very High,Very High,Self,PATK Up,35,11,Very High,Very High,Self,,,,,,,,,Event
+3015,Tifa,Powersoul,None,900.0,Single Enemy,Mag,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+3019,Tifa,Lifeguard Wraps,Heal,55.0,All Allies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+3020,Tifa,Feathered Gloves,None,420.0,Single Enemy,Phys,3,,MDEF Down,24,8,High,High,Single Enemy,Water Damage Up,35,7,Very High,Very High,Self,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Featured
+3024,Tifa,Bahamut Knuckles,None,450.0,Single Enemy,Mag,4,◊ Diamond,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Grindable
+3025,Tifa,Holy Flame Gloves,Ice,800.0,Single Enemy,Phys,4,,,,,,,,,,,,,,,,,,,,,,Featured
+3027,Tifa,Amarant's Claws,None,720.0,Single Enemy,Phys,4,,PATK Up,40,8,Very High,Very High,Self,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,MATK Down,30,10,Very High,High,Single Enemy,,,Event
+3028,Tifa,Bunny Gloves,Water,850.0,Single Enemy,Mag,4,,MATK Up,35,7,Very High,Mid,Self,,,,,,,,,,,,,,,Featured
+3029,Tifa,Oven Mitts,Heal,14.0,Single Ally,Mag,4,,PATK Up,44,14,High,Mid,Single Ally,UNKOWN SKILL STATUS CHANGE,,,,,Single Ally,,,,,,,,,Event
+3030,Tifa,Turks' Gloves,None,360.0,Single Enemy,Mag,4,,PDEF Down,28,9,High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+3031,Tifa,Guide Gloves,None,1300.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Event
+3032,Tifa,Kirin Gloves,Lightning,940.0,Single Enemy,Mag,4,,MATK Up,35,7,High,High,Self,,,,,,,,,,,,,,,Limited
+3033,Tifa,Shell Knuckles,Fire,940.0,Single Enemy,Mag,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+3034,Tifa,Steward Gloves,None,360.0,Single Enemy,Mag,4,,PATK Down,28,9,High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+3035,Tifa,Bahamut Fangs,None,1100.0,Single Enemy,Mag,4,,UNKOWN SKILL STATUS CHANGE,,,,,Self,MATK Up,25,8,Very High,High,All Allies,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Limited
+3036,Tifa,Black Cat's Paws,Lightning,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+3037,Tifa,Ultimate Leather Gloves,None,1000.0,Single Enemy,Both,0,,PATK Up,30,30,High,High,All Allies,MATK Up,30,30,High,High,All Allies,,,,,,,,,Ultimate
+3038,Tifa,Sabin's Claws,None,800.0,All Enemies,Phys,4,,PATK Up,30,10,Very High,High,Self,MATK Up,30,10,Very High,High,Self,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,UNKOWN ADDITIONAL EFFECT,All Enemies,Limited
+3039,Tifa,Blue Daffodil Gloves,None,1100.0,Single Enemy,Phys,4,,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Limited
+3040,Tifa,Premium Heart,None,2000.0,Single Enemy,Both,0,,UNKOWN SKILL STATUS CHANGE,,,,,Self,,,,,,,,,,,,,,,Ultimate
+3041,Tifa,Odin Gloves,Wind,450.0,Single Enemy,Mag,4,,,,,,,,,,,,,,,,,,,,,,Grindable
+3042,Tifa,Gauntlets of the Worthy,Earth,1120.0,Single Enemy,Phys,4,,Earth Damage Up,25,8,Very High,High,All Allies,UNKNOWN EFFECT: 16,,,,,Self,,,,,,,,,Limited
+3043,Tifa,Járngreipr,None,250.0,All Enemies,Mag,4,,PDEF Down,35,8,High,Mid,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Event
+3045,Tifa,Penance Gloves,Fire,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+3046,Tifa,Shining Gloves,Water,1120.0,Single Enemy,Phys,4,,PATK Down,30,10,Very High,High,Single Enemy,MATK Down,30,10,Very High,High,Single Enemy,,,,,,,,,Featured
+3047,Tifa,Class President's Bracelet,Wind,1060.0,Single Enemy,Phys,4,,PATK Up,25,8,Very High,High,All Allies,,,,,,,,,,,,,,,Limited
+3048,Tifa,Striped Moogle Gloves,None,360.0,Single Enemy,Mag,4,,MATK Down,28,9,High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+3049,Tifa,Leather Combat Gloves,None,1340.0,All Enemies,Mag,4,,Status Ailment: Enfeeble,60,12,,,All Enemies,UNKNOWN EFFECT: 31,,,,,All Allies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,Limited
+3050,Tifa,Lightning's Gloves,Ice,1340.0,Single Enemy,Mag,4,,Ice Resistance Down,25,8,Very High,High,Single Enemy,UNKOWN SKILL STATUS CHANGE,,,,,Self,,,,,,,,,Limited
+3052,Tifa,Demon's Impetus,None,1340.0,Single Enemy,Phys,4,,UNKOWN SKILL STATUS CHANGE,,,,,Self,PATK Up,60,20,Very High,Very High,All Allies,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Limited
+4001,Aerith,Guard Stick,Heal,15.0,Single Ally,Mag,4,,MDEF Up,38,12,Very High,Very High,Single Ally,,,,,,,,,,,,,,,Featured
+4002,Aerith,Silver Staff,Ice,540.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+4003,Aerith,Striking Staff,None,900.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+4004,Aerith,Mythril Rod,Heal,10.0,All Allies,Mag,5,,PDEF Up,14,4,High,High,All Allies,MDEF Up,14,4,High,High,All Allies,,,,,,,,,Featured
+4005,Aerith,Full Metal Staff,None,340.0,All Enemies,Phys,4,,PATK Down,25,8,High,High,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Featured
+4007,Aerith,Prism Rod,Wind,800.0,Single Enemy,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+4008,Aerith,Fairy Tale,Heal,75.0,All Allies,Mag,5,,,,,,,,,,,,,,,,,,,,,,Featured
+4009,Aerith,Wizard Staff,Lightning,540.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+4010,Aerith,Wizer Staff,Earth,540.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+4014,Aerith,Sun Umbrella,None,540.0,Single Enemy,Mag,4,,PDEF Down,25,8,High,High,Single Enemy,MDEF Down,25,8,High,High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Featured
+4015,Aerith,Floral Wand,None,420.0,Single Enemy,Phys,3,,PDEF Down,24,8,High,High,Single Enemy,Wind Resistance Down,24,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Featured
+4016,Aerith,Umbrella,Heal,110.0,Single Ally,Mag,4,,UNKNOWN EFFECT: 6,,,,,Single Ally,,,,,,,,,,,,,,,Event
+4018,Aerith,Sea Dragon Staff,None,360.0,Single Enemy,Mag,4,,Water Resistance Down,28,9,High,High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Grindable
+4019,Aerith,Chocobo Staff,Heal,14.0,Single Ally,Mag,4,,MDEF Up,38,12,Very High,High,Single Ally,,,,,,,,,,,,,,,Event
+4020,Aerith,Snowflake,Ice,540.0,Single Enemy,Mag,4,,MDEF Down,30,10,Very High,High,Single Enemy,,,,,,,,,,,,,,,Featured
+4021,Aerith,Ramuh's Staff,Lightning,480.0,Single Enemy,Mag,4,,,,,,,,,,,,,,,,,,,,,,Grindable
+4022,Aerith,Garnet's Rod,Heal,14.0,Single Ally,Mag,3,,MATK Up,38,12,Very High,Very High,Single Ally,UNKOWN SKILL STATUS CHANGE,,,,,Single Ally,,,,,,,,,Event
+4023,Aerith,Egg Staff,Fire,630.0,All Enemies,Mag,4,,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,,,,,,,Featured
+4024,Aerith,Dawn's Prayers,None,360.0,Single Enemy,Mag,4,,PDEF Down,28,9,High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+4025,Aerith,Kamura Wand,Heal,8.0,All Allies,Mag,4,,PATK Up,20,6,Very High,Very High,All Allies,MDEF Up,20,6,Very High,Very High,All Allies,,,,,,,,,Limited
+4026,Aerith,Radrod,Water,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+4027,Aerith,Hell House Rod,Ice,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+4028,Aerith,Citric Wand,Heal,10.0,Single Ally,Mag,3,,Ice Damage Up,30,10,Very High,Very High,Single Ally,MATK Up,30,10,Very High,High,Single Ally,,,,,,,,,Featured
+4029,Aerith,Bahamut Rod,Heal,60.0,All Allies,Mag,5,,PDEF Up,20,5,High,High,All Allies,UNKNOWN EFFECT: 16,,,,,Other Allies,,,,,,,,,Limited
+4030,Aerith,Ultimate Guard Stick,Heal,51.0,All Allies,Mag,0,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKNOWN EFFECT: 6,,,,,All Allies,,,,,,,,,Ultimate
+4031,Aerith,Terra's Rod,None,750.0,All Enemies,Mag,4,,Fire Resistance Down,35,11,Very High,Very High,All Enemies,Ice Resistance Down,35,11,Very High,Very High,All Enemies,Lightning Resistance Down,35,11,Very High,Very High,All Enemies,UNKOWN ADDITIONAL EFFECT,All Enemies,Limited
+4032,Aerith,Titan Rod,Earth,450.0,Single Enemy,Mag,4,,,,,,,,,,,,,,,,,,,,,,Grindable
+4033,Aerith,Crimson Staff,None,750.0,All Enemies,Mag,4,,MATK Up,20,6,Very High,Very High,All Allies,MDEF Down,35,11,Very High,Very High,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,Limited
+4034,Aerith,Gambanteinn,Heal,60.0,All Allies,Mag,5,,PATK Up,16,5,Very High,High,All Allies,UNKNOWN EFFECT: 16,,,,,Other Allies,,,,,,,,,Limited
+4035,Aerith,Noblesse Rod,None,360.0,Single Enemy,Mag,4,,PATK Down,28,9,High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+4036,Aerith,Princess Guard,Heal,14.0,All Allies,Mag,0,,UNKNOWN EFFECT: 16,,,,,All Allies,,,,,,,,,,,,,,,Ultimate
+4038,Aerith,Mermaid Rod,Heal,8.0,All Allies,Mag,4,,PATK Up,25,8,Very High,High,All Allies,Lightning Damage Up,25,8,Very High,High,All Allies,,,,,,,,,Featured
+4039,Aerith,Supreme Sage's Staff,None,890.0,All Enemies,Mag,4,,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,UNKNOWN EFFECT: 26,Self,Limited
+4040,Aerith,Team Leader's Bamboo Sword,Water,530.0,All Enemies,Mag,4,,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,Water Damage Up,25,8,Very High,Very High,All Allies,,,,,,,,,Limited
+4041,Aerith,Magatsuchi Rod,None,360.0,Single Enemy,Mag,4,,MATK Down,28,9,High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+4042,Aerith,Lightning's Rod,Heal,8.0,All Allies,Mag,4,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,PDEF Up,25,8,Very High,Very High,All Allies,UNKNOWN EFFECT: 30,,,,,Self,,,Limited
+4043,Aerith,Staff of the Possessed,None,920.0,All Enemies,Phys,4,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,Water Resistance Down,30,10,Very High,Very High,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,Limited
+4044,Aerith,Abraxas,None,1000.0,All Enemies,Both,0,,UNKNOWN EFFECT: 31,,,,,All Enemies,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,,,,,,,,,Ultimate
+4045,Aerith,Rousing Wizer Staff,Heal,8.0,All Allies,Mag,4,,PATK Up,20,6,Very High,High,All Allies,MDEF Up,20,6,Very High,Very High,All Allies,,,,,,,,,Event
+5001,Red XIII,Sleek Collar,Heal,7.0,All Allies,Mag,4,,MDEF Up,14,4,Very High,Very High,All Allies,,,,,,,,,,,,,,,Featured
+5004,Red XIII,Silver Collar,None,320.0,Single Enemy,Phys,3,◊ Diamond,Wind Resistance Down,24,8,Very High,Very High,Single Enemy,Water Resistance Down,24,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Featured
+5005,Red XIII,Gold Collar,None,350.0,All Enemies,Mag,4,,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,MDEF Down,25,8,High,High,All Enemies,,,,,,,,,Featured
+5009,Red XIII,Platinum Collar,Heal,11.0,All Allies,Mag,5,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,,,,,,,,,,,,,,,Featured
+5016,Red XIII,Noble Collar,Water,520.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+5017,Red XIII,Ivy Collar,None,420.0,Single Enemy,Phys,3,,Fire Resistance Down,24,8,Very High,Very High,Single Enemy,Ice Resistance Down,24,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Featured
+5018,Red XIII,Rage Collar,Fire,750.0,Single Enemy,Phys,4,,,,,,,,,,,,,,,,,,,,,,Featured
+5019,Red XIII,Leather Collar,None,940.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+5020,Red XIII,Rubber Collar,Heal,115.0,Single Ally,Mag,5,,,,,,,,,,,,,,,,,,,,,,Featured
+5021,Red XIII,Junk Collar,None,510.0,Single Enemy,Phys,4,,MATK Down,25,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+5023,Red XIII,Canyon Collar,Wind,500.0,All Enemies,Mag,4,,MDEF Down,30,10,Very High,High,All Enemies,,,,,,,,,,,,,,,Featured
+5024,Red XIII,Pilot's Collar,Heal,60.0,All Allies,Mag,5,,MDEF Up,14,4,Very High,High,All Allies,,,,,,,,,,,,,,,Featured
+5026,Red XIII,Iron Collar,None,360.0,Single Enemy,Mag,4,,PDEF Down,28,9,High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+5027,Red XIII,Headphones,None,540.0,All Enemies,Mag,4,,UNKNOWN EFFECT: 6,,,,,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Event
+5028,Red XIII,Seaside Collar,None,510.0,Single Enemy,Phys,4,,Lightning Resistance Down,21,7,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,UNKOWN SKILL STATUS CHANGE,,,,,Self,,,Featured
+5031,Red XIII,Hell House Collar,None,360.0,Single Enemy,Mag,4,,MDEF Down,28,9,High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+5032,Red XIII,Flame Dragon's Band,None,360.0,Single Enemy,Mag,4,,Fire Resistance Down,28,9,High,High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Grindable
+5033,Red XIII,Egg Collar,Fire,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+5034,Red XIII,Amethyst Collar,Ice,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+5035,Red XIII,Steward Collar,None,360.0,Single Enemy,Mag,4,,PATK Down,28,9,High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+5036,Red XIII,Ultimate Leather Collar,Heal,27.0,All Allies,Mag,0,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,,,,,,,,,,,,,,,Ultimate
+5037,Red XIII,Kefka's Collar,Lightning,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+5038,Red XIII,Brilliant Collar,Heal,8.0,All Allies,Mag,4,,MATK Up,25,8,Very High,High,All Allies,Wind Damage Up,25,8,Very High,High,All Allies,,,,,,,,,Featured
+5040,Red XIII,Pirate Collar,Heal,60.0,All Allies,Mag,5,,MATK Up,25,8,Very High,High,All Allies,Lightning Damage Up,25,8,Very High,High,All Allies,UNKNOWN EFFECT: 16,,,,,Other Allies,,,Limited
+5041,Red XIII,Limited Moon,Heal,111.0,All Allies,Mag,0,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,,,,,,,,,,,,,,,Ultimate
+5042,Red XIII,Great Sabrecat Collar,Lightning,440.0,All Enemies,Mag,3,,PDEF Down,24,8,High,High,All Enemies,MDEF Down,24,8,High,High,All Enemies,,,,,,,,,Event
+5043,Red XIII,Tsviet Collar,None,240.0,All Enemies,Mag,4,,Wind Resistance Down,35,8,High,Mid,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Event
+5044,Red XIII,Patissier's Collar,None,920.0,All Enemies,Phys,4,,Status Ailment: Enfeeble,40,13,,,All Enemies,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,Featured
+6001,Yuffie,4-Point Shuriken,None,350.0,All Enemies,Phys,4,,PATK Down,25,8,High,High,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Featured
+6002,Yuffie,Boomerang,None,510.0,Single Enemy,Phys,4,,Fire Resistance Down,25,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+6003,Yuffie,Pinwheel,None,510.0,Single Enemy,Phys,4,,Ice Resistance Down,25,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+6004,Yuffie,Razor Ring,Earth,520.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+6005,Yuffie,Hawkeye,Earth,850.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+6006,Yuffie,Crystal Cross,Heal,14.0,Single Ally,Mag,4,,MATK Up,38,12,Very High,Very High,Single Ally,UNKOWN SKILL STATUS CHANGE,,,,,Single Ally,,,,,,,,,Featured
+6007,Yuffie,Wind Slash,None,510.0,Single Enemy,Phys,4,,Lightning Resistance Down,25,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+6008,Yuffie,Twin Viper,None,510.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,Status Ailment: Poison,30,7,,,Single Enemy,,,,,,,,,Featured
+6009,Yuffie,Spiral Shuriken,Ice,800.0,Single Enemy,Phys,4,,,,,,,,,,,,,,,,,,,,,,Featured
+6010,Yuffie,Magic Shuriken,Wind,520.0,All Enemies,Phys,4,,,,,,,,,,,,,,,,,,,,,,Featured
+6014,Yuffie,Diner Tray,Wind,850.0,Single Enemy,Phys,4,,,,,,,,,,,,,,,,,,,,,,Featured
+6015,Yuffie,Arctic Star,Heal,14.0,Single Ally,Mag,4,,PATK Up,30,10,Very High,Very High,Single Ally,PATK Up,30,10,Very High,High,Self,,,,,,,,,Featured
+6016,Yuffie,Bamboo Ring,None,500.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Event
+6019,Yuffie,Little Red Wreath,Ice,940.0,Single Enemy,Mag,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+6022,Yuffie,Chariot Wheel,Water,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+6024,Yuffie,Leviathan Cutter,Water,450.0,Single Enemy,Mag,4,,,,,,,,,,,,,,,,,,,,,,Grindable
+6026,Yuffie,Striped Moogle Float,Fire,700.0,All Enemies,Phys,4,,Fire Damage Up,35,7,Very High,Mid,Self,,,,,,,,,,,,,,,Featured
+6027,Yuffie,Cactuar Fan,Ice,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+6028,Yuffie,Bahamut Cutter,None,1080.0,Single Enemy,Phys,4,,MDEF Up,25,8,Very High,High,All Allies,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Limited
+6029,Yuffie,Ultimate 4-Point Shuriken,None,1000.0,Single Enemy,Both,0,,PATK Up,30,30,Very High,Very High,Self,MATK Up,30,30,Very High,Very High,Self,,,,,,,,,Ultimate
+6030,Yuffie,Holiday Bell,Wind,620.0,Single Enemy,Mag,4,,Wind Resistance Down,30,10,Very High,Mid,Single Enemy,MDEF Down,30,10,Very High,Mid,Single Enemy,,,,,,,,,Featured
+6031,Yuffie,Mallet of Luck,None,250.0,All Enemies,Mag,4,,Fire Resistance Down,35,8,High,Mid,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Event
+6032,Yuffie,Conformer,None,2000.0,Single Enemy,Both,0,,PDEF Down,30,30,Very High,Very High,Single Enemy,MDEF Down,30,30,Very High,Very High,Single Enemy,UNKNOWN EFFECT: 16,,,,,Self,,,Ultimate
+6033,Yuffie,Bird of Prey,Water,940.0,Single Enemy,Phys,4,,UNKOWN SKILL STATUS CHANGE,,,,,Self,,,,,,,,,,,,,,,Limited
+6034,Yuffie,Risanautr,None,360.0,Single Enemy,Mag,4,,Earth Resistance Down,28,9,High,High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+6035,Yuffie,Watch of the Hunt,Lightning,540.0,All Enemies,Mag,4,,PATK Down,30,10,Very High,High,All Enemies,PDEF Up,20,6,Very High,High,All Allies,,,,,,,,,Featured
+6036,Yuffie,Rocker's Guitar,Ice,600.0,Single Enemy,Mag,4,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKNOWN EFFECT: 30,,,,,Self,,,,,,,,,Featured
+6037,Yuffie,Striped Moogle Flag,None,360.0,Single Enemy,Mag,4,,MATK Down,28,9,High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+6038,Yuffie,Uber 4-Point Shuriken,Earth,1340.0,Single Enemy,Mag,4,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,,,,,,,,,,,,,,,Limited
+6039,Yuffie,Fatum Ex Machina,None,1340.0,Single Enemy,Phys,4,,Status Ailment: Enfeeble,60,20,,,Single Enemy,PATK Down,60,20,Very High,Very High,Single Enemy,Earth Resistance Down,60,20,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,Single Enemy,Limited
+6040,Yuffie,Heirloom Brush,None,1340.0,Single Enemy,Mag,4,,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKNOWN EFFECT: 31,,,,,All Allies,UNKOWN ADDITIONAL EFFECT,Single Enemy,Limited
+6041,Yuffie,Winged Chakram,Lightning,1340.0,Single Enemy,Phys,4,,PDEF Down,25,8,Very High,High,Single Enemy,Lightning Damage Up,25,8,Very High,High,All Allies,UNKNOWN EFFECT: 16,,,,,All Allies,,,Featured
+6043,Yuffie,Rising Sun,None,2000.0,Single Enemy,Both,0,,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKNOWN EFFECT: 16,,,,,All Allies,,,,,,,,,Ultimate
+7001,Cait Sith,Yellow Megaphone,None,700.0,Single Enemy,Phys,5,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+7002,Cait Sith,Green Megaphone,Water,620.0,Single Enemy,Mag,4,,Water Resistance Down,30,10,Very High,Very High,Single Enemy,,,,,,,,,,,,,,,Featured
+7003,Cait Sith,Blue Megaphone,Ice,520.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+7004,Cait Sith,Red Megaphone,Fire,520.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+7005,Cait Sith,Crystal Megaphone,Heal,14.0,Single Ally,Mag,4,,PDEF Up,38,12,Very High,Very High,Single Ally,UNKOWN SKILL STATUS CHANGE,,,,,Single Ally,,,,,,,,,Featured
+7008,Cait Sith,Silver Megaphone,None,510.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,PDEF Down,30,10,Mid,Mid,Single Enemy,PDEF Down,30,10,Very High,Very High,Single Enemy,,,Featured
+7009,Cait Sith,Gold Megaphone,None,510.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,Fire Resistance Down,25,8,Very High,Very High,Single Enemy,MATK Down,60,20,Very High,Very High,Single Enemy,,,Featured
+7010,Cait Sith,Battle Trumpet,None,350.0,All Enemies,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,MATK Down,25,8,High,High,All Enemies,PATK Down,60,20,Very High,Very High,All Enemies,,,Featured
+7011,Cait Sith,Trumpet Shell,Heal,8.0,All Allies,Mag,4,,PATK Up,20,6,High,High,All Allies,MATK Up,20,6,High,High,All Allies,,,,,,,,,Event
+7014,Cait Sith,Marching Horn,Heal,14.0,Single Ally,Mag,4,,PATK Up,38,12,Very High,Very High,Single Ally,UNKOWN SKILL STATUS CHANGE,,,,,Single Ally,,,,,,,,,Featured
+7015,Cait Sith,Nocturne Horn,Wind,780.0,All Enemies,Mag,4,,Wind Resistance Down,25,8,Very High,High,All Enemies,MDEF Down,25,8,Very High,High,All Enemies,,,,,,,,,Featured
+7017,Cait Sith,Cool Cat's Megaphone,Lightning,710.0,Single Enemy,Phys,4,,Status Ailment: Enfeeble,60,12,,,Single Enemy,PATK Up,20,6,Very High,High,All Allies,,,,,,,,,Limited
+7019,Cait Sith,Witch's Broom,None,420.0,Single Enemy,Phys,3,,MDEF Down,24,8,High,High,Single Enemy,Lightning Resistance Down,24,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Featured
+7022,Cait Sith,Flower Vase,Heal,14.0,Single Ally,Mag,4,,MATK Up,38,12,Very High,Very High,Single Ally,UNKOWN SKILL STATUS CHANGE,,,,,Single Ally,UNKOWN SKILL STATUS CHANGE,,,,,Single Ally,,,Featured
+7023,Cait Sith,Catsmegaphone,Heal,14.0,Single Ally,Mag,4,,PATK Up,44,14,High,Mid,Single Ally,UNKOWN SKILL STATUS CHANGE,,,,,Single Ally,,,,,,,,,Event
+7024,Cait Sith,Humus Megaphone,Wind,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+7025,Cait Sith,Fireworks Megaphone,Ice,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+7026,Cait Sith,Alba Megaphone,None,390.0,All Enemies,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,,,,,,,Event
+7027,Cait Sith,Icebolt Megaphone,None,340.0,Single Enemy,Mag,4,,Ice Resistance Down,25,8,High,High,Single Enemy,Lightning Resistance Down,25,8,High,High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Grindable
+7028,Cait Sith,Ultimate Yellow Megaphone,Heal,5.0,Single Ally,Mag,0,,UNKNOWN EFFECT: 26,,,,,Single Ally,,,,,,,,,,,,,,,Ultimate
+7029,Cait Sith,Quina Megaphone,Heal,8.0,All Allies,Mag,4,,PATK Up,20,6,Very High,Very High,All Allies,PDEF Up,20,6,Very High,Very High,All Allies,,,,,,,,,Event
+7031,Cait Sith,Stilva Megaphone,None,250.0,All Enemies,Mag,4,,Ice Resistance Down,35,8,High,Mid,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Event
+7032,Cait Sith,HP Shout,None,1000.0,Single Enemy,Both,0,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,,,,,,,,,,,,,,,Ultimate
+7033,Cait Sith,Spirit Demon Megaphone,None,250.0,All Enemies,Mag,4,,PATK Down,35,8,High,Mid,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Event
+8001,Vincent,Transgressor,Wind,1340.0,Single Enemy,Phys,4,,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN SKILL STATUS CHANGE,,,,,Self,,,,,,,,,Featured
+8002,Vincent,Cath Palug,Ice,520.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+8003,Vincent,Gilded Age,Heal,14.0,Self,Mag,4,,UNKNOWN EFFECT: 26,,,,,Self,UNKOWN SKILL STATUS CHANGE,,,,,Self,,,,,,,,,Featured
+8004,Vincent,S1976C,None,540.0,All Enemies,Mag,4,,PATK Down,25,8,Very High,High,All Enemies,MATK Down,25,8,Very High,High,All Enemies,UNKNOWN EFFECT: 26,,,,,Self,UNKOWN ADDITIONAL EFFECT,All Enemies,Featured
+8005,Vincent,Shortbarrel,Wind,400.0,Single Enemy,Phys,4,,UNKNOWN EFFECT: 26,,,,,Self,,,,,,,,,,,,,,,Featured
+8007,Vincent,T03 Model N,None,300.0,Single Enemy,Phys,2,,UNKNOWN EFFECT: 26,,,,,Self,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+8008,Vincent,Sawed-Off GS,Heal,16.0,Self,Mag,4,,MATK Up,38,12,Very High,Very High,Self,MDEF Up,38,12,Very High,Very High,Self,UNKNOWN EFFECT: 26,,,,,Self,,,Featured
+8009,Vincent,Chiron,None,510.0,Single Enemy,Phys,4,,Earth Resistance Down,35,11,Very High,Very High,Single Enemy,UNKNOWN EFFECT: 26,,,,,Self,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Featured
+8010,Vincent,Double Stem E,None,520.0,All Enemies,Mag,4,,UNKNOWN EFFECT: 26,,,,,Self,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,Status Ailment: Poison,25,6,,,All Enemies,,,Featured
+8012,Vincent,White Dog,Earth,940.0,Single Enemy,Mag,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,UNKNOWN EFFECT: 26,,,,,Self,,,,,,,,,Limited
+8013,Vincent,Kugelblitz,None,750.0,All Enemies,Mag,4,,MDEF Down,35,11,Very High,Very High,All Enemies,Earth Damage Up,45,9,Very High,Very High,Self,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,UNKNOWN EFFECT: 26,Self,Featured
+8014,Vincent,Silver Rifle,None,700.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,UNKNOWN EFFECT: 26,,,,,Self,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Event
+8015,Vincent,Hugin & Munin,None,1300.0,Single Enemy,Mag,4,,UNKNOWN EFFECT: 26,,,,,Self,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+8016,Vincent,Crow Familiar,Lightning,940.0,Single Enemy,Mag,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,UNKNOWN EFFECT: 26,,,,,Self,,,,,,,,,Featured
+8017,Vincent,Quicksilver,None,750.0,Single Enemy,Phys,4,,UNKNOWN EFFECT: 26,,,,,Self,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+8018,Vincent,Icebolt Shooter,None,340.0,Single Enemy,Mag,4,,Ice Resistance Down,25,8,High,High,Single Enemy,Lightning Resistance Down,25,8,High,High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Grindable
+8019,Vincent,Ultimate Quicksilver,None,1000.0,Single Enemy,Both,0,,UNKNOWN EFFECT: 26,,,,,Self,,,,,,,,,,,,,,,Ultimate
+8020,Vincent,Rhad Gun,Heal,14.0,Single Ally,Mag,4,,PATK Up,44,14,High,Mid,Single Ally,UNKOWN SKILL STATUS CHANGE,,,,,Single Ally,,,,,,,,,Event
+8021,Vincent,Eligor Gun,Ice,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+8022,Vincent,Holiday Garm,Fire,940.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,UNKNOWN EFFECT: 26,,,,,Self,,,,,,,,,Featured
+8023,Vincent,Noblesse Automatic,None,360.0,Single Enemy,Mag,4,,PATK Down,28,9,High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+8024,Vincent,Gun of the Worthy,Ice,1120.0,Single Enemy,Phys,4,,Status Ailment: Ice Weakness,150,0,,+50.0%,Single Enemy,UNKNOWN EFFECT: 26,,,,,Self,,,,,,,,,Limited
+8025,Vincent,Death Penalty,None,2000.0,Single Enemy,Both,0,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKNOWN EFFECT: 26,,,,,Self,,,Ultimate
+8026,Vincent,Electro Peashooter,Lightning,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+8027,Vincent,Galian Roar,None,800.0,Single Enemy,Mag,3,,Status Ailment: Enfeeble,60,12,,,Single Enemy,MDEF Down,35,11,Very High,High,Single Enemy,MATK Up,35,11,Very High,High,All Allies,UNKOWN ADDITIONAL EFFECT,Single Enemy,Featured
+8029,Vincent,Fomalhaut,None,2000.0,Single Enemy,Both,0,,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKNOWN EFFECT: 26,Self,Ultimate
+9001,Cid,Spear,None,750.0,Single Enemy,Phys,4,,Status Ailment: Stop,8,3,,,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+9002,Cid,Slash Lance,None,540.0,All Enemies,Phys,4,,PDEF Up,20,6,Very High,Very High,All Allies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Featured
+9003,Cid,Trident,None,620.0,Single Enemy,Phys,4,,Status Ailment: Poison,30,7,,,Single Enemy,Status Ailment: Stop,5,3,,,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Featured
+9004,Cid,Pole Axe,None,540.0,All Enemies,Phys,4,,PATK Down,25,8,Very High,High,All Enemies,MATK Down,25,8,Very High,High,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,Featured
+9005,Cid,Partisan,Wind,520.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+9006,Cid,Viper Halberd,Heal,16.0,Self,Mag,4,,PDEF Up,38,12,Very High,Very High,Self,MDEF Up,38,12,Very High,Very High,Self,,,,,,,,,Featured
+9008,Cid,Radiant Lance,None,750.0,Single Enemy,Phys,4,,UNKNOWN EFFECT: 30,,,,,Self,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+9010,Cid,Dragoon Lance,Lightning,670.0,All Enemies,Mag,4,,Lightning Resistance Down,30,10,Very High,High,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Featured
+9011,Cid,Scimitar,Heal,14.0,Single Ally,Mag,4,,PATK Up,30,10,Very High,High,Single Ally,MATK Up,30,10,Very High,High,Single Ally,Ice Damage Up,30,10,Very High,High,Single Ally,,,Featured
+9012,Cid,Flayer,None,420.0,Single Enemy,Phys,3,◊ Diamond,Status Ailment: Stop,5,3,,,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+9015,Cid,Rocket Lance,None,620.0,Single Enemy,Mag,4,,Status Ailment: Enfeeble,70,14,,,Single Enemy,Ice Resistance Down,35,11,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Limited
+9016,Cid,Mop,None,540.0,All Enemies,Phys,4,,Status Ailment: Stop,5,3,,,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Event
+9018,Cid,Ultimate Spear,Heal,5.0,Single Ally,Mag,0,,UNKNOWN EFFECT: 26,,,,,Single Ally,PATK Up,30,30,Very High,Very High,Single Ally,,,,,,,,,Ultimate
+9019,Cid,Odin Spear,Wind,450.0,Single Enemy,Mag,4,,,,,,,,,,,,,,,,,,,,,,Grindable
+9020,Cid,Lance of the Hunt,Ice,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+9024,Cid,Captain's Spear,None,360.0,Single Enemy,Mag,4,,PDEF Down,28,9,High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+9025,Cid,Venus Gospel,None,2000.0,Single Enemy,Both,0,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKNOWN EFFECT: 16,,,,,All Allies,,,Ultimate
+9026,Cid,Antler Pike,Lightning,920.0,Single Enemy,Phys,4,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKNOWN EFFECT: 16,,,,,All Allies,,,,,,,,,Featured
+9028,Cid,Patissier's Spear,Ice,920.0,Single Enemy,Phys,4,,PATK Down,30,10,Very High,Very High,Single Enemy,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,,,,,,,,,Featured
+20001,Zack,Type-99 Longsword,None,750.0,Single Enemy,Phys,4,◯ Circle,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+20002,Zack,Buster Sword Origin,None,860.0,Single Enemy,Phys,4,,,,,,,,,,,,,,,,,,,,,,Event
+20003,Zack,Beach Parasol,None,560.0,Single Enemy,Mag,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Event
+20004,Zack,Enhance Sword (Z),Heal,143.0,Single Ally,Mag,5,,,,,,,,,,,,,,,,,,,,,,Featured
+20005,Zack,Defender,Heal,14.0,Single Ally,Mag,4,,PDEF Up,38,12,Very High,Very High,Single Ally,UNKOWN SKILL STATUS CHANGE,,,,,Single Ally,,,,,,,,,Featured
+20006,Zack,Crystal Sword (Z),Fire,520.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+20007,Zack,Falchion,Wind,520.0,All Enemies,Phys,4,,,,,,,,,,,,,,,,,,,,,,Featured
+20008,Zack,Zweihander,None,940.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+20009,Zack,Arc Sword,None,510.0,Single Enemy,Mag,4,,MDEF Down,25,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+20010,Zack,Cutlass,None,510.0,Single Enemy,Phys,4,,PDEF Down,25,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+20011,Zack,Ceremonial Sword (Z),None,1400.0,Single Enemy,Phys,5,,PATK Up,35,7,Very High,Very High,Self,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+20012,Zack,Battering Sword,Wind,1340.0,Single Enemy,Mag,4,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,,,,,,,,,,,,,,,Featured
+20013,Zack,Bouquet,None,400.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Event
+20014,Zack,Pressure Ridge,Ice,620.0,Single Enemy,Phys,4,,Ice Resistance Down,30,10,Very High,Very High,Single Enemy,,,,,,,,,,,,,,,Featured
+20015,Zack,Iron Greatsword,None,360.0,Single Enemy,Mag,4,,PDEF Down,28,9,High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+20016,Zack,Ifrit's Sword,Fire,450.0,Single Enemy,Mag,4,,,,,,,,,,,,,,,,,,,,,,Grindable
+20018,Zack,Twinkling Star,None,540.0,Single Enemy,Phys,4,,MATK Down,30,10,Very High,High,Single Enemy,PDEF Down,30,10,Very High,High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Featured
+20019,Zack,Black Whiskers,None,540.0,Single Enemy,Phys,4,,PDEF Down,30,10,High,High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,Water Resistance Down,30,10,Very High,High,Single Enemy,,,Featured
+20020,Zack,Stream Guard,Fire,1020.0,Single Enemy,Mag,4,,MDEF Down,25,8,Very High,High,Single Enemy,MATK Up,25,8,Very High,High,All Allies,,,,,,,,,Limited
+20023,Zack,Zinogre Blade,Lightning,940.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Limited
+20024,Zack,Carrot Sword,Fire,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+20025,Zack,Alba Blade,None,390.0,All Enemies,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,,,,,,,Event
+20026,Zack,Ultimate Type-99 Longsword,None,1000.0,Single Enemy,Both,0,,PDEF Down,30,30,Very High,Very High,Single Enemy,MDEF Down,30,30,Very High,Very High,Single Enemy,,,,,,,,,Ultimate
+20027,Zack,Beatrix Sword,Wind,940.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Event
+20028,Zack,Durandal,None,2000.0,Single Enemy,Both,0,,UNKNOWN EFFECT: 16,,,,,Self,PATK Up,30,30,Very High,Very High,Self,MATK Up,30,30,Very High,Very High,Self,,,Ultimate
+20029,Zack,White Tree,Wind,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+20031,Zack,Sword of the Hunt,Ice,800.0,All Enemies,Mag,4,,UNKOWN SKILL STATUS CHANGE,,,,,Self,,,,,,,,,,,,,,,Featured
+20032,Zack,Zenithian Sword,Fire,1120.0,Single Enemy,Phys,4,,Status Ailment: Fire Weakness,60,12,,+30.0%,Single Enemy,MDEF Up,30,10,Very High,High,All Allies,,,,,,,,,Limited
+20033,Zack,Buster Sword Origin,None,860.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Event
+20034,Zack,Surfer Blade,None,740.0,All Enemies,Phys,4,,PDEF Down,40,13,Very High,Very High,All Enemies,PATK Up,40,13,Very High,Very High,All Allies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,Featured
+20035,Zack,Magatsuchi Blade,None,360.0,Single Enemy,Mag,4,,MATK Down,28,9,High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+20036,Zack,Virtuous Contract,None,250.0,All Enemies,Mag,4,,Earth Resistance Down,35,8,High,Mid,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Event
+20037,Zack,Rousing Arc Sword,Lightning,900.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Event
+49001,Sephiroth,Nameless,None,240.0,Single Enemy,Phys,2,,MDEF Down,14,4,High,High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+49002,Sephiroth,Edged Wings,Ice,800.0,Single Enemy,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+49003,Sephiroth,Glaireid,None,650.0,All Enemies,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,,,,,,,Featured
+49004,Sephiroth,Aonibi,Heal,16.0,Self,Mag,4,,MATK Up,44,14,Very High,Very High,Self,UNKOWN SKILL STATUS CHANGE,,,,,Self,,,,,,,,,Featured
+49005,Sephiroth,Northern Lights,None,510.0,Single Enemy,Phys,4,,PATK Down,25,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+49006,Sephiroth,Prototype Crimson Blade,Fire,520.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+49007,Sephiroth,CC Alloy Sword,Lightning,520.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+49008,Sephiroth,Mythril Type-0 Katana,Heal,16.0,Self,Phys,4,,PDEF Up,44,14,Very High,Very High,Self,UNKOWN SKILL STATUS CHANGE,,,,,Self,,,,,,,,,Featured
+49009,Sephiroth,Shinra Blade: Model I,None,940.0,Single Enemy,Mag,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+49010,Sephiroth,Tempest,Water,700.0,Single Enemy,Phys,4,,Water Resistance Down,30,10,Very High,Very High,Single Enemy,,,,,,,,,,,,,,,Featured
+49011,Sephiroth,Shinra Military Sword,None,420.0,Single Enemy,Phys,3,,PATK Up,35,7,High,High,Self,Wind Damage Up,35,7,Very High,Very High,Self,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Featured
+49012,Sephiroth,Torn Wing,Heal,14.0,Single Ally,Mag,4,,PDEF Up,38,12,Very High,High,Single Ally,,,,,,,,,,,,,,,Event
+49013,Sephiroth,World Tree Bough,None,700.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+49015,Sephiroth,Dark Heavens,Wind,800.0,Single Enemy,Phys,4,,,,,,,,,,,,,,,,,,,,,,Featured
+49016,Sephiroth,Kuja's Spirit Blade,None,540.0,All Enemies,Mag,4,,MATK Down,30,10,Very High,High,All Enemies,PATK Down,30,10,Very High,High,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,Event
+49017,Sephiroth,Radiant Edge,None,540.0,Single Enemy,Phys,4,,PDEF Down,30,10,High,High,Single Enemy,Fire Resistance Down,30,10,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Featured
+49018,Sephiroth,Protector's Blade,None,900.0,All Enemies,Mag,4,◊ Diamond,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,MDEF Down,40,13,Very High,Very High,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,Limited
+49019,Sephiroth,Flame Dragon Blade,None,360.0,Single Enemy,Mag,4,,Fire Resistance Down,28,9,High,High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Grindable
+49020,Sephiroth,Ashura,Fire,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+49022,Sephiroth,Humus Saber,None,240.0,All Enemies,Mag,4,,Wind Resistance Down,35,8,High,Mid,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Event
+49023,Sephiroth,Shinra Wyvern Blade,None,250.0,All Enemies,Mag,4,,Fire Resistance Down,35,8,High,Mid,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Event
+49024,Sephiroth,Blue Bramble,Earth,700.0,Single Enemy,Mag,4,,Earth Resistance Down,30,10,Very High,Very High,Single Enemy,,,,,,,,,,,,,,,Featured
+49026,Sephiroth,Ultimate Nameless,None,1500.0,Single Enemy,Both,0,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Ultimate
+49027,Sephiroth,Genji Blade,None,2000.0,Single Enemy,Both,0,,PATK Up,30,30,Extreme,Extreme,Self,MATK Up,30,30,Extreme,Extreme,Self,,,,,,,,,Ultimate
+49028,Sephiroth,Edgar's Coiled Blade,Water,940.0,Single Enemy,Mag,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Limited
+49029,Sephiroth,Wintercrest Blade,Wind,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+49030,Sephiroth,Blade of the Worthy,None,1010.0,All Enemies,Mag,4,,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,Limited
+49031,Sephiroth,Withering Blaze,Fire,700.0,Single Enemy,Mag,4,,Fire Resistance Down,30,10,Very High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+49032,Sephiroth,Serrated Remiges,Wind,1120.0,Single Enemy,Mag,4,,Status Ailment: Enfeeble,30,10,,,Single Enemy,,,,,,,,,,,,,,,Featured
+49033,Sephiroth,Pandemonic Sword,Lightning,800.0,All Enemies,Mag,4,,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,PATK Down,30,10,Very High,High,All Enemies,MATK Up,30,10,Very High,High,All Allies,,,Limited
+49034,Sephiroth,Folding Ruler,None,250.0,All Enemies,Mag,4,,PDEF Down,35,8,High,Mid,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Event
+49035,Sephiroth,Sōba,Ice,1340.0,Single Enemy,Phys,4,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,,,,,,,,,,,,,,,Limited
+49037,Sephiroth,Overture,Water,1340.0,Single Enemy,Phys,4,,PDEF Down,25,8,Very High,High,Single Enemy,Water Damage Up,25,8,Very High,High,All Allies,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,,,Limited
+49039,Sephiroth,Phoenix Odachi,None,1340.0,Single Enemy,Mag,4,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKNOWN EFFECT: 16,,,,,Self,UNKOWN ADDITIONAL EFFECT,Single Enemy,Limited
+50001,Glenn,Personal Style,None,940.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+50002,Glenn,Crewkicker,Fire,750.0,Single Enemy,Phys,4,,,,,,,,,,,,,,,,,,,,,,Featured
+50003,Glenn,Jiggy Fam,Earth,520.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+50004,Glenn,Hardcore Squad,Heal,9.0,All Allies,Mag,5,,PDEF Up,14,4,High,High,All Allies,MDEF Up,14,4,High,High,All Allies,,,,,,,,,Featured
+50005,Glenn,Rest in Peace,None,750.0,Single Enemy,Phys,4,◊ Diamond,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+50006,Glenn,Slay the Day,None,420.0,Single Enemy,Phys,3,,PDEF Down,24,8,High,High,Single Enemy,Water Damage Up,35,7,Very High,Very High,Self,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Featured
+50007,Glenn,Ultimatic,None,1040.0,Single Enemy,Phys,4,◯ Circle,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+50008,Glenn,Piece of Cake,None,510.0,Single Enemy,Phys,4,,PDEF Down,25,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+50010,Glenn,Shockbuster,Lightning,520.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+50011,Glenn,Apology in Hell,None,940.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+50012,Glenn,Pirate's Glaive,None,800.0,All Enemies,Phys,4,,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKOWN ADDITIONAL EFFECT,All Enemies,Featured
+50013,Glenn,Blade of Ruin,Ice,940.0,Single Enemy,Phys,4,,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKNOWN EFFECT: 30,,,,,Self,,,,,,,,,Featured
+50014,Glenn,Squeaky Hammer,None,700.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Event
+50015,Glenn,Inferno Grave,Fire,450.0,Single Enemy,Mag,4,,,,,,,,,,,,,,,,,,,,,,Grindable
+50016,Glenn,Pumpkin Lamppost,Heal,14.0,Single Ally,Mag,4,,PATK Up,38,12,Very High,Very High,Single Ally,UNKOWN SKILL STATUS CHANGE,,,,,Single Ally,,,,,,,,,Featured
+50018,Glenn,Thousand Waves,None,560.0,Single Enemy,Mag,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Event
+50019,Glenn,Steiner's Blade,None,360.0,Single Enemy,Phys,4,,PATK Down,28,9,High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+50020,Glenn,Stream Slasher,Water,900.0,Single Enemy,Phys,4,◊ Diamond,PDEF Down,25,8,Very High,Very High,Single Enemy,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,,,,,,,,,Limited
+50021,Glenn,Best Wishes,None,360.0,Single Enemy,Mag,4,,PDEF Down,28,9,High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+50022,Glenn,Radglaive,Water,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+50023,Glenn,Silver Sol Buster,Fire,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+50024,Glenn,Ultimate Personal Style,Heal,5.0,All Allies,Mag,0,,MDEF Up,20,20,Very High,Very High,All Allies,,,,,,,,,,,,,,,Ultimate
+50026,Glenn,Stilva Glaive,None,250.0,All Enemies,Mag,4,,Ice Resistance Down,35,8,High,Mid,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Event
+50027,Glenn,Ogrekiller,None,2000.0,Single Enemy,Both,0,,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN SKILL STATUS CHANGE,Self,Ultimate
+50029,Glenn,Set Square,None,250.0,All Enemies,Mag,4,,PDEF Down,35,8,High,Mid,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Event
+50030,Glenn,Desperado Glaive,Earth,620.0,Single Enemy,Phys,3,,PATK Down,30,10,Very High,Very High,Single Enemy,Earth Resistance Down,30,10,Very High,Very High,Single Enemy,UNKOWN SKILL STATUS CHANGE,,,,,Self,,,Featured
+50031,Glenn,Snow's Bardiche,Ice,920.0,Single Enemy,Mag,4,,Status Ailment: Enfeeble,60,12,,,Single Enemy,MATK Down,35,11,Very High,High,Single Enemy,MDEF Up,35,11,Very High,High,All Allies,,,Limited
+51001,Matt,Broadsword: Axis,None,900.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+51002,Matt,Orthodox Raven,Water,540.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+51003,Matt,Absolute Royal,Ice,540.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+51004,Matt,Prime Number,Heal,75.0,All Allies,Mag,5,,,,,,,,,,,,,,,,,,,,,,Featured
+51005,Matt,Espee Rapiere Next-G,Heal,150.0,Single Ally,Mag,5,,,,,,,,,,,,,,,,,,,,,,Featured
+51006,Matt,Core Defender,Heal,8.0,All Allies,Mag,4,,MDEF Up,14,4,Very High,Very High,All Allies,,,,,,,,,,,,,,,Featured
+51007,Matt,Centipede,Heal,60.0,All Allies,Mag,5,,PDEF Up,14,4,Very High,High,All Allies,,,,,,,,,,,,,,,Featured
+51008,Matt,Stingray,None,540.0,Single Enemy,Mag,4,,MDEF Down,25,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+51009,Matt,Killer Hornet,None,720.0,Single Enemy,Phys,4,◊ Diamond,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+51010,Matt,Bramble Spine,Heal,14.0,Single Ally,Mag,4,,PATK Up,38,12,Very High,Very High,Single Ally,UNKOWN SKILL STATUS CHANGE,,,,,Single Ally,,,,,,,,,Featured
+51012,Matt,Syringe Rapier,Heal,8.0,All Allies,Mag,4,,MDEF Up,14,4,Very High,High,All Allies,PDEF Up,14,4,Very High,High,All Allies,,,,,,,,,Featured
+51013,Matt,Foam Sword,None,620.0,Single Enemy,Phys,4,,UNKNOWN EFFECT: 6,,,,,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+51015,Matt,Slick Beetle,None,480.0,Single Enemy,Phys,4,,PATK Down,25,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+51016,Matt,Bahamut Rapier,None,450.0,Single Enemy,Mag,4,◊ Diamond,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Grindable
+51017,Matt,Holiday Cane,Earth,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+51018,Matt,Giant Fork,Heal,14.0,Single Ally,Mag,4,,PATK Up,44,14,High,Mid,Single Ally,UNKOWN SKILL STATUS CHANGE,,,,,Single Ally,,,,,,,,,Event
+51020,Matt,Humus Rapier,Wind,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+51021,Matt,Nautilus Spiral,None,420.0,Single Enemy,Phys,3,◊ Diamond,Ice Resistance Down,24,8,Very High,Very High,Single Enemy,Lightning Resistance Down,24,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Featured
+51022,Matt,Firefish,Fire,450.0,Single Enemy,Phys,4,,,,,,,,,,,,,,,,,,,,,,Event
+51023,Matt,Deroplatys,Heal,48.0,All Allies,Mag,4,,PATK Up,20,6,Very High,High,All Allies,MDEF Up,20,6,Very High,Very High,All Allies,,,,,,,,,Limited
+51024,Matt,Ultimate Broadsword: Axis,Heal,11.0,All Allies,Mag,0,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKNOWN EFFECT: 6,,,,,All Allies,,,,,,,,,Ultimate
+51025,Matt,Candle Rapier,Lightning,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+51026,Matt,Luminary Sword,Heal,8.0,All Allies,Mag,4,,MATK Up,30,10,Very High,Mid,All Allies,Fire Damage Up,30,10,Very High,Mid,All Allies,,,,,,,,,Featured
+51027,Matt,Hrotti,None,360.0,Single Enemy,Mag,4,,Earth Resistance Down,28,9,High,High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+51029,Matt,Gladius,Heal,41.0,All Allies,Mag,0,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKOWN SKILL STATUS CHANGE,,,,,Self,,,,,,,,,Ultimate
+51031,Matt,Dragontail Sword,None,360.0,Single Enemy,Mag,4,,PATK Down,28,9,High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+51032,Matt,Desperado Rapier,Heal,60.0,All Allies,Mag,5,,Lightning Resistance Up,30,10,Very High,High,All Allies,Wind Resistance Up,30,10,Very High,High,All Allies,PATK Up,30,10,Very High,High,All Allies,,,Featured
+52001,Lucia,V39,None,690.0,All Enemies,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,,,,,,,Featured
+52002,Lucia,Pulse Gun,Wind,500.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+52003,Lucia,Serpent Eater,Water,790.0,Single Enemy,Phys,4,,,,,,,,,,,,,,,,,,,,,,Featured
+52004,Lucia,Thunderbird,Lightning,540.0,Single Enemy,Mag,4,,MDEF Down,30,10,Very High,High,Single Enemy,,,,,,,,,,,,,,,Featured
+52005,Lucia,Tranquilizer Gun,Heal,165.0,Self,Mag,5,,UNKNOWN EFFECT: 6,,,,,Self,,,,,,,,,,,,,,,Featured
+52006,Lucia,SSR1976,Heal,14.0,Single Ally,Mag,4,,MDEF Up,38,12,Very High,Very High,Single Ally,,,,,,,,,,,,,,,Featured
+52007,Lucia,Mad Minute,None,540.0,Single Enemy,Phys,4,,MATK Down,25,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+52009,Lucia,Bald Eagle,None,540.0,Single Enemy,Phys,4,,Ice Resistance Down,25,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+52010,Lucia,Black Rifle,None,790.0,Single Enemy,Phys,4,,Status Ailment: Silence,5,2,,,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Featured
+52013,Lucia,Nightjar,None,420.0,Single Enemy,Mag,3,◊ Diamond,PDEF Down,24,8,Very High,Very High,Single Enemy,MDEF Down,24,8,High,High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Featured
+52014,Lucia,Rubber Band Gun,None,620.0,Single Enemy,Phys,4,,UNKNOWN EFFECT: 30,,,,,Self,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+52015,Lucia,Featherscatter,None,360.0,Single Enemy,Mag,4,,PATK Down,28,9,High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+52016,Lucia,Barn Swallow,None,790.0,Single Enemy,Phys,4,◊ Diamond,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,,,,,,,Featured
+52017,Lucia,Pumpkin Blaster,Heal,14.0,Single Ally,Mag,4,,MDEF Up,38,12,Very High,High,Single Ally,,,,,,,,,,,,,,,Event
+52019,Lucia,Rifle of Levin,Lightning,420.0,Single Enemy,Mag,4,,,,,,,,,,,,,,,,,,,,,,Grindable
+52020,Lucia,Holiday Revolver,Earth,800.0,Single Enemy,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+52021,Lucia,Vivi's Magical Gun,Fire,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+52022,Lucia,Rose Musket,Fire,620.0,Single Enemy,Mag,4,,MDEF Down,30,10,Very High,Very High,Single Enemy,,,,,,,,,,,,,,,Featured
+52023,Lucia,Turks' Rifle,None,360.0,Single Enemy,Mag,4,,PDEF Down,28,9,High,Mid,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+52025,Lucia,Marine Shooter,None,560.0,All Enemies,Phys,4,,PATK Down,30,10,Very High,High,All Enemies,Fire Resistance Down,30,10,Very High,Very High,All Enemies,,,,,,,,,Featured
+52026,Lucia,Ultimate V39,Heal,5.0,Single Ally,Mag,0,,PATK Up,30,30,Very High,Very High,Single Ally,MATK Up,30,30,Very High,Very High,Single Ally,,,,,,,,,Ultimate
+52027,Lucia,Eligor Rifle,Ice,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+52029,Lucia,Rifle of the Hunt,Earth,620.0,Single Enemy,Phys,4,,Earth Resistance Down,30,10,Very High,High,Single Enemy,PDEF Down,30,10,Very High,High,Single Enemy,,,,,,,,,Featured
+52030,Lucia,Spirit Demon Rifle,None,250.0,All Enemies,Mag,4,,PATK Down,35,8,High,Mid,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Event
+52031,Lucia,Shinra Ceremonial Rifle,Fire,840.0,Single Enemy,Phys,4,,Status Ailment: Enfeeble,60,12,,,Single Enemy,Fire Damage Up,20,6,Very High,High,All Allies,UNKNOWN EFFECT: 16,,,,,All Allies,,,Limited
+52032,Lucia,Aldebaran,None,2000.0,Single Enemy,Both,0,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,,,Ultimate
+52034,Lucia,Desperado Rifle,Ice,780.0,All Enemies,Phys,4,,PDEF Down,20,6,Very High,High,All Enemies,Ice Damage Up,20,6,Very High,High,All Allies,,,,,,,,,Featured
+56001,Angeal,Type-90 Longsword,None,750.0,Single Enemy,Phys,4,,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Featured
+56002,Angeal,Greatsword (A),None,540.0,All Enemies,Phys,4,,PDEF Down,30,10,Very High,Very High,All Enemies,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,Featured
+56003,Angeal,Type-91 Two-Hander,None,420.0,Single Enemy,Mag,3,◊ Diamond,PATK Down,24,8,Very High,High,Single Enemy,MATK Down,24,8,High,High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Featured
+56004,Angeal,Shinra Greatsword: Model I,None,620.0,Single Enemy,Phys,4,,Earth Resistance Down,30,10,Very High,Very High,Single Enemy,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Featured
+56005,Angeal,CC Alloy Greatsword,Lightning,900.0,Single Enemy,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+56006,Angeal,Stalwart Integrity,Heal,8.0,All Allies,Mag,4,,PDEF Up,20,6,Very High,Very High,All Allies,PATK Up,20,6,Very High,Very High,All Allies,,,,,,,,,Featured
+56007,Angeal,Innocent Warrior,Fire,520.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Featured
+56008,Angeal,Gargantuan Monolith,Heal,16.0,Self,Phys,4,,UNKOWN SKILL STATUS CHANGE,,,,,Self,MDEF Up,44,14,Very High,Very High,Self,,,,,,,,,Featured
+56009,Angeal,Sequoiadendron,Earth,600.0,Single Enemy,Phys,4,,,,,,,,,,,,,,,,,,,,,,Featured
+56010,Angeal,Tranquility,Water,940.0,Single Enemy,Phys,4,,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN SKILL STATUS CHANGE,,,,,Self,,,,,,,,,Limited
+56011,Angeal,Orchard Shovel,None,490.0,Single Enemy,Phys,4,,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Event
+56012,Angeal,Ultimate Type-90 Longsword,Heal,5.0,All Allies,Mag,0,,PDEF Up,20,20,Very High,High,All Allies,MDEF Up,20,20,Very High,High,All Allies,,,,,,,,,Ultimate
+56013,Angeal,Cyan's Blade,Ice,450.0,Single Enemy,Phys,4,,,,,,,,,,,,,,,,,,,,,,Event
+56014,Angeal,Mythril Slasher,Water,580.0,All Enemies,Mag,4,,Water Resistance Down,30,10,Very High,High,All Enemies,UNKOWN SKILL STATUS CHANGE,,,,,Self,,,,,,,,,Featured
+56015,Angeal,Volcanic Heat,Fire,620.0,Single Enemy,Phys,4,,Fire Resistance Down,30,10,Very High,Very High,Single Enemy,UNKOWN SKILL STATUS CHANGE,,,,,Self,,,,,,,,,Featured
+56016,Angeal,Titan Blade,Earth,450.0,Single Enemy,Mag,4,,,,,,,,,,,,,,,,,,,,,,Grindable
+56017,Angeal,Turks' Blade,None,250.0,All Enemies,Mag,4,,PATK Down,35,8,High,Mid,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,,,,,,,Event
+56019,Angeal,Greatsword of the Worthy,Heal,8.0,All Allies,Mag,4,,PDEF Up,20,6,Very High,High,All Allies,MDEF Up,20,6,Very High,High,All Allies,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,,,Limited
+56020,Angeal,Blade of the Hunt,Ice,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+56021,Angeal,Penance Blade,Fire,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+56022,Angeal,Inflatable Buster Sword,None,640.0,All Enemies,Phys,4,,Status Ailment: Water Weakness,60,12,,+30.0%,All Enemies,UNKOWN SKILL STATUS CHANGE,,,,,Self,PDEF Up,25,8,Very High,Very High,All Allies,UNKOWN ADDITIONAL EFFECT,All Enemies,Featured
+56023,Angeal,Rhad Blade,Water,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
+56025,Angeal,Balmung,None,2000.0,Single Enemy,Both,0,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKOWN SKILL STATUS CHANGE,,,,,Self,,,Ultimate
+56026,Angeal,Ghost Ensis,Earth,780.0,All Enemies,Mag,4,,Earth Resistance Down,25,8,Very High,High,All Enemies,Earth Damage Up,25,8,Very High,High,All Allies,,,,,,,,,Featured
+56027,Angeal,Master Tonberry's Blade,Heal,14.0,Single Ally,Mag,4,,PATK Up,44,14,High,Mid,Single Ally,UNKOWN SKILL STATUS CHANGE,,,,,Single Ally,,,,,,,,,Event
+56028,Angeal,Lightning's Sword,None,700.0,Single Enemy,Phys,4,,PATK Down,25,8,High,High,Single Enemy,PDEF Up,25,8,High,High,All Allies,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,Event
+56029,Angeal,Sea Dragon Greatsword,None,360.0,Single Enemy,Mag,4,,Water Resistance Down,28,9,High,High,Single Enemy,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,,,,,,,,,Grindable
+60001,Sephiroth (Original),Masamune,None,800.0,Single Enemy,Phys,4,,UNKOWN ADDITIONAL EFFECT,,,,,Single Enemy,PDEF Down,25,8,Very High,Very High,Single Enemy,MDEF Down,25,8,Very High,Very High,Single Enemy,UNKOWN ADDITIONAL EFFECT,Single Enemy,Featured
+60002,Sephiroth (Original),Shiranui,Fire,1340.0,Single Enemy,Mag,4,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,,,,,,,,,,,,,,,Limited
+60003,Sephiroth (Original),Osafune,Water,1340.0,Single Enemy,Mag,4,,MATK Up,25,8,Very High,High,All Allies,,,,,,,,,,,,,,,Featured
+60004,Sephiroth (Original),Kotetsu,None,540.0,All Enemies,Phys,4,,PATK Down,40,13,Very High,Very High,All Enemies,MATK Down,40,13,Very High,Very High,All Enemies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,,,Featured
+60005,Sephiroth (Original),Kikuichimonji,None,1340.0,All Enemies,Mag,4,,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKOWN ADDITIONAL EFFECT,,,,,All Enemies,UNKOWN SKILL STATUS CHANGE,Self,Limited
+60006,Sephiroth (Original),Ultimate Masamune,None,1000.0,Single Enemy,Both,0,,MDEF Down,30,10,Very High,Very High,Single Enemy,MATK Up,30,10,Very High,Very High,Self,,,,,,,,,Ultimate
+60007,Sephiroth (Original),Muramasa,None,1340.0,All Enemies,Mag,4,,Status Ailment: Single-Tgt. Phys. Dmg. Rcvd. Up,60,20,,+50.0%,All Enemies,Status Ailment: Single-Tgt. Mat. Dmg. Rcvd. Up,60,20,,+50.0%,All Enemies,UNKOWN SKILL STATUS CHANGE,,,,,All Allies,UNKOWN ADDITIONAL EFFECT,All Enemies,Limited
+60008,Sephiroth (Original),Heaven's Cloud,None,2000.0,Single Enemy,Both,0,,UNKOWN SKILL STATUS CHANGE,,,,,Self,UNKOWN SKILL STATUS CHANGE,,,,,Self,,,,,,,,,Ultimate
+60009,Sephiroth (Original),Divine Steed Blade,Earth,290.0,All Enemies,Mag,4,,,,,,,,,,,,,,,,,,,,,,Event
