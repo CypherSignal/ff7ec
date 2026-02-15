@@ -34,12 +34,12 @@ Describes data for each active ability.
     - 3: Both
 - ElementType: int (1-7)
     - 1: Non-El
-    - 2:
-    - 3:
-    - 4:
-    - 5:
-    - 6:
-    - 7:
+    - 2: Fire
+    - 3: Ice
+    - 4: Lightning
+    - 5: Earth
+    - 6: Water
+    - 7: Wind
 - SkillEffectGroupId: SkillEffectGroup
 
 ### SkillEffectGroup
@@ -56,7 +56,7 @@ This is how one ability can do multiple things, e.g. "Apply damage" and "Apply s
 - TargetType: int 1-5
     - Must be self/other allies/all allies/single-target/aoe
 
-- SkillEffectType: int 1-7
+- SkillEffectType: int 
     - Defines what kind of effect this is
     - 1: SkillDamageEffect
     - 2: SkillStatusConditionEffect

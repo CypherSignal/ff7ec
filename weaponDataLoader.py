@@ -104,6 +104,7 @@ skill_weapon_data = load_masterdata_json("SkillWeapon.json")
 skill_active_data = load_masterdata_json("SkillActive.json")
 skill_notes_set_data = load_masterdata_json("SkillNotesSet.json")
 skill_notes_data = load_masterdata_json("SkillNotes.json")
+skill_effect_data = load_masterdata_json("SkillEffect.json")
 skill_effectgroup_data = load_skill_effect_group_json()
 weapon_upgrade_skill_data = load_weapon_upgrade_skill_json()
 
@@ -126,6 +127,7 @@ weapon_gacha_types = [
 
 # damage-types for weapon ability (for skillbase.json)
 attack_types = [
+    "UNKNOWN",
     "Phys",
     "Mag",
     "Both",
@@ -133,6 +135,7 @@ attack_types = [
 
 # element-types for weapon ability (for skillbase.json)
 element_types = [
+    "UNKNOWN",
     "None",
     "Fire",
     "Ice",
@@ -140,6 +143,17 @@ element_types = [
     "Earth",
     "Water",
     "Wind",
+]
+
+target_types = [
+    "UNKNOWN",
+    "Single Enemy",
+    "All Enemies",
+    "Single Ally",
+    "All Allies",
+    "Self",
+    "Other Allies",
+    "All Enemies + Allies",
 ]
 
 print_perf_data("Load masterdata")
@@ -170,9 +184,9 @@ for weapon_obj in weapon_data.values():
     skill_base_base_obj = skill_base_data[weapon_skill_base_id]
     
     # save out all c.ability data that is agnostic of  weapon being ult/OB1/6/10
-    out_weapon["Type"] = attack_types[skill_base_base_obj["BaseAttackType"] - 1] # BaseAttackType is 1-3, not 0-2
-    out_weapon["Element"] = element_types[skill_base_base_obj["ElementType"] - 1] # ElementType is 1-3, not 0-2
+    out_weapon["Type"] = attack_types[skill_base_base_obj["BaseAttackType"]]
 
+    skill_effect_objs = []
     if (not weapon_is_ultimate):
         # non-ultimate weapons define ATB cost on the skill-active obj
         # (skillActive also defines use count, but only ultimates and costumes have limits right now)
@@ -184,7 +198,6 @@ for weapon_obj in weapon_data.values():
         if (skill_weapon_base_obj["SkillNotesSetId"] != 0):
             skill_notes_set_obj = skill_notes_set_data[skill_weapon_base_obj["SkillNotesSetId"]]
             out_weapon["Command Sigil"] = skill_notes_sigils[skill_notes_set_obj["SkillNotesId"]]
-
 
         # fetch the weapon skills at OB1/6/10
         weapon_upgrade_skill_obj = [
@@ -202,12 +215,48 @@ for weapon_obj in weapon_data.values():
             skill_active_data[skill_weapon_obj[1]["SkillActiveId"]],
             skill_active_data[skill_weapon_obj[2]["SkillActiveId"]],
         ]
+        skill_base_obj = [
+            skill_base_data[skill_active_obj[0]["SkillBaseId"]],
+            skill_base_data[skill_active_obj[1]["SkillBaseId"]],
+            skill_base_data[skill_active_obj[2]["SkillBaseId"]],
+        ]
+
+        # for populating the list of skill_effect_objs, just look at the OB10 data
+        skill_effectgroup_list = skill_effectgroup_data[skill_base_obj[2]["SkillEffectGroupId"]]
+        for skill_effect_id in skill_effectgroup_list:
+            skill_effect_objs.append(skill_effect_data[skill_effect_id])
 
     # ultimate weapons need some extra handling since they don't have "SkillActives", nor OB levels
     if (weapon_is_ultimate):
         out_weapon["Command ATB"] = 0
         out_weapon["GachaType"] = "Ultimate"
 
+        skill_effectgroup_list = skill_effectgroup_data[skill_base_base_obj["SkillEffectGroupId"]]
+        for skill_effect_id in skill_effectgroup_list:
+            skill_effect_objs.append(skill_effect_data[skill_effect_id])
+
+    # handle all of the skill-effects
+    # first, we want to handle the damage effect very specially, so find it and take it out of the list
+    skill_effect_damage_obj = None
+    for idx,skill_effect_obj in enumerate(skill_effect_objs):
+        if (skill_effect_obj["SkillEffectType"] == 1):
+            skill_effect_damage_obj = skill_effect_obj
+            skill_effect_objs.pop(idx)
+            break
+
+    # output data for the damage effect
+    out_weapon["Ability Range"] = target_types[skill_effect_damage_obj["TargetType"]]
+    skill_damage_effect_damage_obj = skill_damage_data[skill_effect_damage_obj["SkillEffectDetailId"]]
+    out_weapon["Ability Pot. %"] = skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 10
+    if (skill_damage_effect_damage_obj["SkillHealType"] == 1):
+        out_weapon["Ability Element"] = "Heal" 
+    else:
+        out_weapon["Ability Element"] = element_types[skill_damage_effect_damage_obj["ElementType"]]
+
+    # output data for each skill effect
+    for skill_effect_idx,skill_effect_obj in enumerate(skill_effect_objs):
+        skill_effect_suffix = str(skill_effect_idx)
+        out_weapon["EffectRange_" + skill_effect_suffix] = target_types[skill_effect_obj["TargetType"]]
 
     out_weapons.append(out_weapon)
 
