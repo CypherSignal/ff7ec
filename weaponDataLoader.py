@@ -254,6 +254,38 @@ additional_skill_types = [
     "Summon Gauge",
 ]
 
+status_change_types = {
+    2:"Provoke",
+    4:"Regen",
+    5:"Haste",
+    6:"Veil",
+    8:"Physical Resistance Increased",
+    9:"Magic Resistance Increased",
+    10:"HP Gain",
+    11:"Exploit Weakness",
+    12:"Amp. Phys. Abilities",
+    13:"Amp. Mag. Abilities",
+    23:"Amp. Healing Abilities",
+    24:"Phys. Damage Bonus",
+    25:"Mag. Damage Bonus",
+    26:"Fire Damage Bonus",
+    27:"Ice Damage Bonus",
+    28:"Lightning Damage Bonus",
+    29:"Earth Damage Bonus",
+    30:"Water Damage Bonus",
+    31:"Wind Damage Bonus",
+    34:"Phys. Weapon Boost",
+    35:"Mag. Weapon Boost",
+    36:"Fire Weapon Boost",
+    37:"Ice Weapon Boost",
+    38:"Lightning Weapon Boost",
+    39:"Earth Weapon Boost",
+    40:"Water Weapon Boost",
+    41:"Wind Weapon Boost",
+    44:"Phys. ATB Conservation Effect",
+    45:"Mag. ATB Conservation Effect",
+}
+
 print_perf_data("Load masterdata")
 
 # start transforming all of the data into our own dict of weaponId to summarized-info
@@ -393,7 +425,16 @@ for weapon_obj in weapon_data.values():
 
             case 5: # SkillStatusChangeEffect (e.g. exploit weakness)
                 skill_status_change_obj = skill_status_change_effect_data[skill_effect_detail_id]
-                out_weapon[effect_detail_prefix] = "UNKNOWN SKILL STATUS CHANGE"  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
+                if (skill_status_change_obj["SkillStatusChangeType"] in status_change_types):
+                    out_weapon[effect_detail_prefix] = status_change_types[skill_status_change_obj["SkillStatusChangeType"]]
+                else:
+                    out_weapon[effect_detail_prefix] = "UNKNOWN STATUS CHANGE TYPE " + str(skill_status_change_obj["SkillStatusChangeType"]) + " on SkillEffectDetailId: " + str(skill_effect_detail_id)
+                    print (out_weapon[effect_detail_prefix])
+
+                out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_status_change_obj["EffectCoefficient"]/10,0)) + "%"
+                out_weapon[effect_detail_prefix + "_Duration"] = str(skill_status_change_obj["MaxDurationSec"])
+                out_weapon[effect_detail_prefix + "_Extend"] = str(skill_status_change_obj["MaxDuplicationDurationSec"])
+                out_weapon[effect_detail_prefix + "_EffectCount"] = str(skill_status_change_obj["EffectCount"]) # e.g. "Amp abilities up to 1 time(s)"
 
             case 6: # SkillCancelEffect (e.g. removes buff/debuff or removes status)
                 skill_cancel_effect_obj = skill_cancel_effect_data[skill_effect_detail_id]
