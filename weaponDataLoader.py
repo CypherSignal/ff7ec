@@ -379,9 +379,11 @@ for weapon_obj in weapon_data.values():
     out_weapon["Ability Range"] = target_types[skill_effect_damage_obj["TargetType"]]
     skill_damage_effect_damage_obj = skill_damage_data[skill_effect_damage_obj["SkillEffectDetailId"]]
     if (skill_effect_damage_obj["TargetType"] >= 3 and skill_effect_damage_obj["TargetType"] <= 6 ):
-        # TODO: skill_damage_effect_damage_obj["SkillHealType"] == 0 or 1 changes something?
-        # Only "targets allies" determines if the attack heals or not
-        out_weapon["Ability Pot. %"] = round(skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 22,0)
+        if (skill_damage_effect_damage_obj["SkillDamageType"] == 1):
+            out_weapon["Ability Pot. %"] = str(round(skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 22,0))
+        elif (skill_damage_effect_damage_obj["SkillDamageType"] == 2):
+            out_weapon["Ability Pot. %"] = str(round(skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 10,0)) + "% of max HP"
+            
         out_weapon["Ability Element"] = "Heal"
     else:
         out_weapon["Ability Pot. %"] = skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 10

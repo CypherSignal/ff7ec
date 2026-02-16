@@ -130,7 +130,7 @@ Id	Character	Name	Ability Element	Ability Pot. %	Ability Range	Ability Type	Comm
 4033	Aerith	Crimson Staff	None	750.0	All Enemies	Mag	4		MATK Up		20		6	High	High	All Allies	BuffDebuff	MDEF Down	When HP is greater than 70.0%	35		11	High	High	All Enemies	BuffDebuff	Crit Rate					10.0%		All Enemies	AdditionalEffect									Limited
 4034	Aerith	Gambanteinn	Heal	60.0	All Allies	Mag	5		PATK Up		16		5	Mid	High	All Allies	BuffDebuff	ATB+1	When HP is less than 90.0%						Other Allies	AtbChangeEffect																		Limited
 4035	Aerith	Noblesse Rod	None	360.0	Single Enemy	Mag	4		PATK Down		28		9	Low	Mid	Single Enemy	BuffDebuff	Crit Rate					10.0%		Single Enemy	AdditionalEffect																		Event
-4036	Aerith	Princess Guard	Heal	14.0	All Allies	Mag	0		ATB+3							All Allies	AtbChangeEffect																											Ultimate
+4036	Aerith	Princess Guard	Heal	30.0% of max HP	All Allies	Mag	0		ATB+3							All Allies	AtbChangeEffect																											Ultimate
 4038	Aerith	Mermaid Rod	Heal	8.0	All Allies	Mag	4		PATK Up		25		8	Mid	High	All Allies	BuffDebuff	Lightning Damage Up		25		8	Mid	High	All Allies	BuffDebuff																		Featured
 4039	Aerith	Supreme Sage's Staff	None	890.0	All Enemies	Mag	4		Deals Fixed Additional Damage					80000		All Enemies	AdditionalEffect	Exploit Weakness	When HP is greater than 70.0%	60	0	12	30.0%		All Allies	StatusChangeEffect	Crit Rate					10.0%		All Enemies	AdditionalEffect	Decreases Summon Gauge					-100.0%	Self	SpecialGaugeChangeEffect	Limited
 4040	Aerith	Team Leader's Bamboo Sword	Water	530.0	All Enemies	Mag	4		Multiply damage	When debuff is on target				140.0%		All Enemies	AdditionalEffect	Water Damage Up	When HP is greater than 50.0%	25		8	High	High	All Allies	BuffDebuff																		Limited
@@ -383,7 +383,7 @@ Id	Character	Name	Ability Element	Ability Pot. %	Ability Range	Ability Type	Comm
 51021	Matt	Nautilus Spiral	None	420.0	Single Enemy	Phys	3	◊ Diamond	Ice Resistance Down		24		8	High	High	Single Enemy	BuffDebuff	Lightning Resistance Down	When HP is greater than 50.0%	24		8	High	High	Single Enemy	BuffDebuff	Crit Rate					10.0%		Single Enemy	AdditionalEffect									Featured
 51022	Matt	Firefish	Fire	450.0	Single Enemy	Phys	4																																					Event
 51023	Matt	Deroplatys	Heal	48.0	All Allies	Mag	4		PATK Up		20		6	Mid	High	All Allies	BuffDebuff	MDEF Up	When HP is greater than 70.0%	20		6	High	High	All Allies	BuffDebuff																		Limited
-51024	Matt	Ultimate Broadsword: Axis	Heal	11.0	All Allies	Mag	0		Regen		4	0	3	30.0%		All Allies	StatusChangeEffect	Removes PDEF Down, MDEF Down							All Allies	CancelEffect																		Ultimate
+51024	Matt	Ultimate Broadsword: Axis	Heal	25.0% of max HP	All Allies	Mag	0		Regen		4	0	3	30.0%		All Allies	StatusChangeEffect	Removes PDEF Down, MDEF Down							All Allies	CancelEffect																		Ultimate
 51025	Matt	Candle Rapier	Lightning	290.0	All Enemies	Mag	4																																					Event
 51026	Matt	Luminary Sword	Heal	8.0	All Allies	Mag	4		MATK Up		30		10	Low	High	All Allies	BuffDebuff	Fire Damage Up	When HP is greater than 70.0%	30		10	Low	High	All Allies	BuffDebuff																		Featured
 51027	Matt	Hrotti	None	360.0	Single Enemy	Mag	4		Earth Resistance Down		28		9	Mid	Mid	Single Enemy	BuffDebuff	Crit Rate					10.0%		Single Enemy	AdditionalEffect																		Event
