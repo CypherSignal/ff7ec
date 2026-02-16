@@ -498,7 +498,11 @@ for weapon_obj in weapon_data.values():
                     out_weapon[effect_detail_prefix] = "UNKNOWN STATUS CHANGE TYPE " + str(skill_status_change_obj["SkillStatusChangeType"]) + " on SkillEffectDetailId: " + str(skill_effect_detail_id)
                     print (out_weapon[effect_detail_prefix])
 
-                out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_status_change_obj["EffectCoefficient"]/10,0)) + "%"
+                # ATB conversation uses effect cofficient of 1 to say "save 1 atb"
+                if (skill_status_change_obj["SkillStatusChangeType"] == 44 or skill_status_change_obj["SkillStatusChangeType"] == 45):
+                    out_weapon[effect_detail_prefix + "_Pot"] = str(skill_status_change_obj["EffectCoefficient"])
+                else:
+                    out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_status_change_obj["EffectCoefficient"]/10,0)) + "%"
                 out_weapon[effect_detail_prefix + "_Duration"] = str(skill_status_change_obj["MaxDurationSec"])
                 out_weapon[effect_detail_prefix + "_Extend"] = str(skill_status_change_obj["MaxDuplicationDurationSec"])
                 if (skill_status_change_obj["EffectCount"] != 0): # e.g. "Amp abilities up to 1 time(s)"

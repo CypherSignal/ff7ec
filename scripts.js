@@ -394,52 +394,53 @@ function refreshTable()
             printElemWeapon("None");
             break;
         case "DebuffMatk":
-            printWeaponEffect("MATK Down", "Weapon with Debuff MATK:", true);
+            printWeaponEffect("MATK Down", "Weapon with Debuff MATK:", true, true, true, false);
             break;
         case "DebuffPdef":
-            printWeaponEffect("PDEF Down", "Weapon with Debuff PDEF:", true);
-            printWeaponEffect("Status Ailment: Single-Tgt. Phys. Dmg. Rcvd. Up", "Weapon with Single-Tgt. Phys. Dmg. Rcvd. Up:");
+            printWeaponEffect("PDEF Down", "Weapon with Debuff PDEF:", true, true, true, false );
+            printWeaponEffect("Status Ailment: Single-Tgt. Phys. Dmg. Rcvd. Up", "Weapon with Single-Tgt. Phys. Dmg. Rcvd. Up:", true, false, true, false);
             break;
         case "DebuffMdef":
-            printWeaponEffect("MDEF Down", "Weapon with Debuff MDEF:", true);
-            printWeaponEffect("Status Ailment: Single-Tgt. Mag. Dmg. Rcvd. Up", "Weapon with Single-Tgt. Mag. Dmg. Rcvd. Up:");
+            printWeaponEffect("MDEF Down", "Weapon with Debuff MDEF:", true, true, true, false);
+            printWeaponEffect("Status Ailment: Single-Tgt. Mag. Dmg. Rcvd. Up", "Weapon with Single-Tgt. Mag. Dmg. Rcvd. Up:", true, false, true, false);
             break;
         case "DebuffPatk":
-            printWeaponEffect("PATK Down", "Weapon with Debuff PATK:", true);
+            printWeaponEffect("PATK Down", "Weapon with Debuff PATK:", true, true, true, false);
             break;
         case "BuffMatk":
-            printWeaponEffect("MATK Up", "Weapon with Buff MATK:", true);
-            printWeaponEffect("Mag. Damage Bonus", "Weapon with Mag. Damage Bonus:");
-            printWeaponEffect("Mag. Weapon Boost", "Weapon with Mag. Weapon Boost:");
-            printWeaponEffect("Amp. Mag. Abilities", "Weapon with Amp. Mag. Abilities:", false, true);
-            printWeaponEffect("Mag. ATB Conservation Effect", "Weapon with Mag. ATB Conservation Effect:");
+            printWeaponEffect("MATK Up", "Weapon with Buff MATK:", true, true, true, false);
+            printWeaponEffect("Mag. Damage Bonus", "Weapon with Mag. Damage Bonus:", true, false, true, false);
+            printWeaponEffect("Mag. Weapon Boost", "Weapon with Mag. Weapon Boost:", true, false, true, false);
+            printWeaponEffect("Amp. Mag. Abilities", "Weapon with Amp. Mag. Abilities:", true, false, true, true);
+            printWeaponEffect("Mag. ATB Conservation Effect", "Weapon with Mag. ATB Conservation Effect:", true, false, true, false);
             break;
         case "BuffPdef":
-            printWeaponEffect("PDEF Up", "Weapon with Buff PDEF:", true);
-            printWeaponEffect("Physical Resistance Increased", "Weapon with Physical Resistance Increased:");
+            printWeaponEffect("PDEF Up", "Weapon with Buff PDEF:",true, true, true, false);
+            printWeaponEffect("Physical Resistance Increased", "Weapon with Physical Resistance Increased:",true, false, true, false);
             break;
         case "BuffMdef":
-            printWeaponEffect("MDEF Up", "Weapon with Buff MDEF:", true);
-            printWeaponEffect("Magic Resistance Increased", "Weapon with Magic Resistance Increased:");
+            printWeaponEffect("MDEF Up", "Weapon with Buff MDEF:", true, true, true, false);
+            printWeaponEffect("Magic Resistance Increased", "Weapon with Magic Resistance Increased:", true, false, true, false);
             break;
         case "BuffPatk":
-            printWeaponEffect("PATK Up", "Weapon with Buff PATK:", true);
-            printWeaponEffect("Phys. Damage Bonus", "Weapon with Phys. Damage Bonus:");
-            printWeaponEffect("Phys. Weapon Boost", "Weapon with Phys. Weapon Boost:");
-            printWeaponEffect("Amp. Phys. Abilities", "Weapon with Amp. Phys. Abilities:", false, true);
-            printWeaponEffect("Phys. ATB Conservation Effect", "Weapon with Phys. ATB Conservation Effect:");
+            printWeaponEffect("PATK Up", "Weapon with Buff PATK:", true, true, true, false);
+            printWeaponEffect("Phys. Damage Bonus", "Weapon with Phys. Damage Bonus:", true, false, true, false);
+            printWeaponEffect("Phys. Weapon Boost", "Weapon with Phys. Weapon Boost:", true, false, true, false);
+            printWeaponEffect("Amp. Phys. Abilities", "Weapon with Amp. Phys. Abilities:",true, false, true, true);
+            printWeaponEffect("Phys. ATB Conservation Effect", "Weapon with Phys. ATB Conservation Effect:",true, false, true, false);
             break;
         case "BuffWex":
-            printWeaponEffect("Exploit Weakness", "Weapon with Exploit Weakness:");
-            printWeaponEffect("Enfeeble", "Weapon with Enfeeble:");
-            printWeaponEffect("BuffDebuffEnhance", "Weapon with Buff/Debuff Enhancement:");
+            printWeaponEffect("Exploit Weakness", "Weapon with Exploit Weakness:",true, false, true, false);
+            printWeaponEffect("Status Ailment: Enfeeble", "Weapon with Enfeeble:",true, false, true, false);
+            printWeaponEffect("Applied Stats Buff Tier Increased", "Weapon with Buff Enhancement:", true, true, false, false);
+            printWeaponEffect("Applied Stats Debuff Tier Increased", "Weapon with Debuff Enhancement:", true, true, false, false);
             break;
         case "Heal":
             printHealWeapon();
             break;
         case "Provoke":
-            printWeaponEffect("Provoke", "Weapon with Provoke:");
-            printWeaponEffect("Veil", "Weapon with Veil:");
+            printWeaponEffect("Provoke", "Weapon with Provoke:", true, true, true, false);
+            printWeaponEffect("Veil", "Weapon with Veil:", true, true, true, false);
             break;
         case "SigilCircle":
             printWeaponMateria("Circle", "Weapon with ◯ Sigil Materia Slot:");
@@ -639,13 +640,13 @@ function printElemWeapon(elem) {
     printWeaponElem(elem, header);
 
     if (elem != "None") {
-        printWeaponEffect(elem + " Resistance Down",               "Weapons with " + elem + " Resistance Down:", true);
-        printWeaponEffect(elem + " Damage Up",                     "Weapons with " + elem + " Damage Up:", true);
-        printWeaponEffect(elem + " Damage Bonus",                  "Weapons with " + elem + " Damage Bonus:");
-        printWeaponEffect(elem + " Weapon Boost",                  "Weapons with " + elem + " Weapon Boost:");
-        printWeaponEffect("Status Ailment: " + elem + " Weakness", "Weapons with " + elem + " Weakness:");
-        printWeaponEffect(elem + " Resistance Up",                 "Weapons with " + elem + " Resistance Up:", true);
-        printWeaponEffect(elem + " Damage Down",                   "Weapons with " + elem + " Damage Down:", true);
+        printWeaponEffect(elem + " Resistance Down",               "Weapons with " + elem + " Resistance Down:",true, true, true, false);
+        printWeaponEffect(elem + " Damage Up",                     "Weapons with " + elem + " Damage Up:",true, true, true, false);
+        printWeaponEffect(elem + " Damage Bonus",                  "Weapons with " + elem + " Damage Bonus:",true, true, true, false);
+        printWeaponEffect(elem + " Weapon Boost",                  "Weapons with " + elem + " Weapon Boost:", true, true, true, false);
+        printWeaponEffect("Status Ailment: " + elem + " Weakness", "Weapons with " + elem + " Weakness:",true, true, true, false);
+        printWeaponEffect(elem + " Resistance Up",                 "Weapons with " + elem + " Resistance Up:", true, true, true, false);
+        printWeaponEffect(elem + " Damage Down",                   "Weapons with " + elem + " Damage Down:", true, true, true, false);
         
         printWeaponMateria(elem, "Weapon with " + elem + " Materia Slot:");
     }
@@ -939,13 +940,21 @@ function printRegenWeapon(header) {
     tableCreate(effect.length, effect[0].length, effect, header);
 }
 
-function printWeaponEffect(effect, header, includeMaxPot, includeEffectCount) {
+function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDuration, includeEffectCount) {
     readDatabase();
 
-    let effectTable = [["Weapon Name", "Character","Range",  "Pot", "Max Pot",  "Duration (s)", "Extension (s)", "ATB", "Uses", "Effect Count", "Type","Condition"]];
+    let effectTable = [["Weapon Name", "Character","Range", "Pot", "Max Pot", "Duration (s)", "Extension (s)", "ATB", "Uses", "Effect Count", "Type","Condition"]];
+    if (!includePot)
+    {
+        effectTable[0].splice(effectTable[0].indexOf("Pot"), 1);
+    }
     if (!includeMaxPot)
     {
         effectTable[0].splice(effectTable[0].indexOf("Max Pot"), 1);
+    }
+    if (!includeDuration)
+    {
+        effectTable[0].splice(effectTable[0].indexOf("Duration (s)"), 1);
     }
     if (!includeEffectCount)
     {
@@ -992,12 +1001,18 @@ function printWeaponEffect(effect, header, includeMaxPot, includeEffectCount) {
         row.push(getValueFromDatabaseRow(weaponRow, "Name"));
         row.push(getValueFromDatabaseRow(weaponRow, "Character"));
         row.push(effectRange);
-        row.push(effectPot);
+        if (includePot)
+        {
+            row.push(effectPot);
+        }
         if (includeMaxPot)
         {
             row.push(effectPotMax);
         }
-        row.push(effectDuration);
+        if (includeDuration)
+        {
+            row.push(effectDuration);
+        }
         row.push(effectExtend);
         row.push(getValueFromDatabaseRow(weaponRow, "Command ATB"));
         row.push(getValueFromDatabaseRow(weaponRow, "Use Count"));
