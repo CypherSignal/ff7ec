@@ -102,6 +102,7 @@ skill_buffdebuff_enhance_data = load_masterdata_json("SkillBuffDebuffEnhance.jso
 skill_cancel_effect_data = load_masterdata_json("SkillCancelEffect.json")
 skill_effect_data = load_masterdata_json("SkillEffect.json")
 skill_damage_data = load_masterdata_json("SkillDamageEffect.json")
+skill_legendary_data = load_masterdata_json("SkillLegendary.json")
 skill_notes_data = load_masterdata_json("SkillNotes.json")
 skill_notes_set_data = load_masterdata_json("SkillNotesSet.json")
 skill_passive_data = load_masterdata_json("SkillPassive.json")
@@ -394,6 +395,11 @@ for weapon_obj in weapon_data.values():
         skill_effectgroup_list = skill_effectgroup_data[skill_base_base_obj["SkillEffectGroupId"]]
         for skill_effect_id in skill_effectgroup_list:
             skill_effect_objs.append(skill_effect_data[skill_effect_id])
+        
+        # also record the recharge time/use count
+        out_weapon["Use Count"] = skill_legendary_data[weapon_skill_base_id]["UseCountLimit"]
+        out_weapon["Initial Charge Time"] = skill_legendary_data[weapon_skill_base_id]["InitialChargeTimeSec"]
+        out_weapon["Recharge Time"] = skill_legendary_data[weapon_skill_base_id]["RechargeTimeSec"]
 
     # handle all of the skill-effects
     # first, we want to handle the damage effect very specially, so find it and take it out of the list
