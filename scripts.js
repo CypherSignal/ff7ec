@@ -11,8 +11,9 @@ const UNIQUE_TABL_COL = 12;
 const MAX_POT_INDEX = 6;   // Index into the maxPot for sorting
 
 let weaponColHeaders = []; // array of strings for the column headers
-let weaponColIndexMap = {}; // map of column names to column indices
-let weaponColIdxToEffectTypeMap = {}; // cached map of column indices to "EffectX_Type" columns
+let weaponColIndexMap = new Map(); // map of column names to column indices
+let weaponColIdxToEffectMap = new Map(); // cached map of column indices to "EffectX" columns
+let weaponColIdxToEffectTypeMap = new Map(); // cached map of column indices to "EffectX_Type" columns
 let weaponData = []; // core weapon data; array of array of strings
 let activeWeaponFilter = "";
 
@@ -220,8 +221,16 @@ function readDatabase() {
         // Build a cached list of all of effect types so we can easily search it later
         for (var effectIdx = 0; effectIdx < 9; ++effectIdx)
         {
-            weaponColIdxToEffectTypeMap[weaponColHeaders.indexOf("Effect" + effectIdx + "_Type")] = effectIdx;
+            if (weaponColHeaders.includes("Effect" + effectIdx))
+            {
+                    weaponColIdxToEffectMap[weaponColHeaders.indexOf("Effect" + effectIdx)] = effectIdx;
+            }
+            if (weaponColHeaders.includes("Effect" + effectIdx + "_Type"))
+            {
+                weaponColIdxToEffectTypeMap[weaponColHeaders.indexOf("Effect" + effectIdx + "_Type")] = effectIdx;
+            }
         }
+
         for (var line = 1; line < lines.length-1; line++) {
             weaponData.push(TsvLineToArray(lines[line]));
         }
@@ -291,34 +300,38 @@ function getWeaponsMatchingFilter(database, columnToCheck, matchValues)
     {
         return database;
     }
-    else
+    let filteredDb = [];
+    let colIdxToSearch = weaponColIndexMap[columnToCheck];
+    for (var rowIdx = 0; rowIdx < database.length; ++rowIdx)
     {
-        let filteredDb = [];
-        let colIdxToSearch = weaponColIndexMap[columnToCheck];
-        for (var rowIdx = 0; rowIdx < database.length; ++rowIdx)
+        if (matchValues.includes(database[rowIdx][colIdxToSearch]))
         {
-            if (matchValues.includes(database[rowIdx][colIdxToSearch]))
-            {
-                filteredDb.push(database[rowIdx])
-            }
+            filteredDb.push(database[rowIdx]);
         }
-        return filteredDb;
     }
+    return filteredDb;
 }
 
-// Helper function to check for the "AdditionalEffect" effect, and return what "effect index" it's in
-// If not found, returns -1
-function getEffectIdxOfAdditionalEffect(weaponRow)
+// Query to filter the input database down to just the rows where one of the "Effect"
+// columns matches the input effects provided
+function getWeaponsMatchingEffect(database, effect)
 {
-    let colIdx = weaponRow.indexOf("AdditionalEffect");
-    if (colIdx == -1)
+    let filteredDb = [];
+    let colIdxToSearchs = [];
+    
+    for (var rowIdx = 0; rowIdx < database.length; ++rowIdx)
     {
-        return -1;
+        // iterate over each colidx in the effect map
+        for (colIdx in weaponColIdxToEffectMap)
+        {
+            if (effect == database[rowIdx][colIdx])
+            {
+                filteredDb.push(database[rowIdx]);
+                break;
+            }
+        }
     }
-    else
-    {
-        return weaponColIdxToEffectTypeMap[colIdx];
-    }
+    return filteredDb;
 }
 
 function getActiveCharacterFilter()
@@ -649,31 +662,20 @@ function filterAll() {
 
 function printElemWeapon(elem) {
     document.getElementById("ecDropdown").classList.remove("show");
-    var elemResist, elemEnchant, elemMateria;
-
-    if (elem == "Lightning") {
-        elemResist = "[Resist] Thunder"; // For whatever reseaon, Lightning resist is listed as "[Resist] Thunder";
-        elemEnchant = "[Enchant] Thunder";
-        elemMateria = "Light";
-    }
-    else {
-        elemResist = "[Resist] " + elem;
-        elemEnchant = "[Enchant] " + elem;
-        elemMateria = elem;
-    }
 
     var header = "Weapon with C-Abilities - " + elem;
     printWeaponElem(elem, header);
 
     if (elem != "None") {
-        header = "Weapon with [Debuff] " + elem + " Resist Down:";
-        printWeaponEffect(elemResist, header);
-
-        header = "Weapon with [Buff] " + elem + " Damage Up:";
-        printWeaponEffect(elemEnchant, header);
-
-        header = "Weapon with " + elem + " Materia Slot:";
-        printWeaponMateria(elemMateria, header);
+        printWeaponEffect(elem + " Resistance Down",               "Weapons with " + elem + " Resistance Down:", true);
+        printWeaponEffect(elem + " Damage Up",                     "Weapons with " + elem + " Damage Up:", true);
+        printWeaponEffect(elem + " Damage Bonus",                  "Weapons with " + elem + " Damage Bonus:");
+        printWeaponEffect(elem + " Weapon Boost",                  "Weapons with " + elem + " Weapon Boost:");
+        printWeaponEffect("Status Ailment: " + elem + " Weakness", "Weapons with " + elem + " Weakness:");
+        printWeaponEffect(elem + " Resistance Up",                 "Weapons with " + elem + " Resistance Up:", true);
+        printWeaponEffect(elem + " Damage Down",                   "Weapons with " + elem + " Damage Down:", true);
+        
+        printWeaponMateria(elem, "Weapon with " + elem + " Materia Slot:");
     }
 }
 
@@ -856,10 +858,6 @@ function printWeaponElem(elem, header) {
         row.push(atb);
 
         var useCount = getValueFromDatabaseRow(weaponRow, "Use Count");
-        if (useCount == "")
-        {
-            useCount = "No limit";
-        }
         row.push(useCount);
 
         var pot, maxPot;            
@@ -867,26 +865,27 @@ function printWeaponElem(elem, header) {
         
         // Find any "Additional Effect" that can multiply the ability damage
         maxPot = pot;
-        var additionalEffectIdx = getEffectIdxOfAdditionalEffect(weaponRow)
+
         var condition = "";
-        if (additionalEffectIdx != -1)
+        for (colIdx in weaponColIdxToEffectTypeMap)
         {
-            // Check the description for a damage multiplier
-            var addlEffectType = getValueFromDatabaseRow(weaponRow, "Effect" + additionalEffectIdx)
-            if (addlEffectType == "Multiply Damage")
+            if (weaponRow[colIdx] == "AdditionalEffect")
             {
-                // got a mult, fetch the pot (it's a string in percentage so parseint will get us the leading numbers)
-                var multPot = parseFloat(getValueFromDatabaseRow(weaponRow, "Effect" + additionalEffectIdx + "_Pot"));
-                maxPot = pot * (multPot / 100.0);
-                condition = getValueFromDatabaseRow(weaponRow, "Effect" + additionalEffectIdx + "_Condition") + ", damage is increased by " + (multPot / 100) + "x";
+                var effectIdx = weaponColIdxToEffectTypeMap[colIdx];
+                // Check the description for a damage multiplier
+                var addlEffectType = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx)
+                if (addlEffectType == "Multiply Damage")
+                {
+                    // got a mult, fetch the pot (it's a string in percentage so parseint will get us the leading numbers)
+                    var multPot = parseFloat(getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Pot"));
+                    maxPot = pot * (multPot / 100.0);
+                    condition = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Condition") + ", damage is increased by " + (multPot / 100) + "x";
+                }
             }
         }
         row.push(pot);
         row.push(maxPot);
-
-        // % per ATB
         row.push((maxPot / Math.max(atb,1)).toFixed(0));
-
         row.push(condition);
 
         elemental.push(row);
@@ -1035,68 +1034,69 @@ function printRegenWeapon(header) {
     tableCreate(effect.length, effect[0].length, effect, header);
 }
 
-function printWeaponEffect(text, header) {
+function printWeaponEffect(effect, header, includeMaxPot) {
     readDatabase();
-    let effect = [["Name", "Char", "Type", "Elem", "ATB", "Uses", "AOE", "Target", "Pot", "Max Pot", "Duration (s)", "Condition"]];  
+
+    let effectTable = [["Weapon Name", "Character","Range",  "Type", "ATB", "Uses","Pot", "Max Pot",  "Duration (s)", "Extension (s)", "Condition"]];
+    if (!includeMaxPot)
+    {
+        effectTable[0].splice(effectTable[0].indexOf("Max Pot"), 1);
+    }
     let activeChars = getActiveCharacterFilter();
     let activeWeaponTypes = getActiveWeaponTypeFilter();
+
+    let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Character", activeChars);
+    filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "GachaType", activeWeaponTypes);
+    filteredWeaponData = getWeaponsMatchingEffect(filteredWeaponData, effect);
     
-    for (var i = 0; i < weaponDatabase.length; i++) {
-        var found1 = findWeaponWithProperty(weaponRow, 'effect1', text);
-        var found2 = findWeaponWithProperty(weaponRow, 'effect2', text);
-        var found3 = findWeaponWithProperty(weaponRow, 'effect3', text);
-        var found = (found1 || found2 || found3);
-        found = found && matchWeaponByCharacter(weaponRow, activeChars);
-        found = found && matchWeaponByWeaponType(weaponRow, activeWeaponTypes);
-        
-        if (found) {
-            // Make a new row and push them into the list
-            let row = [];
+    for (var i = 0; i < filteredWeaponData.length; i++) {
+        var weaponRow = filteredWeaponData[i];
+        // Make a new row and push them into the list
+        let row = [];
 
-            row.push(getValueFromDatabaseItem(weaponRow, "name"));
-            row.push(getValueFromDatabaseItem(weaponRow, "charName"));
+        var effectDesc = "";
+        var effectRange = "";
+        var effectPot = "";
+        var effectPotMax = "";
+        var effectDuration = "";
+        var effectExtend = "";
+        var effectCondition = "";
 
-            row.push(getValueFromDatabaseItem(weaponRow, "type"));
-            row.push(getValueFromDatabaseItem(weaponRow, "element"));
-            row.push(getValueFromDatabaseItem(weaponRow, "atb"));
-            row.push(getValueFromDatabaseItem(weaponRow, "uses"));
-
-            if (found1) {
-                row.push(getValueFromDatabaseItem(weaponRow, "effect1Range"));
+        // find which effectIdx we're actually interested in
+        for (colIdx in weaponColIdxToEffectMap)
+        {
+            if (effect == (weaponRow[colIdx]))
+            {
+                const effectIdx = weaponColIdxToEffectMap[colIdx];
+                effectDesc = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx);
+                effectRange = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Range");
+                effectPot = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Pot");
+                effectPotMax = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_PotMax");
+                effectDuration = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Duration");
+                effectExtend = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Extend");
+                effectCondition = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Condition");
             }
-            else if (found2) {
-                row.push(getValueFromDatabaseItem(weaponRow, "effect2Range"));
-            }
-            else if (found3) {
-                row.push(getValueFromDatabaseItem(weaponRow, "effect2Range"));
-            }
-            if (found1) {
-                row.push(getValueFromDatabaseItem(weaponRow, "effect1Target"));  
-                row.push(getValueFromDatabaseItem(weaponRow, "effect1Pot"));
-                row.push(getValueFromDatabaseItem(weaponRow, "effect1MaxPot"));
-                row.push(getValueFromDatabaseItem(weaponRow, "effect1Dur"));
-                row.push(getValueFromDatabaseItem(weaponRow, "condition1"));
-            }
-            else if (found2) {
-                row.push(getValueFromDatabaseItem(weaponRow, "effect2Target"));  
-                row.push(getValueFromDatabaseItem(weaponRow, "effect2Pot"));
-                row.push(getValueFromDatabaseItem(weaponRow, "effect2MaxPot"));
-                row.push(getValueFromDatabaseItem(weaponRow, "effect2Dur"));
-                row.push(getValueFromDatabaseItem(weaponRow, "condition2"));
-            }
-            else if (found3) {
-                row.push(getValueFromDatabaseItem(weaponRow, "effect3Target"));
-                row.push(getValueFromDatabaseItem(weaponRow, "effect3Pot"));
-                row.push(getValueFromDatabaseItem(weaponRow, "effect3MaxPot"));
-                row.push(getValueFromDatabaseItem(weaponRow, "effect3Dur"));
-                row.push(getValueFromDatabaseItem(weaponRow, "condition3"));
-            }
-
-            effect.push(row);
         }
+
+        row.push(getValueFromDatabaseRow(weaponRow, "Name"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Character"));
+        row.push(effectRange);
+        row.push(getValueFromDatabaseRow(weaponRow, "Ability Type"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Command ATB"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Use Count"));
+        row.push(effectPot);
+        if (includeMaxPot)
+        {
+            row.push(effectPotMax);
+        }
+        row.push(effectDuration);
+        row.push(effectExtend);
+        row.push(effectCondition);
+
+        effectTable.push(row);
     }
 
-    tableCreate(effect.length, effect[0].length, effect, header);
+    tableCreate(effectTable.length, effectTable[0].length, effectTable, header);
 }
 
 function printWeaponUniqueEffect(text, header) {

@@ -184,7 +184,6 @@ status_effect_types = {
     23:"Wind Weakness",
     27:"Single-Tgt. Phys. Dmg. Rcvd. Up",
     28:"Single-Tgt. Mat. Dmg. Rcvd. Up",
-    # TODO: need to fill this out as effects come online; not sure what the mapping is
 }
 
 buffdebuff_types = {
@@ -386,6 +385,7 @@ for weapon_obj in weapon_data.values():
         skill_effectgroup_list = skill_effectgroup_data[skill_base_obj[2]["SkillEffectGroupId"]]
         for skill_effect_id in skill_effectgroup_list:
             skill_effect_objs.append(skill_effect_data[skill_effect_id])
+        out_weapon["Use Count"] = "No limit"
 
     # ultimate weapons need some extra handling since they don't have "SkillActives", nor OB levels
     if (weapon_is_ultimate):
@@ -475,7 +475,7 @@ for weapon_obj in weapon_data.values():
                 out_weapon[effect_detail_prefix + "_Duration"] = str(skill_status_condition_obj["MaxDurationSec"])
                 out_weapon[effect_detail_prefix + "_Extend"] = str(skill_status_condition_obj["MaxDuplicationDurationSec"])
                 if (skill_status_condition_obj["EffectCoefficient"] != 0):
-                    out_weapon[effect_detail_prefix + "_Pot"] = "+" + str(round(skill_status_condition_obj["EffectCoefficient"] / 10,0)) + "%"
+                    out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_status_condition_obj["EffectCoefficient"] / 10,0)) + "%"
 
             case 3: # SkillBuffDebuff 
                 skill_buffdebuff_obj = skill_buffdebuff_data[skill_effect_detail_id]

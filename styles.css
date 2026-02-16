@@ -86,7 +86,6 @@ footer {
 .effectTable td:last-child{
   width: 10%;
   overflow: hidden;  
-  white-space:nowrap;
 }
 
 .effectTable td:not(:first-child) {
@@ -113,7 +112,6 @@ footer {
 .elemTable td:last-child{
   width: 15%;
   overflow: hidden;  
-  white-space:nowrap;
 }
 
 .elemTable td:not(:first-child), .elemTable td:not(:last-child){
@@ -139,7 +137,6 @@ footer {
 .uniqueTable td:not(:first-child), .uniqueTable td:not(:last-child){
   width: 5%;
   overflow: hidden;  
-  white-space:nowrap;  
 }
 
 .uniqueTable {
@@ -182,7 +179,6 @@ footer {
 .statusTable td:last-child{
   width: 15%;
   overflow: hidden;  
-  white-space:nowrap;
 }
 
 .statusTable td:not(:first-child), .statusTable td:not(:last-child){
