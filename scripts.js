@@ -3,8 +3,7 @@
 /* Trash code - Need to clean up and add comments and stuff*/
 /* When the user clicks on the button, toggle between hiding and showing the dropdown content */
 
-const FILE_NAME = 'weaponData.csv'
-const WEAP_NUM_SKIP_LINE = 1;
+const FILE_NAME = 'weaponData-Staging.tsv'
 const ELEM_TABL_COL = 9;   
 const STATUS_TABL_COL = 9;
 const MATERIA_TABL_COL = 8;
@@ -210,59 +209,63 @@ function readDatabase() {
         // By lines
         var lines = result.split('\n');
 
-        for (var line = WEAP_NUM_SKIP_LINE; line < lines.length-1; line++) {
+        // mapping of our database column names to the TSV Column names that we want
+        var dbColsToTsvColsMap = new Map([
+            ['name', 'Name'],
+            ['charName', 'Character'],
+            ['sigil', 'Command Sigil'],
+            ['atb', 'Command ATB'],
+            ['type', 'Ability Type'],
+            ['element', 'Ability Element'],
+            ['range', 'Ability Range'],
+            ['potOb10', 'Ability Pot. %'],
+            // ['maxPotOb10',
+            ['effect1Range',  'Effect0_Range'],
+            ['effect1',       'Effect0'],
+            ['effect1Pot',    'Effect0_Pot'],
+            ['effect1MaxPot', 'Effect0_PotMax'],
+            ['effect1Dur',    'Effect0_Dur'],
+            ['condition1',    'EFfect0_Condition'],
+            ['effect2Range'  , 'Effect1_Range'],
+            ['effect2'       , 'Effect1'],
+            ['effect2Pot'    , 'Effect1_Pot'],
+            ['effect2MaxPot' , 'Effect1_PotMax'],
+            ['effect2Dur'    , 'Effect1_Dur'],
+            ['condition2'    , 'EFfect1_Condition'],
+            ['effect3Range'  ,'Effect2_Range'],
+            ['effect3'       ,'Effect2'],
+            ['effect3Pot'    ,'Effect2_Pot'],
+            ['effect3MaxPot' ,'Effect2_PotMax'],
+            ['effect3Dur'    ,'Effect2_Dur'],
+            ['condition3'    ,'EFfect2_Condition'],
+            // ['support1' 
+            // ['support2' 
+            // ['support3' 
+            // ['rAbility1'
+            // ['rAbility2'
+            // ['uses'
+            ['gachaType', 'GachaType'],
+        ])
 
-            var row = CSVToArray(lines[line], ',');
+        // generate an array of indices for the Tsv's columns, so we can directly load them into weapData
+        let dbColAndTsvIdxs = []
+        {
+            var headers = TsvLineToArray(lines[0]);
+            for (const [dbCol, tsvCol] of dbColsToTsvColsMap) {
+                let tsvIdx = headers.indexOf(tsvCol);
+                dbColAndTsvIdxs.push([dbCol, tsvIdx]);
+            }
+        }
+
+        for (var line = 1; line < lines.length-1; line++) {
+
+            var row = TsvLineToArray(lines[line]);
             var i = 0;
             let weapData = [];
-            weapData.push({ name: 'name', value: row[i][0] });
-            weapData.push({ name: 'charName', value: row[i][1] });
-            weapData.push({ name: 'sigil', value: row[i][2] });
-            weapData.push({ name: 'atb', value: row[i][3] });
-            weapData.push({ name: 'type', value: row[i][4] });    // dmg type
-            weapData.push({ name: 'element', value: row[i][5] });
-            weapData.push({ name: 'range', value: row[i][6] });
-            weapData.push({ name: 'effect1Target', value: row[i][7] });
-            weapData.push({ name: 'effect1', value: row[i][8] });
-            weapData.push({ name: 'effect1Pot', value: row[i][9] });
-            weapData.push({ name: 'effect1MaxPot', value: row[i][10] });
-            weapData.push({ name: 'effect2Target', value: row[i][11] });
-            weapData.push({ name: 'effect2', value: row[i][12] });
-            weapData.push({ name: 'effect2Pot', value: row[i][13] });
-            weapData.push({ name: 'effect2MaxPot', value: row[i][14] });
-            var m = 15;
-            weapData.push({ name: 'effect3Target', value: row[i][m] }); m++;
-            weapData.push({ name: 'effect3', value: row[i][m] }); m++;
-            weapData.push({ name: 'effect3Pot', value: row[i][m] }); m++;
-            weapData.push({ name: 'effect3MaxPot', value: row[i][m] }); m++;
-            weapData.push({ name: 'support1', value: row[i][m] }); m++;
-            weapData.push({ name: 'support2', value: row[i][m] }); m++;
-            weapData.push({ name: 'support3', value: row[i][m] }); m++;
-            weapData.push({ name: 'rAbility1', value: row[i][m] }); m++;
-            weapData.push({ name: 'rAbility2', value: row[i][m] }); m++;
-            weapData.push({ name: 'potOb10', value: row[i][m] }); m++;
-            weapData.push({ name: 'maxPotOb10', value: row[i][m] }); m++;
-            weapData.push({ name: 'effect1Dur', value: row[i][m] }); m++;
-            weapData.push({ name: 'effect2Dur', value: row[i][m] }); m++;
-            weapData.push({ name: 'effect3Dur', value: row[i][m] }); m++;
-            weapData.push({ name: 'condition1', value: row[i][m] }); m++;
-            weapData.push({ name: 'condition2', value: row[i][m] }); m++;
-            weapData.push({ name: 'condition3', value: row[i][m] }); m += 15;
-            weapData.push({ name: 'effect1Range', value: row[i][m] }); m++;
 
-            if (row[i][m] == 0) {
-                weapData.push({ name: 'uses', value: "No Limit" });
+            for (var col = 0; col < dbColAndTsvIdxs.length; col++) {
+                weapData.push({ name: dbColAndTsvIdxs[col][0], value:row[dbColAndTsvIdxs[col][1]]});
             }
-            else {
-                weapData.push({ name: 'uses', value: row[i][m] });
-            }
-            m++;
-            m++; // id
-
-            weapData.push({ name: 'gachaType', value: row[i][m] }); m++;
-            weapData.push({ name: 'effect2Range', value: row[i][m] }); m++;
-
-
             weaponDatabase.push(weapData);
             // console.log(weapData);
         }
@@ -282,8 +285,10 @@ function findElement(arr, propName, propValue) {
 }
 function getValueFromDatabaseItem(item, name) {
     var i = findElement(item, "name", name);
-
-    return i["value"];
+    if (i != null)
+        return i["value"];
+    else
+        return null;
 }
 function findWeaponWithProperty(arr, propName, propValue) {
     for (var i = 0; i < arr.length; i++) {
@@ -1210,89 +1215,13 @@ function loadFile(filePath) {
 }
 
 
-// ref: http://stackoverflow.com/a/1293163/2343
 // This will parse a delimited string into an array of
 // arrays. The default delimiter is the comma, but this
 // can be overriden in the second argument.
-function CSVToArray( strData, strDelimiter ){
-    // Check to see if the delimiter is defined. If not,
-    // then default to comma.
-    strDelimiter = (strDelimiter || ",");
-//    console.log(strData);
-    // Create a regular expression to parse the CSV values.
-    var objPattern = new RegExp(
-    (
-        // Delimiters.
-        "(\\" + strDelimiter + "|\\r?\\n|\\r|^)" +
-
-        // Quoted fields.
-        "(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|" +
-
-        // Standard fields.
-        "([^\"\\" + strDelimiter + "\\r\\n]*))"
-    ),
-    "gi"
-    );
-
-
-    // Create an array to hold our data. Give the array
-    // a default empty first row.
-    var arrData = [[]];
-
-    // Create an array to hold our individual pattern
-    // matching groups.
-    var arrMatches = null;
-
-
-    // Keep looping over the regular expression matches
-    // until we can no longer find a match.
-    while (arrMatches = objPattern.exec( strData )){
-
-    // Get the delimiter that was found.
-    var strMatchedDelimiter = arrMatches[ 1 ];
-
-    // Check to see if the given delimiter has a length
-    // (is not the start of string) and if it matches
-    // field delimiter. If id does not, then we know
-    // that this delimiter is a row delimiter.
-    if (
-        strMatchedDelimiter.length &&
-        strMatchedDelimiter !== strDelimiter
-    ){
-
-        // Since we have reached a new row of data,
-        // add an empty row to our data array.
-        arrData.push( [] );
-
+function TsvLineToArray( strData ){
+    var cells = strData.split('\t');
+    for (let idx = 0; idx < cells.length; idx++) {
+        cells[idx] = cells[idx].trim();
     }
-
-    var strMatchedValue;
-
-    // Now that we have our delimiter out of the way,
-    // let's check to see which kind of value we
-    // captured (quoted or unquoted).
-    if (arrMatches[ 2 ]){
-
-        // We found a quoted value. When we capture
-        // this value, unescape any double quotes.
-        strMatchedValue = arrMatches[ 2 ].replace(
-        new RegExp( "\"\"", "g" ),
-        "\""
-        );
-
-    } else {
-
-        // We found a non-quoted value.
-        strMatchedValue = arrMatches[ 3 ];
-
-    }
-
-
-    // Now that we have our value string, let's add
-    // it to the data array.
-    arrData[ arrData.length - 1 ].push( strMatchedValue );
-    }
-
-    // Return the parsed data.
-    return( arrData );
+    return cells;
 }
