@@ -287,6 +287,31 @@ status_change_types = {
     45:"Mag. ATB Conservation Effect",
 }
 
+# currently materia support only has 1 effect per slot,
+# so it's possilbe and simple to just map materia support id's to strings
+materia_support_types = {
+    0: "", # ultimate weapons have no materia
+    50201: "PATK Boost I",
+    50202: "MATK Boost I",
+    50203: "ATK Boost I",
+    50401: "HEAL Boost I",
+    50501: "Buff/Debuff Extension I",
+    50601: "ATK Boost (Fire) I",
+    50602: "ATK Boost (Ice) I",
+    50603: "ATK Boost (Lightning) I",
+    50604: "ATK Boost (Water) I",
+    50605: "ATK Boost (Wind) I",
+    50606: "ATK Boost (Earth) I",
+    50701: "◯ Circle Sigil Boost I (+2)",
+    50702: "◯ Circle Sigil Boost II (+4)",
+    50801: "△ Triangle Boost I (+2)",
+    50802: "△ Triangle Boost II (+4)",
+    50901: "✕ Cross Sigil Boost I (+2)",
+    50902: "✕ Cross Sigil Boost II (+4)",
+    51001: "All (Cure Spells) I",
+    51701: "All (Esuna) I",
+}
+
 print_perf_data("Load masterdata")
 
 # start transforming all of the data into our own dict of weaponId to summarized-info
@@ -302,6 +327,10 @@ for weapon_obj in weapon_data.values():
     character_obj = character_data[weapon_obj["CharacterId"]]
     character_name = loc_table[character_obj["NameLanguageId"]]
     out_weapon["Character"] = strip_markup(character_name)
+
+    out_weapon["MateriaSupport0"] = materia_support_types[weapon_obj["WeaponMateriaSupportId0"]] if weapon_obj["WeaponMateriaSupportId0"] in materia_support_types else "UNKNOWN MATERIA SUPPORT TYPE " + str(weapon_obj["WeaponMateriaSupportId0"])
+    out_weapon["MateriaSupport1"] = materia_support_types[weapon_obj["WeaponMateriaSupportId1"]] if weapon_obj["WeaponMateriaSupportId1"] in materia_support_types else "UNKNOWN MATERIA SUPPORT TYPE " + str(weapon_obj["WeaponMateriaSupportId1"])
+    out_weapon["MateriaSupport2"] = materia_support_types[weapon_obj["WeaponMateriaSupportId2"]] if weapon_obj["WeaponMateriaSupportId2"] in materia_support_types else "UNKNOWN MATERIA SUPPORT TYPE " + str(weapon_obj["WeaponMateriaSupportId2"])
 
     # fetch the "Base" weapon skill (basically what we have for Ults, or OB1 version of weapon)
     weapon_is_ultimate = weapon_obj["WeaponEquipmentType"] == 1 # expected values are 0 for normal, 1 for ult
