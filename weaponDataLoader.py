@@ -501,7 +501,8 @@ for weapon_obj in weapon_data.values():
                 out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_status_change_obj["EffectCoefficient"]/10,0)) + "%"
                 out_weapon[effect_detail_prefix + "_Duration"] = str(skill_status_change_obj["MaxDurationSec"])
                 out_weapon[effect_detail_prefix + "_Extend"] = str(skill_status_change_obj["MaxDuplicationDurationSec"])
-                out_weapon[effect_detail_prefix + "_EffectCount"] = str(skill_status_change_obj["EffectCount"]) # e.g. "Amp abilities up to 1 time(s)"
+                if (skill_status_change_obj["EffectCount"] != 0): # e.g. "Amp abilities up to 1 time(s)"
+                    out_weapon[effect_detail_prefix + "_EffectCount"] = str(skill_status_change_obj["EffectCount"]) 
 
             case 6: # SkillCancelEffect (e.g. removes buff/debuff or removes status)
                 skill_cancel_effect_obj = skill_cancel_effect_data[skill_effect_detail_id]
@@ -533,7 +534,7 @@ for weapon_obj in weapon_data.values():
                         out_weapon[effect_detail_prefix] = "Crit Rate"
                         out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_additional_effect_obj["MaxValue"]/10,0)) + "%"
                     case 15: # e.g. "additional damage when debuff on target"
-                        out_weapon[effect_detail_prefix] = "Multiply damage"
+                        out_weapon[effect_detail_prefix] = "Multiply Damage"
                         out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_additional_effect_obj["MaxValue"]/10,0)) + "%"
                     case 16: # fixed dmg (phys)
                         out_weapon[effect_detail_prefix] = "Deals Fixed Additional Damage"
@@ -585,6 +586,47 @@ for weapon_obj in weapon_data.values():
 
             case _:
                 out_weapon[effect_detail_prefix] = "UNKNOWN EFFECT: " + str(skill_effect_obj["SkillEffectType"]) + " SkillEffectDetailId: " + str(skill_effect_detail_id)
+
+
+        # on the weapon row we just did, assemble a full description of all of weapon's effects
+        # function getFullWeaponDescription(weaponRow)
+        # {
+        #     var desc = "";
+
+        #     // First, the damage effect
+        #     if (getValueFromDatabaseRow(weaponRow, "Ability Element") == "Heal")
+        #     {
+        #         desc += getValueFromDatabaseRow(weaponRow, "Ability Type") + " heal is cast";
+        #         var pot = getValueFromDatabaseRow(weaponRow, "Ability Pot. %")
+        #         if (pot.includes("of max HP"))
+        #         {
+        #             desc += "[" + pot + "]";
+        #         }
+        #         else
+        #         {
+        #             desc += "[Pot.: " +  + " of Healing Pot.]";
+        #         }
+        #     }
+        #     else
+        #     {
+
+        #     }
+        #     desc += "<br>";
+            
+        #     // then add all efffects
+        #     var effectIdx = 0;
+        #     while (getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Type") != "")
+        #     {
+        #         var effectType = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Type");
+                
+        #         switch (effectType)
+        #         {
+        #             case "Additional Effect":
+
+        #         }
+        #     }
+        # }
+
 
     out_weapons.append(out_weapon)
 

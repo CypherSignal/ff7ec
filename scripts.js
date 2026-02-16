@@ -9,7 +9,11 @@ const STATUS_TABL_COL = 9;
 const MATERIA_TABL_COL = 8;
 const UNIQUE_TABL_COL = 12;
 const MAX_POT_INDEX = 6;   // Index into the maxPot for sorting
-let weaponDatabase = [];
+
+let weaponColHeaders = []; // array of strings for the column headers
+let weaponColIndexMap = {}; // map of column names to column indices
+let weaponColIdxToEffectTypeMap = {}; // cached map of column indices to "EffectX_Type" columns
+let weaponData = []; // core weapon data; array of array of strings
 let activeWeaponFilter = "";
 
 function resetPerfReport()
@@ -195,7 +199,7 @@ function sortTable(cell) {
                     
 }
 function readDatabase() {
-    if (weaponDatabase[0] != null) {
+    if (weaponData[0] != null) {
         return;
     }
     resetPerfReport();
@@ -206,68 +210,20 @@ function readDatabase() {
     result = loadFile(directoryPath + FILE_NAME);
 
     if (result != null) {
-        // By lines
         var lines = result.split('\n');
-
-        // mapping of our database column names to the TSV Column names that we want
-        var dbColsToTsvColsMap = new Map([
-            ['name', 'Name'],
-            ['charName', 'Character'],
-            ['sigil', 'Command Sigil'],
-            ['atb', 'Command ATB'],
-            ['type', 'Ability Type'],
-            ['element', 'Ability Element'],
-            ['range', 'Ability Range'],
-            ['potOb10', 'Ability Pot. %'],
-            // ['maxPotOb10',
-            ['effect1Range',  'Effect0_Range'],
-            ['effect1',       'Effect0'],
-            ['effect1Pot',    'Effect0_Pot'],
-            ['effect1MaxPot', 'Effect0_PotMax'],
-            ['effect1Dur',    'Effect0_Dur'],
-            ['condition1',    'EFfect0_Condition'],
-            ['effect2Range'  , 'Effect1_Range'],
-            ['effect2'       , 'Effect1'],
-            ['effect2Pot'    , 'Effect1_Pot'],
-            ['effect2MaxPot' , 'Effect1_PotMax'],
-            ['effect2Dur'    , 'Effect1_Dur'],
-            ['condition2'    , 'EFfect1_Condition'],
-            ['effect3Range'  ,'Effect2_Range'],
-            ['effect3'       ,'Effect2'],
-            ['effect3Pot'    ,'Effect2_Pot'],
-            ['effect3MaxPot' ,'Effect2_PotMax'],
-            ['effect3Dur'    ,'Effect2_Dur'],
-            ['condition3'    ,'EFfect2_Condition'],
-            // ['support1' 
-            // ['support2' 
-            // ['support3' 
-            // ['rAbility1'
-            // ['rAbility2'
-            // ['uses'
-            ['gachaType', 'GachaType'],
-        ])
-
-        // generate an array of indices for the Tsv's columns, so we can directly load them into weapData
-        let dbColAndTsvIdxs = []
+        // get the list of columns, then build the map from column names to indices for later queries
+        weaponColHeaders = TsvLineToArray(lines[0]);
+        for (var colIdx = 0; colIdx < weaponColHeaders.length; ++colIdx)
         {
-            var headers = TsvLineToArray(lines[0]);
-            for (const [dbCol, tsvCol] of dbColsToTsvColsMap) {
-                let tsvIdx = headers.indexOf(tsvCol);
-                dbColAndTsvIdxs.push([dbCol, tsvIdx]);
-            }
+            weaponColIndexMap[weaponColHeaders[colIdx]] = colIdx;
         }
-
+        // Build a cached list of all of effect types so we can easily search it later
+        for (var effectIdx = 0; effectIdx < 9; ++effectIdx)
+        {
+            weaponColIdxToEffectTypeMap[weaponColHeaders.indexOf("Effect" + effectIdx + "_Type")] = effectIdx;
+        }
         for (var line = 1; line < lines.length-1; line++) {
-
-            var row = TsvLineToArray(lines[line]);
-            var i = 0;
-            let weapData = [];
-
-            for (var col = 0; col < dbColAndTsvIdxs.length; col++) {
-                weapData.push({ name: dbColAndTsvIdxs[col][0], value:row[dbColAndTsvIdxs[col][1]]});
-            }
-            weaponDatabase.push(weapData);
-            // console.log(weapData);
+            weaponData.push(TsvLineToArray(lines[line]));
         }
     }
     let end = performance.now();
@@ -283,13 +239,12 @@ function findElement(arr, propName, propValue) {
         if (arr[i][propName] == propValue)
             return arr[i];
 }
-function getValueFromDatabaseItem(item, name) {
-    var i = findElement(item, "name", name);
-    if (i != null)
-        return i["value"];
-    else
-        return null;
+
+// Returns the value from the weapondb row for the column "name"
+function getValueFromDatabaseRow(row, name) {
+    return row[weaponColIndexMap[name]];
 }
+
 function findWeaponWithProperty(arr, propName, propValue) {
     for (var i = 0; i < arr.length; i++) {
         if (arr[i].name == propName) {
@@ -302,41 +257,68 @@ function findWeaponWithProperty(arr, propName, propValue) {
     return false;
 }
 
-function matchWeaponByCharacter(weapon, charFilters)
+// For a given weapon row, check if the 'character' field for it matches our set of filters
+// function matchWeaponByCharacter(weapon, charFilters)
+// {
+//     // no char filter, then they're always a match
+//     if (charFilters.length == 0)
+//     {
+//         return true;
+//     }
+
+//     // locate the charName element, and see if it matches any of the charFilters
+//     return charFilters.includes(getValueFromDatabaseItem(weapon, "Character"));
+// }
+
+// For a given weapon row, check if the 'gachaType' field for it matches our set of filters
+// (note that "WeaponType" is a synonoym for the gachatype, i.e. mode of acquisition -- Limited, Ultimate, Featured...)
+// function matchWeaponByWeaponType(weapon, weaponTypeFilters)
+// {
+//     // no active filter, then they're always a match
+//     if (weaponTypeFilters.length == 0)
+//     {
+//         return true;
+//     }
+//     return weaponTypeFilters.includes(getValueFromDatabaseItem(weapon, "GachaType"));
+// }
+
+
+// Simple query to filter the input database down to just the rows where the value in columnToCheck is a match for one of matchValues
+// (used for initialy, coarse, filters)
+function getWeaponsMatchingFilter(database, columnToCheck, matchValues)
 {
-    // no char filter, then they're always a match
-    if (charFilters.length == 0)
+    if (matchValues.length == 0)
     {
-        return true;
-    }
-
-    // locate the charName element, and see if it matches any of the charFilters
-    return charFilters.includes(getValueFromDatabaseItem(weapon, "charName"));
-}
-
-function matchWeaponByType(weapon, weaponTypeFilters)
-{
-    // no active filter, then they're always a match
-    if (weaponTypeFilters.length == 0)
-    {
-        return true;
-    }
-
-    let weaponType = "";
-    if (getValueFromDatabaseItem(weapon, "uses") != "No Limit")
-    {
-        weaponType = "Ultimate";
+        return database;
     }
     else
     {
-        switch (getValueFromDatabaseItem(weapon, "gachaType"))
+        let filteredDb = [];
+        let colIdxToSearch = weaponColIndexMap[columnToCheck];
+        for (var rowIdx = 0; rowIdx < database.length; ++rowIdx)
         {
-            case "L": weaponType = "Limited"; break;
-            case "Y": weaponType = "Event"; break;
-            case "N": weaponType = "Featured"; break;
+            if (matchValues.includes(database[rowIdx][colIdxToSearch]))
+            {
+                filteredDb.push(database[rowIdx])
+            }
         }
+        return filteredDb;
     }
-    return weaponTypeFilters.includes(weaponType);
+}
+
+// Helper function to check for the "AdditionalEffect" effect, and return what "effect index" it's in
+// If not found, returns -1
+function getEffectIdxOfAdditionalEffect(weaponRow)
+{
+    let colIdx = weaponRow.indexOf("AdditionalEffect");
+    if (colIdx == -1)
+    {
+        return -1;
+    }
+    else
+    {
+        return weaponColIdxToEffectTypeMap[colIdx];
+    }
 }
 
 function getActiveCharacterFilter()
@@ -589,7 +571,7 @@ function filterHeal() {
 }
 
 function filterProvoke() {
-        activeWeaponFilter = "Provoke";
+    activeWeaponFilter = "Provoke";
     refreshTable();
 }
 
@@ -701,67 +683,61 @@ function printLimitedWeapon(elem, header) {
     elemental = [["Weapon Name", "Char", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Condition"]];
 
     let activeChars = getActiveCharacterFilter();
-    let activeWeaponTypes = getActiveWeaponTypeFilter();
 
-    for (var i = 0; i < weaponDatabase.length; i++) {
-        var found = findWeaponWithProperty(weaponDatabase[i], 'gachaType', "L");
-        found = found && matchWeaponByCharacter(weaponDatabase[i], activeChars);
-        found = found && matchWeaponByType(weaponDatabase[i], activeWeaponTypes);
+    let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "GachaType", "Limited");
+    filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "Character", activeChars);
 
-        if (found) {
-            // Make a new row and push them into the list
-            let row = [];
+    for (var i = 0; i < filteredWeaponData.length; i++) {
+        // Make a new row and push them into the list
+        let row = [];
 
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "name"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "charName"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "range"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "type"));
+        row.push(getValueFromDatabaseItem(weaponRow, "Name"));
+        row.push(getValueFromDatabaseItem(filteredWeaponData[i], "Character"));
+        row.push(getValueFromDatabaseItem(filteredWeaponData[i], "Ability Range"));
+        row.push(getValueFromDatabaseItem(filteredWeaponData[i], "GachaType"));
 
-            var atb = getValueFromDatabaseItem(weaponDatabase[i], "atb");
-            row.push(atb);
+        var atb = getValueFromDatabaseItem(filteredWeaponData[i], "Ability ATB");
+        row.push(atb);
+        row.push(getValueFromDatabaseItem(filteredWeaponData[i], "Ability Element"));
 
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "element"));
- 
-            var pot, maxPot;
+        var pot, maxPot;
 
-            pot = parseInt(getValueFromDatabaseItem(weaponDatabase[i], "potOb10"));
-            row.push(pot);
+        pot = parseInt(getValueFromDatabaseItem(filteredWeaponData[i], "Ability Pot. %"));
+        row.push(pot);
 
-            maxPot = parseInt(getValueFromDatabaseItem(weaponDatabase[i], "maxPotOb10"));
+        maxPot = parseInt(getValueFromDatabaseItem(filteredWeaponData[i], "maxPotOb10"));
+        row.push(maxPot);
+
+        // % per ATB
+        if (atb != 0) {
+            row.push((maxPot / atb).toFixed(0));
+        }
+        else {
             row.push(maxPot);
-
-            // % per ATB
-            if (atb != 0) {
-                row.push((maxPot / atb).toFixed(0));
-            }
-            else {
-                row.push(maxPot);
-            }
-
-            if (elem != "Heal") {
-                // @todo: Need to figure out a good way to deal with this stupid weapon
-                if ((maxPot > pot) || (getValueFromDatabaseItem(weaponDatabase[i], "name") == "Bahamut Greatsword") ||
-                    (getValueFromDatabaseItem(weaponDatabase[i], "name") == "Sabin's Claws") || 
-                    (getValueFromDatabaseItem(weaponDatabase[i], "name") == "Blade of the Worthy") || 
-                    (getValueFromDatabaseItem(weaponDatabase[i], "name") == "Umbral Blade")) {
-                    // Check to see if DMG+ Condition is from Effect1 or Effect2 
-                    if (findWeaponWithProperty(weaponDatabase[i], 'effect1', "DMG")) {
-                        row.push(getValueFromDatabaseItem(weaponDatabase[i], "condition1"));
-                    }
-                    else {
-                        row.push(getValueFromDatabaseItem(weaponDatabase[i], "condition2"));
-                    }
-                }
-                else {
-                    row.push("");
-                }
-            }
-
-            elemental.push(row);
         }
 
-        elemental.sort(elementalCompare);
+        if (elem != "Heal") {
+            // // @todo: Need to figure out a good way to deal with this stupid weapon
+            // if ((maxPot > pot) || (getValueFromDatabaseItem(filteredWeaponData[i], "name") == "Bahamut Greatsword") ||
+            //     (getValueFromDatabaseItem(filteredWeaponData[i], "name") == "Sabin's Claws") || 
+            //     (getValueFromDatabaseItem(filteredWeaponData[i], "name") == "Blade of the Worthy") || 
+            //     (getValueFromDatabaseItem(weaponRow, "name") == "Umbral Blade")) {
+            //     // Check to see if DMG+ Condition is from Effect1 or Effect2 
+            //     if (findWeaponWithProperty(weaponRow, 'effect1', "DMG")) {
+            //         row.push(getValueFromDatabaseItem(weaponRow, "condition1"));
+            //     }
+            //     else {
+            //         row.push(getValueFromDatabaseItem(weaponRow, "condition2"));
+            //     }
+            // }
+            // else {
+            //     row.push("");
+            // }
+        }
+
+        elemental.push(row);
     }
+    elemental.sort(elementalCompare);
 
     tableCreate(elemental.length, elemental[0].length, elemental, header);
 }
@@ -776,29 +752,29 @@ function printAllWeapon(elem, header) {
     for (var i = 0; i < weaponDatabase.length; i++) {
         var found = true;
 
-        found = found && matchWeaponByCharacter(weaponDatabase[i], activeChars);
-        found = found && matchWeaponByType(weaponDatabase[i], activeWeaponTypes);
+        found = found && matchWeaponByCharacter(weaponRow, activeChars);
+        found = found && matchWeaponByWeaponType(weaponRow, activeWeaponTypes);
 
         if (found) {
             // Make a new row and push them into the list
             let row = [];
 
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "name"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "charName"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "range"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "type"));
+            row.push(getValueFromDatabaseItem(weaponRow, "name"));
+            row.push(getValueFromDatabaseItem(weaponRow, "charName"));
+            row.push(getValueFromDatabaseItem(weaponRow, "range"));
+            row.push(getValueFromDatabaseItem(weaponRow, "type"));
 
-            var atb = getValueFromDatabaseItem(weaponDatabase[i], "atb");
+            var atb = getValueFromDatabaseItem(weaponRow, "atb");
             row.push(atb);
 
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "element"));
+            row.push(getValueFromDatabaseItem(weaponRow, "element"));
 
             var pot, maxPot;
 
-            pot = parseInt(getValueFromDatabaseItem(weaponDatabase[i], "potOb10"));
+            pot = parseInt(getValueFromDatabaseItem(weaponRow, "potOb10"));
             row.push(pot);
 
-            maxPot = parseInt(getValueFromDatabaseItem(weaponDatabase[i], "maxPotOb10"));
+            maxPot = parseInt(getValueFromDatabaseItem(weaponRow, "maxPotOb10"));
             row.push(maxPot);
 
             // % per ATB
@@ -809,7 +785,7 @@ function printAllWeapon(elem, header) {
                 row.push(maxPot);
             }
 
-            type = getValueFromDatabaseItem(weaponDatabase[i], "gachaType");
+            type = getValueFromDatabaseItem(weaponRow, "gachaType");
             if (type == "L") {
                 row.push("Limited");
             }
@@ -822,16 +798,16 @@ function printAllWeapon(elem, header) {
 
             if (elem != "Heal") {
                 // @todo: Need to figure out a good way to deal with this stupid weapon
-                if ((maxPot > pot) || (getValueFromDatabaseItem(weaponDatabase[i], "name") == "Bahamut Greatsword") ||
-                    (getValueFromDatabaseItem(weaponDatabase[i], "name") == "Sabin's Claws") ||
-                    (getValueFromDatabaseItem(weaponDatabase[i], "name") == "Blade of the Worthy") ||
-                    (getValueFromDatabaseItem(weaponDatabase[i], "name") == "Umbral Blade")) {
+                if ((maxPot > pot) || (getValueFromDatabaseItem(weaponRow, "name") == "Bahamut Greatsword") ||
+                    (getValueFromDatabaseItem(weaponRow, "name") == "Sabin's Claws") ||
+                    (getValueFromDatabaseItem(weaponRow, "name") == "Blade of the Worthy") ||
+                    (getValueFromDatabaseItem(weaponRow, "name") == "Umbral Blade")) {
                     // Check to see if DMG+ Condition is from Effect1 or Effect2 
-                    if (findWeaponWithProperty(weaponDatabase[i], 'effect1', "DMG")) {
-                        row.push(getValueFromDatabaseItem(weaponDatabase[i], "condition1"));
+                    if (findWeaponWithProperty(weaponRow, 'effect1', "DMG")) {
+                        row.push(getValueFromDatabaseItem(weaponRow, "condition1"));
                     }
                     else {
-                        row.push(getValueFromDatabaseItem(weaponDatabase[i], "condition2"));
+                        row.push(getValueFromDatabaseItem(weaponRow, "condition2"));
                     }
                 }
                 else {
@@ -851,87 +827,72 @@ function printAllWeapon(elem, header) {
 
 function printWeaponElem(elem, header) {
     readDatabase();
-    let elemental;
-    if (elem != "Heal") {
-        elemental = [["Weapon Name", "Char", "AOE", "Type", "ATB", "Uses", "Pot%", "Max%", "% per ATB", "Condition"]];
-    }
-    else {
-        elemental = [["Weapon Name", "Char", "AOE", "Type", "ATB", "Uses", "Target", "Pot%", "Max%", "% per ATB"]];
-    }
+
+    let elemental = [["Weapon Name", "Character", "Range", "Type", "ATB", "Uses", "Pot%", "Max Pot%", "% per ATB", "Condition for Max"]];
 
     let activeChars = getActiveCharacterFilter();
     let activeWeaponTypes = getActiveWeaponTypeFilter();
 
-    for (var i = 0; i < weaponDatabase.length; i++) {
-        var found = findWeaponWithProperty(weaponDatabase[i], 'element', elem);
+    let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Character", activeChars);
+    filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "GachaType", activeWeaponTypes);
+    filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "Ability Element", elem);
 
-        found = found && matchWeaponByCharacter(weaponDatabase[i], activeChars);
-        found = found && matchWeaponByType(weaponDatabase[i], activeWeaponTypes);
-
-        if (found) {
-            if (elem == "Heal") {
-                // Low % heal is not worth it - set threshold at 50
-                if (parseInt(getValueFromDatabaseItem(weaponDatabase[i], "potOb10")) < 25)
-                    continue;
-            }
-
-            // Make a new row and push them into the list
-            let row = [];
-
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "name"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "charName"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "range"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "type"));
-
-            var atb = getValueFromDatabaseItem(weaponDatabase[i], "atb");
-            row.push(atb);
-
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "uses"));
-
-            if (elem == "Heal") {
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect1Target"));
-            }
-
-            var pot, maxPot;            
-
-            pot = parseInt(getValueFromDatabaseItem(weaponDatabase[i], "potOb10"));
-            row.push(pot);
-
-            maxPot = parseInt(getValueFromDatabaseItem(weaponDatabase[i], "maxPotOb10"));
-            row.push(maxPot);
-
-            // % per ATB
-            if (atb != 0) {
-                row.push((maxPot / atb).toFixed(0));
-            }
-            else {
-                row.push(maxPot);
-            }
-
-            if (elem != "Heal") {
-                // @todo: Need to figure out a good way to deal with this stupid weapon
-                if ((maxPot > pot) || (getValueFromDatabaseItem(weaponDatabase[i], "name") == "Bahamut Greatsword") ||
-                    (getValueFromDatabaseItem(weaponDatabase[i], "name") == "Sabin's Claws") ||
-                    (getValueFromDatabaseItem(weaponDatabase[i], "name") == "Blade of the Worthy") ||
-                    (getValueFromDatabaseItem(weaponDatabase[i], "name") == "Umbral Blade")) {
-                    // Check to see if DMG+ Condition is from Effect1 or Effect2 
-                    if (findWeaponWithProperty(weaponDatabase[i], 'effect1', "DMG")) {
-                        row.push(getValueFromDatabaseItem(weaponDatabase[i], "condition1"));
-                    }
-                    else {
-                        row.push(getValueFromDatabaseItem(weaponDatabase[i], "condition2"));
-                    }
-                }
-                else {
-                    row.push("");
-                }
-            }
-
-            elemental.push(row);
+    for (var i = 0; i < filteredWeaponData.length; i++) {
+        let weaponRow = filteredWeaponData[i];
+        if (elem == "Heal") {
+            // Low % heal is not worth it - set threshold at 20
+            if (parseInt(getValueFromDatabaseRow(weaponRow, "Ability Pot. %")) < 20)
+                continue;
         }
 
-        elemental.sort(elementalCompare);
+        // Make a new row and push them into the list
+        let row = [];
+
+        row.push(getValueFromDatabaseRow(weaponRow, "Name"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Character"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Ability Range"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Ability Type"));
+        var atb = getValueFromDatabaseRow(weaponRow, "Command ATB");
+        row.push(atb);
+
+        var useCount = getValueFromDatabaseRow(weaponRow, "Use Count");
+        if (useCount == "")
+        {
+            useCount = "No limit";
+        }
+        row.push(useCount);
+
+        var pot, maxPot;            
+        pot = parseInt(getValueFromDatabaseRow(weaponRow, "Ability Pot. %"));
+        
+        // Find any "Additional Effect" that can multiply the ability damage
+        maxPot = pot;
+        var additionalEffectIdx = getEffectIdxOfAdditionalEffect(weaponRow)
+        var condition = "";
+        if (additionalEffectIdx != -1)
+        {
+            // Check the description for a damage multiplier
+            var addlEffectType = getValueFromDatabaseRow(weaponRow, "Effect" + additionalEffectIdx)
+            if (addlEffectType == "Multiply Damage")
+            {
+                // got a mult, fetch the pot (it's a string in percentage so parseint will get us the leading numbers)
+                var multPot = parseFloat(getValueFromDatabaseRow(weaponRow, "Effect" + additionalEffectIdx + "_Pot"));
+                maxPot = pot * (multPot / 100.0);
+                condition = getValueFromDatabaseRow(weaponRow, "Effect" + additionalEffectIdx + "_Condition") + ", damage is increased by " + (multPot / 100) + "x";
+            }
+        }
+        row.push(pot);
+        row.push(maxPot);
+
+        // % per ATB
+        row.push((maxPot / Math.max(atb,1)).toFixed(0));
+
+        row.push(condition);
+
+        elemental.push(row);
     }
+
+    elemental.sort(elementalCompare);
 
     tableCreate(elemental.length, elemental[0].length, elemental, header);
 }
@@ -944,22 +905,22 @@ function printWeaponSigil(sigil, header) {
     let activeWeaponTypes = getActiveWeaponTypeFilter();
 
     for (var i = 0; i < weaponDatabase.length; i++) {
-        var found = findWeaponWithProperty(weaponDatabase[i], 'sigil', sigil);
-        found = found && matchWeaponByCharacter(weaponDatabase[i], activeChars);
-        found = found && matchWeaponByType(weaponDatabase[i], activeWeaponTypes);
+        var found = findWeaponWithProperty(weaponRow, 'sigil', sigil);
+        found = found && matchWeaponByCharacter(weaponRow, activeChars);
+        found = found && matchWeaponByWeaponType(weaponRow, activeWeaponTypes);
 
         if (found) {
             let row = [];
             
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "name"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "charName"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "range"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "type"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "element"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "atb"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "uses"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "potOb10"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "maxPotOb10"));
+            row.push(getValueFromDatabaseItem(weaponRow, "name"));
+            row.push(getValueFromDatabaseItem(weaponRow, "charName"));
+            row.push(getValueFromDatabaseItem(weaponRow, "range"));
+            row.push(getValueFromDatabaseItem(weaponRow, "type"));
+            row.push(getValueFromDatabaseItem(weaponRow, "element"));
+            row.push(getValueFromDatabaseItem(weaponRow, "atb"));
+            row.push(getValueFromDatabaseItem(weaponRow, "uses"));
+            row.push(getValueFromDatabaseItem(weaponRow, "potOb10"));
+            row.push(getValueFromDatabaseItem(weaponRow, "maxPotOb10"));
 
             materia.push(row);
         }
@@ -975,24 +936,24 @@ function printWeaponMateria(elemMateria, header) {
 
     for (var i = 0; i < weaponDatabase.length; i++) {
         var found = false;
-        found = found || findWeaponWithProperty(weaponDatabase[i], 'support1', elemMateria);
-        found = found || findWeaponWithProperty(weaponDatabase[i], 'support2', elemMateria);
-        found = found || findWeaponWithProperty(weaponDatabase[i], 'support3', elemMateria);
-        found = found && matchWeaponByCharacter(weaponDatabase[i], activeChars);
-        found = found && matchWeaponByType(weaponDatabase[i], activeWeaponTypes);
+        found = found || findWeaponWithProperty(weaponRow, 'support1', elemMateria);
+        found = found || findWeaponWithProperty(weaponRow, 'support2', elemMateria);
+        found = found || findWeaponWithProperty(weaponRow, 'support3', elemMateria);
+        found = found && matchWeaponByCharacter(weaponRow, activeChars);
+        found = found && matchWeaponByWeaponType(weaponRow, activeWeaponTypes);
 
         if (found) {
 
             let row = [];
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "name"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "charName"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "range"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "type"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "element"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "atb"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "uses"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "potOb10"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "maxPotOb10"));
+            row.push(getValueFromDatabaseItem(weaponRow, "name"));
+            row.push(getValueFromDatabaseItem(weaponRow, "charName"));
+            row.push(getValueFromDatabaseItem(weaponRow, "range"));
+            row.push(getValueFromDatabaseItem(weaponRow, "type"));
+            row.push(getValueFromDatabaseItem(weaponRow, "element"));
+            row.push(getValueFromDatabaseItem(weaponRow, "atb"));
+            row.push(getValueFromDatabaseItem(weaponRow, "uses"));
+            row.push(getValueFromDatabaseItem(weaponRow, "potOb10"));
+            row.push(getValueFromDatabaseItem(weaponRow, "maxPotOb10"));
 
             materia.push(row);
         }
@@ -1010,47 +971,47 @@ function printRegenWeapon(header) {
     let activeWeaponTypes = getActiveWeaponTypeFilter();
 
     for (var i = 0; i < weaponDatabase.length; i++) {
-        var found = findWeaponWithProperty(weaponDatabase[i], 'element', "Heal");
-        var found1 = found && findWeaponWithProperty(weaponDatabase[i], 'effect1', text);
-        var found2 = found && findWeaponWithProperty(weaponDatabase[i], 'effect2', text);
-        found = (found1 || found2) && matchWeaponByCharacter(weaponDatabase[i], activeChars);
-        found = found && matchWeaponByType(weaponDatabase[i], activeWeaponTypes);
+        var found = findWeaponWithProperty(weaponRow, 'element', "Heal");
+        var found1 = found && findWeaponWithProperty(weaponRow, 'effect1', text);
+        var found2 = found && findWeaponWithProperty(weaponRow, 'effect2', text);
+        found = (found1 || found2) && matchWeaponByCharacter(weaponRow, activeChars);
+        found = found && matchWeaponByWeaponType(weaponRow, activeWeaponTypes);
 
         if (found) {
             // Make a new row and push them into the list
             let row = [];
 
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "name"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "charName"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "type"));
+            row.push(getValueFromDatabaseItem(weaponRow, "name"));
+            row.push(getValueFromDatabaseItem(weaponRow, "charName"));
+            row.push(getValueFromDatabaseItem(weaponRow, "type"));
 
-            var atb = getValueFromDatabaseItem(weaponDatabase[i], "atb");
+            var atb = getValueFromDatabaseItem(weaponRow, "atb");
             row.push(atb);
 
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "uses"));
+            row.push(getValueFromDatabaseItem(weaponRow, "uses"));
 
             var dur, pot, maxPot;
 
             if (found1) {
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect1Range"));
+                row.push(getValueFromDatabaseItem(weaponRow, "effect1Range"));
             }
             else if (found2) {
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect2Range"));
+                row.push(getValueFromDatabaseItem(weaponRow, "effect2Range"));
             }
             if (found1) {
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect1Target"));
+                row.push(getValueFromDatabaseItem(weaponRow, "effect1Target"));
 
-                dur = parseInt(getValueFromDatabaseItem(weaponDatabase[i], "effect1Dur"));
+                dur = parseInt(getValueFromDatabaseItem(weaponRow, "effect1Dur"));
                 row.push(dur);               
             }
             else if (found2) {
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect2Target"));
+                row.push(getValueFromDatabaseItem(weaponRow, "effect2Target"));
 
-                dur = parseInt(getValueFromDatabaseItem(weaponDatabase[i], "effect2Dur"));
+                dur = parseInt(getValueFromDatabaseItem(weaponRow, "effect2Dur"));
                 row.push(dur);
             }
 
-            pot = parseInt(getValueFromDatabaseItem(weaponDatabase[i], "potOb10"));
+            pot = parseInt(getValueFromDatabaseItem(weaponRow, "potOb10"));
             row.push(pot);
             maxPot = pot;   
 
@@ -1081,54 +1042,54 @@ function printWeaponEffect(text, header) {
     let activeWeaponTypes = getActiveWeaponTypeFilter();
     
     for (var i = 0; i < weaponDatabase.length; i++) {
-        var found1 = findWeaponWithProperty(weaponDatabase[i], 'effect1', text);
-        var found2 = findWeaponWithProperty(weaponDatabase[i], 'effect2', text);
-        var found3 = findWeaponWithProperty(weaponDatabase[i], 'effect3', text);
+        var found1 = findWeaponWithProperty(weaponRow, 'effect1', text);
+        var found2 = findWeaponWithProperty(weaponRow, 'effect2', text);
+        var found3 = findWeaponWithProperty(weaponRow, 'effect3', text);
         var found = (found1 || found2 || found3);
-        found = found && matchWeaponByCharacter(weaponDatabase[i], activeChars);
-        found = found && matchWeaponByType(weaponDatabase[i], activeWeaponTypes);
+        found = found && matchWeaponByCharacter(weaponRow, activeChars);
+        found = found && matchWeaponByWeaponType(weaponRow, activeWeaponTypes);
         
         if (found) {
             // Make a new row and push them into the list
             let row = [];
 
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "name"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "charName"));
+            row.push(getValueFromDatabaseItem(weaponRow, "name"));
+            row.push(getValueFromDatabaseItem(weaponRow, "charName"));
 
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "type"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "element"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "atb"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "uses"));
+            row.push(getValueFromDatabaseItem(weaponRow, "type"));
+            row.push(getValueFromDatabaseItem(weaponRow, "element"));
+            row.push(getValueFromDatabaseItem(weaponRow, "atb"));
+            row.push(getValueFromDatabaseItem(weaponRow, "uses"));
 
             if (found1) {
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect1Range"));
+                row.push(getValueFromDatabaseItem(weaponRow, "effect1Range"));
             }
             else if (found2) {
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect2Range"));
+                row.push(getValueFromDatabaseItem(weaponRow, "effect2Range"));
             }
             else if (found3) {
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect2Range"));
+                row.push(getValueFromDatabaseItem(weaponRow, "effect2Range"));
             }
             if (found1) {
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect1Target"));  
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect1Pot"));
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect1MaxPot"));
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect1Dur"));
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "condition1"));
+                row.push(getValueFromDatabaseItem(weaponRow, "effect1Target"));  
+                row.push(getValueFromDatabaseItem(weaponRow, "effect1Pot"));
+                row.push(getValueFromDatabaseItem(weaponRow, "effect1MaxPot"));
+                row.push(getValueFromDatabaseItem(weaponRow, "effect1Dur"));
+                row.push(getValueFromDatabaseItem(weaponRow, "condition1"));
             }
             else if (found2) {
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect2Target"));  
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect2Pot"));
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect2MaxPot"));
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect2Dur"));
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "condition2"));
+                row.push(getValueFromDatabaseItem(weaponRow, "effect2Target"));  
+                row.push(getValueFromDatabaseItem(weaponRow, "effect2Pot"));
+                row.push(getValueFromDatabaseItem(weaponRow, "effect2MaxPot"));
+                row.push(getValueFromDatabaseItem(weaponRow, "effect2Dur"));
+                row.push(getValueFromDatabaseItem(weaponRow, "condition2"));
             }
             else if (found3) {
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect3Target"));
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect3Pot"));
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect3MaxPot"));
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect3Dur"));
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "condition3"));
+                row.push(getValueFromDatabaseItem(weaponRow, "effect3Target"));
+                row.push(getValueFromDatabaseItem(weaponRow, "effect3Pot"));
+                row.push(getValueFromDatabaseItem(weaponRow, "effect3MaxPot"));
+                row.push(getValueFromDatabaseItem(weaponRow, "effect3Dur"));
+                row.push(getValueFromDatabaseItem(weaponRow, "condition3"));
             }
 
             effect.push(row);
@@ -1145,30 +1106,30 @@ function printWeaponUniqueEffect(text, header) {
     let activeWeaponTypes = getActiveWeaponTypeFilter();
     
     for (var i = 0; i < weaponDatabase.length; i++) {
-        var found1 = findWeaponWithProperty(weaponDatabase[i], 'effect1', text);
-        var found2 = findWeaponWithProperty(weaponDatabase[i], 'effect2', text);
+        var found1 = findWeaponWithProperty(weaponRow, 'effect1', text);
+        var found2 = findWeaponWithProperty(weaponRow, 'effect2', text);
         var found = (found1 || found2);
-        found = found && matchWeaponByCharacter(weaponDatabase[i], activeChars);
-        found = found && matchWeaponByType(weaponDatabase[i], activeWeaponTypes);
+        found = found && matchWeaponByCharacter(weaponRow, activeChars);
+        found = found && matchWeaponByWeaponType(weaponRow, activeWeaponTypes);
         if (found) {
             let row = [];
 
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "name"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "charName"));
+            row.push(getValueFromDatabaseItem(weaponRow, "name"));
+            row.push(getValueFromDatabaseItem(weaponRow, "charName"));
             if (found1) {
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect1Range"));
+                row.push(getValueFromDatabaseItem(weaponRow, "effect1Range"));
             }
             else if (found2) {
-                row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect2Range"));
+                row.push(getValueFromDatabaseItem(weaponRow, "effect2Range"));
             }
 
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "type"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "element"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "atb"));
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "uses"));
+            row.push(getValueFromDatabaseItem(weaponRow, "type"));
+            row.push(getValueFromDatabaseItem(weaponRow, "element"));
+            row.push(getValueFromDatabaseItem(weaponRow, "atb"));
+            row.push(getValueFromDatabaseItem(weaponRow, "uses"));
 
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect1Target"));
-            var str = getValueFromDatabaseItem(weaponDatabase[i], "effect1");
+            row.push(getValueFromDatabaseItem(weaponRow, "effect1Target"));
+            var str = getValueFromDatabaseItem(weaponRow, "effect1");
             var indexOfFirst = str.indexOf(text);
             if (indexOfFirst >= 0) {
                 var newstr = str.substring(indexOfFirst + text.length + 1);
@@ -1178,11 +1139,11 @@ function printWeaponUniqueEffect(text, header) {
                 row.push(str);
             }
 
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "condition1"));
+            row.push(getValueFromDatabaseItem(weaponRow, "condition1"));
 
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "effect2Target"));
+            row.push(getValueFromDatabaseItem(weaponRow, "effect2Target"));
 
-            var str = getValueFromDatabaseItem(weaponDatabase[i], "effect2");
+            var str = getValueFromDatabaseItem(weaponRow, "effect2");
             var indexOfFirst = str.indexOf(text);
             if (indexOfFirst >= 0) {
                 var newstr = str.substring(indexOfFirst + text.length + 1);
@@ -1192,7 +1153,7 @@ function printWeaponUniqueEffect(text, header) {
                 row.push(str);
             }
 
-            row.push(getValueFromDatabaseItem(weaponDatabase[i], "condition2"));
+            row.push(getValueFromDatabaseItem(weaponRow, "condition2"));
 
 
             effect.push(row);
