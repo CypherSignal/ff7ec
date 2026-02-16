@@ -183,7 +183,7 @@ status_effect_types = {
     22:"Water Weakness",
     23:"Wind Weakness",
     27:"Single-Tgt. Phys. Dmg. Rcvd. Up",
-    28:"Single-Tgt. Mat. Dmg. Rcvd. Up",
+    28:"Single-Tgt. Mag. Dmg. Rcvd. Up",
 }
 
 buffdebuff_types = {
@@ -650,7 +650,7 @@ for field in out_sorted_weapon_fields:
     out_weapon_fields.remove(field)
 out_sorted_weapon_fields.extend(sorted(out_weapon_fields))
 
-with open('weaponData-Staging.tsv', 'w', newline='', encoding='utf-8') as csvfile:
+with open('weaponData.tsv', 'w', newline='', encoding='utf-8') as csvfile:
     csv_writer = csv.DictWriter(csvfile, out_sorted_weapon_fields, delimiter='\t')
     csv_writer.writeheader()
     for out_weapon in out_weapons:

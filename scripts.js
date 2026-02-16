@@ -393,41 +393,53 @@ function refreshTable()
         case "None": 
             printElemWeapon("None");
             break;
-        case "Limited":
-            printLimitedWeapon("", "Limited/Crossover Weapons:");
-            break;
         case "DebuffMatk":
-            printWeaponEffect("[Debuff] MATK", "Weapon with [Debuff] MATK:");
+            printWeaponEffect("MATK Down", "Weapon with Debuff MATK:", true);
             break;
         case "DebuffPdef":
-            printWeaponEffect("[Debuff] PDEF", "Weapon with [Debuff] PDEF:");
+            printWeaponEffect("PDEF Down", "Weapon with Debuff PDEF:", true);
+            printWeaponEffect("Status Ailment: Single-Tgt. Phys. Dmg. Rcvd. Up", "Weapon with Single-Tgt. Phys. Dmg. Rcvd. Up:");
             break;
         case "DebuffMdef":
-            printWeaponEffect("[Debuff] MDEF", "Weapon with [Debuff] MDEF:");
+            printWeaponEffect("MDEF Down", "Weapon with Debuff MDEF:", true);
+            printWeaponEffect("Status Ailment: Single-Tgt. Mag. Dmg. Rcvd. Up", "Weapon with Single-Tgt. Mag. Dmg. Rcvd. Up:");
             break;
         case "DebuffPatk":
-            printWeaponEffect("[Debuff] PATK", "Weapon with [Debuff] PATK:");
+            printWeaponEffect("PATK Down", "Weapon with Debuff PATK:", true);
             break;
         case "BuffMatk":
-            printWeaponEffect("[Buff] MATK", "Weapon with [Buff] MATK:");
+            printWeaponEffect("MATK Up", "Weapon with Buff MATK:", true);
+            printWeaponEffect("Mag. Damage Bonus", "Weapon with Mag. Damage Bonus:");
+            printWeaponEffect("Mag. Weapon Boost", "Weapon with Mag. Weapon Boost:");
+            printWeaponEffect("Amp. Mag. Abilities", "Weapon with Amp. Mag. Abilities:", false, true);
+            printWeaponEffect("Mag. ATB Conservation Effect", "Weapon with Mag. ATB Conservation Effect:");
             break;
         case "BuffPdef":
-            printWeaponEffect("[Buff] PDEF", "Weapon with [Buff] PDEF:");
+            printWeaponEffect("PDEF Up", "Weapon with Buff PDEF:", true);
+            printWeaponEffect("Physical Resistance Increased", "Weapon with Physical Resistance Increased:");
             break;
         case "BuffMdef":
-            printWeaponEffect("[Buff] MDEF", "Weapon with [Buff] MDEF:");
+            printWeaponEffect("MDEF Up", "Weapon with Buff MDEF:", true);
+            printWeaponEffect("Magic Resistance Increased", "Weapon with Magic Resistance Increased:");
             break;
         case "BuffPatk":
-            printWeaponEffect("[Buff] PATK", "Weapon with [Buff] PATK:");
+            printWeaponEffect("PATK Up", "Weapon with Buff PATK:", true);
+            printWeaponEffect("Phys. Damage Bonus", "Weapon with Phys. Damage Bonus:");
+            printWeaponEffect("Phys. Weapon Boost", "Weapon with Phys. Weapon Boost:");
+            printWeaponEffect("Amp. Phys. Abilities", "Weapon with Amp. Phys. Abilities:", false, true);
+            printWeaponEffect("Phys. ATB Conservation Effect", "Weapon with Phys. ATB Conservation Effect:");
             break;
         case "BuffWex":
             printWeaponEffect("Exploit Weakness", "Weapon with Exploit Weakness:");
+            printWeaponEffect("Enfeeble", "Weapon with Enfeeble:");
+            printWeaponEffect("BuffDebuffEnhance", "Weapon with Buff/Debuff Enhancement:");
             break;
         case "Heal":
             printHealWeapon();
             break;
         case "Provoke":
-            printProvokeWeapon();
+            printWeaponEffect("Provoke", "Weapon with Provoke:");
+            printWeaponEffect("Veil", "Weapon with Veil:");
             break;
         case "SigilCircle":
             printWeaponMateria("Circle", "Weapon with ◯ Sigil Materia Slot:");
@@ -495,12 +507,6 @@ function filterEarth()
 function filterNonElem()
 {
     activeWeaponFilter = "None";
-    refreshTable();
-}
-
-function filterLimited()
-{
-    activeWeaponFilter = "Limited";
     refreshTable();
 }
 
@@ -573,14 +579,6 @@ function printHealWeapon() {
     printWeaponMateria("All (Cure)", header);
 }
 
-function printProvokeWeapon() {
-    var header = "Provoke Weapon:";
-    printWeaponEffect("[Buff] Provoke", header);
-
-    var header = "Veil Weapon:";
-    printWeaponEffect("[Buff] Veil", header);
-}
-
 function filterExploitWeakness(){
     activeWeaponFilter = "BuffWex";
     refreshTable();
@@ -651,71 +649,6 @@ function printElemWeapon(elem) {
         
         printWeaponMateria(elem, "Weapon with " + elem + " Materia Slot:");
     }
-}
-
-function printLimitedWeapon(elem, header) {
-    readDatabase();
-    let elemental;
-    elemental = [["Weapon Name", "Char", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Condition"]];
-
-    let activeChars = getActiveCharacterFilter();
-
-    let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "GachaType", "Limited");
-    filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "Character", activeChars);
-
-    for (var i = 0; i < filteredWeaponData.length; i++) {
-        // Make a new row and push them into the list
-        let row = [];
-
-        row.push(getValueFromDatabaseItem(weaponRow, "Name"));
-        row.push(getValueFromDatabaseItem(filteredWeaponData[i], "Character"));
-        row.push(getValueFromDatabaseItem(filteredWeaponData[i], "Ability Range"));
-        row.push(getValueFromDatabaseItem(filteredWeaponData[i], "GachaType"));
-
-        var atb = getValueFromDatabaseItem(filteredWeaponData[i], "Ability ATB");
-        row.push(atb);
-        row.push(getValueFromDatabaseItem(filteredWeaponData[i], "Ability Element"));
-
-        var pot, maxPot;
-
-        pot = parseInt(getValueFromDatabaseItem(filteredWeaponData[i], "Ability Pot. %"));
-        row.push(pot);
-
-        maxPot = parseInt(getValueFromDatabaseItem(filteredWeaponData[i], "maxPotOb10"));
-        row.push(maxPot);
-
-        // % per ATB
-        if (atb != 0) {
-            row.push((maxPot / atb).toFixed(0));
-        }
-        else {
-            row.push(maxPot);
-        }
-
-        if (elem != "Heal") {
-            // // @todo: Need to figure out a good way to deal with this stupid weapon
-            // if ((maxPot > pot) || (getValueFromDatabaseItem(filteredWeaponData[i], "name") == "Bahamut Greatsword") ||
-            //     (getValueFromDatabaseItem(filteredWeaponData[i], "name") == "Sabin's Claws") || 
-            //     (getValueFromDatabaseItem(filteredWeaponData[i], "name") == "Blade of the Worthy") || 
-            //     (getValueFromDatabaseItem(weaponRow, "name") == "Umbral Blade")) {
-            //     // Check to see if DMG+ Condition is from Effect1 or Effect2 
-            //     if (findWeaponWithProperty(weaponRow, 'effect1', "DMG")) {
-            //         row.push(getValueFromDatabaseItem(weaponRow, "condition1"));
-            //     }
-            //     else {
-            //         row.push(getValueFromDatabaseItem(weaponRow, "condition2"));
-            //     }
-            // }
-            // else {
-            //     row.push("");
-            // }
-        }
-
-        elemental.push(row);
-    }
-    elemental.sort(elementalCompare);
-
-    tableCreate(elemental.length, elemental[0].length, elemental, header);
 }
 
 function printAllWeapon(elem, header) {
@@ -1006,13 +939,17 @@ function printRegenWeapon(header) {
     tableCreate(effect.length, effect[0].length, effect, header);
 }
 
-function printWeaponEffect(effect, header, includeMaxPot) {
+function printWeaponEffect(effect, header, includeMaxPot, includeEffectCount) {
     readDatabase();
 
-    let effectTable = [["Weapon Name", "Character","Range",  "Pot", "Max Pot",  "Duration (s)", "Extension (s)", "Condition", "ATB", "Uses","Type"]];
+    let effectTable = [["Weapon Name", "Character","Range",  "Pot", "Max Pot",  "Duration (s)", "Extension (s)", "ATB", "Uses", "Effect Count", "Type","Condition"]];
     if (!includeMaxPot)
     {
         effectTable[0].splice(effectTable[0].indexOf("Max Pot"), 1);
+    }
+    if (!includeEffectCount)
+    {
+        effectTable[0].splice(effectTable[0].indexOf("Effect Count"), 1);
     }
     let activeChars = getActiveCharacterFilter();
     let activeWeaponTypes = getActiveWeaponTypeFilter();
@@ -1033,6 +970,7 @@ function printWeaponEffect(effect, header, includeMaxPot) {
         var effectDuration = "";
         var effectExtend = "";
         var effectCondition = "";
+        var effectCount = "";
 
         // find which effectIdx we're actually interested in
         for (colIdx in weaponColIdxToEffectMap)
@@ -1047,6 +985,7 @@ function printWeaponEffect(effect, header, includeMaxPot) {
                 effectDuration = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Duration");
                 effectExtend = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Extend");
                 effectCondition = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Condition");
+                effectCount = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_EffectCount");
             }
         }
 
@@ -1060,10 +999,14 @@ function printWeaponEffect(effect, header, includeMaxPot) {
         }
         row.push(effectDuration);
         row.push(effectExtend);
-        row.push(effectCondition);
         row.push(getValueFromDatabaseRow(weaponRow, "Command ATB"));
         row.push(getValueFromDatabaseRow(weaponRow, "Use Count"));
+        if (includeEffectCount)
+        {
+            row.push(effectCount);
+        }
         row.push(getValueFromDatabaseRow(weaponRow, "Ability Type"));
+        row.push(effectCondition);
 
         effectTable.push(row);
     }
@@ -1146,7 +1089,6 @@ function loadFile(filePath) {
     }
     return result;
 }
-
 
 // This will parse a delimited string into an array of
 // arrays. The default delimiter is the comma, but this
