@@ -266,32 +266,6 @@ function findWeaponWithProperty(arr, propName, propValue) {
     return false;
 }
 
-// For a given weapon row, check if the 'character' field for it matches our set of filters
-// function matchWeaponByCharacter(weapon, charFilters)
-// {
-//     // no char filter, then they're always a match
-//     if (charFilters.length == 0)
-//     {
-//         return true;
-//     }
-
-//     // locate the charName element, and see if it matches any of the charFilters
-//     return charFilters.includes(getValueFromDatabaseItem(weapon, "Character"));
-// }
-
-// For a given weapon row, check if the 'gachaType' field for it matches our set of filters
-// (note that "WeaponType" is a synonoym for the gachatype, i.e. mode of acquisition -- Limited, Ultimate, Featured...)
-// function matchWeaponByWeaponType(weapon, weaponTypeFilters)
-// {
-//     // no active filter, then they're always a match
-//     if (weaponTypeFilters.length == 0)
-//     {
-//         return true;
-//     }
-//     return weaponTypeFilters.includes(getValueFromDatabaseItem(weapon, "GachaType"));
-// }
-
-
 // Simple query to filter the input database down to just the rows where the value in columnToCheck is a match for one of matchValues
 // (used for initialy, coarse, filters)
 function getWeaponsMatchingFilter(database, columnToCheck, matchValues)
@@ -459,7 +433,7 @@ function refreshTable()
             printWeaponMateria("Circle", "Weapon with ◯ Sigil Materia Slot:");
             break;
         case "SigilCross":
-            printWeaponMateria("X Sigil", "Weapon with ✕ Sigil Materia Slot:");
+            printWeaponMateria("Cross", "Weapon with ✕ Sigil Materia Slot:");
             break;
         case "SigilTriangle":
             printWeaponMateria("Triangle", "Weapon with △ Sigil Materia Slot:");
@@ -929,31 +903,29 @@ function printWeaponSigil(sigil, header) {
 }
 function printWeaponMateria(elemMateria, header) {
     readDatabase();
-    let materia = [["Weapon Name", "Char", "AOE", "Type", "Elem", "ATB", "Uses", "Pot%", "Max%"]];
+    let materia = [["Weapon Name", "Char", "Materia Slot 1", "Materia Slot 2", "Materia Slot 3"]];
     let activeChars = getActiveCharacterFilter();
     let activeWeaponTypes = getActiveWeaponTypeFilter();
 
-    for (var i = 0; i < weaponDatabase.length; i++) {
+    let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Character", activeChars);
+    filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "GachaType", activeWeaponTypes);
+
+    for (var i = 0; i < filteredWeaponData.length; i++) {
+        var weaponRow = filteredWeaponData[i];
+        
         var found = false;
-        found = found || findWeaponWithProperty(weaponRow, 'support1', elemMateria);
-        found = found || findWeaponWithProperty(weaponRow, 'support2', elemMateria);
-        found = found || findWeaponWithProperty(weaponRow, 'support3', elemMateria);
-        found = found && matchWeaponByCharacter(weaponRow, activeChars);
-        found = found && matchWeaponByWeaponType(weaponRow, activeWeaponTypes);
+        found = found || (getValueFromDatabaseRow(weaponRow, "MateriaSupport0").indexOf(elemMateria) != -1);
+        found = found || (getValueFromDatabaseRow(weaponRow, "MateriaSupport1").indexOf(elemMateria) != -1);
+        found = found || (getValueFromDatabaseRow(weaponRow, "MateriaSupport2").indexOf(elemMateria) != -1);
 
         if (found) {
 
             let row = [];
-            row.push(getValueFromDatabaseItem(weaponRow, "name"));
-            row.push(getValueFromDatabaseItem(weaponRow, "charName"));
-            row.push(getValueFromDatabaseItem(weaponRow, "range"));
-            row.push(getValueFromDatabaseItem(weaponRow, "type"));
-            row.push(getValueFromDatabaseItem(weaponRow, "element"));
-            row.push(getValueFromDatabaseItem(weaponRow, "atb"));
-            row.push(getValueFromDatabaseItem(weaponRow, "uses"));
-            row.push(getValueFromDatabaseItem(weaponRow, "potOb10"));
-            row.push(getValueFromDatabaseItem(weaponRow, "maxPotOb10"));
-
+            row.push(getValueFromDatabaseRow(weaponRow, "Name"));
+            row.push(getValueFromDatabaseRow(weaponRow, "Character"));
+            row.push(getValueFromDatabaseRow(weaponRow, "MateriaSupport0"));
+            row.push(getValueFromDatabaseRow(weaponRow, "MateriaSupport1"));
+            row.push(getValueFromDatabaseRow(weaponRow, "MateriaSupport2"));
             materia.push(row);
         }
     }
