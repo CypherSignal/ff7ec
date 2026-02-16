@@ -109,6 +109,7 @@ skill_special_gauge_change_data = load_masterdata_json("SkillSpecialGaugeChangeE
 skill_status_change_effect_data = load_masterdata_json("SkillStatusChangeEffect.json")
 skill_status_effect_data = load_masterdata_json("SkillStatusConditionEffect.json")
 skill_tactics_gauge_change_data = load_masterdata_json("SkillTacticsGaugeChangeEffect.json")
+skill_trigger_condition_hp_data = load_masterdata_json("SkillTriggerConditionHp.json")
 skill_weapon_data = load_masterdata_json("SkillWeapon.json")
 weapon_data = load_masterdata_json("Weapon.json")
 
@@ -393,6 +394,35 @@ for weapon_obj in weapon_data.values():
         effect_detail_prefix = "Effect" + skill_effect_suffix
         out_weapon[effect_detail_prefix + "_Range"] = target_types[skill_effect_obj["TargetType"]]
         out_weapon[effect_detail_prefix + "_Type"] = skilleffect_types[skill_effect_obj["SkillEffectType"]]
+        
+        match skill_effect_obj["TriggerType"]:
+            case 1: # no condition required
+                pass
+            case 2: 
+                out_weapon[effect_detail_prefix + "_Condition"] = "When hitting critical"
+            case 3:
+                out_weapon[effect_detail_prefix + "_Condition"] = "When matching sigils are destroyed"
+            case 4: # hp
+                skill_trigger_condition_hp_obj = skill_trigger_condition_hp_data[skill_effect_obj["TriggerConditionId"]]
+                if (skill_trigger_condition_hp_obj["MinPermil"] == 0):
+                    out_weapon[effect_detail_prefix + "_Condition"] = "When HP is less than " + str(round(skill_trigger_condition_hp_obj["MaxPermil"]/10,0)) + "%"
+                elif (skill_trigger_condition_hp_obj["MaxPermil"] == 1000):
+                    out_weapon[effect_detail_prefix + "_Condition"] = "When HP is greater than " + str(round(skill_trigger_condition_hp_obj["MinPermil"]/10,0)) + "%"
+                else:
+                    out_weapon[effect_detail_prefix + "_Condition"] = "UNKNOWN CONDITION " + str(skill_effect_obj["TriggerType"]) + " on SkillEffectId: " + str(skill_effect_obj["Id"])
+            case 7:
+                out_weapon[effect_detail_prefix + "_Condition"] = "When debuff is on target"
+            case 8:
+                out_weapon[effect_detail_prefix + "_Condition"] = "When hitting target's weakness"
+            case 13:
+                out_weapon[effect_detail_prefix + "_Condition"] = "With command gauge at max in attack stance"
+            case 14:
+                out_weapon[effect_detail_prefix + "_Condition"] = "Against a single target"
+            case 16:
+                out_weapon[effect_detail_prefix + "_Condition"] = "On first use"
+            case _:
+                out_weapon[effect_detail_prefix + "_Condition"] = "UNKNOWN EFFECT CONDITION " + str(skill_effect_obj["TriggerType"]) + " on SkillEffectId: " + str(skill_effect_obj["Id"])
+
         match skill_effect_obj["SkillEffectType"]:
             case 1: # Damage effect
                 out_weapon[effect_detail_prefix] = "EXTRA DAMAGE EFFECT"
@@ -465,8 +495,8 @@ for weapon_obj in weapon_data.values():
                     case 14: # crits
                         out_weapon[effect_detail_prefix] = "Crit Rate"
                         out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_additional_effect_obj["MaxValue"]/10,0)) + "%"
-                    case 15: # additional damage when debuff on target
-                        out_weapon[effect_detail_prefix] = "When Debuff is on target, multiply damage"
+                    case 15: # e.g. "additional damage when debuff on target"
+                        out_weapon[effect_detail_prefix] = "Multiply damage"
                         out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_additional_effect_obj["MaxValue"]/10,0)) + "%"
                     case 16: # fixed dmg (phys)
                         out_weapon[effect_detail_prefix] = "Deals Fixed Additional Phys. Damage"
