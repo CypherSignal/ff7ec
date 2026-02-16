@@ -499,7 +499,7 @@ for weapon_obj in weapon_data.values():
                         out_weapon[effect_detail_prefix] = "Multiply damage"
                         out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_additional_effect_obj["MaxValue"]/10,0)) + "%"
                     case 16: # fixed dmg (phys)
-                        out_weapon[effect_detail_prefix] = "Deals Fixed Additional Phys. Damage"
+                        out_weapon[effect_detail_prefix] = "Deals Fixed Additional Damage"
                         out_weapon[effect_detail_prefix + "_Pot"] = skill_additional_effect_obj["MaxValue"]
                     case _:    
                         out_weapon[effect_detail_prefix] = "UNKNOWN ADDITIONAL EFFECT TYPE " + str(skill_additional_effect_obj["SkillAdditionalType"]) + " on SkillEffectDetailId: " + str(skill_effect_detail_id)
