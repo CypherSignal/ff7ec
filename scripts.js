@@ -3,7 +3,7 @@
 /* Trash code - Need to clean up and add comments and stuff*/
 /* When the user clicks on the button, toggle between hiding and showing the dropdown content */
 
-const FILE_NAME = 'weaponData-Staging.tsv'
+const FILE_NAME = 'weaponData.tsv'
 const ELEM_TABL_COL = 9;   
 const STATUS_TABL_COL = 9;
 const MATERIA_TABL_COL = 8;
