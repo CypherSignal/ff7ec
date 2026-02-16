@@ -421,7 +421,7 @@ function refreshTable()
             printWeaponEffect("[Buff] PATK", "Weapon with [Buff] PATK:");
             break;
         case "BuffWex":
-            printWeaponEffect("[Buff] Weakness", "Weapon with Exploit Weakness:");
+            printWeaponEffect("Exploit Weakness", "Weapon with Exploit Weakness:");
             break;
         case "Heal":
             printHealWeapon();
@@ -1009,7 +1009,7 @@ function printRegenWeapon(header) {
 function printWeaponEffect(effect, header, includeMaxPot) {
     readDatabase();
 
-    let effectTable = [["Weapon Name", "Character","Range",  "Type", "ATB", "Uses","Pot", "Max Pot",  "Duration (s)", "Extension (s)", "Condition"]];
+    let effectTable = [["Weapon Name", "Character","Range",  "Pot", "Max Pot",  "Duration (s)", "Extension (s)", "Condition", "ATB", "Uses","Type"]];
     if (!includeMaxPot)
     {
         effectTable[0].splice(effectTable[0].indexOf("Max Pot"), 1);
@@ -1053,9 +1053,6 @@ function printWeaponEffect(effect, header, includeMaxPot) {
         row.push(getValueFromDatabaseRow(weaponRow, "Name"));
         row.push(getValueFromDatabaseRow(weaponRow, "Character"));
         row.push(effectRange);
-        row.push(getValueFromDatabaseRow(weaponRow, "Ability Type"));
-        row.push(getValueFromDatabaseRow(weaponRow, "Command ATB"));
-        row.push(getValueFromDatabaseRow(weaponRow, "Use Count"));
         row.push(effectPot);
         if (includeMaxPot)
         {
@@ -1064,6 +1061,9 @@ function printWeaponEffect(effect, header, includeMaxPot) {
         row.push(effectDuration);
         row.push(effectExtend);
         row.push(effectCondition);
+        row.push(getValueFromDatabaseRow(weaponRow, "Command ATB"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Use Count"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Ability Type"));
 
         effectTable.push(row);
     }
