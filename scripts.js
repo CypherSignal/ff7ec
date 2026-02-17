@@ -308,6 +308,28 @@ function getWeaponsMatchingEffect(database, effect)
     return filteredDb;
 }
 
+// Query to filter the input database down to just the rows where one of the "EffectType"
+// columns matches the input effects provided
+function getWeaponsMatchingEffectType(database, effectType)
+{
+    let filteredDb = [];
+    let colIdxToSearchs = [];
+    
+    for (var rowIdx = 0; rowIdx < database.length; ++rowIdx)
+    {
+        // iterate over each colidx in the effect map
+        for (colIdx in weaponColIdxToEffectTypeMap)
+        {
+            if (effectType == database[rowIdx][colIdx])
+            {
+                filteredDb.push(database[rowIdx]);
+                break;
+            }
+        }
+    }
+    return filteredDb;
+}
+
 function getActiveCharacterFilter()
 {
     let charFilters = [];
@@ -434,7 +456,11 @@ function refreshTable()
             printWeaponEffect("Applied Stats Debuff Tier Increased", "Weapon with Debuff Enhancement:", true, true, false, false);
             break;
         case "Heal":
-            printHealWeapon();
+            printWeaponElem("Heal", "Non-Regen Healing Weapon (> 25% Potency):");
+            printWeaponMateria("All (Cure", "Weapon with All (Cure) Materia Slot:");
+            printWeaponMateria("All (Esuna",  "Weapon with All (Esuna) Materia Slot:");
+            printWeaponEffect("HP Gain", "Weapon with HP Gain", true, false, true, false);
+            printWeaponCancelEffect("Weapon with Remove Effect");
             break;
         case "Provoke":
             printWeaponEffect("Provoke", "Weapon with Provoke:", false, false, true, false);
@@ -568,13 +594,6 @@ function filterHeal() {
 function filterProvoke() {
     activeWeaponFilter = "Provoke";
     refreshTable();
-}
-
-function printHealWeapon() {
-    printWeaponElem("Heal", "Non-Regen Healing Weapon (> 25% Potency):");
-    printWeaponMateria("All (Cure", "Weapon with All (Cure) Materia Slot:");
-    printWeaponMateria("All (Esuna",  "Weapon with All (Esuna) Materia Slot:");
-    printWeaponEffect("HP Gain", "Weapon with HP Gain", true, false, true, false);
 }
 
 function filterExploitWeakness(){
@@ -946,69 +965,50 @@ function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDur
     tableCreate(effectTable.length, effectTable[0].length, effectTable, header);
 }
 
-function printWeaponUniqueEffect(text, header) {
+
+function printWeaponCancelEffect(header) {
     readDatabase();
-    let effect = [["Name", "Char", "AOE", "Type", "Elem", "ATB", "Uses", "Target1", "Effect1", "Condition1", "Target2", "Effect2", "Condition2"]];
+
+    let effectTable = [["Weapon Name", "Character","Range", "Effect", "ATB", "Uses", "Type","Condition"]];
+
     let activeChars = getActiveCharacterFilter();
     let activeWeaponTypes = getActiveWeaponTypeFilter();
+
+    let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Character", activeChars);
+    filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "GachaType", activeWeaponTypes);
+    filteredWeaponData = getWeaponsMatchingEffectType(filteredWeaponData, "CancelEffect");
     
-    for (var i = 0; i < weaponDatabase.length; i++) {
-        var found1 = findWeaponWithProperty(weaponRow, 'effect1', text);
-        var found2 = findWeaponWithProperty(weaponRow, 'effect2', text);
-        var found = (found1 || found2);
-        found = found && matchWeaponByCharacter(weaponRow, activeChars);
-        found = found && matchWeaponByWeaponType(weaponRow, activeWeaponTypes);
-        if (found) {
-            let row = [];
-
-            row.push(getValueFromDatabaseItem(weaponRow, "name"));
-            row.push(getValueFromDatabaseItem(weaponRow, "charName"));
-            if (found1) {
-                row.push(getValueFromDatabaseItem(weaponRow, "effect1Range"));
+    for (var i = 0; i < filteredWeaponData.length; i++) {
+        var weaponRow = filteredWeaponData[i];
+        // Make a new row and push them into the list
+        let row = [];
+        // find which effectIdx we're actually interested in
+        for (colIdx in weaponColIdxToEffectTypeMap)
+        {
+            if ("CancelEffect" == (weaponRow[colIdx]))
+            {
+                const effectIdx = weaponColIdxToEffectTypeMap[colIdx];
+                effectDesc = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx);
+                effectRange = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Range");
+                effectCondition = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Condition");
             }
-            else if (found2) {
-                row.push(getValueFromDatabaseItem(weaponRow, "effect2Range"));
-            }
-
-            row.push(getValueFromDatabaseItem(weaponRow, "type"));
-            row.push(getValueFromDatabaseItem(weaponRow, "element"));
-            row.push(getValueFromDatabaseItem(weaponRow, "atb"));
-            row.push(getValueFromDatabaseItem(weaponRow, "uses"));
-
-            row.push(getValueFromDatabaseItem(weaponRow, "effect1Target"));
-            var str = getValueFromDatabaseItem(weaponRow, "effect1");
-            var indexOfFirst = str.indexOf(text);
-            if (indexOfFirst >= 0) {
-                var newstr = str.substring(indexOfFirst + text.length + 1);
-                row.push(newstr);
-            }
-            else {
-                row.push(str);
-            }
-
-            row.push(getValueFromDatabaseItem(weaponRow, "condition1"));
-
-            row.push(getValueFromDatabaseItem(weaponRow, "effect2Target"));
-
-            var str = getValueFromDatabaseItem(weaponRow, "effect2");
-            var indexOfFirst = str.indexOf(text);
-            if (indexOfFirst >= 0) {
-                var newstr = str.substring(indexOfFirst + text.length + 1);
-                row.push(newstr);
-            }
-            else {
-                row.push(str);
-            }
-
-            row.push(getValueFromDatabaseItem(weaponRow, "condition2"));
-
-
-            effect.push(row);
         }
+
+        row.push(getValueFromDatabaseRow(weaponRow, "Name"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Character"));
+        row.push(effectRange);
+        row.push(effectDesc);
+        row.push(getValueFromDatabaseRow(weaponRow, "Command ATB"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Use Count"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Ability Type"));
+        row.push(effectCondition);
+
+        effectTable.push(row);
     }
 
-    tableCreate(effect.length, effect[0].length, effect, header);
+    tableCreate(effectTable.length, effectTable[0].length, effectTable, header);
 }
+
 
 // Load file from local server
 function loadFile(filePath) {
