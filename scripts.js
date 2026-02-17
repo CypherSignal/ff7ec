@@ -412,7 +412,6 @@ function refreshTable()
             printWeaponEffect("Mag. Damage Bonus", "Weapon with Mag. Damage Bonus:", true, false, true, false);
             printWeaponEffect("Mag. Weapon Boost", "Weapon with Mag. Weapon Boost:", true, false, true, false);
             printWeaponEffect("Amp. Mag. Abilities", "Weapon with Amp. Mag. Abilities:", true, false, true, true);
-            printWeaponEffect("Mag. ATB Conservation Effect", "Weapon with Mag. ATB Conservation Effect:", true, false, true, false);
             break;
         case "BuffPdef":
             printWeaponEffect("PDEF Up", "Weapon with Buff PDEF:",true, true, true, false);
@@ -427,7 +426,6 @@ function refreshTable()
             printWeaponEffect("Phys. Damage Bonus", "Weapon with Phys. Damage Bonus:", true, false, true, false);
             printWeaponEffect("Phys. Weapon Boost", "Weapon with Phys. Weapon Boost:", true, false, true, false);
             printWeaponEffect("Amp. Phys. Abilities", "Weapon with Amp. Phys. Abilities:",true, false, true, true);
-            printWeaponEffect("Phys. ATB Conservation Effect", "Weapon with Phys. ATB Conservation Effect:",true, false, true, false);
             break;
         case "BuffWex":
             printWeaponEffect("Exploit Weakness", "Weapon with Exploit Weakness:",true, false, true, false);
@@ -458,7 +456,7 @@ function refreshTable()
             printWeaponSigil("◊ Diamond", "Weapon with ◊ Sigil Materia on Ability:");
             break;
         case "UniqueEffect":
-            printUniqueEffectWeapon();
+            printTimeWeapons();
             break;
         case "All":
             printAllWeapon("", "List of All Weapons:");
@@ -573,14 +571,10 @@ function filterProvoke() {
 }
 
 function printHealWeapon() {
-    var header = "Non-Regen Healing Weapon (> 25% Potency):";
-    printWeaponElem("Heal", header);
-
-    var header = "Weapon with All (Cure) Materia Slot:";
-    printWeaponMateria("All (Cure", header);
-
-    var header = "Weapon with All (Esuna) Materia Slot:";
-    printWeaponMateria("All (Esuna", header);
+    printWeaponElem("Heal", "Non-Regen Healing Weapon (> 25% Potency):");
+    printWeaponMateria("All (Cure", "Weapon with All (Cure) Materia Slot:");
+    printWeaponMateria("All (Esuna",  "Weapon with All (Esuna) Materia Slot:");
+    printWeaponEffect("HP Gain", "Weapon with HP Gain", true, false, true, false);
 }
 
 function filterExploitWeakness(){
@@ -592,7 +586,6 @@ function filterCircleSigilMateria() {
     activeWeaponFilter = "SigilCircle";
     refreshTable();
 }
-
 
 function filterTriangleSigilMateria() {
     activeWeaponFilter = "SigilTriangle";
@@ -614,21 +607,13 @@ function filterUniqueEffect() {
     refreshTable();
 }
 
-function printUniqueEffectWeapon() {
-    var header = "Weapon Applying Status:";
-    printWeaponUniqueEffect("[Status Apply]", header);
-
-    var header = "Weapon Removing Status:";
-    printWeaponUniqueEffect("[Status Cleanse]", header);
-
-    header = "Weapon with Dispel Effect:";
-    printWeaponUniqueEffect("[Dispel", header);
-
-    header = "Weapon with Haste Effect:";
-    printWeaponEffect("Haste", header);
-
-    header = "Weapon with Increase Command Gauge Effect:";
-    printWeaponEffect("Increases Command Gauge", header);
+function printTimeWeapons() {
+    printWeaponEffect("Haste", "Weapon with Haste Effect:", false, false, true, false);
+    printWeaponEffect("Increases Command Gauge", "Weapon with Increase Command Gauge Effect:", true, false, false, false);
+    printWeaponEffect("Mag. ATB Conservation Effect", "Weapon with Mag. ATB Conservation Effect:", true, false, true, false);
+    printWeaponEffect("Phys. ATB Conservation Effect", "Weapon with Phys. ATB Conservation Effect:",true, false, true, false);
+    printWeaponEffect("Status Ailment: Stop", "Weapon with Stop Effect:", false, false, true, false);
+    printWeaponEffect("Status Ailment: Stun", "Weapon with Stun Effect:", false, false, true, false);
 }
 
 function filterAll() {
