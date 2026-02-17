@@ -666,76 +666,72 @@ function printAllWeapon(elem, header) {
     let activeChars = getActiveCharacterFilter();
     let activeWeaponTypes = getActiveWeaponTypeFilter();
 
-    for (var i = 0; i < weaponDatabase.length; i++) {
-        var found = true;
+    let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Character", activeChars);
+    filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "GachaType", activeWeaponTypes);
 
-        found = found && matchWeaponByCharacter(weaponRow, activeChars);
-        found = found && matchWeaponByWeaponType(weaponRow, activeWeaponTypes);
+    for (var i = 0; i < filteredWeaponData.length; i++) {
+        let weaponRow = filteredWeaponData[i];
 
-        if (found) {
-            // Make a new row and push them into the list
-            let row = [];
+        // Make a new row and push them into the list
+        let row = [];
 
-            row.push(getValueFromDatabaseItem(weaponRow, "name"));
-            row.push(getValueFromDatabaseItem(weaponRow, "charName"));
-            row.push(getValueFromDatabaseItem(weaponRow, "range"));
-            row.push(getValueFromDatabaseItem(weaponRow, "type"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Name"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Character"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Ability Range"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Ability Type"));
 
-            var atb = getValueFromDatabaseItem(weaponRow, "atb");
-            row.push(atb);
+        var atb = getValueFromDatabaseRow(weaponRow, "Command ATB");
+        row.push(atb);
 
-            row.push(getValueFromDatabaseItem(weaponRow, "element"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Element"));
 
-            var pot, maxPot;
+        var pot, maxPot;
 
-            pot = parseInt(getValueFromDatabaseItem(weaponRow, "potOb10"));
-            row.push(pot);
+        pot = parseInt(getValueFromDatabaseRow(weaponRow, "potOb10"));
+        row.push(pot);
 
-            maxPot = parseInt(getValueFromDatabaseItem(weaponRow, "maxPotOb10"));
+        maxPot = parseInt(getValueFromDatabaseRow(weaponRow, "maxPotOb10"));
+        row.push(maxPot);
+
+        // % per ATB
+        if (atb != 0) {
+            row.push((maxPot / atb).toFixed(0));
+        }
+        else {
             row.push(maxPot);
-
-            // % per ATB
-            if (atb != 0) {
-                row.push((maxPot / atb).toFixed(0));
-            }
-            else {
-                row.push(maxPot);
-            }
-
-            type = getValueFromDatabaseItem(weaponRow, "gachaType");
-            if (type == "L") {
-                row.push("Limited");
-            }
-            else if (type == "Y") {
-                row.push("Event");
-            }
-            else {
-                row.push("Featured");
-            }
-
-            if (elem != "Heal") {
-                // @todo: Need to figure out a good way to deal with this stupid weapon
-                if ((maxPot > pot) || (getValueFromDatabaseItem(weaponRow, "name") == "Bahamut Greatsword") ||
-                    (getValueFromDatabaseItem(weaponRow, "name") == "Sabin's Claws") ||
-                    (getValueFromDatabaseItem(weaponRow, "name") == "Blade of the Worthy") ||
-                    (getValueFromDatabaseItem(weaponRow, "name") == "Umbral Blade")) {
-                    // Check to see if DMG+ Condition is from Effect1 or Effect2 
-                    if (findWeaponWithProperty(weaponRow, 'effect1', "DMG")) {
-                        row.push(getValueFromDatabaseItem(weaponRow, "condition1"));
-                    }
-                    else {
-                        row.push(getValueFromDatabaseItem(weaponRow, "condition2"));
-                    }
-                }
-                else {
-                    row.push("");
-                }
-            }
-
-            elemental.push(row);
         }
 
+        type = getValueFromDatabaseRow(weaponRow, "gachaType");
+        if (type == "L") {
+            row.push("Limited");
+        }
+        else if (type == "Y") {
+            row.push("Event");
+        }
+        else {
+            row.push("Featured");
+        }
 
+        if (elem != "Heal") {
+            // @todo: Need to figure out a good way to deal with this stupid weapon
+            if ((maxPot > pot) || (getValueFromDatabaseRow(weaponRow, "name") == "Bahamut Greatsword") ||
+                (getValueFromDatabaseRow(weaponRow, "name") == "Sabin's Claws") ||
+                (getValueFromDatabaseRow(weaponRow, "name") == "Blade of the Worthy") ||
+                (getValueFromDatabaseRow(weaponRow, "name") == "Umbral Blade")) {
+                // Check to see if DMG+ Condition is from Effect1 or Effect2 
+                if (findWeaponWithProperty(weaponRow, 'effect1', "DMG")) {
+                    row.push(getValueFromDatabaseRow(weaponRow, "condition1"));
+                }
+                else {
+                    row.push(getValueFromDatabaseRow(weaponRow, "condition2"));
+                }
+            }
+            else {
+                row.push("");
+            }
+        }
+
+        elemental.push(row);
     }
 
     tableCreate(elemental.length, elemental[0].length, elemental, header);
