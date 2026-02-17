@@ -278,7 +278,7 @@ function getWeaponsMatchingFilter(database, columnToCheck, matchValues)
     let colIdxToSearch = weaponColIndexMap[columnToCheck];
     for (var rowIdx = 0; rowIdx < database.length; ++rowIdx)
     {
-        if (matchValues.includes(database[rowIdx][colIdxToSearch]))
+        if (database[rowIdx][colIdxToSearch] != "" && matchValues.includes(database[rowIdx][colIdxToSearch]))
         {
             filteredDb.push(database[rowIdx]);
         }
@@ -444,15 +444,18 @@ function refreshTable()
             break;
         case "SigilCircle":
             printWeaponMateria("Circle", "Weapon with ◯ Sigil Materia Slot:");
+            printWeaponSigil("◯ Circle", "Weapon with ◯ Sigil Materia on Ability:");
             break;
         case "SigilCross":
             printWeaponMateria("Cross", "Weapon with ✕ Sigil Materia Slot:");
+            printWeaponSigil("✕ Cross", "Weapon with ✕ Sigil Materia on Ability:");
             break;
         case "SigilTriangle":
             printWeaponMateria("Triangle", "Weapon with △ Sigil Materia Slot:");
+            printWeaponSigil("△ Triangle", "Weapon with △ Sigil Materia on Ability:");
             break;
         case "SigilDiamond":
-            printWeaponSigil("Diamond", "Weapon with ◊ Sigil Materia Slot:");
+            printWeaponSigil("◊ Diamond", "Weapon with ◊ Sigil Materia on Ability:");
             break;
         case "UniqueEffect":
             printUniqueEffectWeapon();
@@ -573,11 +576,11 @@ function printHealWeapon() {
     var header = "Non-Regen Healing Weapon (> 25% Potency):";
     printWeaponElem("Heal", header);
 
-    var header = "Regen Healing Weapon:";
-    printRegenWeapon(header);
-
     var header = "Weapon with All (Cure) Materia Slot:";
-    printWeaponMateria("All (Cure)", header);
+    printWeaponMateria("All (Cure", header);
+
+    var header = "Weapon with All (Esuna) Materia Slot:";
+    printWeaponMateria("All (Esuna", header);
 }
 
 function filterExploitWeakness(){
@@ -804,37 +807,39 @@ function printWeaponElem(elem, header) {
     tableCreate(elemental.length, elemental[0].length, elemental, header);
 }
 
-
 function printWeaponSigil(sigil, header) {
     readDatabase();
-    let materia = [["Weapon Name", "Char", "AOE", "Type", "Elem", "ATB", "Uses", "Pot%", "Max%"]];
+ 
+    let elemental = [["Weapon Name", "Character", "Range", "Type", "ATB", "Uses"]];
+
     let activeChars = getActiveCharacterFilter();
     let activeWeaponTypes = getActiveWeaponTypeFilter();
 
-    for (var i = 0; i < weaponDatabase.length; i++) {
-        var found = findWeaponWithProperty(weaponRow, 'sigil', sigil);
-        found = found && matchWeaponByCharacter(weaponRow, activeChars);
-        found = found && matchWeaponByWeaponType(weaponRow, activeWeaponTypes);
+    let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Character", activeChars);
+    filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "GachaType", activeWeaponTypes);
+    filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "Command Sigil", sigil);
 
-        if (found) {
-            let row = [];
-            
-            row.push(getValueFromDatabaseItem(weaponRow, "name"));
-            row.push(getValueFromDatabaseItem(weaponRow, "charName"));
-            row.push(getValueFromDatabaseItem(weaponRow, "range"));
-            row.push(getValueFromDatabaseItem(weaponRow, "type"));
-            row.push(getValueFromDatabaseItem(weaponRow, "element"));
-            row.push(getValueFromDatabaseItem(weaponRow, "atb"));
-            row.push(getValueFromDatabaseItem(weaponRow, "uses"));
-            row.push(getValueFromDatabaseItem(weaponRow, "potOb10"));
-            row.push(getValueFromDatabaseItem(weaponRow, "maxPotOb10"));
+    for (var i = 0; i < filteredWeaponData.length; i++) {
+        let weaponRow = filteredWeaponData[i];
 
-            materia.push(row);
-        }
+        // Make a new row and push them into the list
+        let row = [];
+
+        row.push(getValueFromDatabaseRow(weaponRow, "Name"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Character"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Ability Range"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Ability Type"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Command ATB"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Use Count"));
+
+        elemental.push(row);
     }
 
-    tableCreate(materia.length, materia[0].length, materia, header);
+    elemental.sort(elementalCompare);
+
+    tableCreate(elemental.length, elemental[0].length, elemental, header);
 }
+
 function printWeaponMateria(elemMateria, header) {
     readDatabase();
     let materia = [["Weapon Name", "Char", "Materia Slot 1", "Materia Slot 2", "Materia Slot 3"]];
@@ -865,79 +870,6 @@ function printWeaponMateria(elemMateria, header) {
     }
 
     tableCreate(materia.length, materia[0].length, materia, header);
-}
-
-function printRegenWeapon(header) {
-    readDatabase();
-    let effect = [["Name", "Char", "Type", "ATB", "Uses", "AOE", "Target", "Duration (s)", "Pot%", "Max%", "% per ATB"]];
-    var text = "Regen";
-
-    let activeChars = getActiveCharacterFilter();
-    let activeWeaponTypes = getActiveWeaponTypeFilter();
-
-    for (var i = 0; i < weaponDatabase.length; i++) {
-        var found = findWeaponWithProperty(weaponRow, 'element', "Heal");
-        var found1 = found && findWeaponWithProperty(weaponRow, 'effect1', text);
-        var found2 = found && findWeaponWithProperty(weaponRow, 'effect2', text);
-        found = (found1 || found2) && matchWeaponByCharacter(weaponRow, activeChars);
-        found = found && matchWeaponByWeaponType(weaponRow, activeWeaponTypes);
-
-        if (found) {
-            // Make a new row and push them into the list
-            let row = [];
-
-            row.push(getValueFromDatabaseItem(weaponRow, "name"));
-            row.push(getValueFromDatabaseItem(weaponRow, "charName"));
-            row.push(getValueFromDatabaseItem(weaponRow, "type"));
-
-            var atb = getValueFromDatabaseItem(weaponRow, "atb");
-            row.push(atb);
-
-            row.push(getValueFromDatabaseItem(weaponRow, "uses"));
-
-            var dur, pot, maxPot;
-
-            if (found1) {
-                row.push(getValueFromDatabaseItem(weaponRow, "effect1Range"));
-            }
-            else if (found2) {
-                row.push(getValueFromDatabaseItem(weaponRow, "effect2Range"));
-            }
-            if (found1) {
-                row.push(getValueFromDatabaseItem(weaponRow, "effect1Target"));
-
-                dur = parseInt(getValueFromDatabaseItem(weaponRow, "effect1Dur"));
-                row.push(dur);               
-            }
-            else if (found2) {
-                row.push(getValueFromDatabaseItem(weaponRow, "effect2Target"));
-
-                dur = parseInt(getValueFromDatabaseItem(weaponRow, "effect2Dur"));
-                row.push(dur);
-            }
-
-            pot = parseInt(getValueFromDatabaseItem(weaponRow, "potOb10"));
-            row.push(pot);
-            maxPot = pot;   
-
-            if (dur != 0) {
-                // Regen is 15% per tick every 3s + initial tick for total
-                maxPot = Math.floor(dur / 3) * 15 + pot;
-            }
-            row.push(maxPot);
-
-            if (atb != 0) {
-                row.push((maxPot / atb).toFixed(0));
-            }
-            else {
-                row.push(maxPot);
-            }
-
-            effect.push(row);
-        }
-    }
-
-    tableCreate(effect.length, effect[0].length, effect, header);
 }
 
 function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDuration, includeEffectCount) {
