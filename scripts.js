@@ -629,8 +629,8 @@ function filterUniqueEffect() {
 function printTimeWeapons() {
     printWeaponEffect("Haste", "Weapon with Haste Effect:", false, false, true, false);
     printWeaponEffect("Increases Command Gauge", "Weapon with Increase Command Gauge Effect:", true, false, false, false);
-    printWeaponEffect("Mag. ATB Conservation Effect", "Weapon with Mag. ATB Conservation Effect:", true, false, true, false);
     printWeaponEffect("Phys. ATB Conservation Effect", "Weapon with Phys. ATB Conservation Effect:",true, false, true, false);
+    printWeaponEffect("Mag. ATB Conservation Effect", "Weapon with Mag. ATB Conservation Effect:", true, false, true, false);
     printWeaponEffect("Status Ailment: Stop", "Weapon with Stop Effect:", false, false, true, false);
     printWeaponEffect("Status Ailment: Stun", "Weapon with Stun Effect:", false, false, true, false);
 }
