@@ -439,8 +439,8 @@ function refreshTable()
             printHealWeapon();
             break;
         case "Provoke":
-            printWeaponEffect("Provoke", "Weapon with Provoke:", true, true, true, false);
-            printWeaponEffect("Veil", "Weapon with Veil:", true, true, true, false);
+            printWeaponEffect("Provoke", "Weapon with Provoke:", false, false, true, false);
+            printWeaponEffect("Veil", "Weapon with Veil:", true, false, true, false);
             break;
         case "SigilCircle":
             printWeaponMateria("Circle", "Weapon with ◯ Sigil Materia Slot:");
