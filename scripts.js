@@ -662,7 +662,7 @@ function printElemWeapon(elem) {
 function printAllWeapon(elem, header) {
     readDatabase();
     let elemental;
-    elemental = [["Weapon Name", "Char", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Type", "Condition"]];
+    elemental = [["Weapon Name", "Char", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Condition"]];
     let activeChars = getActiveCharacterFilter();
     let activeWeaponTypes = getActiveWeaponTypeFilter();
 
@@ -679,57 +679,37 @@ function printAllWeapon(elem, header) {
         row.push(getValueFromDatabaseRow(weaponRow, "Character"));
         row.push(getValueFromDatabaseRow(weaponRow, "Ability Range"));
         row.push(getValueFromDatabaseRow(weaponRow, "Ability Type"));
-
         var atb = getValueFromDatabaseRow(weaponRow, "Command ATB");
         row.push(atb);
-
-        row.push(getValueFromDatabaseRow(weaponRow, "Element"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Ability Element"));
 
         var pot, maxPot;
+        pot = parseInt(getValueFromDatabaseRow(weaponRow, "Ability Pot. %"));
+        
+        // Find any "Additional Effect" that can multiply the ability damage
+        maxPot = pot;
 
-        pot = parseInt(getValueFromDatabaseRow(weaponRow, "potOb10"));
+        var condition = "";
+        for (colIdx in weaponColIdxToEffectTypeMap)
+        {
+            if (weaponRow[colIdx] == "AdditionalEffect")
+            {
+                var effectIdx = weaponColIdxToEffectTypeMap[colIdx];
+                // Check the description for a damage multiplier
+                var addlEffectType = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx)
+                if (addlEffectType == "Multiply Damage")
+                {
+                    // got a mult, fetch the pot (it's a string in percentage so parseint will get us the leading numbers)
+                    var multPot = parseFloat(getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Pot"));
+                    maxPot = pot * (multPot / 100.0);
+                    condition = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Condition") + ", damage is increased by " + (multPot / 100) + "x";
+                }
+            }
+        }
         row.push(pot);
-
-        maxPot = parseInt(getValueFromDatabaseRow(weaponRow, "maxPotOb10"));
         row.push(maxPot);
-
-        // % per ATB
-        if (atb != 0) {
-            row.push((maxPot / atb).toFixed(0));
-        }
-        else {
-            row.push(maxPot);
-        }
-
-        type = getValueFromDatabaseRow(weaponRow, "gachaType");
-        if (type == "L") {
-            row.push("Limited");
-        }
-        else if (type == "Y") {
-            row.push("Event");
-        }
-        else {
-            row.push("Featured");
-        }
-
-        if (elem != "Heal") {
-            // @todo: Need to figure out a good way to deal with this stupid weapon
-            if ((maxPot > pot) || (getValueFromDatabaseRow(weaponRow, "name") == "Bahamut Greatsword") ||
-                (getValueFromDatabaseRow(weaponRow, "name") == "Sabin's Claws") ||
-                (getValueFromDatabaseRow(weaponRow, "name") == "Blade of the Worthy") ||
-                (getValueFromDatabaseRow(weaponRow, "name") == "Umbral Blade")) {
-                // Check to see if DMG+ Condition is from Effect1 or Effect2 
-                if (findWeaponWithProperty(weaponRow, 'effect1', "DMG")) {
-                    row.push(getValueFromDatabaseRow(weaponRow, "condition1"));
-                }
-                else {
-                    row.push(getValueFromDatabaseRow(weaponRow, "condition2"));
-                }
-            }
-            else {
-                row.push("");
-            }
-        }
+        row.push((maxPot / Math.max(atb,1)).toFixed(0));
+        row.push(condition);
 
         elemental.push(row);
     }
@@ -767,9 +747,7 @@ function printWeaponElem(elem, header) {
         row.push(getValueFromDatabaseRow(weaponRow, "Ability Type"));
         var atb = getValueFromDatabaseRow(weaponRow, "Command ATB");
         row.push(atb);
-
-        var useCount = getValueFromDatabaseRow(weaponRow, "Use Count");
-        row.push(useCount);
+        row.push(getValueFromDatabaseRow(weaponRow, "Use Count"));
 
         var pot, maxPot;            
         pot = parseInt(getValueFromDatabaseRow(weaponRow, "Ability Pot. %"));
