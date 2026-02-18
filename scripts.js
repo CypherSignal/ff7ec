@@ -662,7 +662,7 @@ function printElemWeapon(elem) {
 function printAllWeapon(elem, header) {
     readDatabase();
     let elemental;
-    elemental = [["Weapon Name", "Char", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Condition"]];
+    elemental = [["Weapon Name", "Char", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Condition", "Equipment Type"]];
     let activeChars = getActiveCharacterFilter();
     let activeWeaponTypes = getActiveWeaponTypeFilter();
 
@@ -710,6 +710,7 @@ function printAllWeapon(elem, header) {
         row.push(maxPot);
         row.push((maxPot / Math.max(atb,1)).toFixed(0));
         row.push(condition);
+        row.push(getValueFromDatabaseRow(weaponRow, "GachaType"));
 
         elemental.push(row);
     }
@@ -721,7 +722,7 @@ function printAllWeapon(elem, header) {
 function printWeaponElem(elem, header) {
     readDatabase();
 
-    let elemental = [["Weapon Name", "Character", "Range", "Type", "ATB", "Uses", "Pot%", "Max Pot%", "% per ATB", "Condition for Max"]];
+    let elemental = [["Weapon Name", "Character", "Range", "Type", "ATB", "Uses", "Pot%", "Max Pot%", "% per ATB", "Condition for Max", "Equipment Type"]];
 
     let activeChars = getActiveCharacterFilter();
     let activeWeaponTypes = getActiveWeaponTypeFilter();
@@ -776,6 +777,7 @@ function printWeaponElem(elem, header) {
         row.push(maxPot);
         row.push((maxPot / Math.max(atb,1)).toFixed(0));
         row.push(condition);
+        row.push(getValueFromDatabaseRow(weaponRow, "GachaType"));
 
         elemental.push(row);
     }
@@ -788,7 +790,7 @@ function printWeaponElem(elem, header) {
 function printWeaponSigil(sigil, header) {
     readDatabase();
  
-    let elemental = [["Weapon Name", "Character", "Range", "Type", "ATB", "Uses"]];
+    let elemental = [["Weapon Name", "Character", "Range", "Type", "ATB", "Uses", "Equipment Type"]];
 
     let activeChars = getActiveCharacterFilter();
     let activeWeaponTypes = getActiveWeaponTypeFilter();
@@ -809,6 +811,7 @@ function printWeaponSigil(sigil, header) {
         row.push(getValueFromDatabaseRow(weaponRow, "Ability Type"));
         row.push(getValueFromDatabaseRow(weaponRow, "Command ATB"));
         row.push(getValueFromDatabaseRow(weaponRow, "Use Count"));
+        row.push(getValueFromDatabaseRow(weaponRow, "GachaType"));
 
         elemental.push(row);
     }
@@ -853,7 +856,7 @@ function printWeaponMateria(elemMateria, header) {
 function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDuration, includeEffectCount) {
     readDatabase();
 
-    let effectTable = [["Weapon Name", "Character","Range", "Pot", "Max Pot", "Duration (s)", "Extension (s)", "ATB", "Uses", "Effect Count", "Type","Condition"]];
+    let effectTable = [["Weapon Name", "Character","Range", "Pot", "Max Pot", "Duration (s)", "Extension (s)", "ATB", "Uses", "Effect Count", "Type","Condition", "Equipment Type"]];
     if (!includePot)
     {
         effectTable[0].splice(effectTable[0].indexOf("Pot"), 1);
@@ -932,6 +935,7 @@ function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDur
         }
         row.push(getValueFromDatabaseRow(weaponRow, "Ability Type"));
         row.push(effectCondition);
+        row.push(getValueFromDatabaseRow(weaponRow, "GachaType"));
 
         effectTable.push(row);
     }
@@ -943,7 +947,7 @@ function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDur
 function printWeaponCancelEffect(header) {
     readDatabase();
 
-    let effectTable = [["Weapon Name", "Character","Range", "Effect", "ATB", "Uses", "Type","Condition"]];
+    let effectTable = [["Weapon Name", "Character","Range", "Effect", "ATB", "Uses", "Type","Condition", "Equipment Type"]];
 
     let activeChars = getActiveCharacterFilter();
     let activeWeaponTypes = getActiveWeaponTypeFilter();
@@ -976,6 +980,7 @@ function printWeaponCancelEffect(header) {
         row.push(getValueFromDatabaseRow(weaponRow, "Use Count"));
         row.push(getValueFromDatabaseRow(weaponRow, "Ability Type"));
         row.push(effectCondition);
+        row.push(getValueFromDatabaseRow(weaponRow, "GachaType"));
 
         effectTable.push(row);
     }

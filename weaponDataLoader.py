@@ -92,6 +92,7 @@ print_perf_data("Load Localization")
 
 # load up all of the main data we need
 character_data = load_masterdata_json("Character.json")
+character_costume_data = load_masterdata_json("CharacterCostume.json")
 materia_support_data = load_masterdata_json("MateriaSupport.json")
 skill_active_data = load_masterdata_json("SkillActive.json")
 skill_additional_effect_data = load_masterdata_json("SkillAdditionalEffect.json")
@@ -100,6 +101,7 @@ skill_base_data = load_masterdata_json("SkillBase.json")
 skill_buffdebuff_data = load_masterdata_json("SkillBuffDebuff.json")
 skill_buffdebuff_enhance_data = load_masterdata_json("SkillBuffDebuffEnhance.json")
 skill_cancel_effect_data = load_masterdata_json("SkillCancelEffect.json")
+skill_character_costume_data = load_masterdata_json("SkillCharacterCostume.json")
 skill_effect_data = load_masterdata_json("SkillEffect.json")
 skill_damage_data = load_masterdata_json("SkillDamageEffect.json")
 skill_legendary_data = load_masterdata_json("SkillLegendary.json")
@@ -314,94 +316,11 @@ materia_support_types = {
 
 print_perf_data("Load masterdata")
 
-# start transforming all of the data into our own dict of weaponId to summarized-info
-out_weapons = []
 
-for weapon_obj in weapon_data.values():
-    out_weapon = {}
+# helper routine using all of the above data to process all of the skill-effects and return a dict of effects and ability data
+def process_skill_effects(skill_effect_objs):
+    weapon_data = {}
 
-    out_weapon["Id"] = weapon_obj["Id"]
-    out_weapon["Name"] = loc_table[weapon_obj["NameLanguageId"]]
-
-    # get the character for the weapon
-    character_obj = character_data[weapon_obj["CharacterId"]]
-    character_name = loc_table[character_obj["NameLanguageId"]]
-    out_weapon["Character"] = strip_markup(character_name)
-
-    out_weapon["MateriaSupport0"] = materia_support_types[weapon_obj["WeaponMateriaSupportId0"]] if weapon_obj["WeaponMateriaSupportId0"] in materia_support_types else "UNKNOWN MATERIA SUPPORT TYPE " + str(weapon_obj["WeaponMateriaSupportId0"])
-    out_weapon["MateriaSupport1"] = materia_support_types[weapon_obj["WeaponMateriaSupportId1"]] if weapon_obj["WeaponMateriaSupportId1"] in materia_support_types else "UNKNOWN MATERIA SUPPORT TYPE " + str(weapon_obj["WeaponMateriaSupportId1"])
-    out_weapon["MateriaSupport2"] = materia_support_types[weapon_obj["WeaponMateriaSupportId2"]] if weapon_obj["WeaponMateriaSupportId2"] in materia_support_types else "UNKNOWN MATERIA SUPPORT TYPE " + str(weapon_obj["WeaponMateriaSupportId2"])
-
-    # fetch the "Base" weapon skill (basically what we have for Ults, or OB1 version of weapon)
-    weapon_is_ultimate = weapon_obj["WeaponEquipmentType"] == 1 # expected values are 0 for normal, 1 for ult
-    if (weapon_is_ultimate):
-        weapon_upgrade_skill_base_obj = weapon_upgrade_skill_data[weapon_obj["Id"]*100 + 0]
-    else:
-        weapon_upgrade_skill_base_obj = weapon_upgrade_skill_data[weapon_obj["Id"]*100 + 1]
-
-    weapon_skill_base_id = weapon_upgrade_skill_base_obj["WeaponSkillId"]
-    skill_weapon_base_obj = skill_weapon_data[weapon_skill_base_id]
-    skill_base_base_obj = skill_base_data[weapon_skill_base_id]
-
-    # save out all c.ability data that is agnostic of  weapon being ult/OB1/6/10
-    out_weapon["Ability Type"] = attack_types[skill_base_base_obj["BaseAttackType"]]
-
-    skill_effect_objs = []
-    if (not weapon_is_ultimate):
-        # non-ultimate weapons define ATB cost on the skill-active obj
-        # (skillActive also defines use count, but only ultimates and costumes have limits right now)
-        skill_active_base_obj = skill_active_data[skill_weapon_base_obj["SkillActiveId"]]
-        out_weapon["Command ATB"] = skill_active_base_obj["Cost"]
-        out_weapon["GachaType"] = weapon_gacha_types[weapon_obj["WeaponType"]]
-
-        # as far as data setup goes now, SkillNotes/SkillNoteSet on player weapons appears to just be for sigil breaks
-        if (skill_weapon_base_obj["SkillNotesSetId"] != 0):
-            skill_notes_set_obj = skill_notes_set_data[skill_weapon_base_obj["SkillNotesSetId"]]
-            out_weapon["Command Sigil"] = skill_notes_sigils[skill_notes_set_obj["SkillNotesId"]]
-
-        # fetch the weapon skills at OB1/6/10
-        weapon_upgrade_skill_obj = [
-            weapon_upgrade_skill_data[weapon_obj["Id"]*100 + 1],
-            weapon_upgrade_skill_data[weapon_obj["Id"]*100 + 6],
-            weapon_upgrade_skill_data[weapon_obj["Id"]*100 + 10],
-        ]
-        skill_weapon_obj = [
-            skill_weapon_data[weapon_upgrade_skill_obj[0]["WeaponSkillId"]],
-            skill_weapon_data[weapon_upgrade_skill_obj[1]["WeaponSkillId"]],
-            skill_weapon_data[weapon_upgrade_skill_obj[2]["WeaponSkillId"]],
-        ]
-        skill_active_obj = [
-            skill_active_data[skill_weapon_obj[0]["SkillActiveId"]],
-            skill_active_data[skill_weapon_obj[1]["SkillActiveId"]],
-            skill_active_data[skill_weapon_obj[2]["SkillActiveId"]],
-        ]
-        skill_base_obj = [
-            skill_base_data[skill_active_obj[0]["SkillBaseId"]],
-            skill_base_data[skill_active_obj[1]["SkillBaseId"]],
-            skill_base_data[skill_active_obj[2]["SkillBaseId"]],
-        ]
-
-        # for populating the list of skill_effect_objs, just look at the OB10 data
-        skill_effectgroup_list = skill_effectgroup_data[skill_base_obj[2]["SkillEffectGroupId"]]
-        for skill_effect_id in skill_effectgroup_list:
-            skill_effect_objs.append(skill_effect_data[skill_effect_id])
-        out_weapon["Use Count"] = "No limit"
-
-    # ultimate weapons need some extra handling since they don't have "SkillActives", nor OB levels
-    if (weapon_is_ultimate):
-        out_weapon["Command ATB"] = 0
-        out_weapon["GachaType"] = "Ultimate"
-
-        skill_effectgroup_list = skill_effectgroup_data[skill_base_base_obj["SkillEffectGroupId"]]
-        for skill_effect_id in skill_effectgroup_list:
-            skill_effect_objs.append(skill_effect_data[skill_effect_id])
-        
-        # also record the recharge time/use count
-        out_weapon["Use Count"] = skill_legendary_data[weapon_skill_base_id]["UseCountLimit"]
-        out_weapon["Initial Charge Time"] = skill_legendary_data[weapon_skill_base_id]["InitialChargeTimeSec"]
-        out_weapon["Recharge Time"] = skill_legendary_data[weapon_skill_base_id]["RechargeTimeSec"]
-
-    # handle all of the skill-effects
     # first, we want to handle the damage effect very specially, so find it and take it out of the list
     skill_effect_damage_obj = None
     for idx,skill_effect_obj in enumerate(skill_effect_objs):
@@ -411,106 +330,105 @@ for weapon_obj in weapon_data.values():
             break
 
     # output data for the damage effect
-    out_weapon["Ability Range"] = target_types[skill_effect_damage_obj["TargetType"]]
+    weapon_data["Ability Range"] = target_types[skill_effect_damage_obj["TargetType"]]
     skill_damage_effect_damage_obj = skill_damage_data[skill_effect_damage_obj["SkillEffectDetailId"]]
     if (skill_effect_damage_obj["TargetType"] >= 3 and skill_effect_damage_obj["TargetType"] <= 6 ):
         if (skill_damage_effect_damage_obj["SkillDamageType"] == 1):
-            out_weapon["Ability Pot. %"] = str(round(skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 22,0))
+            weapon_data["Ability Pot. %"] = str(round(skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 22,0))
         elif (skill_damage_effect_damage_obj["SkillDamageType"] == 2):
-            out_weapon["Ability Pot. %"] = str(round(skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 10,0)) + "% of max HP"
+            weapon_data["Ability Pot. %"] = str(round(skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 10,0)) + "% of max HP"
             
-        out_weapon["Ability Element"] = "Heal"
+        weapon_data["Ability Element"] = "Heal"
     else:
-        out_weapon["Ability Pot. %"] = skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 10
-        out_weapon["Ability Element"] = element_types[skill_damage_effect_damage_obj["ElementType"]]
+        weapon_data["Ability Pot. %"] = skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 10
+        weapon_data["Ability Element"] = element_types[skill_damage_effect_damage_obj["ElementType"]]
 
     # output data for each skill effect
     for skill_effect_idx,skill_effect_obj in enumerate(skill_effect_objs):
         skill_effect_suffix = str(skill_effect_idx)
         skill_effect_detail_id = skill_effect_obj["SkillEffectDetailId"]
         effect_detail_prefix = "Effect" + skill_effect_suffix
-        out_weapon[effect_detail_prefix + "_Range"] = target_types[skill_effect_obj["TargetType"]]
-        out_weapon[effect_detail_prefix + "_Type"] = skilleffect_types[skill_effect_obj["SkillEffectType"]]
+        weapon_data[effect_detail_prefix + "_Range"] = target_types[skill_effect_obj["TargetType"]]
+        weapon_data[effect_detail_prefix + "_Type"] = skilleffect_types[skill_effect_obj["SkillEffectType"]]
         
         match skill_effect_obj["TriggerType"]:
             case 1: # no condition required
                 pass
             case 2: 
-                out_weapon[effect_detail_prefix + "_Condition"] = "When hitting critical"
+                weapon_data[effect_detail_prefix + "_Condition"] = "When hitting critical"
             case 3:
-                out_weapon[effect_detail_prefix + "_Condition"] = "When matching sigils are destroyed"
+                weapon_data[effect_detail_prefix + "_Condition"] = "When matching sigils are destroyed"
             case 4: # hp
                 skill_trigger_condition_hp_obj = skill_trigger_condition_hp_data[skill_effect_obj["TriggerConditionId"]]
                 if (skill_trigger_condition_hp_obj["MinPermil"] == 0):
-                    out_weapon[effect_detail_prefix + "_Condition"] = "When HP is less than " + str(round(skill_trigger_condition_hp_obj["MaxPermil"]/10,0)) + "%"
+                    weapon_data[effect_detail_prefix + "_Condition"] = "When HP is less than " + str(round(skill_trigger_condition_hp_obj["MaxPermil"]/10,0)) + "%"
                 elif (skill_trigger_condition_hp_obj["MaxPermil"] == 1000):
-                    out_weapon[effect_detail_prefix + "_Condition"] = "When HP is greater than " + str(round(skill_trigger_condition_hp_obj["MinPermil"]/10,0)) + "%"
+                    weapon_data[effect_detail_prefix + "_Condition"] = "When HP is greater than " + str(round(skill_trigger_condition_hp_obj["MinPermil"]/10,0)) + "%"
                 else:
-                    out_weapon[effect_detail_prefix + "_Condition"] = "UNKNOWN CONDITION " + str(skill_effect_obj["TriggerType"]) + " on SkillEffectId: " + str(skill_effect_obj["Id"])
+                    weapon_data[effect_detail_prefix + "_Condition"] = "UNKNOWN CONDITION " + str(skill_effect_obj["TriggerType"]) + " on SkillEffectId: " + str(skill_effect_obj["Id"])
             case 7:
-                out_weapon[effect_detail_prefix + "_Condition"] = "When debuff is on target"
+                weapon_data[effect_detail_prefix + "_Condition"] = "When debuff is on target"
             case 8:
-                out_weapon[effect_detail_prefix + "_Condition"] = "When hitting target's weakness"
+                weapon_data[effect_detail_prefix + "_Condition"] = "When hitting target's weakness"
             case 13:
-                out_weapon[effect_detail_prefix + "_Condition"] = "With command gauge at max in attack stance"
+                weapon_data[effect_detail_prefix + "_Condition"] = "With command gauge at max in attack stance"
             case 14:
-                out_weapon[effect_detail_prefix + "_Condition"] = "Against a single target"
+                weapon_data[effect_detail_prefix + "_Condition"] = "Against a single target"
             case 16:
-                out_weapon[effect_detail_prefix + "_Condition"] = "On first use"
+                weapon_data[effect_detail_prefix + "_Condition"] = "On first use"
             case _:
-                out_weapon[effect_detail_prefix + "_Condition"] = "UNKNOWN EFFECT CONDITION " + str(skill_effect_obj["TriggerType"]) + " on SkillEffectId: " + str(skill_effect_obj["Id"])
+                weapon_data[effect_detail_prefix + "_Condition"] = "UNKNOWN EFFECT CONDITION " + str(skill_effect_obj["TriggerType"]) + " on SkillEffectId: " + str(skill_effect_obj["Id"])
 
         match skill_effect_obj["SkillEffectType"]:
             case 1: # Damage effect
-                out_weapon[effect_detail_prefix] = "EXTRA DAMAGE EFFECT"
+                weapon_data[effect_detail_prefix] = "EXTRA DAMAGE EFFECT"
                 print("Warning: Extra damage effect detected")
             case 2: # Status Condition effect
                 skill_status_condition_obj = skill_status_effect_data[skill_effect_detail_id]
                 skill_status_condition_type = skill_status_condition_obj["SkillStatusConditionType"]
                 if (skill_status_condition_type in status_effect_types):
-                    out_weapon[effect_detail_prefix] = "Status Ailment: " + status_effect_types[skill_status_condition_type]
+                    weapon_data[effect_detail_prefix] = "Status Ailment: " + status_effect_types[skill_status_condition_type]
                 else:
-                    out_weapon[effect_detail_prefix] = "Status Ailment: UNKNOWN STATUS: " + str(skill_status_condition_type)  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
+                    weapon_data[effect_detail_prefix] = "Status Ailment: UNKNOWN STATUS: " + str(skill_status_condition_type)  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
 
-                out_weapon[effect_detail_prefix + "_Duration"] = str(skill_status_condition_obj["MaxDurationSec"])
-                out_weapon[effect_detail_prefix + "_Extend"] = str(skill_status_condition_obj["MaxDuplicationDurationSec"])
+                weapon_data[effect_detail_prefix + "_Duration"] = str(skill_status_condition_obj["MaxDurationSec"])
+                weapon_data[effect_detail_prefix + "_Extend"] = str(skill_status_condition_obj["MaxDuplicationDurationSec"])
                 if (skill_status_condition_obj["EffectCoefficient"] != 0):
-                    out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_status_condition_obj["EffectCoefficient"] / 10,0)) + "%"
+                    weapon_data[effect_detail_prefix + "_Pot"] = str(round(skill_status_condition_obj["EffectCoefficient"] / 10,0)) + "%"
 
             case 3: # SkillBuffDebuff 
                 skill_buffdebuff_obj = skill_buffdebuff_data[skill_effect_detail_id]
                 skill_buffdebuff_type = skill_buffdebuff_obj["SkillBuffDebuffType"]
                 if (skill_buffdebuff_type in buffdebuff_types):
-                    out_weapon[effect_detail_prefix] = buffdebuff_types[skill_buffdebuff_type]
+                    weapon_data[effect_detail_prefix] = buffdebuff_types[skill_buffdebuff_type]
                 else:
-                    out_weapon[effect_detail_prefix] = "UNKNOWN BUFF/DEBUFF: " + str(skill_buffdebuff_type)  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
+                    weapon_data[effect_detail_prefix] = "UNKNOWN BUFF/DEBUFF: " + str(skill_buffdebuff_type)  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
 
-                out_weapon[effect_detail_prefix + "_Duration"] = str(skill_buffdebuff_obj["MaxDurationSec"])
-                out_weapon[effect_detail_prefix + "_Extend"] = str(skill_buffdebuff_obj["MaxDuplicationDurationSec"])
-                out_weapon[effect_detail_prefix + "_Pot"] = buffdebuff_tiers[skill_buffdebuff_obj["TriggerEffectLevel"]]
-                out_weapon[effect_detail_prefix + "_PotMax"] = buffdebuff_tiers[skill_buffdebuff_obj["TriggerEffectLevelMax"]]
+                weapon_data[effect_detail_prefix + "_Duration"] = str(skill_buffdebuff_obj["MaxDurationSec"])
+                weapon_data[effect_detail_prefix + "_Extend"] = str(skill_buffdebuff_obj["MaxDuplicationDurationSec"])
+                weapon_data[effect_detail_prefix + "_Pot"] = buffdebuff_tiers[skill_buffdebuff_obj["TriggerEffectLevel"]]
+                weapon_data[effect_detail_prefix + "_PotMax"] = buffdebuff_tiers[skill_buffdebuff_obj["TriggerEffectLevelMax"]]
 
             case 5: # SkillStatusChangeEffect (e.g. exploit weakness)
                 skill_status_change_obj = skill_status_change_effect_data[skill_effect_detail_id]
                 if (skill_status_change_obj["SkillStatusChangeType"] in status_change_types):
-                    out_weapon[effect_detail_prefix] = status_change_types[skill_status_change_obj["SkillStatusChangeType"]]
+                    weapon_data[effect_detail_prefix] = status_change_types[skill_status_change_obj["SkillStatusChangeType"]]
                 else:
-                    out_weapon[effect_detail_prefix] = "UNKNOWN STATUS CHANGE TYPE " + str(skill_status_change_obj["SkillStatusChangeType"]) + " on SkillEffectDetailId: " + str(skill_effect_detail_id)
-                    print (out_weapon[effect_detail_prefix])
+                    weapon_data[effect_detail_prefix] = "UNKNOWN STATUS CHANGE TYPE " + str(skill_status_change_obj["SkillStatusChangeType"]) + " on SkillEffectDetailId: " + str(skill_effect_detail_id)
+                    print (weapon_data[effect_detail_prefix])
 
                 # ATB conversation uses effect cofficient of 1 to say "save 1 atb"
                 if (skill_status_change_obj["SkillStatusChangeType"] == 44 or skill_status_change_obj["SkillStatusChangeType"] == 45):
-                    out_weapon[effect_detail_prefix + "_Pot"] = str(skill_status_change_obj["EffectCoefficient"])
+                    weapon_data[effect_detail_prefix + "_Pot"] = str(skill_status_change_obj["EffectCoefficient"])
                 else:
-                    out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_status_change_obj["EffectCoefficient"]/10,0)) + "%"
-                out_weapon[effect_detail_prefix + "_Duration"] = str(skill_status_change_obj["MaxDurationSec"])
-                out_weapon[effect_detail_prefix + "_Extend"] = str(skill_status_change_obj["MaxDuplicationDurationSec"])
+                    weapon_data[effect_detail_prefix + "_Pot"] = str(round(skill_status_change_obj["EffectCoefficient"]/10,0)) + "%"
+                weapon_data[effect_detail_prefix + "_Duration"] = str(skill_status_change_obj["MaxDurationSec"])
+                weapon_data[effect_detail_prefix + "_Extend"] = str(skill_status_change_obj["MaxDuplicationDurationSec"])
                 if (skill_status_change_obj["EffectCount"] != 0): # e.g. "Amp abilities up to 1 time(s)"
-                    out_weapon[effect_detail_prefix + "_EffectCount"] = str(skill_status_change_obj["EffectCount"]) 
+                    weapon_data[effect_detail_prefix + "_EffectCount"] = str(skill_status_change_obj["EffectCount"]) 
 
             case 6: # SkillCancelEffect (e.g. removes buff/debuff or removes status)
                 skill_cancel_effect_obj = skill_cancel_effect_data[skill_effect_detail_id]
-                skill_status_condition_type = skill_status_condition_obj["SkillStatusConditionType"]
                 
                 # the skillCancelEffect will point to a BuffDebuffGroupId -- a list of buffs to cancel --
                 # and a StatusConditionGroupId -- a list of status effects to cancel -- and a StatusChangeGroupId
@@ -529,68 +447,69 @@ for weapon_obj in weapon_data.values():
                        skill_cancel_effect += buffdebuff_types[idx] + ", "
                 
                 skill_cancel_effect = skill_cancel_effect[:-2] # trim the final ", "
-                out_weapon[effect_detail_prefix] = skill_cancel_effect
+                weapon_data[effect_detail_prefix] = skill_cancel_effect
 
             case 7: # SkillAdditionalEffect (e.g. crits???)
                 skill_additional_effect_obj = skill_additional_effect_data[skill_effect_detail_id]
                 match skill_additional_effect_obj["SkillAdditionalType"]:
                     case 14: # crits
-                        out_weapon[effect_detail_prefix] = "Crit Rate"
-                        out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_additional_effect_obj["MaxValue"]/10,0)) + "%"
+                        weapon_data[effect_detail_prefix] = "Crit Rate"
+                        weapon_data[effect_detail_prefix + "_Pot"] = str(round(skill_additional_effect_obj["MaxValue"]/10,0)) + "%"
                     case 15: # e.g. "additional damage when debuff on target"
-                        out_weapon[effect_detail_prefix] = "Multiply Damage"
-                        out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_additional_effect_obj["MaxValue"]/10,0)) + "%"
+                        weapon_data[effect_detail_prefix] = "Multiply Damage"
+                        weapon_data[effect_detail_prefix + "_Pot"] = str(round(skill_additional_effect_obj["MaxValue"]/10,0)) + "%"
                     case 16: # fixed dmg (phys)
-                        out_weapon[effect_detail_prefix] = "Deals Fixed Additional Damage"
-                        out_weapon[effect_detail_prefix + "_Pot"] = skill_additional_effect_obj["MaxValue"]
+                        weapon_data[effect_detail_prefix] = "Deals Fixed Additional Damage"
+                        weapon_data[effect_detail_prefix + "_Pot"] = skill_additional_effect_obj["MaxValue"]
                     case _:    
-                        out_weapon[effect_detail_prefix] = "UNKNOWN ADDITIONAL EFFECT TYPE " + str(skill_additional_effect_obj["SkillAdditionalType"]) + " on SkillEffectDetailId: " + str(skill_effect_detail_id)
+                        weapon_data[effect_detail_prefix] = "UNKNOWN ADDITIONAL EFFECT TYPE " + str(skill_additional_effect_obj["SkillAdditionalType"]) + " on SkillEffectDetailId: " + str(skill_effect_detail_id)
 
             case 16: # SkillAtbChangeEffect (+ATB!)
                 skill_atbchange_effect_obj = skill_atbchange_effect_data[skill_effect_detail_id]
-                out_weapon[effect_detail_prefix] = "ATB+" + str(skill_atbchange_effect_obj["Value"])
+                weapon_data[effect_detail_prefix] = "ATB+" + str(skill_atbchange_effect_obj["Value"])
                 
             case 26: # SkillSpecialGaugeChangeEffect (+Limit/summon bar)
                 skill_special_gauge_change_obj = skill_special_gauge_change_data[skill_effect_detail_id]
                 skill_special_gauge_type = special_gauge_types[skill_special_gauge_change_obj["TargetSkillSpecialType"]]
                 match skill_special_gauge_change_obj["SkillSpecialGaugeChangeType"]:
                     case 1: # increases gauge
-                        out_weapon[effect_detail_prefix] = "Increases " + skill_special_gauge_type
-                        out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_special_gauge_change_obj["PermilValue"] / 10,0)) + "%"
+                        weapon_data[effect_detail_prefix] = "Increases " + skill_special_gauge_type
+                        weapon_data[effect_detail_prefix + "_Pot"] = str(round(skill_special_gauge_change_obj["PermilValue"] / 10,0)) + "%"
                     case 2: # reduces gauge
-                        out_weapon[effect_detail_prefix] = "Decreases " + skill_special_gauge_type
-                        out_weapon[effect_detail_prefix + "_Pot"] = "-" + str(round(skill_special_gauge_change_obj["PermilValue"] / 10,0)) + "%"
+                        weapon_data[effect_detail_prefix] = "Decreases " + skill_special_gauge_type
+                        weapon_data[effect_detail_prefix + "_Pot"] = "-" + str(round(skill_special_gauge_change_obj["PermilValue"] / 10,0)) + "%"
                     case _:
-                       out_weapon[effect_detail_prefix] = "UNKNOWN SPECIAL GAUGE CHANGE"  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
+                       weapon_data[effect_detail_prefix] = "UNKNOWN SPECIAL GAUGE CHANGE"  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
                 
             case 30: # SkillTacticsGaugeChangeEffect (+Stance change)
                 skill_tactics_gauge_change_obj = skill_tactics_gauge_change_data[skill_effect_detail_id]
                 match skill_tactics_gauge_change_obj["SkillEffectGaugeChangeType"]:
                     case 1: # increases gauge
-                        out_weapon[effect_detail_prefix] = "Increases Command Gauge"
-                        out_weapon[effect_detail_prefix + "_Pot"] = str(round(skill_tactics_gauge_change_obj["PermilValue"] / 10,0)) + "%"
+                        weapon_data[effect_detail_prefix] = "Increases Command Gauge"
+                        weapon_data[effect_detail_prefix + "_Pot"] = str(round(skill_tactics_gauge_change_obj["PermilValue"] / 10,0)) + "%"
                     case 2: # reduces gauge
-                        out_weapon[effect_detail_prefix] = "Decreases Command Gauge"
-                        out_weapon[effect_detail_prefix + "_Pot"] = "-" + str(round(skill_tactics_gauge_change_obj["PermilValue"] / 10,0)) + "%"
+                        weapon_data[effect_detail_prefix] = "Decreases Command Gauge"
+                        weapon_data[effect_detail_prefix + "_Pot"] = "-" + str(round(skill_tactics_gauge_change_obj["PermilValue"] / 10,0)) + "%"
                     case _:
-                       out_weapon[effect_detail_prefix] = "UNKNOWN TACTICS GAUGE CHANGE"  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
+                       weapon_data[effect_detail_prefix] = "UNKNOWN TACTICS GAUGE CHANGE"  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
 
             case 31: # SkillBuffDebuffEnhance (AC Gloves, Abraxas)
                 skill_buffdebuff_enhance_obj = skill_buffdebuff_enhance_data[skill_effect_detail_id]
                 match skill_buffdebuff_enhance_obj["BuffDebuffEnhanceType"]:
                     case 1: # increases gauge
-                        out_weapon[effect_detail_prefix] = "Applied Stats Buff Tier Increased"
+                        weapon_data[effect_detail_prefix] = "Applied Stats Buff Tier Increased"
                     case 2: # reduces gauge
-                        out_weapon[effect_detail_prefix] = "Applied Stats Debuff Tier Increased"
+                        weapon_data[effect_detail_prefix] = "Applied Stats Debuff Tier Increased"
                     case _:
-                        out_weapon[effect_detail_prefix] = "UNKNOWN BUFF/DEBUFF ENHANCE"  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
-                out_weapon[effect_detail_prefix + "_Pot"] = buffdebuff_tiers[skill_buffdebuff_enhance_obj["EnhanceEffectLevel"]]
-                out_weapon[effect_detail_prefix + "_PotMax"] = buffdebuff_tiers[skill_buffdebuff_enhance_obj["EnhanceEffectLevelMax"]]
-                out_weapon[effect_detail_prefix + "_Extend"] = skill_buffdebuff_enhance_obj["EnhanceDurationSec"]
+                        weapon_data[effect_detail_prefix] = "UNKNOWN BUFF/DEBUFF ENHANCE"  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
+                weapon_data[effect_detail_prefix + "_Pot"] = buffdebuff_tiers[skill_buffdebuff_enhance_obj["EnhanceEffectLevel"]]
+                weapon_data[effect_detail_prefix + "_PotMax"] = buffdebuff_tiers[skill_buffdebuff_enhance_obj["EnhanceEffectLevelMax"]]
+                weapon_data[effect_detail_prefix + "_Extend"] = skill_buffdebuff_enhance_obj["EnhanceDurationSec"]
 
             case _:
-                out_weapon[effect_detail_prefix] = "UNKNOWN EFFECT: " + str(skill_effect_obj["SkillEffectType"]) + " SkillEffectDetailId: " + str(skill_effect_detail_id)
-
+                weapon_data[effect_detail_prefix] = "UNKNOWN EFFECT: " + str(skill_effect_obj["SkillEffectType"]) + " SkillEffectDetailId: " + str(skill_effect_detail_id)
+    # end skill-effect loop
+    return weapon_data
 
         # on the weapon row we just did, assemble a full description of all of weapon's effects
         # function getFullWeaponDescription(weaponRow)
@@ -632,11 +551,140 @@ for weapon_obj in weapon_data.values():
         # }
 
 
+
+# start transforming all of the data into our own dict of weaponId to summarized-info
+out_weapons = []
+
+for costume_obj in weapon_data.values():
+    out_weapon = {}
+
+    out_weapon["Id"] = costume_obj["Id"]
+    out_weapon["Name"] = loc_table[costume_obj["NameLanguageId"]]
+
+    # get the character for the weapon
+    character_obj = character_data[costume_obj["CharacterId"]]
+    character_name = loc_table[character_obj["NameLanguageId"]]
+    out_weapon["Character"] = strip_markup(character_name)
+
+    out_weapon["MateriaSupport0"] = materia_support_types[costume_obj["WeaponMateriaSupportId0"]] if costume_obj["WeaponMateriaSupportId0"] in materia_support_types else "UNKNOWN MATERIA SUPPORT TYPE " + str(costume_obj["WeaponMateriaSupportId0"])
+    out_weapon["MateriaSupport1"] = materia_support_types[costume_obj["WeaponMateriaSupportId1"]] if costume_obj["WeaponMateriaSupportId1"] in materia_support_types else "UNKNOWN MATERIA SUPPORT TYPE " + str(costume_obj["WeaponMateriaSupportId1"])
+    out_weapon["MateriaSupport2"] = materia_support_types[costume_obj["WeaponMateriaSupportId2"]] if costume_obj["WeaponMateriaSupportId2"] in materia_support_types else "UNKNOWN MATERIA SUPPORT TYPE " + str(costume_obj["WeaponMateriaSupportId2"])
+
+    # fetch the "Base" weapon skill (basically what we have for Ults, or OB1 version of weapon)
+    weapon_is_ultimate = costume_obj["WeaponEquipmentType"] == 1 # expected values are 0 for normal, 1 for ult
+    if (weapon_is_ultimate):
+        weapon_upgrade_skill_base_obj = weapon_upgrade_skill_data[costume_obj["Id"]*100 + 0]
+    else:
+        weapon_upgrade_skill_base_obj = weapon_upgrade_skill_data[costume_obj["Id"]*100 + 1]
+
+    weapon_skill_base_id = weapon_upgrade_skill_base_obj["WeaponSkillId"]
+    skill_weapon_base_obj = skill_weapon_data[weapon_skill_base_id]
+    skill_base_base_obj = skill_base_data[weapon_skill_base_id]
+
+    # save out all c.ability data that is agnostic of  weapon being ult/OB1/6/10
+    out_weapon["Ability Type"] = attack_types[skill_base_base_obj["BaseAttackType"]]
+
+    skill_effect_objs = []
+    if (not weapon_is_ultimate):
+        # non-ultimate weapons define ATB cost on the skill-active obj
+        # (skillActive also defines use count, but only ultimates and costumes have limits right now)
+        skill_active_base_obj = skill_active_data[skill_weapon_base_obj["SkillActiveId"]]
+        out_weapon["Command ATB"] = skill_active_base_obj["Cost"]
+        out_weapon["GachaType"] = weapon_gacha_types[costume_obj["WeaponType"]]
+
+        # as far as data setup goes now, SkillNotes/SkillNoteSet on player weapons appears to just be for sigil breaks
+        if (skill_weapon_base_obj["SkillNotesSetId"] != 0):
+            skill_notes_set_obj = skill_notes_set_data[skill_weapon_base_obj["SkillNotesSetId"]]
+            out_weapon["Command Sigil"] = skill_notes_sigils[skill_notes_set_obj["SkillNotesId"]]
+
+        # fetch the weapon skills at OB1/6/10
+        weapon_upgrade_skill_obj = [
+            weapon_upgrade_skill_data[costume_obj["Id"]*100 + 1],
+            weapon_upgrade_skill_data[costume_obj["Id"]*100 + 6],
+            weapon_upgrade_skill_data[costume_obj["Id"]*100 + 10],
+        ]
+        skill_weapon_obj = [
+            skill_weapon_data[weapon_upgrade_skill_obj[0]["WeaponSkillId"]],
+            skill_weapon_data[weapon_upgrade_skill_obj[1]["WeaponSkillId"]],
+            skill_weapon_data[weapon_upgrade_skill_obj[2]["WeaponSkillId"]],
+        ]
+        skill_active_obj = [
+            skill_active_data[skill_weapon_obj[0]["SkillActiveId"]],
+            skill_active_data[skill_weapon_obj[1]["SkillActiveId"]],
+            skill_active_data[skill_weapon_obj[2]["SkillActiveId"]],
+        ]
+        skill_base_obj = [
+            skill_base_data[skill_active_obj[0]["SkillBaseId"]],
+            skill_base_data[skill_active_obj[1]["SkillBaseId"]],
+            skill_base_data[skill_active_obj[2]["SkillBaseId"]],
+        ]
+
+        # for populating the list of skill_effect_objs, just look at the OB10 data
+        skill_effectgroup_list = skill_effectgroup_data[skill_base_obj[2]["SkillEffectGroupId"]]
+        for skill_effect_id in skill_effectgroup_list:
+            skill_effect_objs.append(skill_effect_data[skill_effect_id])
+        out_weapon["Use Count"] = "No limit"
+
+    # ultimate weapons need some extra handling since they don't have "SkillActives", nor OB levels
+    if (weapon_is_ultimate):
+        out_weapon["Command ATB"] = 0
+        out_weapon["GachaType"] = "Ultimate"
+
+        skill_effectgroup_list = skill_effectgroup_data[skill_base_base_obj["SkillEffectGroupId"]]
+        for skill_effect_id in skill_effectgroup_list:
+            skill_effect_objs.append(skill_effect_data[skill_effect_id])
+        
+        # also record the recharge time/use count
+        out_weapon["Use Count"] = skill_legendary_data[weapon_skill_base_id]["UseCountLimit"]
+        out_weapon["Initial Charge Time"] = skill_legendary_data[weapon_skill_base_id]["InitialChargeTimeSec"]
+        out_weapon["Recharge Time"] = skill_legendary_data[weapon_skill_base_id]["RechargeTimeSec"]
+
+    out_weapon.update(process_skill_effects(skill_effect_objs))
+    
     out_weapons.append(out_weapon)
 
 print_perf_data("Transform weapondata")
 
-# with all of the weapon data transformed, write it out to csv
+for costume_obj in character_costume_data.values():
+    # if a costume doesn't have a skill, skip it
+    if (costume_obj["SkillCharacterCostumeId"] == 0):
+        continue
+    out_costume = {}
+
+    out_costume["Id"] = costume_obj["Id"]
+    out_costume["Name"] = loc_table[costume_obj["NameLanguageId"]]
+
+    # get the character 
+    character_obj = character_data[costume_obj["CharacterId"]]
+    character_name = loc_table[character_obj["NameLanguageId"]]
+    out_costume["Character"] = strip_markup(character_name)
+    
+    # fetch the costume's active skill
+    skill_character_costume_obj = skill_character_costume_data[costume_obj["SkillCharacterCostumeId"]]
+    costume_skill_active_id = skill_character_costume_obj["SkillActiveId"]
+    skill_active_obj = skill_active_data[costume_skill_active_id]
+    
+    costume_skill_base_id = skill_active_obj["SkillBaseId"]
+    skill_base_base_obj = skill_base_data[costume_skill_base_id]
+
+    out_costume["Ability Type"] = attack_types[skill_base_base_obj["BaseAttackType"]]
+    out_costume["Command ATB"] = skill_active_obj["Cost"]
+    out_costume["GachaType"] = "Costume"
+    out_costume["Use Count"] = skill_active_obj["UseCountLimit"]
+
+    skill_effectgroup_list = skill_effectgroup_data[skill_base_base_obj["SkillEffectGroupId"]]
+
+    skill_effect_objs = []
+    for skill_effect_id in skill_effectgroup_list:
+        skill_effect_objs.append(skill_effect_data[skill_effect_id])
+
+    out_costume.update(process_skill_effects(skill_effect_objs))
+    
+    out_weapons.append(out_costume)
+
+print_perf_data("Transform costumeData")
+
+# with all of the weapon data (and costume data) transformed, write it out to csv
 
 # add columns for every field we may have across the set of weapons
 out_weapon_fields = set()
