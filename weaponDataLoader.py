@@ -334,6 +334,11 @@ custom_weapon_types = {
     52014:"Guild", # rubber band gun
     56011:"Guild", # orchard shovel
 
+    # these two are closer to "Guild" weapons since they're " 'Strong' grindables"
+    # unlike most "Event" weapons just being free-but-not-very-useful
+    4045: "Guild", # Rousing Wizer Staff
+    20037:"Guild", # Rousing arc sword
+
     1029 :"Crossover", # Zidane's sword
     1033 :"Crossover", # Glavenus Sword
     1038 :"Crossover", # Locke's Sword
