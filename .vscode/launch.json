@@ -16,7 +16,7 @@
             "name": "Debug with FF7EC-Data",
             "type": "debugpy",
             "request": "launch",
-            "program": "${file}",
+            "program": "weaponDataLoader.py",
             "console": "integratedTerminal",
             "args": "../FF7EC-Data"
         }
