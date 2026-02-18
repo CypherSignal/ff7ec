@@ -314,8 +314,62 @@ materia_support_types = {
     51701: "All (Esuna) I",
 }
 
-print_perf_data("Load masterdata")
+# because weapons are only classified on their gacha type (e.g. "Event" could be a temp event weapon, 
+# a grindable summon weapon, or a guild weapon) it makes sense to have some friendly overrides to showcase
+# weapons from crossover, guild exchange and so on...
+custom_weapon_types = {
+    1013:"Guild", # nail bat
+    2020:"Guild", # rocket punch
+    3014:"Guild", # work gloves
+    4016:"Guild", # umbrella
+    5027:"Guild", # headphones
+    6016:"Guild", # bamboo ring
+    7011:"Guild", # trumpet shell
+    8014:"Guild", # silver rifle
+    9016:"Guild", # mop
+    20013:"Guild", # bouquet
+    49013:"Guild", # world tree bough
+    50014:"Guild", # squeaky hammer
+    51013:"Guild", # foam sword
+    52014:"Guild", # rubber band gun
+    56011:"Guild", # orchard shovel
 
+    1029 :"Crossover", # Zidane's sword
+    1033 :"Crossover", # Glavenus Sword
+    1038 :"Crossover", # Locke's Sword
+    1044 :"Crossover", # Erdrick's Sword
+    1049 :"Crossover", # Crimson Blitz
+    1050 :"Crossover", # Cruel Successor
+    2035 :"Crossover", # Fafnir Rifle
+    2038 :"Crossover", # Teacher's Paper Fan
+    3027 :"Crossover", # Amarant's claws
+    3032 :"Crossover", # Kirin Gloves
+    3038 :"Crossover", # Sabin's Claws
+    3047 :"Crossover", # Class President's Bracelet
+    3050 :"Crossover", # Lightning's Gloves
+    3052 :"Crossover", # Demon's Impetus
+    4022 :"Crossover", # Garnet's rod
+    4025 :"Crossover", # Kamura Wand
+    4031 :"Crossover", # Terra's Rod
+    4034 :"Crossover", # Gambanteinn
+    4039 :"Crossover", # Supreme Sage's Staff
+    4040 :"Crossover", # Team Leader's Bamboo Sword
+    4042 :"Crossover", # Lightning's Rod
+    4043 :"Crossover", # Staff of the Possessed
+    6033 :"Crossover", # Bird of Prey
+    6039 :"Crossover", # Fatum Ex Machina
+    20023 :"Crossover", # Zinogre Blade
+    20032 :"Crossover", # Zenithian Sword
+    49016 :"Crossover", # Kuja's Spirit Blade
+    49028 :"Crossover", # Edgar's Coiled Blade
+    49033 :"Crossover", # Pandemonic Sword
+    49037 :"Crossover", # Overture
+    49039 :"Crossover", # Phoenix Odachi
+    50031 :"Crossover", # Snow's Bardiche
+
+}
+
+print_perf_data("Load masterdata")
 
 # helper routine using all of the above data to process all of the skill-effects and return a dict of effects and ability data
 def process_skill_effects(skill_effect_objs):
@@ -555,27 +609,27 @@ def process_skill_effects(skill_effect_objs):
 # start transforming all of the data into our own dict of weaponId to summarized-info
 out_weapons = []
 
-for costume_obj in weapon_data.values():
+for weapon_obj in weapon_data.values():
     out_weapon = {}
 
-    out_weapon["Id"] = costume_obj["Id"]
-    out_weapon["Name"] = loc_table[costume_obj["NameLanguageId"]]
+    out_weapon["Id"] = weapon_obj["Id"]
+    out_weapon["Name"] = loc_table[weapon_obj["NameLanguageId"]]
 
     # get the character for the weapon
-    character_obj = character_data[costume_obj["CharacterId"]]
+    character_obj = character_data[weapon_obj["CharacterId"]]
     character_name = loc_table[character_obj["NameLanguageId"]]
     out_weapon["Character"] = strip_markup(character_name)
 
-    out_weapon["MateriaSupport0"] = materia_support_types[costume_obj["WeaponMateriaSupportId0"]] if costume_obj["WeaponMateriaSupportId0"] in materia_support_types else "UNKNOWN MATERIA SUPPORT TYPE " + str(costume_obj["WeaponMateriaSupportId0"])
-    out_weapon["MateriaSupport1"] = materia_support_types[costume_obj["WeaponMateriaSupportId1"]] if costume_obj["WeaponMateriaSupportId1"] in materia_support_types else "UNKNOWN MATERIA SUPPORT TYPE " + str(costume_obj["WeaponMateriaSupportId1"])
-    out_weapon["MateriaSupport2"] = materia_support_types[costume_obj["WeaponMateriaSupportId2"]] if costume_obj["WeaponMateriaSupportId2"] in materia_support_types else "UNKNOWN MATERIA SUPPORT TYPE " + str(costume_obj["WeaponMateriaSupportId2"])
+    out_weapon["MateriaSupport0"] = materia_support_types[weapon_obj["WeaponMateriaSupportId0"]] if weapon_obj["WeaponMateriaSupportId0"] in materia_support_types else "UNKNOWN MATERIA SUPPORT TYPE " + str(weapon_obj["WeaponMateriaSupportId0"])
+    out_weapon["MateriaSupport1"] = materia_support_types[weapon_obj["WeaponMateriaSupportId1"]] if weapon_obj["WeaponMateriaSupportId1"] in materia_support_types else "UNKNOWN MATERIA SUPPORT TYPE " + str(weapon_obj["WeaponMateriaSupportId1"])
+    out_weapon["MateriaSupport2"] = materia_support_types[weapon_obj["WeaponMateriaSupportId2"]] if weapon_obj["WeaponMateriaSupportId2"] in materia_support_types else "UNKNOWN MATERIA SUPPORT TYPE " + str(weapon_obj["WeaponMateriaSupportId2"])
 
     # fetch the "Base" weapon skill (basically what we have for Ults, or OB1 version of weapon)
-    weapon_is_ultimate = costume_obj["WeaponEquipmentType"] == 1 # expected values are 0 for normal, 1 for ult
+    weapon_is_ultimate = weapon_obj["WeaponEquipmentType"] == 1 # expected values are 0 for normal, 1 for ult
     if (weapon_is_ultimate):
-        weapon_upgrade_skill_base_obj = weapon_upgrade_skill_data[costume_obj["Id"]*100 + 0]
+        weapon_upgrade_skill_base_obj = weapon_upgrade_skill_data[weapon_obj["Id"]*100 + 0]
     else:
-        weapon_upgrade_skill_base_obj = weapon_upgrade_skill_data[costume_obj["Id"]*100 + 1]
+        weapon_upgrade_skill_base_obj = weapon_upgrade_skill_data[weapon_obj["Id"]*100 + 1]
 
     weapon_skill_base_id = weapon_upgrade_skill_base_obj["WeaponSkillId"]
     skill_weapon_base_obj = skill_weapon_data[weapon_skill_base_id]
@@ -590,7 +644,7 @@ for costume_obj in weapon_data.values():
         # (skillActive also defines use count, but only ultimates and costumes have limits right now)
         skill_active_base_obj = skill_active_data[skill_weapon_base_obj["SkillActiveId"]]
         out_weapon["Command ATB"] = skill_active_base_obj["Cost"]
-        out_weapon["GachaType"] = weapon_gacha_types[costume_obj["WeaponType"]]
+        out_weapon["GachaType"] = custom_weapon_types[weapon_obj["Id"]] if weapon_obj["Id"] in custom_weapon_types else weapon_gacha_types[weapon_obj["WeaponType"]]
 
         # as far as data setup goes now, SkillNotes/SkillNoteSet on player weapons appears to just be for sigil breaks
         if (skill_weapon_base_obj["SkillNotesSetId"] != 0):
@@ -599,9 +653,9 @@ for costume_obj in weapon_data.values():
 
         # fetch the weapon skills at OB1/6/10
         weapon_upgrade_skill_obj = [
-            weapon_upgrade_skill_data[costume_obj["Id"]*100 + 1],
-            weapon_upgrade_skill_data[costume_obj["Id"]*100 + 6],
-            weapon_upgrade_skill_data[costume_obj["Id"]*100 + 10],
+            weapon_upgrade_skill_data[weapon_obj["Id"]*100 + 1],
+            weapon_upgrade_skill_data[weapon_obj["Id"]*100 + 6],
+            weapon_upgrade_skill_data[weapon_obj["Id"]*100 + 10],
         ]
         skill_weapon_obj = [
             skill_weapon_data[weapon_upgrade_skill_obj[0]["WeaponSkillId"]],
