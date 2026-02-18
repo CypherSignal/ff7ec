@@ -453,3 +453,43 @@ Id	Character	Name	Ability Element	Ability Pot. %	Ability Range	Ability Type	Comm
 60007	Sephiroth (Original)	Muramasa	None	1340.0	All Enemies	Mag	4		Status Ailment: Single-Tgt. Phys. Dmg. Rcvd. Up		60		20	50.0%		All Enemies	StatusConditionEffect	Status Ailment: Single-Tgt. Mag. Dmg. Rcvd. Up		60		20	50.0%		All Enemies	StatusConditionEffect	HP Gain	On first use	60		0	8.0%		All Allies	StatusChangeEffect	Crit Rate				10.0%	All Enemies	AdditionalEffect	Limited		MATK Boost I	MATK Boost I	✕ Cross Sigil Boost I (+2)		No limit
 60008	Sephiroth (Original)	Heaven's Cloud	None	2000.0	Single Enemy	Both	0		Haste		20		20	0.0%		Self	StatusChangeEffect	Exploit Weakness		60		60	40.0%		Self	StatusChangeEffect																	Ultimate	15				50	3
 60009	Sephiroth (Original)	Divine Steed Blade	Earth	290.0	All Enemies	Mag	4																																				Event		ATK Boost I	ATK Boost I	MATK Boost I		No limit
+1002	Cloud	Murasame Battle Garb	Lightning	2000.0	Single Enemy	Phys	4																																				Costume						1
+1014	Cloud	Holiday Outfit	Wind	2000.0	Single Enemy	Mag	4																																				Costume						1
+1021	Cloud	Scanner Ensemble	Earth	2000.0	Single Enemy	Phys	4		Earth Damage Up		30		30	Mid	Extra High	Self	BuffDebuff																										Costume						2
+2003	Barret	Electroarmor	Lightning	700.0	All Enemies	Mag	4		PDEF Up		30		30	High	High	All Allies	BuffDebuff																										Costume						1
+2006	Barret	Sunrise Hakama	None	700.0	All Enemies	Phys	4		Provoke		60		60	0.0%		Self	StatusChangeEffect																										Costume						3
+3006	Tifa	Feather Style	None	2000.0	Single Enemy	Phys	4		PATK Up		60		60	High	High	All Allies	BuffDebuff																										Costume						1
+3009	Tifa	Fairy of the Holy Flame	Ice	2000.0	Single Enemy	Phys	4																																				Costume						1
+3024	Tifa	Battler Ensemble	None	2000.0	Single Enemy	Phys	4		Exploit Weakness		60		60	40.0%		Self	StatusChangeEffect																										Costume						2
+3026	Tifa	Golden Flower Kimono	None	2000.0	Single Enemy	Phys	4		Fire Resistance Down		60		60	High	High	Single Enemy	BuffDebuff	Fire Damage Up		60		60	High	High	All Allies	BuffDebuff																	Costume						2
+4005	Aerith	Floral Gown	None	1000.0	Single Enemy	Phys	3		Amp. Healing Abilities		60	1	60	50.0%		Self	StatusChangeEffect	Regen		15		15	30.0%		All Allies	StatusChangeEffect																	Costume						1
+4007	Aerith	Fairy of Snowfall	Ice	1000.0	Single Enemy	Mag	4		Ice Resistance Down		30		30	High	High	Single Enemy	BuffDebuff																										Costume						1
+4022	Aerith	Garb of the Possessed	None	1000.0	All Enemies	Phys	4		Exploit Weakness		60		60	30.0%		All Allies	StatusChangeEffect																										Costume						2
+5003	Red XIII	Canyon Duds	Wind	700.0	All Enemies	Mag	4		Wind Resistance Down		25		25	High	High	All Enemies	BuffDebuff																										Costume						1
+5009	Red XIII	Patissier Outfit	None	1000.0	All Enemies	Phys	4		Haste		10		10	0.0%		All Allies	StatusChangeEffect																										Costume						2
+6002	Yuffie	Shinobi Hawk	Earth	2000.0	Single Enemy	Phys	4																																				Costume						1
+6010	Yuffie	Holiday Cheer Reindeer	Wind	2000.0	Single Enemy	Mag	4																																				Costume						1
+6015	Yuffie	Savior Ensemble	None	2000.0	Single Enemy	Phys	4		Status Ailment: Earth Weakness		90		0	50.0%		Single Enemy	StatusConditionEffect																										Costume						2
+6016	Yuffie	Heirloom Kimono	None	2000.0	Single Enemy	Mag	4		PATK Up		60		60	High	High	All Allies	BuffDebuff	MATK Up		60		60	High	High	All Allies	BuffDebuff	Haste		20		20	0.0%		Self	StatusChangeEffect								Costume						2
+6017	Yuffie	Moogle Hat & Cape	Lightning	2000.0	Single Enemy	Phys	4		Exploit Weakness		30		30	40.0%		Self	StatusChangeEffect																										Costume						2
+7003	Cait Sith	Nocturne Jacket	Wind	1000.0	All Enemies	Mag	4		MATK Up		30		30	High	High	All Allies	BuffDebuff	PDEF Up		30		30	High	High	All Allies	BuffDebuff																	Costume						3
+7006	Cait Sith	Pumpkin Jacket	None	1000.0	Single Enemy	Phys	4		HP Gain		60		60	8.0%		All Allies	StatusChangeEffect																										Costume						1
+8005	Vincent	Formal Attire	None	2000.0	Single Enemy	Mag	4		MATK Up		60		60	High	High	All Allies	BuffDebuff																										Costume						1
+8007	Vincent	Holiday Formal Wear	Fire	2000.0	Single Enemy	Phys	4																																				Costume						1
+8010	Vincent	Auditing Uniform	Wind	2000.0	Single Enemy	Phys	4		Wind Damage Up		30		30	Mid	Extra High	Self	BuffDebuff																										Costume						2
+9004	Cid	Dark Flyer	Lightning	1500.0	All Enemies	Mag	4																																				Costume						1
+9006	Cid	Holidays Attire	Lightning	1500.0	Single Enemy	Phys	4		PDEF Down		30		30	High	High	Single Enemy	BuffDebuff	Increases Command Gauge					50.0%		Self	TacticsGaugeChangeEffect																	Costume						3
+9007	Cid	Patissier Frock	Ice	1000.0	Single Enemy	Phys	4		HP Gain		60		60	8.0%		All Allies	StatusChangeEffect	Ice Damage Up		60		60	High	High	All Allies	BuffDebuff																	Costume						2
+20005	Zack	Shinra Full Dress Uniform	None	2000.0	Single Enemy	Phys	4		PDEF Down		60		60	High	High	Single Enemy	BuffDebuff																										Costume						1
+20007	Zack	Heavy Shield Armor	Wind	2000.0	Single Enemy	Mag	4		Wind Damage Up		60		60	High	High	All Allies	BuffDebuff	HP Gain		60		60	8.0%		All Allies	StatusChangeEffect																	Costume						2
+20009	Zack	Holiday Suit	None	2000.0	Single Enemy	Phys	4		PATK Up		60		60	High	High	All Allies	BuffDebuff																										Costume						1
+49002	Sephiroth	Edged Wings Training Garb	Ice	2000.0	Single Enemy	Mag	4																																				Costume						1
+49018	Sephiroth	Garb of the World-Ender	None	2000.0	Single Enemy	Mag	4		Status Ailment: Water Weakness		90		0	50.0%		Single Enemy	StatusConditionEffect																										Costume						2
+50005	Glenn	Training Garb of Ruin	Ice	1000.0	Single Enemy	Phys	4		Veil		60		60	30.0%		Self	StatusChangeEffect																										Costume						1
+51003	Matt	Killer Attire	None	1000.0	Single Enemy	Phys	4		ATB+2							Other Allies	AtbChangeEffect																										Costume						1
+51007	Matt	Holiday Helper	Heal	11.0	All Allies	Mag	4		MDEF Up		30		30	High	High	All Allies	BuffDebuff																										Costume						1
+52004	Lucia	Entrapment Gown	None	1000.0	Single Enemy	Mag	4		Increases UNKNOWN					30.0%		Other Allies	SpecialGaugeChangeEffect																										Costume						1
+52006	Lucia	Holiday Coat	Earth	1000.0	Single Enemy	Mag	4		Earth Resistance Down		30		30	High	High	Single Enemy	BuffDebuff																										Costume						1
+56006	Angeal	Resort Style	None	700.0	All Enemies	Phys	4		Veil		60		60	10.0%		All Allies	StatusChangeEffect																										Costume						1
+60001	Sephiroth (Original)	Ruler of the Planet	None	2000.0	Single Enemy	Phys	4		Fire Resistance Down		60		60	High	High	Single Enemy	BuffDebuff																										Costume						1
+60002	Sephiroth (Original)	One with the Blade	None	2000.0	All Enemies	Mag	4		Status Ailment: Enfeeble		60		60			All Enemies	StatusConditionEffect																										Costume						2
