@@ -196,6 +196,26 @@ footer {
 }
 
 
+.abilityDescTable tr:first-child {
+  font-family: arial, sans-serif;
+  margin-top: 0px;
+  margin-bottom: 1px;
+}
+
+/* weapon name */
+.abilityDescTable td:nth-child(0){
+  width: 300px;
+}
+/* char */
+.abilityDescTable td:nth-child(1){
+  width: 100px;
+}
+/* equip */
+.abilityDescTable td:nth-child(2){
+  width: 100px;
+}
+
+
 .filterTable {
   width:480px;
   table-layout: fixed;

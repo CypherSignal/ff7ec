@@ -8,7 +8,6 @@ const ELEM_TABL_COL = 9;
 const STATUS_TABL_COL = 9;
 const MATERIA_TABL_COL = 8;
 const UNIQUE_TABL_COL = 12;
-const MAX_POT_INDEX = 6;   // Index into the maxPot for sorting
 
 let weaponColHeaders = []; // array of strings for the column headers
 let weaponColIndexMap = new Map(); // map of column names to column indices
@@ -36,7 +35,7 @@ function reportPerf(perfEvents)
 }
 
 /* Create a table to display the result */
-function tableCreate(user_row, user_col, list, header) {
+function tableCreate(tableClass, list, header) {
     let perfTableCreateStart = performance.now();
 
     //body reference 
@@ -53,38 +52,28 @@ function tableCreate(user_row, user_col, list, header) {
   
     // create <table> and a <tbody>
     var tbl = document.createElement("table");
-    let tblClassName;
 
-    // Different format for each table 
-    if (user_col == ELEM_TABL_COL) {
-        tblClassName = "elemTable";
-    }
-    else if (user_col == MATERIA_TABL_COL) {
-        tblClassName = "materiaTable";
-    }
-    else if (user_col == STATUS_TABL_COL) {
-        tblClassName = "statusTable";
-    }
-    else if (user_col == UNIQUE_TABL_COL) {
-        tblClassName = "uniqueTable";
-    }
-    else
+    // if we're showing the full ability description, we need a different table class
+    if (document.getElementById("show_full_ability").checked)
     {
-        tblClassName = "effectTable";
+        tableClass = "abilityDescTable";
     }
-    tbl.className = tblClassName + " cell-border display compact hover order-column stripe";
 
-    let tblId = tblClassName + Math.random().toString(36).substr(2, 9); // Generate a unique ID for each table
+    tbl.className = tableClass + " cell-border display compact hover order-column stripe";
+
+    let tblId = tableClass + Math.random().toString(36).substr(2, 9); // Generate a unique ID for each table
     tbl.id = tblId;
     var tblBody = document.createElement("tbody");
-    console.log("Creating table: " + tblClassName);
+    console.log("Creating table: " + tableClass);
 
     var headerRow = document.createElement("tr");
     // create <tr> and <td>
-    for (var j = 0; j < user_row; j++) {
+    const numRows = list.length;
+    const numCols = list[0].length;
+    for (var j = 0; j < numRows; j++) {
         var row = document.createElement("tr");
 
-        for (var i = 0; i < user_col; i++) {
+        for (var i = 0; i < numCols; i++) {
             var cell;
             if (j == 0) {
                 cell = document.createElement("th");
@@ -114,38 +103,16 @@ function tableCreate(user_row, user_col, list, header) {
     body.appendChild(tbl);
     let perfTableCreateEnd = performance.now();
 
-    columnsWithLineEnd = []
-    columnsToHide = []
-    let abilityDescTargetIdx = list[0].indexOf("Ability Description");
-    if (abilityDescTargetIdx != -1)
-    {
-        columnsWithLineEnd.push(abilityDescTargetIdx);
-    }
-
-    // Might be better if we had a stricter set of consts for these column names
+    // Might be better if we had a stricter set of consts for these column names, or generate the tables in a more consistent way
+    // Is there a way for DataTables to work with HTML tables but with symbolic columns at targets, not just indices...?
+    let tableColumnDefs = []
     if(!document.getElementById("show_full_ability").checked)
     {
-        columnsToHide.push(abilityDescTargetIdx);
+        tableColumnDefs.push({ visible: false, targets: list[0].indexOf("Ability Description"), });
     }
     else
     {
-        for (let colIdx = 0; colIdx < list[0].length; ++colIdx)
-        {
-            if (list[0][colIdx] != "Weapon Name" &&
-                list[0][colIdx] != "Character" &&
-                list[0][colIdx] != "Equipment Type" &&
-                list[0][colIdx] != "Ability Description")
-            {
-                columnsToHide.push(colIdx);
-            }
-        }
-    }
-
-    
-    new DataTable('#' + tblId, {
-        paging: false,
-        columnDefs: [
-            {
+        tableColumnDefs.push({
                 render: function (data, type, row) {
                     if (data.indexOf("\\n") == -1)
                     {
@@ -156,17 +123,31 @@ function tableCreate(user_row, user_col, list, header) {
                         return "" + data.replaceAll("\\n", '<li>') + "";
                     }
                 },
-                targets: columnsWithLineEnd,
-            },
+                targets: list[0].indexOf("Ability Description"),
+            });
+
+        // show_full_ability is checked, so hide every column except the ability desc
+        columnsToHide = []
+        for (let colIdx = 0; colIdx < list[0].length; ++colIdx)
+        {
+            if (list[0][colIdx] != "Weapon Name" &&
+                list[0][colIdx] != "Character" &&
+                list[0][colIdx] != "Equipment Type" &&
+                list[0][colIdx] != "Ability Description")
             {
-                visible: false,
-                targets: columnsToHide,
+                columnsToHide.push(colIdx);
             }
-        ]
+        }
+        tableColumnDefs.push({visible: false, targets: columnsToHide});
+    }
+
+    new DataTable('#' + tblId, {
+        paging: false,
+        columnDefs: tableColumnDefs
     });
     let perfDataTableCreateEnd = performance.now();
 
-    console.log("Created table: " + tblClassName);
+    console.log("Created table: " + tableClass);
     
     reportPerf([
         ["DOM setup", perfTableCreateStart, perfTableCreateEnd],
@@ -726,7 +707,7 @@ function printAllWeapon(elem, header) {
     }
     addAbilityTextToTable(filteredWeaponData, effectTable);
 
-    tableCreate(elemental.length, elemental[0].length, elemental, header);
+    tableCreate("uniqueTable", elemental, header);
 }
 
 
@@ -793,7 +774,7 @@ function printWeaponElem(elem, header) {
     }
     addAbilityTextToTable(filteredWeaponData, elemental);
 
-    tableCreate(elemental.length, elemental[0].length, elemental, header);
+    tableCreate("elemTable", elemental, header);
 }
 
 function printWeaponSigil(sigil, header) {
@@ -826,7 +807,7 @@ function printWeaponSigil(sigil, header) {
     }
     addAbilityTextToTable(filteredWeaponData, elemental);
 
-    tableCreate(elemental.length, elemental[0].length, elemental, header);
+    tableCreate("sigilTable", elemental, header);
 }
 
 function printWeaponMateria(elemMateria, header) {
@@ -852,7 +833,7 @@ function printWeaponMateria(elemMateria, header) {
     }
     addAbilityTextToTable(filteredWeaponData, materia);
 
-    tableCreate(materia.length, materia[0].length, materia, header);
+    tableCreate("materiaTable", materia, header);
 }
 
 function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDuration, includeEffectCount) {
@@ -943,7 +924,7 @@ function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDur
     }
     addAbilityTextToTable(filteredWeaponData, effectTable);
 
-    tableCreate(effectTable.length, effectTable[0].length, effectTable, header);
+    tableCreate("effectTable", effectTable, header);
 }
 
 
@@ -989,7 +970,7 @@ function printWeaponCancelEffect(header) {
     }
     addAbilityTextToTable(filteredWeaponData, effectTable);
 
-    tableCreate(effectTable.length, effectTable[0].length, effectTable, header);
+    tableCreate("effectTable", effectTable, header);
 }
 
 
