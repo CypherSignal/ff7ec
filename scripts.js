@@ -113,16 +113,7 @@ function tableCreate(tableClass, list, header) {
     else
     {
         tableColumnDefs.push({
-                render: function (data, type, row) {
-                    if (data.indexOf("\\n") == -1)
-                    {
-                        return data;
-                    }
-                    else
-                    {
-                        return "" + data.replaceAll("\\n", '<li>') + "";
-                    }
-                },
+                render: function (data, type, row) { return data.replaceAll("\\n", '<li>'); },
                 targets: list[0].indexOf("Ability Description"),
             });
 
