@@ -696,7 +696,7 @@ function printAllWeapon(elem, header) {
 
         elemental.push(row);
     }
-    addAbilityTextToTable(filteredWeaponData, effectTable);
+    addAbilityTextToTable(filteredWeaponData, elemental);
 
     tableCreate("uniqueTable", elemental, header);
 }
