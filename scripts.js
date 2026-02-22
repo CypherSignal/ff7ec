@@ -644,7 +644,7 @@ function printElemWeapon(elem) {
 function printAllWeapon(elem, header) {
     readDatabase();
     let elemental;
-    elemental = [["Weapon Name", "Char", "Equipment Type", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Condition"]];
+    elemental = [["Weapon Name", "Character", "Equipment Type", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Condition"]];
     let activeChars = getActiveCharacterFilter();
     let activeWeaponTypes = getActiveWeaponTypeFilter();
 
@@ -803,7 +803,7 @@ function printWeaponSigil(sigil, header) {
 
 function printWeaponMateria(elemMateria, header) {
     readDatabase();
-    let materia = [["Weapon Name", "Char", "Equipment Type",  "Materia Slot 1", "Materia Slot 2", "Materia Slot 3"]];
+    let materia = [["Weapon Name", "Character", "Equipment Type",  "Materia Slot 1", "Materia Slot 2", "Materia Slot 3"]];
     let activeChars = getActiveCharacterFilter();
     let activeWeaponTypes = getActiveWeaponTypeFilter();
 
