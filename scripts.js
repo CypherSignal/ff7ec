@@ -114,8 +114,30 @@ function tableCreate(user_row, user_col, list, header) {
     body.appendChild(tbl);
     let perfTableCreateEnd = performance.now();
 
+    let abilityDescTargetIdx = list[0].indexOf("Ability Description");
+    columnsWithLineEnd = []
+    if (abilityDescTargetIdx != -1)
+    {
+        columnsWithLineEnd.push(abilityDescTargetIdx);
+    }
+    
     new DataTable('#' + tblId, {
-        paging: false
+        paging: false,
+        columnDefs: [
+            {
+                render: function (data, type, row) {
+                    if (data.indexOf("\\n") == -1)
+                    {
+                        return data;
+                    }
+                    else
+                    {
+                        return "" + data.replaceAll("\\n", '<li>') + "";
+                    }
+                },
+                targets: columnsWithLineEnd,
+            },
+        ]
     });
     let perfDataTableCreateEnd = performance.now();
 
@@ -330,6 +352,40 @@ function getWeaponsMatchingEffectType(database, effectType)
     return filteredDb;
 }
 
+// Query to filter the input database down to just the rows where one of the MateriaSupports matches the filter
+function getWeaponsWithMateriaMatchingFilter(database, filter)
+{
+    let filteredDb = [];
+    let colIdxToSearch0 = weaponColIndexMap["MateriaSupport0"];
+    let colIdxToSearch1 = weaponColIndexMap["MateriaSupport1"];
+    let colIdxToSearch2 = weaponColIndexMap["MateriaSupport2"];
+    for (var rowIdx = 0; rowIdx < database.length; ++rowIdx)
+    {
+        if (database[rowIdx][colIdxToSearch0].indexOf(filter) != -1 ||
+            database[rowIdx][colIdxToSearch1].indexOf(filter) != -1 ||
+            database[rowIdx][colIdxToSearch2].indexOf(filter) != -1 )
+        {
+            filteredDb.push(database[rowIdx]);
+        }
+    }
+    return filteredDb;
+}
+
+function getWeaponsWithValueGreaterThan(database, columnToCheck, minValue)
+{
+    let filteredDb = [];
+    let colIdxToSearch = weaponColIndexMap[columnToCheck];
+    for (var rowIdx = 0; rowIdx < database.length; ++rowIdx)
+    {
+        let value = parseFloat(database[rowIdx][colIdxToSearch]);
+        if (value == NaN || value > minValue)
+        {
+            filteredDb.push(database[rowIdx]);
+        }
+    }
+    return filteredDb;
+}
+
 function getActiveCharacterFilter()
 {
     let charFilters = [];
@@ -361,16 +417,18 @@ function getActiveWeaponTypeFilter()
     return weaponFilters;
 }
 
-function elementalCompare(a, b) {
-    var aItem = parseFloat(a[MAX_POT_INDEX]);
-    var bItem = parseFloat(b[MAX_POT_INDEX]);
-    if (aItem < bItem) {
-        return 1;
+function addAbilityTextToTable(weaponData, outputTable)
+{
+    if(document.getElementById("show_full_ability").checked)
+    {
+        outputTable[0].push("Ability Description");
+        let colIdxToFetch = weaponColIndexMap["Ability Text"];
+
+        for (var i = 0; i < weaponData.length; i++) {
+            let weaponRow = weaponData[i];
+            outputTable[i+1].push(weaponRow[colIdxToFetch]);
+        }
     }
-    if (aItem > bItem) {
-        return -1;
-    }
-    return 0;
 }
 
 function refreshTable()
@@ -412,8 +470,8 @@ function refreshTable()
         case "Earth": 
             printElemWeapon("Earth");
             break;
-        case "None": 
-            printElemWeapon("None");
+        case "Non-Elemental": 
+            printElemWeapon("Non-Elemental");
             break;
         case "DebuffMatk":
             printWeaponEffect("MATK Down", "Weapon with Debuff MATK:", true, true, true, false);
@@ -534,7 +592,7 @@ function filterEarth()
 
 function filterNonElem()
 {
-    activeWeaponFilter = "None";
+    activeWeaponFilter = "Non-Elemental";
     refreshTable();
 }
 
@@ -646,7 +704,7 @@ function printElemWeapon(elem) {
     var header = "Weapon with C-Abilities - " + elem;
     printWeaponElem(elem, header);
 
-    if (elem != "None") {
+    if (elem != "Non-Elemental") {
         printWeaponEffect(elem + " Resistance Down",               "Weapons with " + elem + " Resistance Down:",true, true, true, false);
         printWeaponEffect(elem + " Damage Up",                     "Weapons with " + elem + " Damage Up:",true, true, true, false);
         printWeaponEffect(elem + " Damage Bonus",                  "Weapons with " + elem + " Damage Bonus:",true, true, true, false);
@@ -668,7 +726,7 @@ function printAllWeapon(elem, header) {
 
     let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Character", activeChars);
     filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "GachaType", activeWeaponTypes);
-
+    
     for (var i = 0; i < filteredWeaponData.length; i++) {
         let weaponRow = filteredWeaponData[i];
 
@@ -730,14 +788,13 @@ function printWeaponElem(elem, header) {
     let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Character", activeChars);
     filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "GachaType", activeWeaponTypes);
     filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "Ability Element", elem);
+    // Low % heal is not worth it - set threshold at 20
+    if (elem == "Heal") {
+        filteredWeaponData = getWeaponsWithValueGreaterThan(filteredWeaponData,"Ability Pot. %", 25);
+    }
 
     for (var i = 0; i < filteredWeaponData.length; i++) {
         let weaponRow = filteredWeaponData[i];
-        if (elem == "Heal") {
-            // Low % heal is not worth it - set threshold at 20
-            if (parseInt(getValueFromDatabaseRow(weaponRow, "Ability Pot. %")) < 20)
-                continue;
-        }
 
         // Make a new row and push them into the list
         let row = [];
@@ -781,8 +838,7 @@ function printWeaponElem(elem, header) {
 
         elemental.push(row);
     }
-
-    elemental.sort(elementalCompare);
+    addAbilityTextToTable(filteredWeaponData, elemental);
 
     tableCreate(elemental.length, elemental[0].length, elemental, header);
 }
@@ -815,8 +871,7 @@ function printWeaponSigil(sigil, header) {
 
         elemental.push(row);
     }
-
-    elemental.sort(elementalCompare);
+    addAbilityTextToTable(filteredWeaponData, elemental);
 
     tableCreate(elemental.length, elemental[0].length, elemental, header);
 }
@@ -829,26 +884,19 @@ function printWeaponMateria(elemMateria, header) {
 
     let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Character", activeChars);
     filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "GachaType", activeWeaponTypes);
-
+    filteredWeaponData = getWeaponsWithMateriaMatchingFilter(filteredWeaponData, elemMateria);
     for (var i = 0; i < filteredWeaponData.length; i++) {
         var weaponRow = filteredWeaponData[i];
         
-        var found = false;
-        found = found || (getValueFromDatabaseRow(weaponRow, "MateriaSupport0").indexOf(elemMateria) != -1);
-        found = found || (getValueFromDatabaseRow(weaponRow, "MateriaSupport1").indexOf(elemMateria) != -1);
-        found = found || (getValueFromDatabaseRow(weaponRow, "MateriaSupport2").indexOf(elemMateria) != -1);
-
-        if (found) {
-
-            let row = [];
-            row.push(getValueFromDatabaseRow(weaponRow, "Name"));
-            row.push(getValueFromDatabaseRow(weaponRow, "Character"));
-            row.push(getValueFromDatabaseRow(weaponRow, "MateriaSupport0"));
-            row.push(getValueFromDatabaseRow(weaponRow, "MateriaSupport1"));
-            row.push(getValueFromDatabaseRow(weaponRow, "MateriaSupport2"));
-            materia.push(row);
-        }
+        let row = [];
+        row.push(getValueFromDatabaseRow(weaponRow, "Name"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Character"));
+        row.push(getValueFromDatabaseRow(weaponRow, "MateriaSupport0"));
+        row.push(getValueFromDatabaseRow(weaponRow, "MateriaSupport1"));
+        row.push(getValueFromDatabaseRow(weaponRow, "MateriaSupport2"));
+        materia.push(row);
     }
+    addAbilityTextToTable(filteredWeaponData, materia);
 
     tableCreate(materia.length, materia[0].length, materia, header);
 }
@@ -939,6 +987,7 @@ function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDur
 
         effectTable.push(row);
     }
+    addAbilityTextToTable(filteredWeaponData, effectTable);
 
     tableCreate(effectTable.length, effectTable[0].length, effectTable, header);
 }

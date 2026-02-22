@@ -151,7 +151,7 @@ attack_types = [
 # element-types for weapon ability (for skillbase.json)
 element_types = [
     "UNKNOWN",
-    "None",
+    "Non-Elemental",
     "Fire",
     "Ice",
     "Lightning",
@@ -377,7 +377,7 @@ custom_weapon_types = {
 print_perf_data("Load masterdata")
 
 # helper routine using all of the above data to process all of the skill-effects and return a dict of effects and ability data
-def process_skill_effects(skill_effect_objs):
+def process_skill_effects(skill_effect_objs, base_ability_type):
     weapon_data = {}
 
     # first, we want to handle the damage effect very specially, so find it and take it out of the list
@@ -388,19 +388,27 @@ def process_skill_effects(skill_effect_objs):
             skill_effect_objs.pop(idx)
             break
 
+    weapon_ability_text = ""
+
     # output data for the damage effect
     weapon_data["Ability Range"] = target_types[skill_effect_damage_obj["TargetType"]]
     skill_damage_effect_damage_obj = skill_damage_data[skill_effect_damage_obj["SkillEffectDetailId"]]
     if (skill_effect_damage_obj["TargetType"] >= 3 and skill_effect_damage_obj["TargetType"] <= 6 ):
         if (skill_damage_effect_damage_obj["SkillDamageType"] == 1):
             weapon_data["Ability Pot. %"] = str(round(skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 22,0))
+            weapon_ability_text = base_ability_type + " heal is cast [" + weapon_data["Ability Pot. %"] + "% of Healing Pot.] "
         elif (skill_damage_effect_damage_obj["SkillDamageType"] == 2):
             weapon_data["Ability Pot. %"] = str(round(skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 10,0)) + "% of max HP"
-            
+            weapon_ability_text = "Restores " + weapon_data["Ability Pot. %"] + " [" +  base_ability_type + "] "
         weapon_data["Ability Element"] = "Heal"
     else:
-        weapon_data["Ability Pot. %"] = skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 10
+        weapon_data["Ability Pot. %"] = str(skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 10)
         weapon_data["Ability Element"] = element_types[skill_damage_effect_damage_obj["ElementType"]]
+        weapon_ability_text = "Deal " + weapon_data["Ability Pot. %"] + "% " + base_ability_type + " " + weapon_data["Ability Element"] + " damage "
+
+    weapon_ability_text += "[Rng: " + weapon_data["Ability Range"] + "] "
+
+    weapon_ability_text += "\\n"
 
     # output data for each skill effect
     for skill_effect_idx,skill_effect_obj in enumerate(skill_effect_objs):
@@ -410,33 +418,35 @@ def process_skill_effects(skill_effect_objs):
         weapon_data[effect_detail_prefix + "_Range"] = target_types[skill_effect_obj["TargetType"]]
         weapon_data[effect_detail_prefix + "_Type"] = skilleffect_types[skill_effect_obj["SkillEffectType"]]
         
-        match skill_effect_obj["TriggerType"]:
-            case 1: # no condition required
-                pass
-            case 2: 
-                weapon_data[effect_detail_prefix + "_Condition"] = "When hitting critical"
-            case 3:
-                weapon_data[effect_detail_prefix + "_Condition"] = "When matching sigils are destroyed"
-            case 4: # hp
-                skill_trigger_condition_hp_obj = skill_trigger_condition_hp_data[skill_effect_obj["TriggerConditionId"]]
-                if (skill_trigger_condition_hp_obj["MinPermil"] == 0):
-                    weapon_data[effect_detail_prefix + "_Condition"] = "When HP is less than " + str(round(skill_trigger_condition_hp_obj["MaxPermil"]/10,0)) + "%"
-                elif (skill_trigger_condition_hp_obj["MaxPermil"] == 1000):
-                    weapon_data[effect_detail_prefix + "_Condition"] = "When HP is greater than " + str(round(skill_trigger_condition_hp_obj["MinPermil"]/10,0)) + "%"
-                else:
-                    weapon_data[effect_detail_prefix + "_Condition"] = "UNKNOWN CONDITION " + str(skill_effect_obj["TriggerType"]) + " on SkillEffectId: " + str(skill_effect_obj["Id"])
-            case 7:
-                weapon_data[effect_detail_prefix + "_Condition"] = "When debuff is on target"
-            case 8:
-                weapon_data[effect_detail_prefix + "_Condition"] = "When hitting target's weakness"
-            case 13:
-                weapon_data[effect_detail_prefix + "_Condition"] = "With command gauge at max in attack stance"
-            case 14:
-                weapon_data[effect_detail_prefix + "_Condition"] = "Against a single target"
-            case 16:
-                weapon_data[effect_detail_prefix + "_Condition"] = "On first use"
-            case _:
-                weapon_data[effect_detail_prefix + "_Condition"] = "UNKNOWN EFFECT CONDITION " + str(skill_effect_obj["TriggerType"]) + " on SkillEffectId: " + str(skill_effect_obj["Id"])
+        if (skill_effect_obj["TriggerType"] != 1):
+            match skill_effect_obj["TriggerType"]:
+                case 1: # no condition required
+                    pass
+                case 2: 
+                    weapon_data[effect_detail_prefix + "_Condition"] = "When hitting critical"
+                case 3:
+                    weapon_data[effect_detail_prefix + "_Condition"] = "When matching sigils are destroyed"
+                case 4: # hp
+                    skill_trigger_condition_hp_obj = skill_trigger_condition_hp_data[skill_effect_obj["TriggerConditionId"]]
+                    if (skill_trigger_condition_hp_obj["MinPermil"] == 0):
+                        weapon_data[effect_detail_prefix + "_Condition"] = "When HP is less than " + str(round(skill_trigger_condition_hp_obj["MaxPermil"]/10,0)) + "%"
+                    elif (skill_trigger_condition_hp_obj["MaxPermil"] == 1000):
+                        weapon_data[effect_detail_prefix + "_Condition"] = "When HP is greater than " + str(round(skill_trigger_condition_hp_obj["MinPermil"]/10,0)) + "%"
+                    else:
+                        weapon_data[effect_detail_prefix + "_Condition"] = "UNKNOWN CONDITION " + str(skill_effect_obj["TriggerType"]) + " on SkillEffectId: " + str(skill_effect_obj["Id"])
+                case 7:
+                    weapon_data[effect_detail_prefix + "_Condition"] = "When debuff is on target"
+                case 8:
+                    weapon_data[effect_detail_prefix + "_Condition"] = "When hitting target's weakness"
+                case 13:
+                    weapon_data[effect_detail_prefix + "_Condition"] = "With command gauge at max in attack stance"
+                case 14:
+                    weapon_data[effect_detail_prefix + "_Condition"] = "Against a single target"
+                case 16:
+                    weapon_data[effect_detail_prefix + "_Condition"] = "On first use"
+                case _:
+                    weapon_data[effect_detail_prefix + "_Condition"] = "UNKNOWN EFFECT CONDITION " + str(skill_effect_obj["TriggerType"]) + " on SkillEffectId: " + str(skill_effect_obj["Id"])
+            weapon_ability_text += weapon_data[effect_detail_prefix + "_Condition"] + ", "
 
         match skill_effect_obj["SkillEffectType"]:
             case 1: # Damage effect
@@ -450,10 +460,17 @@ def process_skill_effects(skill_effect_objs):
                 else:
                     weapon_data[effect_detail_prefix] = "Status Ailment: UNKNOWN STATUS: " + str(skill_status_condition_type)  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
 
-                weapon_data[effect_detail_prefix + "_Duration"] = str(skill_status_condition_obj["MaxDurationSec"])
-                weapon_data[effect_detail_prefix + "_Extend"] = str(skill_status_condition_obj["MaxDuplicationDurationSec"])
+                weapon_ability_text += "Applies " + weapon_data[effect_detail_prefix] + " [Rng: " + weapon_data[effect_detail_prefix + "_Range"] + "] "
+                
+                # if the effect has a "pot" on it
                 if (skill_status_condition_obj["EffectCoefficient"] != 0):
                     weapon_data[effect_detail_prefix + "_Pot"] = str(round(skill_status_condition_obj["EffectCoefficient"] / 10,0)) + "%"
+                    weapon_ability_text += "[Pot: " + weapon_data[effect_detail_prefix + "_Pot"] + "] "
+                
+                # add duration
+                weapon_data[effect_detail_prefix + "_Duration"] = str(skill_status_condition_obj["MaxDurationSec"])
+                weapon_data[effect_detail_prefix + "_Extend"] = str(skill_status_condition_obj["MaxDuplicationDurationSec"])
+                weapon_ability_text += "[Dur: " + weapon_data[effect_detail_prefix + "_Duration"] + "s] [Ext: " + weapon_data[effect_detail_prefix + "_Extend"] + "s]"
 
             case 3: # SkillBuffDebuff 
                 skill_buffdebuff_obj = skill_buffdebuff_data[skill_effect_detail_id]
@@ -467,6 +484,13 @@ def process_skill_effects(skill_effect_objs):
                 weapon_data[effect_detail_prefix + "_Extend"] = str(skill_buffdebuff_obj["MaxDuplicationDurationSec"])
                 weapon_data[effect_detail_prefix + "_Pot"] = buffdebuff_tiers[skill_buffdebuff_obj["TriggerEffectLevel"]]
                 weapon_data[effect_detail_prefix + "_PotMax"] = buffdebuff_tiers[skill_buffdebuff_obj["TriggerEffectLevelMax"]]
+
+                weapon_ability_text +=  weapon_data[effect_detail_prefix] + " "
+                weapon_ability_text += "[Pot: " + weapon_data[effect_detail_prefix + "_Pot"] + "] "
+                weapon_ability_text += "[Rng: " + weapon_data[effect_detail_prefix + "_Range"] + "] "
+                weapon_ability_text += "[Dur: " + weapon_data[effect_detail_prefix + "_Duration"] + "s] "
+                weapon_ability_text += "[Ext: " + weapon_data[effect_detail_prefix + "_Extend"] + "s] "
+                weapon_ability_text += "[Max pot: " + weapon_data[effect_detail_prefix + "_PotMax"] + "] "
 
             case 5: # SkillStatusChangeEffect (e.g. exploit weakness)
                 skill_status_change_obj = skill_status_change_effect_data[skill_effect_detail_id]
@@ -483,9 +507,35 @@ def process_skill_effects(skill_effect_objs):
                     weapon_data[effect_detail_prefix + "_Pot"] = str(round(skill_status_change_obj["EffectCoefficient"]/10,0)) + "%"
                 weapon_data[effect_detail_prefix + "_Duration"] = str(skill_status_change_obj["MaxDurationSec"])
                 weapon_data[effect_detail_prefix + "_Extend"] = str(skill_status_change_obj["MaxDuplicationDurationSec"])
+
                 if (skill_status_change_obj["EffectCount"] != 0): # e.g. "Amp abilities up to 1 time(s)"
                     weapon_data[effect_detail_prefix + "_EffectCount"] = str(skill_status_change_obj["EffectCount"]) 
 
+                weapon_ability_text += "Applies " +  weapon_data[effect_detail_prefix] + " "
+                
+                # a lot of the statuses have unique ways of listing their Pot
+                match skill_status_change_obj["SkillStatusChangeType"]:
+                    case 2 | 4 | 5: # Provoke | Haste
+                        pass # no pot listed
+                    case 6: # veil
+                        weapon_ability_text += "[Pot: +" + weapon_data[effect_detail_prefix + "_Pot"] + " of target's max HP] "
+                    case 10: # hp gain
+                        weapon_ability_text += "[When triggered: restores " + weapon_data[effect_detail_prefix + "_Pot"] + " of target's max HP] "
+                    case 12 | 13: # Amp phys/mag
+                        weapon_ability_text += "[Damage +" + weapon_data[effect_detail_prefix + "_Pot"] + " up to " + weapon_data[effect_detail_prefix + "_EffectCount"] + " time(s)] "
+                    case 14: # Amp heal
+                        weapon_ability_text += "[Healing +" + weapon_data[effect_detail_prefix + "_Pot"] + " up to " + weapon_data[effect_detail_prefix + "_EffectCount"] + " time(s)] "
+                    case 44: #phys atb conservation 
+                        weapon_ability_text += "[Phys Weapon/Gear ATB Cost: -" + weapon_data[effect_detail_prefix + "_Pot"] + "] "
+                    case 45: # mag atb conservation
+                        weapon_ability_text += "[Mag Weapon/Gear ATB Cost: -" + weapon_data[effect_detail_prefix + "_Pot"] + "] "
+                    case _: 
+                        weapon_ability_text += "[Pot: " + weapon_data[effect_detail_prefix + "_Pot"] + "] "
+
+                weapon_ability_text += "[Rng: " + weapon_data[effect_detail_prefix + "_Range"] + "] "
+                weapon_ability_text += "[Dur: " + weapon_data[effect_detail_prefix + "_Duration"] + "s] "
+                weapon_ability_text += "[Ext: " + weapon_data[effect_detail_prefix + "_Extend"] + "s] "
+                
             case 6: # SkillCancelEffect (e.g. removes buff/debuff or removes status)
                 skill_cancel_effect_obj = skill_cancel_effect_data[skill_effect_detail_id]
                 
@@ -507,6 +557,8 @@ def process_skill_effects(skill_effect_objs):
                 
                 skill_cancel_effect = skill_cancel_effect[:-2] # trim the final ", "
                 weapon_data[effect_detail_prefix] = skill_cancel_effect
+                weapon_ability_text += skill_cancel_effect + " "
+                weapon_ability_text += "[Rng: " + weapon_data[effect_detail_prefix + "_Range"] + "] "
 
             case 7: # SkillAdditionalEffect (e.g. crits???)
                 skill_additional_effect_obj = skill_additional_effect_data[skill_effect_detail_id]
@@ -514,18 +566,24 @@ def process_skill_effects(skill_effect_objs):
                     case 14: # crits
                         weapon_data[effect_detail_prefix] = "Crit Rate"
                         weapon_data[effect_detail_prefix + "_Pot"] = str(round(skill_additional_effect_obj["MaxValue"]/10,0)) + "%"
+                        weapon_ability_text += "[Crit rate:" + weapon_data[effect_detail_prefix + "_Pot"] + "] "
                     case 15: # e.g. "additional damage when debuff on target"
                         weapon_data[effect_detail_prefix] = "Multiply Damage"
                         weapon_data[effect_detail_prefix + "_Pot"] = str(round(skill_additional_effect_obj["MaxValue"]/10,0)) + "%"
+                        weapon_ability_text += "x" + str(round(skill_additional_effect_obj["MaxValue"]/1000,1)) + " damage "
                     case 16: # fixed dmg (phys)
                         weapon_data[effect_detail_prefix] = "Deals Fixed Additional Damage"
-                        weapon_data[effect_detail_prefix + "_Pot"] = skill_additional_effect_obj["MaxValue"]
+                        weapon_data[effect_detail_prefix + "_Pot"] = str(skill_additional_effect_obj["MaxValue"])
+                        weapon_ability_text += "deals " + str(skill_additional_effect_obj["MaxValue"]) + " additional damage "
+                        weapon_ability_text += "[Rng: " + weapon_data[effect_detail_prefix + "_Range"] + "] "
                     case _:    
                         weapon_data[effect_detail_prefix] = "UNKNOWN ADDITIONAL EFFECT TYPE " + str(skill_additional_effect_obj["SkillAdditionalType"]) + " on SkillEffectDetailId: " + str(skill_effect_detail_id)
 
             case 16: # SkillAtbChangeEffect (+ATB!)
                 skill_atbchange_effect_obj = skill_atbchange_effect_data[skill_effect_detail_id]
                 weapon_data[effect_detail_prefix] = "ATB+" + str(skill_atbchange_effect_obj["Value"])
+                weapon_ability_text += "+" + str(skill_atbchange_effect_obj["Value"]) + " ATB Gauge "
+                weapon_ability_text += "[Rng: " + weapon_data[effect_detail_prefix + "_Range"] + "] "
                 
             case 26: # SkillSpecialGaugeChangeEffect (+Limit/summon bar)
                 skill_special_gauge_change_obj = skill_special_gauge_change_data[skill_effect_detail_id]
@@ -539,7 +597,10 @@ def process_skill_effects(skill_effect_objs):
                         weapon_data[effect_detail_prefix + "_Pot"] = "-" + str(round(skill_special_gauge_change_obj["PermilValue"] / 10,0)) + "%"
                     case _:
                        weapon_data[effect_detail_prefix] = "UNKNOWN SPECIAL GAUGE CHANGE"  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
-                
+                weapon_ability_text += weapon_data[effect_detail_prefix] + " "
+                weapon_ability_text += str(round(skill_special_gauge_change_obj["PermilValue"] / 10,0)) + "% "   
+                weapon_ability_text += "[Rng: " + weapon_data[effect_detail_prefix + "_Range"] + "] "
+
             case 30: # SkillTacticsGaugeChangeEffect (+Stance change)
                 skill_tactics_gauge_change_obj = skill_tactics_gauge_change_data[skill_effect_detail_id]
                 match skill_tactics_gauge_change_obj["SkillEffectGaugeChangeType"]:
@@ -551,6 +612,8 @@ def process_skill_effects(skill_effect_objs):
                         weapon_data[effect_detail_prefix + "_Pot"] = "-" + str(round(skill_tactics_gauge_change_obj["PermilValue"] / 10,0)) + "%"
                     case _:
                        weapon_data[effect_detail_prefix] = "UNKNOWN TACTICS GAUGE CHANGE"  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
+                weapon_ability_text += weapon_data[effect_detail_prefix] + " "
+                weapon_ability_text += "[Pot: " + weapon_data[effect_detail_prefix + "_Pot"] + "] "
 
             case 31: # SkillBuffDebuffEnhance (AC Gloves, Abraxas)
                 skill_buffdebuff_enhance_obj = skill_buffdebuff_enhance_data[skill_effect_detail_id]
@@ -563,51 +626,25 @@ def process_skill_effects(skill_effect_objs):
                         weapon_data[effect_detail_prefix] = "UNKNOWN BUFF/DEBUFF ENHANCE"  + " SkillEffectDetailId: " + str(skill_effect_detail_id)
                 weapon_data[effect_detail_prefix + "_Pot"] = buffdebuff_tiers[skill_buffdebuff_enhance_obj["EnhanceEffectLevel"]]
                 weapon_data[effect_detail_prefix + "_PotMax"] = buffdebuff_tiers[skill_buffdebuff_enhance_obj["EnhanceEffectLevelMax"]]
-                weapon_data[effect_detail_prefix + "_Extend"] = skill_buffdebuff_enhance_obj["EnhanceDurationSec"]
+                weapon_data[effect_detail_prefix + "_Extend"] = str(skill_buffdebuff_enhance_obj["EnhanceDurationSec"])
+
+                weapon_ability_text +=  weapon_data[effect_detail_prefix] + " "
+                weapon_ability_text += "[Pot: " + weapon_data[effect_detail_prefix + "_Pot"] + "] "
+                weapon_ability_text += "[Rng: " + weapon_data[effect_detail_prefix + "_Range"] + "] "
+                weapon_ability_text += "[Dur: +" + weapon_data[effect_detail_prefix + "_Extend"] + "s] "
+                weapon_ability_text += "[Max Tier: " + weapon_data[effect_detail_prefix + "_PotMax"] + "] "
 
             case _:
                 weapon_data[effect_detail_prefix] = "UNKNOWN EFFECT: " + str(skill_effect_obj["SkillEffectType"]) + " SkillEffectDetailId: " + str(skill_effect_detail_id)
+        weapon_ability_text += "\\n"
+        
     # end skill-effect loop
+    weapon_ability_text = weapon_ability_text[:-2] # trim the final \n
+    weapon_data["Ability Text"] = weapon_ability_text
+
     return weapon_data
 
-        # on the weapon row we just did, assemble a full description of all of weapon's effects
-        # function getFullWeaponDescription(weaponRow)
-        # {
-        #     var desc = "";
 
-        #     // First, the damage effect
-        #     if (getValueFromDatabaseRow(weaponRow, "Ability Element") == "Heal")
-        #     {
-        #         desc += getValueFromDatabaseRow(weaponRow, "Ability Type") + " heal is cast";
-        #         var pot = getValueFromDatabaseRow(weaponRow, "Ability Pot. %")
-        #         if (pot.includes("of max HP"))
-        #         {
-        #             desc += "[" + pot + "]";
-        #         }
-        #         else
-        #         {
-        #             desc += "[Pot.: " +  + " of Healing Pot.]";
-        #         }
-        #     }
-        #     else
-        #     {
-
-        #     }
-        #     desc += "<br>";
-            
-        #     // then add all efffects
-        #     var effectIdx = 0;
-        #     while (getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Type") != "")
-        #     {
-        #         var effectType = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Type");
-                
-        #         switch (effectType)
-        #         {
-        #             case "Additional Effect":
-
-        #         }
-        #     }
-        # }
 
 
 
@@ -698,7 +735,7 @@ for weapon_obj in weapon_data.values():
         out_weapon["Initial Charge Time"] = skill_legendary_data[weapon_skill_base_id]["InitialChargeTimeSec"]
         out_weapon["Recharge Time"] = skill_legendary_data[weapon_skill_base_id]["RechargeTimeSec"]
 
-    out_weapon.update(process_skill_effects(skill_effect_objs))
+    out_weapon.update(process_skill_effects(skill_effect_objs, out_weapon["Ability Type"]))
     
     out_weapons.append(out_weapon)
 
@@ -737,7 +774,7 @@ for costume_obj in character_costume_data.values():
     for skill_effect_id in skill_effectgroup_list:
         skill_effect_objs.append(skill_effect_data[skill_effect_id])
 
-    out_costume.update(process_skill_effects(skill_effect_objs))
+    out_costume.update(process_skill_effects(skill_effect_objs, out_costume["Ability Type"]))
     
     out_weapons.append(out_costume)
 
