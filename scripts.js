@@ -772,6 +772,7 @@ function printAllWeapon(elem, header) {
 
         elemental.push(row);
     }
+    addAbilityTextToTable(filteredWeaponData, effectTable);
 
     tableCreate(elemental.length, elemental[0].length, elemental, header);
 }
@@ -1033,6 +1034,7 @@ function printWeaponCancelEffect(header) {
 
         effectTable.push(row);
     }
+    addAbilityTextToTable(filteredWeaponData, effectTable);
 
     tableCreate(effectTable.length, effectTable[0].length, effectTable, header);
 }
