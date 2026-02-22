@@ -114,12 +114,33 @@ function tableCreate(user_row, user_col, list, header) {
     body.appendChild(tbl);
     let perfTableCreateEnd = performance.now();
 
-    let abilityDescTargetIdx = list[0].indexOf("Ability Description");
     columnsWithLineEnd = []
+    columnsToHide = []
+    let abilityDescTargetIdx = list[0].indexOf("Ability Description");
     if (abilityDescTargetIdx != -1)
     {
         columnsWithLineEnd.push(abilityDescTargetIdx);
     }
+
+    // Might be better if we had a stricter set of consts for these column names
+    if(!document.getElementById("show_full_ability").checked)
+    {
+        columnsToHide.push(abilityDescTargetIdx);
+    }
+    else
+    {
+        for (let colIdx = 0; colIdx < list[0].length; ++colIdx)
+        {
+            if (list[0][colIdx] != "Weapon Name" &&
+                list[0][colIdx] != "Character" &&
+                list[0][colIdx] != "Equipment Type" &&
+                list[0][colIdx] != "Ability Description")
+            {
+                columnsToHide.push(colIdx);
+            }
+        }
+    }
+
     
     new DataTable('#' + tblId, {
         paging: false,
@@ -137,6 +158,10 @@ function tableCreate(user_row, user_col, list, header) {
                 },
                 targets: columnsWithLineEnd,
             },
+            {
+                visible: false,
+                targets: columnsToHide,
+            }
         ]
     });
     let perfDataTableCreateEnd = performance.now();
@@ -149,78 +174,7 @@ function tableCreate(user_row, user_col, list, header) {
     ]);
 }
 
-function sortTable(cell) {
-    // Grab the table node
-    var table = cell.parentNode.parentNode;
-    var col = 0;
-    var asc = true;
-    var swap = true;
-    var shouldSwap = false;
-    var count = 0;
-    var isNumber = false;
 
-    for (var i = 0; i < table.rows[0].cells.length; i++) {
-        if (table.rows[0].cells[i].innerHTML == cell.innerHTML) {
-            col = i;
-            if (cell.innerHTML == "Pot%" || cell.innerHTML == "Max%" || cell.innerHTML == "Duration (s)"
-                || cell.innerHTML == "% per ATB") {
-                isNumber = true;
-            }
-        }
-    }
-
-    while (swap) {
-        swap = false;
-        var rows = table.rows;
-
-        // Skip header row
-        for (var i = 1; i < (rows.length - 1); i++) {
-            shouldSwap = false;
-            // get current row and the next row
-            var x = rows[i].getElementsByTagName("td")[col];
-            var y = rows[i + 1].getElementsByTagName("td")[col];
-            var xValue = x, yValue = y;
-
-            if (isNumber) {
-                xValue = parseFloat(x.innerHTML);
-                yValue = parseFloat(y.innerHTML);
-            }
-            else {
-                xValue = x.innerHTML;
-                yValue = y.innerHTML;
-            }
-
-            if (asc) {
-                // Check if switch based on ascendence 
-
-                if (xValue > yValue) {
-                    shouldSwap = true;
-                    break;
-                }
-            }
-            else {
-                // Check if switch based on descendence 
-                if (xValue < yValue) {
-                    shouldSwap = true;
-                    break;
-                }
-            }
-        }
-        if (shouldSwap) {
-            // Swap
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            swap = true;
-            count++;
-        }
-        else {
-            if (count == 0 && asc) {
-                asc = false;
-                swap = true;
-            }
-        }
-    }   
-                    
-}
 function readDatabase() {
     if (weaponData[0] != null) {
         return;
@@ -245,7 +199,7 @@ function readDatabase() {
         {
             if (weaponColHeaders.includes("Effect" + effectIdx))
             {
-                    weaponColIdxToEffectMap[weaponColHeaders.indexOf("Effect" + effectIdx)] = effectIdx;
+                weaponColIdxToEffectMap[weaponColHeaders.indexOf("Effect" + effectIdx)] = effectIdx;
             }
             if (weaponColHeaders.includes("Effect" + effectIdx + "_Type"))
             {
@@ -419,15 +373,12 @@ function getActiveWeaponTypeFilter()
 
 function addAbilityTextToTable(weaponData, outputTable)
 {
-    if(document.getElementById("show_full_ability").checked)
-    {
-        outputTable[0].push("Ability Description");
-        let colIdxToFetch = weaponColIndexMap["Ability Text"];
+    outputTable[0].push("Ability Description");
+    let colIdxToFetch = weaponColIndexMap["Ability Text"];
 
-        for (var i = 0; i < weaponData.length; i++) {
-            let weaponRow = weaponData[i];
-            outputTable[i+1].push(weaponRow[colIdxToFetch]);
-        }
+    for (var i = 0; i < weaponData.length; i++) {
+        let weaponRow = weaponData[i];
+        outputTable[i+1].push(weaponRow[colIdxToFetch]);
     }
 }
 
@@ -711,7 +662,8 @@ function printElemWeapon(elem) {
         printWeaponEffect(elem + " Weapon Boost",                  "Weapons with " + elem + " Weapon Boost:", true, true, true, false);
         printWeaponEffect("Status Ailment: " + elem + " Weakness", "Weapons with " + elem + " Weakness:",true, true, true, false);
         printWeaponEffect(elem + " Resistance Up",                 "Weapons with " + elem + " Resistance Up:", true, true, true, false);
-        printWeaponEffect(elem + " Damage Down",                   "Weapons with " + elem + " Damage Down:", true, true, true, false);
+        // We don't actually have any 'damage down' weapons yet, so just ignore it
+        // printWeaponEffect(elem + " Damage Down",                   "Weapons with " + elem + " Damage Down:", true, true, true, false);
         
         printWeaponMateria(elem, "Weapon with " + elem + " Materia Slot:");
     }
@@ -720,7 +672,7 @@ function printElemWeapon(elem) {
 function printAllWeapon(elem, header) {
     readDatabase();
     let elemental;
-    elemental = [["Weapon Name", "Char", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Condition", "Equipment Type"]];
+    elemental = [["Weapon Name", "Char", "Equipment Type", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Condition"]];
     let activeChars = getActiveCharacterFilter();
     let activeWeaponTypes = getActiveWeaponTypeFilter();
 
@@ -735,6 +687,7 @@ function printAllWeapon(elem, header) {
 
         row.push(getValueFromDatabaseRow(weaponRow, "Name"));
         row.push(getValueFromDatabaseRow(weaponRow, "Character"));
+        row.push(getValueFromDatabaseRow(weaponRow, "GachaType"));
         row.push(getValueFromDatabaseRow(weaponRow, "Ability Range"));
         row.push(getValueFromDatabaseRow(weaponRow, "Ability Type"));
         var atb = getValueFromDatabaseRow(weaponRow, "Command ATB");
@@ -768,7 +721,6 @@ function printAllWeapon(elem, header) {
         row.push(maxPot);
         row.push((maxPot / Math.max(atb,1)).toFixed(0));
         row.push(condition);
-        row.push(getValueFromDatabaseRow(weaponRow, "GachaType"));
 
         elemental.push(row);
     }
@@ -781,7 +733,7 @@ function printAllWeapon(elem, header) {
 function printWeaponElem(elem, header) {
     readDatabase();
 
-    let elemental = [["Weapon Name", "Character", "Range", "Type", "ATB", "Uses", "Pot%", "Max Pot%", "% per ATB", "Condition for Max", "Equipment Type"]];
+    let elemental = [["Weapon Name", "Character",  "Equipment Type", "Range", "Type", "ATB", "Uses", "Pot%", "Max Pot%", "% per ATB", "Condition for Max"]];
 
     let activeChars = getActiveCharacterFilter();
     let activeWeaponTypes = getActiveWeaponTypeFilter();
@@ -802,6 +754,7 @@ function printWeaponElem(elem, header) {
 
         row.push(getValueFromDatabaseRow(weaponRow, "Name"));
         row.push(getValueFromDatabaseRow(weaponRow, "Character"));
+        row.push(getValueFromDatabaseRow(weaponRow, "GachaType"));
         row.push(getValueFromDatabaseRow(weaponRow, "Ability Range"));
         row.push(getValueFromDatabaseRow(weaponRow, "Ability Type"));
         var atb = getValueFromDatabaseRow(weaponRow, "Command ATB");
@@ -835,7 +788,6 @@ function printWeaponElem(elem, header) {
         row.push(maxPot);
         row.push((maxPot / Math.max(atb,1)).toFixed(0));
         row.push(condition);
-        row.push(getValueFromDatabaseRow(weaponRow, "GachaType"));
 
         elemental.push(row);
     }
@@ -847,7 +799,7 @@ function printWeaponElem(elem, header) {
 function printWeaponSigil(sigil, header) {
     readDatabase();
  
-    let elemental = [["Weapon Name", "Character", "Range", "Type", "ATB", "Uses", "Equipment Type"]];
+    let elemental = [["Weapon Name", "Character",  "Equipment Type", "Range", "Type", "ATB", "Uses"]];
 
     let activeChars = getActiveCharacterFilter();
     let activeWeaponTypes = getActiveWeaponTypeFilter();
@@ -864,11 +816,11 @@ function printWeaponSigil(sigil, header) {
 
         row.push(getValueFromDatabaseRow(weaponRow, "Name"));
         row.push(getValueFromDatabaseRow(weaponRow, "Character"));
+        row.push(getValueFromDatabaseRow(weaponRow, "GachaType"));
         row.push(getValueFromDatabaseRow(weaponRow, "Ability Range"));
         row.push(getValueFromDatabaseRow(weaponRow, "Ability Type"));
         row.push(getValueFromDatabaseRow(weaponRow, "Command ATB"));
         row.push(getValueFromDatabaseRow(weaponRow, "Use Count"));
-        row.push(getValueFromDatabaseRow(weaponRow, "GachaType"));
 
         elemental.push(row);
     }
@@ -879,7 +831,7 @@ function printWeaponSigil(sigil, header) {
 
 function printWeaponMateria(elemMateria, header) {
     readDatabase();
-    let materia = [["Weapon Name", "Char", "Materia Slot 1", "Materia Slot 2", "Materia Slot 3"]];
+    let materia = [["Weapon Name", "Char", "Equipment Type",  "Materia Slot 1", "Materia Slot 2", "Materia Slot 3"]];
     let activeChars = getActiveCharacterFilter();
     let activeWeaponTypes = getActiveWeaponTypeFilter();
 
@@ -892,6 +844,7 @@ function printWeaponMateria(elemMateria, header) {
         let row = [];
         row.push(getValueFromDatabaseRow(weaponRow, "Name"));
         row.push(getValueFromDatabaseRow(weaponRow, "Character"));
+        row.push(getValueFromDatabaseRow(weaponRow, "GachaType"));
         row.push(getValueFromDatabaseRow(weaponRow, "MateriaSupport0"));
         row.push(getValueFromDatabaseRow(weaponRow, "MateriaSupport1"));
         row.push(getValueFromDatabaseRow(weaponRow, "MateriaSupport2"));
@@ -905,7 +858,7 @@ function printWeaponMateria(elemMateria, header) {
 function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDuration, includeEffectCount) {
     readDatabase();
 
-    let effectTable = [["Weapon Name", "Character","Range", "Pot", "Max Pot", "Duration (s)", "Extension (s)", "ATB", "Uses", "Effect Count", "Type","Condition", "Equipment Type"]];
+    let effectTable = [["Weapon Name", "Character", "Equipment Type", "Range", "Pot", "Max Pot", "Duration (s)", "Extension (s)", "ATB", "Uses", "Effect Count", "Type","Condition"]];
     if (!includePot)
     {
         effectTable[0].splice(effectTable[0].indexOf("Pot"), 1);
@@ -962,6 +915,7 @@ function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDur
 
         row.push(getValueFromDatabaseRow(weaponRow, "Name"));
         row.push(getValueFromDatabaseRow(weaponRow, "Character"));
+        row.push(getValueFromDatabaseRow(weaponRow, "GachaType"));
         row.push(effectRange);
         if (includePot)
         {
@@ -984,7 +938,6 @@ function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDur
         }
         row.push(getValueFromDatabaseRow(weaponRow, "Ability Type"));
         row.push(effectCondition);
-        row.push(getValueFromDatabaseRow(weaponRow, "GachaType"));
 
         effectTable.push(row);
     }
@@ -997,7 +950,7 @@ function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDur
 function printWeaponCancelEffect(header) {
     readDatabase();
 
-    let effectTable = [["Weapon Name", "Character","Range", "Effect", "ATB", "Uses", "Type","Condition", "Equipment Type"]];
+    let effectTable = [["Weapon Name", "Character", "Equipment Type","Range", "Effect", "ATB", "Uses", "Type","Condition"]];
 
     let activeChars = getActiveCharacterFilter();
     let activeWeaponTypes = getActiveWeaponTypeFilter();
@@ -1024,13 +977,13 @@ function printWeaponCancelEffect(header) {
 
         row.push(getValueFromDatabaseRow(weaponRow, "Name"));
         row.push(getValueFromDatabaseRow(weaponRow, "Character"));
+        row.push(getValueFromDatabaseRow(weaponRow, "GachaType"));
         row.push(effectRange);
         row.push(effectDesc);
         row.push(getValueFromDatabaseRow(weaponRow, "Command ATB"));
         row.push(getValueFromDatabaseRow(weaponRow, "Use Count"));
         row.push(getValueFromDatabaseRow(weaponRow, "Ability Type"));
         row.push(effectCondition);
-        row.push(getValueFromDatabaseRow(weaponRow, "GachaType"));
 
         effectTable.push(row);
     }

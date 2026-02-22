@@ -143,9 +143,9 @@ weapon_gacha_types = [
 # damage-types for weapon ability (for skillbase.json)
 attack_types = [
     "UNKNOWN",
-    "Phys",
-    "Mag",
-    "Both",
+    "Phys.",
+    "Mag.",
+    "Phys./Mag.",
 ]
 
 # element-types for weapon ability (for skillbase.json)
