@@ -16,6 +16,8 @@ let weaponColIdxToEffectTypeMap = new Map(); // cached map of column indices to 
 let weaponData = []; // core weapon data; array of array of strings
 let activeWeaponFilter = "";
 
+let activeDataTables = []; // list of datatables that are currently instantiated
+
 function resetPerfReport()
 {
     document.getElementById('perf_measurement').innerHTML = "Perf report:<br>";
@@ -132,10 +134,23 @@ function tableCreate(tableClass, list, header) {
         tableColumnDefs.push({visible: false, targets: columnsToHide});
     }
 
-    new DataTable('#' + tblId, {
+    let table = new DataTable('#' + tblId, {
         paging: false,
-        columnDefs: tableColumnDefs
+        columnDefs: tableColumnDefs,
+        // hide datatables' search, and use our own
+        layout: {
+            topStart: null,
+            topEnd: null,
+            bottomStart: null,
+            bottomEnd: null,
+        }
     });
+    activeDataTables.push(table);
+
+    const searchTextBox = document.getElementById("search_field");
+    table.search(searchTextBox.value);
+    table.draw();
+
     let perfDataTableCreateEnd = performance.now();
 
     console.log("Created table: " + tableClass);
@@ -146,6 +161,26 @@ function tableCreate(tableClass, list, header) {
     ]);
 }
 
+// Lighter-weight refresh of all active tables. Retains the existing data and sort, but just updates search and fitler values
+function refreshTableFilter()
+{
+    resetPerfReport();
+    let start = performance.now();
+
+    const searchTextBox = document.getElementById("search_field");
+
+    for (var tableIdx = 0; tableIdx  < activeDataTables.length; ++tableIdx)
+    {
+        let dataTable = activeDataTables[tableIdx];
+        dataTable.search(searchTextBox.value);
+        dataTable.draw();
+    }
+
+    let end = performance.now();
+    reportPerf([
+        ["Table filter", start, end]
+    ]);
+}
 
 function readDatabase() {
     if (weaponData[0] != null) {
@@ -330,7 +365,7 @@ function getActiveCharacterFilter()
 function getActiveWeaponTypeFilter()
 {
     let weaponFilters = [];
-    const weaponFilterElements = document.getElementsByName("weapon_filter");
+    const weaponFilterElements = document.getElementsByName("equipment_filter");
 
     for (const weaponFilterElement of weaponFilterElements)
     {
@@ -362,6 +397,7 @@ function refreshTable()
     // clear the table(s) that may be there already
     var divToPrint = document.getElementById('Output');
     divToPrint.innerHTML = ''
+    activeDataTables = []
 
     // hide or reveal the root menu if we have a filter set or not
     if (activeWeaponFilter == "")
@@ -397,70 +433,70 @@ function refreshTable()
             printElemWeapon("Non-Elemental");
             break;
         case "DebuffMatk":
-            printWeaponEffect("MATK Down", "Weapon with Debuff MATK:", true, true, true, false);
+            printWeaponEffect("MATK Down", "Equipment with Debuff MATK:", true, true, true, false);
             break;
         case "DebuffPdef":
-            printWeaponEffect("PDEF Down", "Weapon with Debuff PDEF:", true, true, true, false );
-            printWeaponEffect("Status Ailment: Single-Tgt. Phys. Dmg. Rcvd. Up", "Weapon with Single-Tgt. Phys. Dmg. Rcvd. Up:", true, false, true, false);
+            printWeaponEffect("PDEF Down", "Equipment with Debuff PDEF:", true, true, true, false );
+            printWeaponEffect("Status Ailment: Single-Tgt. Phys. Dmg. Rcvd. Up", "Equipment with Single-Tgt. Phys. Dmg. Rcvd. Up:", true, false, true, false);
             break;
         case "DebuffMdef":
-            printWeaponEffect("MDEF Down", "Weapon with Debuff MDEF:", true, true, true, false);
-            printWeaponEffect("Status Ailment: Single-Tgt. Mag. Dmg. Rcvd. Up", "Weapon with Single-Tgt. Mag. Dmg. Rcvd. Up:", true, false, true, false);
+            printWeaponEffect("MDEF Down", "Equipment with Debuff MDEF:", true, true, true, false);
+            printWeaponEffect("Status Ailment: Single-Tgt. Mag. Dmg. Rcvd. Up", "Equipment with Single-Tgt. Mag. Dmg. Rcvd. Up:", true, false, true, false);
             break;
         case "DebuffPatk":
-            printWeaponEffect("PATK Down", "Weapon with Debuff PATK:", true, true, true, false);
+            printWeaponEffect("PATK Down", "Equipment with Debuff PATK:", true, true, true, false);
             break;
         case "BuffMatk":
-            printWeaponEffect("MATK Up", "Weapon with Buff MATK:", true, true, true, false);
-            printWeaponEffect("Mag. Damage Bonus", "Weapon with Mag. Damage Bonus:", true, false, true, false);
-            printWeaponEffect("Mag. Weapon Boost", "Weapon with Mag. Weapon Boost:", true, false, true, false);
-            printWeaponEffect("Amp. Mag. Abilities", "Weapon with Amp. Mag. Abilities:", true, false, true, true);
+            printWeaponEffect("MATK Up", "Equipment with Buff MATK:", true, true, true, false);
+            printWeaponEffect("Mag. Damage Bonus", "Equipment with Mag. Damage Bonus:", true, false, true, false);
+            printWeaponEffect("Mag. Weapon Boost", "Equipment with Mag. Weapon Boost:", true, false, true, false);
+            printWeaponEffect("Amp. Mag. Abilities", "Equipment with Amp. Mag. Abilities:", true, false, true, true);
             break;
         case "BuffPdef":
-            printWeaponEffect("PDEF Up", "Weapon with Buff PDEF:",true, true, true, false);
-            printWeaponEffect("Physical Resistance Increased", "Weapon with Physical Resistance Increased:",true, false, true, false);
+            printWeaponEffect("PDEF Up", "Equipment with Buff PDEF:",true, true, true, false);
+            printWeaponEffect("Physical Resistance Increased", "Equipment with Physical Resistance Increased:",true, false, true, false);
             break;
         case "BuffMdef":
-            printWeaponEffect("MDEF Up", "Weapon with Buff MDEF:", true, true, true, false);
-            printWeaponEffect("Magic Resistance Increased", "Weapon with Magic Resistance Increased:", true, false, true, false);
+            printWeaponEffect("MDEF Up", "Equipment with Buff MDEF:", true, true, true, false);
+            printWeaponEffect("Magic Resistance Increased", "Equipment with Magic Resistance Increased:", true, false, true, false);
             break;
         case "BuffPatk":
-            printWeaponEffect("PATK Up", "Weapon with Buff PATK:", true, true, true, false);
-            printWeaponEffect("Phys. Damage Bonus", "Weapon with Phys. Damage Bonus:", true, false, true, false);
-            printWeaponEffect("Phys. Weapon Boost", "Weapon with Phys. Weapon Boost:", true, false, true, false);
-            printWeaponEffect("Amp. Phys. Abilities", "Weapon with Amp. Phys. Abilities:",true, false, true, true);
+            printWeaponEffect("PATK Up", "Equipment with Buff PATK:", true, true, true, false);
+            printWeaponEffect("Phys. Damage Bonus", "Equipment with Phys. Damage Bonus:", true, false, true, false);
+            printWeaponEffect("Phys. Weapon Boost", "Equipment with Phys. Weapon Boost:", true, false, true, false);
+            printWeaponEffect("Amp. Phys. Abilities", "Equipment with Amp. Phys. Abilities:",true, false, true, true);
             break;
         case "BuffWex":
-            printWeaponEffect("Exploit Weakness", "Weapon with Exploit Weakness:",true, false, true, false);
-            printWeaponEffect("Status Ailment: Enfeeble", "Weapon with Enfeeble:",true, false, true, false);
-            printWeaponEffect("Applied Stats Buff Tier Increased", "Weapon with Buff Enhancement:", true, true, false, false);
-            printWeaponEffect("Applied Stats Debuff Tier Increased", "Weapon with Debuff Enhancement:", true, true, false, false);
+            printWeaponEffect("Exploit Weakness", "Equipment with Exploit Weakness:",true, false, true, false);
+            printWeaponEffect("Status Ailment: Enfeeble", "Equipment with Enfeeble:",true, false, true, false);
+            printWeaponEffect("Applied Stats Buff Tier Increased", "Equipment with Buff Enhancement:", true, true, false, false);
+            printWeaponEffect("Applied Stats Debuff Tier Increased", "Equipment with Debuff Enhancement:", true, true, false, false);
             break;
         case "Heal":
             printWeaponElem("Heal", "Non-Regen Healing Weapon (> 25% Potency):");
-            printWeaponMateria("All (Cure", "Weapon with All (Cure) Materia Slot:");
-            printWeaponMateria("All (Esuna",  "Weapon with All (Esuna) Materia Slot:");
-            printWeaponEffect("HP Gain", "Weapon with HP Gain", true, false, true, false);
-            printWeaponCancelEffect("Weapon with Remove Effect");
+            printWeaponMateria("All (Cure", "Equipment with All (Cure) Materia Slot:");
+            printWeaponMateria("All (Esuna",  "Equipment with All (Esuna) Materia Slot:");
+            printWeaponEffect("HP Gain", "Equipment with HP Gain", true, false, true, false);
+            printWeaponCancelEffect("Equipment with Remove Effect");
             break;
         case "Provoke":
-            printWeaponEffect("Provoke", "Weapon with Provoke:", false, false, true, false);
-            printWeaponEffect("Veil", "Weapon with Veil:", true, false, true, false);
+            printWeaponEffect("Provoke", "Equipment with Provoke:", false, false, true, false);
+            printWeaponEffect("Veil", "Equipment with Veil:", true, false, true, false);
             break;
         case "SigilCircle":
-            printWeaponMateria("Circle", "Weapon with ◯ Sigil Materia Slot:");
-            printWeaponSigil("◯ Circle", "Weapon with ◯ Sigil Materia on Ability:");
+            printWeaponMateria("Circle", "Equipment with ◯ Sigil Materia Slot:");
+            printWeaponSigil("◯ Circle", "Equipment with ◯ Sigil Materia on Ability:");
             break;
         case "SigilCross":
-            printWeaponMateria("Cross", "Weapon with ✕ Sigil Materia Slot:");
-            printWeaponSigil("✕ Cross", "Weapon with ✕ Sigil Materia on Ability:");
+            printWeaponMateria("Cross", "Equipment with ✕ Sigil Materia Slot:");
+            printWeaponSigil("✕ Cross", "Equipment with ✕ Sigil Materia on Ability:");
             break;
         case "SigilTriangle":
-            printWeaponMateria("Triangle", "Weapon with △ Sigil Materia Slot:");
-            printWeaponSigil("△ Triangle", "Weapon with △ Sigil Materia on Ability:");
+            printWeaponMateria("Triangle", "Equipment with △ Sigil Materia Slot:");
+            printWeaponSigil("△ Triangle", "Equipment with △ Sigil Materia on Ability:");
             break;
         case "SigilDiamond":
-            printWeaponSigil("◊ Diamond", "Weapon with ◊ Sigil Materia on Ability:");
+            printWeaponSigil("◊ Diamond", "Equipment with ◊ Sigil Materia on Ability:");
             break;
         case "UniqueEffect":
             printTimeWeapons();
@@ -608,12 +644,14 @@ function filterUniqueEffect() {
 }
 
 function printTimeWeapons() {
-    printWeaponEffect("Haste", "Weapon with Haste Effect:", false, false, true, false);
-    printWeaponEffect("Increases Command Gauge", "Weapon with Increase Command Gauge Effect:", true, false, false, false);
-    printWeaponEffect("Phys. ATB Conservation Effect", "Weapon with Phys. ATB Conservation Effect:",true, false, true, false);
-    printWeaponEffect("Mag. ATB Conservation Effect", "Weapon with Mag. ATB Conservation Effect:", true, false, true, false);
-    printWeaponEffect("Status Ailment: Stop", "Weapon with Stop Effect:", false, false, true, false);
-    printWeaponEffect("Status Ailment: Stun", "Weapon with Stun Effect:", false, false, true, false);
+    printWeaponEffect("Haste", "Equipment with Haste Effect:", false, false, true, false);
+    printWeaponEffect("Status Ailment: Stop", "Equipment with Stop Effect:", false, false, true, false);
+    printWeaponEffect("Status Ailment: Stun", "Equipment with Stun Effect:", false, false, true, false);
+    printWeaponEffect("Status Ailment: Torpor", "Equipment with Torpor Effect (Tgt. Dmg. Rcvd. Up & Stun):", true, false, true, false);
+    printWeaponEffect("Increases Command Gauge", "Equipment with Increase Command Gauge Effect:", true, false, false, false);
+    printWeaponEffect("ATB+", "Equipment with ATB Bonus:", true, false, false, false);
+    printWeaponEffect("Phys. ATB Conservation Effect", "Equipment with Phys. ATB Conservation Effect:",true, false, true, false);
+    printWeaponEffect("Mag. ATB Conservation Effect", "Equipment with Mag. ATB Conservation Effect:", true, false, true, false);
 }
 
 function filterAll() {
@@ -624,20 +662,17 @@ function filterAll() {
 function printElemWeapon(elem) {
     document.getElementById("ecDropdown").classList.remove("show");
 
-    var header = "Weapon with C-Abilities - " + elem;
+    var header = "Equipment with C-Abilities - " + elem;
     printWeaponElem(elem, header);
 
     if (elem != "Non-Elemental") {
-        printWeaponEffect(elem + " Resistance Down",               "Weapons with " + elem + " Resistance Down:",true, true, true, false);
-        printWeaponEffect(elem + " Damage Up",                     "Weapons with " + elem + " Damage Up:",true, true, true, false);
-        printWeaponEffect(elem + " Damage Bonus",                  "Weapons with " + elem + " Damage Bonus:",true, true, true, false);
-        printWeaponEffect(elem + " Weapon Boost",                  "Weapons with " + elem + " Weapon Boost:", true, true, true, false);
-        printWeaponEffect("Status Ailment: " + elem + " Weakness", "Weapons with " + elem + " Weakness:",true, true, true, false);
-        printWeaponEffect(elem + " Resistance Up",                 "Weapons with " + elem + " Resistance Up:", true, true, true, false);
-        // We don't actually have any 'damage down' weapons yet, so just ignore it
-        // printWeaponEffect(elem + " Damage Down",                   "Weapons with " + elem + " Damage Down:", true, true, true, false);
-        
-        printWeaponMateria(elem, "Weapon with " + elem + " Materia Slot:");
+        printWeaponEffect(elem + " Resistance Down",               "Equipment with " + elem + " Resistance Down:",true, true, true, false);
+        printWeaponEffect(elem + " Damage Up",                     "Equipment with " + elem + " Damage Up:",true, true, true, false);
+        printWeaponEffect(elem + " Damage Bonus",                  "Equipment with " + elem + " Damage Bonus:",true, false, true, false);
+        printWeaponEffect(elem + " Weapon Boost",                  "Equipment with " + elem + " Weapon Boost:", true, false, true, false);
+        printWeaponEffect("Status Ailment: " + elem + " Weakness", "Equipment with " + elem + " Weakness:",true, false, true, false);
+        printWeaponEffect(elem + " Resistance Up",                 "Equipment with " + elem + " Resistance Up:", true, true, true, false);
+        printWeaponMateria(elem, "Equipment with " + elem + " Materia Slot:");
     }
 }
 
@@ -830,7 +865,7 @@ function printWeaponMateria(elemMateria, header) {
 function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDuration, includeEffectCount) {
     readDatabase();
 
-    let effectTable = [["Weapon Name", "Character", "Equipment Type", "Range", "Pot", "Max Pot", "Duration (s)", "Extension (s)", "ATB", "Uses", "Effect Count", "Type","Condition"]];
+    let effectTable = [["Weapon Name", "Character", "Equipment Type", "Range", "Pot", "Max Pot", "Duration (s)", "Extension (s)", "Effect Count", "ATB", "Uses",  "Type","Condition"]];
     if (!includePot)
     {
         effectTable[0].splice(effectTable[0].indexOf("Pot"), 1);
@@ -852,6 +887,7 @@ function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDur
 
     let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Character", activeChars);
     filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "GachaType", activeWeaponTypes);
+
     filteredWeaponData = getWeaponsMatchingEffect(filteredWeaponData, effect);
     
     for (var i = 0; i < filteredWeaponData.length; i++) {
@@ -902,12 +938,12 @@ function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDur
             row.push(effectDuration);
         }
         row.push(effectExtend);
-        row.push(getValueFromDatabaseRow(weaponRow, "Command ATB"));
-        row.push(getValueFromDatabaseRow(weaponRow, "Use Count"));
         if (includeEffectCount)
         {
             row.push(effectCount);
         }
+        row.push(getValueFromDatabaseRow(weaponRow, "Command ATB"));
+        row.push(getValueFromDatabaseRow(weaponRow, "Use Count"));
         row.push(getValueFromDatabaseRow(weaponRow, "Ability Type"));
         row.push(effectCondition);
 

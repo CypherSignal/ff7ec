@@ -581,7 +581,8 @@ def process_skill_effects(skill_effect_objs, base_ability_type):
 
             case 16: # SkillAtbChangeEffect (+ATB!)
                 skill_atbchange_effect_obj = skill_atbchange_effect_data[skill_effect_detail_id]
-                weapon_data[effect_detail_prefix] = "ATB+" + str(skill_atbchange_effect_obj["Value"])
+                weapon_data[effect_detail_prefix] = "ATB+"
+                weapon_data[effect_detail_prefix + "_Pot"] = str(skill_atbchange_effect_obj["Value"])
                 weapon_ability_text += "+" + str(skill_atbchange_effect_obj["Value"]) + " ATB Gauge "
                 weapon_ability_text += "[Rng: " + weapon_data[effect_detail_prefix + "_Range"] + "] "
                 
