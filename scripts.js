@@ -105,8 +105,7 @@ function tableCreate(tableClass, list, header) {
     body.appendChild(tbl);
     let perfTableCreateEnd = performance.now();
 
-    // Might be better if we had a stricter set of consts for these column names, or generate the tables in a more consistent way
-    // Is there a way for DataTables to work with HTML tables but with symbolic columns at targets, not just indices...?
+    // Add a column def to convert the '\n' into <li> tags for the description
     let tableColumnDefs = []
     if(!document.getElementById("show_full_ability").checked)
     {
@@ -137,19 +136,16 @@ function tableCreate(tableClass, list, header) {
     let table = new DataTable('#' + tblId, {
         paging: false,
         columnDefs: tableColumnDefs,
+        autoWidth: false,
         // hide datatables' search, and use our own
         layout: {
             topStart: null,
             topEnd: null,
             bottomStart: null,
             bottomEnd: null,
-        }
+        },
     });
     activeDataTables.push(table);
-
-    const searchTextBox = document.getElementById("search_field");
-    table.search(searchTextBox.value);
-    table.draw();
 
     let perfDataTableCreateEnd = performance.now();
 
@@ -165,17 +161,48 @@ function tableCreate(tableClass, list, header) {
 function refreshTableFilter()
 {
     resetPerfReport();
+    updateActiveDataTablesFilter();
+}
+
+function updateActiveDataTablesFilter() {
     let start = performance.now();
-
+    
     const searchTextBox = document.getElementById("search_field");
-
-    for (var tableIdx = 0; tableIdx  < activeDataTables.length; ++tableIdx)
-    {
+    const activeChars = getActiveCharacterFilter();
+    const activeWeaponTypes = getActiveWeaponTypeFilter();
+    for (var tableIdx = 0; tableIdx < activeDataTables.length; ++tableIdx) {
         let dataTable = activeDataTables[tableIdx];
+        // apply the general text search
         dataTable.search(searchTextBox.value);
+        
+        // charactercolumn and weaponType columns are common across all tables
+        // (generalizing this involves a lot of expensive queries into the dataTable module)
+        let chararacterColIdx = 1;
+        let weaponTypeColIdx = 2;
+        
+        // Set up the search for the character and weapontype columns
+        if (activeChars.length > 0)
+        {
+            dataTable.column(chararacterColIdx).search(str => activeChars.includes(str));
+        }
+        else
+        {
+            dataTable.column(chararacterColIdx).search("");
+        }
+        
+        if (activeWeaponTypes.length > 0)
+        {
+            dataTable.column(weaponTypeColIdx).search(str => activeWeaponTypes.includes(str));
+        }
+        else
+        {
+            dataTable.column(weaponTypeColIdx).search("");
+        }
+
+        // All columns in this table are updated, so re-adjust them now
         dataTable.draw();
     }
-
+    
     let end = performance.now();
     reportPerf([
         ["Table filter", start, end]
@@ -505,6 +532,7 @@ function refreshTable()
             printAllWeapon("", "List of All Weapons:");
             break;
     }
+    updateActiveDataTablesFilter();
 }
 
 function clearFilter()
@@ -680,14 +708,10 @@ function printAllWeapon(elem, header) {
     readDatabase();
     let elemental;
     elemental = [["Weapon Name", "Character", "Equipment Type", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Condition"]];
-    let activeChars = getActiveCharacterFilter();
-    let activeWeaponTypes = getActiveWeaponTypeFilter();
 
-    let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Character", activeChars);
-    filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "GachaType", activeWeaponTypes);
-    
-    for (var i = 0; i < filteredWeaponData.length; i++) {
-        let weaponRow = filteredWeaponData[i];
+    let filteredWeaponData = weaponData; 
+    for (var i = 0; i < weaponData.length; i++) {
+        let weaponRow = weaponData[i];
 
         // Make a new row and push them into the list
         let row = [];
@@ -742,12 +766,8 @@ function printWeaponElem(elem, header) {
 
     let elemental = [["Weapon Name", "Character",  "Equipment Type", "Range", "Type", "ATB", "Uses", "Pot%", "Max Pot%", "% per ATB", "Condition for Max"]];
 
-    let activeChars = getActiveCharacterFilter();
-    let activeWeaponTypes = getActiveWeaponTypeFilter();
+    let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Ability Element", elem);
 
-    let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Character", activeChars);
-    filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "GachaType", activeWeaponTypes);
-    filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "Ability Element", elem);
     // Low % heal is not worth it - set threshold at 20
     if (elem == "Heal") {
         filteredWeaponData = getWeaponsWithValueGreaterThan(filteredWeaponData,"Ability Pot. %", 25);
@@ -808,12 +828,7 @@ function printWeaponSigil(sigil, header) {
  
     let elemental = [["Weapon Name", "Character",  "Equipment Type", "Range", "Type", "ATB", "Uses"]];
 
-    let activeChars = getActiveCharacterFilter();
-    let activeWeaponTypes = getActiveWeaponTypeFilter();
-
-    let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Character", activeChars);
-    filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "GachaType", activeWeaponTypes);
-    filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "Command Sigil", sigil);
+    let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Command Sigil", sigil);
 
     for (var i = 0; i < filteredWeaponData.length; i++) {
         let weaponRow = filteredWeaponData[i];
@@ -839,12 +854,8 @@ function printWeaponSigil(sigil, header) {
 function printWeaponMateria(elemMateria, header) {
     readDatabase();
     let materia = [["Weapon Name", "Character", "Equipment Type",  "Materia Slot 1", "Materia Slot 2", "Materia Slot 3"]];
-    let activeChars = getActiveCharacterFilter();
-    let activeWeaponTypes = getActiveWeaponTypeFilter();
 
-    let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Character", activeChars);
-    filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "GachaType", activeWeaponTypes);
-    filteredWeaponData = getWeaponsWithMateriaMatchingFilter(filteredWeaponData, elemMateria);
+    let filteredWeaponData = getWeaponsWithMateriaMatchingFilter(weaponData, elemMateria);
     for (var i = 0; i < filteredWeaponData.length; i++) {
         var weaponRow = filteredWeaponData[i];
         
@@ -882,13 +893,7 @@ function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDur
     {
         effectTable[0].splice(effectTable[0].indexOf("Effect Count"), 1);
     }
-    let activeChars = getActiveCharacterFilter();
-    let activeWeaponTypes = getActiveWeaponTypeFilter();
-
-    let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Character", activeChars);
-    filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "GachaType", activeWeaponTypes);
-
-    filteredWeaponData = getWeaponsMatchingEffect(filteredWeaponData, effect);
+    let filteredWeaponData = getWeaponsMatchingEffect(weaponData, effect);
     
     for (var i = 0; i < filteredWeaponData.length; i++) {
         var weaponRow = filteredWeaponData[i];
@@ -960,12 +965,7 @@ function printWeaponCancelEffect(header) {
 
     let effectTable = [["Weapon Name", "Character", "Equipment Type","Range", "Effect", "ATB", "Uses", "Type","Condition"]];
 
-    let activeChars = getActiveCharacterFilter();
-    let activeWeaponTypes = getActiveWeaponTypeFilter();
-
-    let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Character", activeChars);
-    filteredWeaponData = getWeaponsMatchingFilter(filteredWeaponData, "GachaType", activeWeaponTypes);
-    filteredWeaponData = getWeaponsMatchingEffectType(filteredWeaponData, "CancelEffect");
+    let filteredWeaponData = getWeaponsMatchingEffectType(weaponData, "CancelEffect");
     
     for (var i = 0; i < filteredWeaponData.length; i++) {
         var weaponRow = filteredWeaponData[i];
