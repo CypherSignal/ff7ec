@@ -107,17 +107,20 @@ function tableCreate(tableClass, list, header) {
 
     // Add a column def to convert the '\n' into <li> tags for the description
     let tableColumnDefs = []
+    tableColumnDefs.push({
+            render: function (data, type, row) { return data.replaceAll("\\n", '<li>').replaceAll("{", '<b>(').replaceAll("}", ')</b>'); },
+            targets: [
+                list[0].indexOf("Ability Description"), 
+                list[0].indexOf("Customization"),
+            ]
+        });
+
     if(!document.getElementById("show_full_ability").checked)
     {
         tableColumnDefs.push({ visible: false, targets: list[0].indexOf("Ability Description"), });
     }
     else
     {
-        tableColumnDefs.push({
-                render: function (data, type, row) { return data.replaceAll("\\n", '<li>'); },
-                targets: list[0].indexOf("Ability Description"),
-            });
-
         // show_full_ability is checked, so hide every column except the ability desc
         columnsToHide = []
         for (let colIdx = 0; colIdx < list[0].length; ++colIdx)
@@ -525,8 +528,21 @@ function refreshTable()
         case "SigilDiamond":
             printWeaponSigil("◊ Diamond", "Equipment with ◊ Sigil Materia on Ability:");
             break;
-        case "UniqueEffect":
-            printTimeWeapons();
+        case "TimeEffect":
+            printWeaponEffect("Haste", "Equipment with Haste Effect:", false, false, true, false);
+            printWeaponEffect("Status Ailment: Stop", "Equipment with Stop Effect:", false, false, true, false);
+            printWeaponEffect("Status Ailment: Stun", "Equipment with Stun Effect:", false, false, true, false);
+            printWeaponEffect("Status Ailment: Torpor", "Equipment with Torpor Effect (Tgt. Dmg. Rcvd. Up & Stun):", true, false, true, false);
+            break;
+        case "GaugeEffect":
+            printWeaponEffect("Increases Limit Gauge", "Equipment with Increase Limit Gauge Effect:", true, false, false, false);
+            printWeaponEffect("Increases Summon Gauge", "Equipment with Increase Summon Gauge Effect:", true, false, false, false);
+            printWeaponEffect("Increases Command Gauge", "Equipment with Increase Command Gauge Effect:", true, false, false, false);
+            printWeaponEffect("Increases Overspeed Gauge", "Equipment with Increase Overspeed Gauge Effect:", true, false, false, false);
+            printWeaponEffect("ATB+", "Equipment with ATB Bonus:", true, false, false, false);
+            printWeaponEffect("Phys. ATB Conservation Effect", "Equipment with Phys. ATB Conservation Effect:",true, false, true, false);
+            printWeaponEffect("Mag. ATB Conservation Effect", "Equipment with Mag. ATB Conservation Effect:", true, false, true, false);
+            printWeaponEffect("Gain Extra Use of Gear C. Ability", "Equipment with Gear C. Ability Bonus:", true, false, false, false);
             break;
         case "All":
             printAllWeapon("", "List of All Weapons:");
@@ -666,22 +682,14 @@ function filterDiamondMateria() {
     refreshTable();
 }
 
-function filterUniqueEffect() {
-    activeWeaponFilter = "UniqueEffect";
+function filterTimeEffect() {
+    activeWeaponFilter = "TimeEffect";
     refreshTable();
 }
 
-function printTimeWeapons() {
-    printWeaponEffect("Haste", "Equipment with Haste Effect:", false, false, true, false);
-    printWeaponEffect("Status Ailment: Stop", "Equipment with Stop Effect:", false, false, true, false);
-    printWeaponEffect("Status Ailment: Stun", "Equipment with Stun Effect:", false, false, true, false);
-    printWeaponEffect("Status Ailment: Torpor", "Equipment with Torpor Effect (Tgt. Dmg. Rcvd. Up & Stun):", true, false, true, false);
-    printWeaponEffect("Increases Command Gauge", "Equipment with Increase Command Gauge Effect:", true, false, false, false);
-    printWeaponEffect("Increases Overspeed Gauge", "Equipment with Increase Overspeed Gauge Effect:", true, false, false, false);
-    printWeaponEffect("ATB+", "Equipment with ATB Bonus:", true, false, false, false);
-    printWeaponEffect("Phys. ATB Conservation Effect", "Equipment with Phys. ATB Conservation Effect:",true, false, true, false);
-    printWeaponEffect("Mag. ATB Conservation Effect", "Equipment with Mag. ATB Conservation Effect:", true, false, true, false);
-    printWeaponEffect("Gain Extra Use of Gear C. Ability", "Equipment with Gear C. Ability Bonus:", true, false, false, false);
+function filterGaugeEffect() {
+    activeWeaponFilter = "GaugeEffect";
+    refreshTable();
 }
 
 function filterAll() {
@@ -702,6 +710,8 @@ function printElemWeapon(elem) {
         printWeaponEffect(elem + " Weapon Boost",                  "Equipment with " + elem + " Weapon Boost:", true, false, true, false);
         printWeaponEffect("Status Ailment: " + elem + " Weakness", "Equipment with " + elem + " Weakness:",true, false, true, false);
         printWeaponEffect(elem + " Resistance Up",                 "Equipment with " + elem + " Resistance Up:", true, true, true, false);
+        printWeaponEffect(elem + " Damage Down",                   "Equipment with " + elem + " Damage Down:", true, true, true, false);
+        
         printWeaponMateria(elem, "Equipment with " + elem + " Materia Slot:");
     }
 }
@@ -750,12 +760,19 @@ function printAllWeapon(elem, header) {
                     condition = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Condition") + ", damage is increased by " + (multPot / 100) + "x";
                 }
             }
+            else if (weaponRow[colIdx] == "DamageEffect") // alternate damage effect -- should be from a Customization
+            {
+                var effectIdx = weaponColIdxToEffectTypeMap[colIdx];
+                const customizationType = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Custom");
+                const customizationBody = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx);
+                customization = "{" + customizationType + " Customization} " + customizationBody;
+            }
         }
         row.push(pot);
         row.push(maxPot);
         row.push((maxPot / Math.max(atb,1)).toFixed(0));
         row.push(condition);
-        row.push(customization); // TODO
+        row.push(customization);
 
         elemental.push(row);
     }
@@ -815,12 +832,19 @@ function printWeaponElem(elem, header) {
                     condition = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Condition") + ", damage is increased by " + (multPot / 100) + "x";
                 }
             }
+            else if (weaponRow[colIdx] == "DamageEffect") // alternate damage effect -- should be from a Customization
+            {
+                var effectIdx = weaponColIdxToEffectTypeMap[colIdx];
+                const customizationType = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Custom");
+                const customizationBody = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx);
+                customization = "{" + customizationType + " Customization} " + customizationBody;
+            }
         }
         row.push(pot);
         row.push(maxPot);
         row.push((maxPot / Math.max(atb,1)).toFixed(0));
         row.push(condition);
-        row.push(customization); // TODO
+        row.push(customization);
 
         elemental.push(row);
     }
@@ -882,18 +906,18 @@ function printWeaponMateria(elemMateria, header) {
 function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDuration, includeEffectCount) {
     readDatabase();
 
-    let effectTable = [["Weapon Name", "Character", "Equipment Type", "Range", "Pot", "Max Pot", "Duration (s)", "Extension (s)", "Effect Count", "ATB", "Uses",  "Type", "Condition", "Customization"]];
+    let effectTable = [["Weapon Name", "Character", "Equipment Type", "Range", "Pot.", "Max Pot.", "Dur. (s)", "Ext. (s)", "Effect Count", "ATB", "Uses",  "Type", "Condition", "Customization"]];
     if (!includePot)
     {
-        effectTable[0].splice(effectTable[0].indexOf("Pot"), 1);
+        effectTable[0].splice(effectTable[0].indexOf("Pot."), 1);
     }
     if (!includeMaxPot)
     {
-        effectTable[0].splice(effectTable[0].indexOf("Max Pot"), 1);
+        effectTable[0].splice(effectTable[0].indexOf("Max Pot."), 1);
     }
     if (!includeDuration)
     {
-        effectTable[0].splice(effectTable[0].indexOf("Duration (s)"), 1);
+        effectTable[0].splice(effectTable[0].indexOf("Dur. (s)"), 1);
     }
     if (!includeEffectCount)
     {
@@ -930,7 +954,7 @@ function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDur
                 effectExtend = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Extend");
                 effectCondition = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Condition");
                 effectCount = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_EffectCount");
-                effectCustomization = ""; //TODO
+                effectCustomization = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Custom");
             }
         }
 

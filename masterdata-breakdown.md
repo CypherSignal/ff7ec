@@ -112,3 +112,32 @@ Technically has multiple objects per id, but for our intents and purposes we jus
     - Skill notes id of 3101 is cross
     - skill notes id of 4101 is diamond
     - Error out if some other skill notes is detected; may need correction
+
+### WeaponEvolve
+
+Group-based data. 
+
+WeaponObj -> WeaponEvolveGroupId is key into this list
+
+Each item has:
+- WeaponEvolveType (heart/spade/club/diamond)
+- Id to map to other WeaponEvolveEffect data
+
+This is a different data format: WeaponEvolveGroupId must be the key, not 'id'
+
+### WeaponEvolveEffect
+
+- Id 
+- WeaponEvolveEffectType
+    - If 1, defines new C.Ability
+        - TargetId becomes a key to WeaponEvolveWeaponSkill
+    - If 3, defines new set of r.abilities
+        - TargetId becomes a key to SkillPassive et al
+
+### WeaponEvolveWeaponSkill
+
+Describes WeaponSkillId for a given group -- it's OB levels for each customization. (like WeaponUpgradeSkill)
+
+- WeaponEvolveWeaponSkillGroupId
+-- WeaponSkillId 
+

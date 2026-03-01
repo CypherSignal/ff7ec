@@ -31,7 +31,8 @@ def load_masterdata_json(json_file_name):
     # the json_data should contain an array of objects (each a dict), so iterate over them and add them to a dict
     new_dict = {}
     for data_obj in json_data:
-        new_dict[data_obj["Id"]] = data_obj
+        id = data_obj.pop("Id")
+        new_dict[id] = data_obj
     return new_dict
 
 # helper function to load "group" data
@@ -68,11 +69,61 @@ def load_weapon_upgrade_skill_json():
         new_dict[data_obj["WeaponId"] * 100 + data_obj["UpgradeCount"]] = data_obj
     return new_dict
 
+def load_weapon_evolve_upgrade_skill_json():
+    global json_path
+    # load the json
+    with open(json_path + "/MasterData/gl/WeaponEvolveWeaponSkill.json", 'r', encoding='utf-8') as file:
+        json_data = json.load(file)
+
+    # the json_data should contain an array of objects (each a dict),
+    # ...but we need to create a key based on combination of WeaponEvolveWeaponSkillGroupId and UpgradeCount
+    new_dict = {}
+    for data_obj in json_data:
+        new_dict[data_obj["WeaponEvolveWeaponSkillGroupId"] * 100 + data_obj["UpgradeCount"]] = data_obj
+    return new_dict
+
+# for some reason the WeaponEvolve.json follows a slightly different schema than other jsons,
+# so it's more convenient to tweak the loading slightly
+def load_weapon_evolve_group_json():
+    global json_path
+    # load the json
+    with open(json_path + "/MasterData/gl/WeaponEvolve.json", 'r', encoding='utf-8') as file:
+        json_data = json.load(file)
+
+    # the json_data should contain an array of objects
+    # ...but the output has to be a dict of arrays
+    new_dict = {}
+    for data_obj in json_data:
+        group_id = data_obj["WeaponEvolveGroupId"]
+        if not group_id in new_dict:
+            new_dict[group_id] = []
+        new_dict[group_id].append(data_obj)
+    return new_dict
+
 # helper function to strip some markup tags in the text
 # e.g. "Sephiroth (Original)" is actually encoded as "Sephiroth <size=80%>(Original)</size>"
 strip_markup_re = re.compile("<.*?>")
 def strip_markup(in_str):
     return re.sub(strip_markup_re, "", in_str)
+
+def get_damage_effect_ability_text(base_ability_type, skill_effect_damage_obj):
+    weapon_damage_text = ""
+
+    skill_damage_effect_damage_obj = skill_damage_data[skill_effect_damage_obj["SkillEffectDetailId"]]
+    if (skill_effect_damage_obj["TargetType"] >= 3 and skill_effect_damage_obj["TargetType"] <= 6 ):
+        if (skill_damage_effect_damage_obj["SkillDamageType"] == 1):
+            damage_ability_pot = str(round(skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 22,0))
+            weapon_damage_text = base_ability_type + " heal is cast [" + damage_ability_pot + "% of Healing Pot.] "
+        elif (skill_damage_effect_damage_obj["SkillDamageType"] == 2):
+            damage_ability_pot = str(round(skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 10,0))
+            weapon_damage_text = "Restores " + damage_ability_pot + "% of max HP [" +  base_ability_type + "] "
+    else:
+        damage_ability_pot = str(round(skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 10,0))
+        damage_ability_element = element_types[skill_damage_effect_damage_obj["ElementType"]]
+        weapon_damage_text = "Deal " + damage_ability_pot + "% " + base_ability_type + " " + damage_ability_element + " damage "
+
+    weapon_damage_text += "[Rng: " + target_types[skill_effect_damage_obj["TargetType"]] + "] "
+    return weapon_damage_text
 
 ## ----------------------------------------------------
 ## ----------------------------------------------------
@@ -117,17 +168,16 @@ skill_tactics_gauge_change_data = load_masterdata_json("SkillTacticsGaugeChangeE
 skill_trigger_condition_hp_data = load_masterdata_json("SkillTriggerConditionHp.json")
 skill_weapon_data = load_masterdata_json("SkillWeapon.json")
 weapon_data = load_masterdata_json("Weapon.json")
-weapon_evolve_data = load_masterdata_json("WeaponEvolve.json")
 weapon_evolve_effect_data = load_masterdata_json("WeaponEvolveEffect.json")
-weapon_evolve_parameter_data = load_masterdata_json("WeaponEvolveParameter.json")
 
 buffdebuff_group_data = load_group_json("BuffDebuffGroup.json", "SkillBuffDebuffType")
 skill_effectgroup_data = load_group_json("SkillEffectGroup.json", "SkillEffectId")
 status_condition_group_data = load_group_json("StatusConditionGroup.json", "SkillStatusConditionType")
 status_change_group_data = load_group_json("StatusChangeGroup.json", "SkillStatusChangeType")
-# weapon_evolve_weapon_skill_group_data = load_group_json("WeaponEvolveWeaponSkill.json", "WeaponSkillId")
 
 weapon_upgrade_skill_data = load_weapon_upgrade_skill_json()
+weapon_evolve_group_data = load_weapon_evolve_group_json()
+weapon_evolve_weapon_upgrade_skill_data = load_weapon_evolve_upgrade_skill_json()
 
 # special-case the sigil effects from 'skill notes' dataset
 skill_notes_sigils = {
@@ -380,8 +430,15 @@ custom_weapon_types = {
     49037 :"Crossover", # Overture
     49039 :"Crossover", # Phoenix Odachi
     50031 :"Crossover", # Snow's Bardiche
-
 }
+
+weapon_evolve_types = [
+    "",
+    "Heart",
+    "Spade",
+    "Diamond",
+    "Club",
+]
 
 print_perf_data("Load masterdata")
 
@@ -391,42 +448,42 @@ def process_skill_effects(skill_effect_objs, base_ability_type):
 
     # first, we want to handle the damage effect very specially, so find it and take it out of the list
     skill_effect_damage_obj = None
-    for idx,skill_effect_obj in enumerate(skill_effect_objs):
+    for idx,skill_effect_full_obj in enumerate(skill_effect_objs):
+        skill_effect_obj = skill_effect_full_obj["skill_data"]
         if (skill_effect_obj["SkillEffectType"] == 1):
             skill_effect_damage_obj = skill_effect_obj
             skill_effect_objs.pop(idx)
             break
 
-    weapon_ability_text = ""
-
-    # output data for the damage effect
+    # collect data for the primary damage effect
     weapon_data["Ability Range"] = target_types[skill_effect_damage_obj["TargetType"]]
     skill_damage_effect_damage_obj = skill_damage_data[skill_effect_damage_obj["SkillEffectDetailId"]]
     if (skill_effect_damage_obj["TargetType"] >= 3 and skill_effect_damage_obj["TargetType"] <= 6 ):
         if (skill_damage_effect_damage_obj["SkillDamageType"] == 1):
             weapon_data["Ability Pot. %"] = str(round(skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 22,0))
-            weapon_ability_text = base_ability_type + " heal is cast [" + weapon_data["Ability Pot. %"] + "% of Healing Pot.] "
         elif (skill_damage_effect_damage_obj["SkillDamageType"] == 2):
             weapon_data["Ability Pot. %"] = str(round(skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 10,0)) + "% of max HP"
-            weapon_ability_text = "Restores " + weapon_data["Ability Pot. %"] + " [" +  base_ability_type + "] "
         weapon_data["Ability Element"] = "Heal"
     else:
         weapon_data["Ability Pot. %"] = str(skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 10)
         weapon_data["Ability Element"] = element_types[skill_damage_effect_damage_obj["ElementType"]]
-        weapon_ability_text = "Deal " + weapon_data["Ability Pot. %"] + "% " + base_ability_type + " " + weapon_data["Ability Element"] + " damage "
 
-    weapon_ability_text += "[Rng: " + weapon_data["Ability Range"] + "] "
-
-    weapon_ability_text += "\\n"
+    weapon_ability_text = get_damage_effect_ability_text(base_ability_type, skill_effect_damage_obj) + "\\n"
 
     # output data for each skill effect
-    for skill_effect_idx,skill_effect_obj in enumerate(skill_effect_objs):
+    for skill_effect_idx,skill_effect_full_obj in enumerate(skill_effect_objs):
         skill_effect_suffix = str(skill_effect_idx)
+        skill_effect_obj = skill_effect_full_obj["skill_data"]
+        skill_effect_customization = skill_effect_full_obj["skill_customization"]
         skill_effect_detail_id = skill_effect_obj["SkillEffectDetailId"]
         effect_detail_prefix = "Effect" + skill_effect_suffix
         weapon_data[effect_detail_prefix + "_Range"] = target_types[skill_effect_obj["TargetType"]]
         weapon_data[effect_detail_prefix + "_Type"] = skilleffect_types[skill_effect_obj["SkillEffectType"]]
-        
+
+        if skill_effect_customization != "":
+            weapon_data[effect_detail_prefix + "_Custom"] = skill_effect_customization
+            weapon_ability_text += "{" + skill_effect_customization + " Customization} "
+
         if (skill_effect_obj["TriggerType"] != 1):
             match skill_effect_obj["TriggerType"]:
                 case 1: # no condition required
@@ -459,8 +516,13 @@ def process_skill_effects(skill_effect_objs, base_ability_type):
 
         match skill_effect_obj["SkillEffectType"]:
             case 1: # Damage effect
-                weapon_data[effect_detail_prefix] = "EXTRA DAMAGE EFFECT"
-                print("Warning: Extra damage effect detected")
+                weapon_damage_text = get_damage_effect_ability_text(base_ability_type, skill_effect_obj) 
+                weapon_data[effect_detail_prefix] = weapon_damage_text
+                weapon_ability_text += weapon_damage_text
+                skill_damage_effect_damage_obj = skill_damage_data[skill_effect_obj["SkillEffectDetailId"]]
+                # save out the pot so that the page can do math with it
+                weapon_data[effect_detail_prefix + "_Pot"] = str(round(skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 10,0))
+
             case 2: # Status Condition effect
                 skill_status_condition_obj = skill_status_effect_data[skill_effect_detail_id]
                 skill_status_condition_type = skill_status_condition_obj["SkillStatusConditionType"]
@@ -670,25 +732,13 @@ def process_skill_effects(skill_effect_objs, base_ability_type):
 
     return weapon_data
 
-
-# TOOD for weapon evolves:
-
-# - each weapon evolve have a custom type, and either:
-#     - a new skill effect (With a condition and everything)
-#     - a damage multiplier (??)
-#     - a new r.ability 
-
-# - for skill effects or damage add it to ability text like 
-#     "Heart custom: Ability potency increased 1.5x"
-
-
 # start transforming all of the data into our own dict of weaponId to summarized-info
 out_weapons = []
 
-for weapon_obj in weapon_data.values():
+for weapon_id,weapon_obj in weapon_data.items():
     out_weapon = {}
 
-    out_weapon["Id"] = weapon_obj["Id"]
+    out_weapon["Id"] = weapon_id
     out_weapon["Name"] = loc_table[weapon_obj["NameLanguageId"]]
 
     # get the character for the weapon
@@ -703,9 +753,9 @@ for weapon_obj in weapon_data.values():
     # fetch the "Base" weapon skill (basically what we have for Ults, or OB1 version of weapon)
     weapon_is_ultimate = weapon_obj["WeaponEquipmentType"] == 1 # expected values are 0 for normal, 1 for ult
     if (weapon_is_ultimate):
-        weapon_upgrade_skill_base_obj = weapon_upgrade_skill_data[weapon_obj["Id"]*100 + 0]
+        weapon_upgrade_skill_base_obj = weapon_upgrade_skill_data[weapon_id*100 + 0]
     else:
-        weapon_upgrade_skill_base_obj = weapon_upgrade_skill_data[weapon_obj["Id"]*100 + 1]
+        weapon_upgrade_skill_base_obj = weapon_upgrade_skill_data[weapon_id*100 + 1]
 
     weapon_skill_base_id = weapon_upgrade_skill_base_obj["WeaponSkillId"]
     skill_weapon_base_obj = skill_weapon_data[weapon_skill_base_id]
@@ -720,7 +770,7 @@ for weapon_obj in weapon_data.values():
         # (skillActive also defines use count, but only ultimates and costumes have limits right now)
         skill_active_base_obj = skill_active_data[skill_weapon_base_obj["SkillActiveId"]]
         out_weapon["Command ATB"] = skill_active_base_obj["Cost"]
-        out_weapon["GachaType"] = custom_weapon_types[weapon_obj["Id"]] if weapon_obj["Id"] in custom_weapon_types else weapon_gacha_types[weapon_obj["WeaponType"]]
+        out_weapon["GachaType"] = custom_weapon_types[weapon_id] if weapon_id in custom_weapon_types else weapon_gacha_types[weapon_obj["WeaponType"]]
 
         # as far as data setup goes now, SkillNotes/SkillNoteSet on player weapons appears to just be for sigil breaks
         if (skill_weapon_base_obj["SkillNotesSetId"] != 0):
@@ -729,9 +779,9 @@ for weapon_obj in weapon_data.values():
 
         # fetch the weapon skills at OB1/6/10
         weapon_upgrade_skill_obj = [
-            weapon_upgrade_skill_data[weapon_obj["Id"]*100 + 1],
-            weapon_upgrade_skill_data[weapon_obj["Id"]*100 + 6],
-            weapon_upgrade_skill_data[weapon_obj["Id"]*100 + 10],
+            weapon_upgrade_skill_data[weapon_id*100 + 1],
+            weapon_upgrade_skill_data[weapon_id*100 + 6],
+            weapon_upgrade_skill_data[weapon_id*100 + 10],
         ]
         skill_weapon_obj = [
             skill_weapon_data[weapon_upgrade_skill_obj[0]["WeaponSkillId"]],
@@ -752,7 +802,41 @@ for weapon_obj in weapon_data.values():
         # for populating the list of skill_effect_objs, just look at the OB10 data
         skill_effectgroup_list = skill_effectgroup_data[skill_base_obj[2]["SkillEffectGroupId"]]
         for skill_effect_id in skill_effectgroup_list:
-            skill_effect_objs.append(skill_effect_data[skill_effect_id])
+            skill_effect_objs.append({
+                "skill_customization":"",
+                "skill_data":skill_effect_data[skill_effect_id],
+            })
+
+        # if the weapon has a WeaponEvolveGroupId, collect all of those where WeaponEvolveEffectType is 1 ("new C.Ability")
+        # and add all of the skill_effect_obj's from them
+        weapon_evolve_group_id = weapon_obj["WeaponEvolveGroupId"]
+        if (weapon_evolve_group_id != 0):
+            for weapon_evolve_obj in weapon_evolve_group_data[weapon_evolve_group_id]:
+                weapon_evolve_effect_obj = weapon_evolve_effect_data[weapon_evolve_obj["Id"]]
+                if (weapon_evolve_effect_obj["WeaponEvolveEffectType"] == 1): # if the weapon evolve type is a new C.Ability
+                    weapon_evolve_skill_id = weapon_evolve_weapon_upgrade_skill_data[weapon_evolve_effect_obj["WeaponEvolveId"] * 100 + 10]["WeaponSkillId"]
+
+                    weapon_evolve_skill_effectgroup_list = skill_effectgroup_data[weapon_evolve_skill_id]
+                    for weapon_evolve_skill_effect_id in weapon_evolve_skill_effectgroup_list:
+                        weapon_evolve_skill_effect_obj = skill_effect_data[weapon_evolve_skill_effect_id]
+
+                        # do a manual check to see if this weapon-evolve skill effect is already in the list of skill effects
+                        # they are mostly duplicated, except for the guid (which is stripped)
+                        # This currently only supports the notion of weapon-evolves *Adding* new effects.
+                        # If weapon-evolves start to *remove* effects, (or modifying effects besides Damage which we special-case)
+                        # ...then this will have to be rewritten 
+                        weapon_evolve_skill_effect_is_common = False
+                        for skill_effect_obj in skill_effect_objs:
+                            if weapon_evolve_skill_effect_obj == skill_effect_obj["skill_data"]:
+                                weapon_evolve_skill_effect_is_common = True
+                                break
+                        if not weapon_evolve_skill_effect_is_common:
+                            skill_effect_objs.append({
+                                "skill_customization":weapon_evolve_types[weapon_evolve_obj["WeaponEvolveType"]],
+                                "skill_data":weapon_evolve_skill_effect_obj,
+                            })
+
+
         out_weapon["Use Count"] = "No limit"
 
     # ultimate weapons need some extra handling since they don't have "SkillActives", nor OB levels
@@ -762,7 +846,10 @@ for weapon_obj in weapon_data.values():
 
         skill_effectgroup_list = skill_effectgroup_data[skill_base_base_obj["SkillEffectGroupId"]]
         for skill_effect_id in skill_effectgroup_list:
-            skill_effect_objs.append(skill_effect_data[skill_effect_id])
+            skill_effect_objs.append({
+                "skill_customization":"",
+                "skill_data":skill_effect_data[skill_effect_id],
+            })
         
         # also record the recharge time/use count
         out_weapon["Use Count"] = skill_legendary_data[weapon_skill_base_id]["UseCountLimit"]
@@ -775,13 +862,13 @@ for weapon_obj in weapon_data.values():
 
 print_perf_data("Transform weapondata")
 
-for costume_obj in character_costume_data.values():
+for costume_id,costume_obj in character_costume_data.items():
     # if a costume doesn't have a skill, skip it
     if (costume_obj["SkillCharacterCostumeId"] == 0):
         continue
     out_costume = {}
 
-    out_costume["Id"] = costume_obj["Id"]
+    out_costume["Id"] = costume_id
     out_costume["Name"] = loc_table[costume_obj["NameLanguageId"]]
 
     # get the character 
@@ -806,7 +893,10 @@ for costume_obj in character_costume_data.values():
 
     skill_effect_objs = []
     for skill_effect_id in skill_effectgroup_list:
-        skill_effect_objs.append(skill_effect_data[skill_effect_id])
+        skill_effect_objs.append({
+            "skill_customization":"",
+            "skill_data":skill_effect_data[skill_effect_id],
+        })
 
     out_costume.update(process_skill_effects(skill_effect_objs, out_costume["Ability Type"]))
     
