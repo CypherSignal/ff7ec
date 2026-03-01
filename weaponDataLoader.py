@@ -483,6 +483,8 @@ def process_skill_effects(skill_effect_objs, base_ability_type):
         if skill_effect_customization != "":
             weapon_data[effect_detail_prefix + "_Custom"] = skill_effect_customization
             weapon_ability_text += "{" + skill_effect_customization + " Customization} "
+        else:
+            weapon_data[effect_detail_prefix + "_Custom"] = "" 
 
         if (skill_effect_obj["TriggerType"] != 1):
             match skill_effect_obj["TriggerType"]:

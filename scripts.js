@@ -109,10 +109,7 @@ function tableCreate(tableClass, list, header) {
     let tableColumnDefs = []
     tableColumnDefs.push({
             render: function (data, type, row) { return data.replaceAll("\\n", '<li>').replaceAll("{", '<b>(').replaceAll("}", ')</b>'); },
-            targets: [
-                list[0].indexOf("Ability Description"), 
-                list[0].indexOf("Customization"),
-            ]
+            targets: "_all"
         });
 
     if(!document.getElementById("show_full_ability").checked)
@@ -759,6 +756,11 @@ function printAllWeapon(elem, header) {
                     maxPot = pot * (multPot / 100.0);
                     condition = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Condition") + ", damage is increased by " + (multPot / 100) + "x";
                 }
+                var addlEffectCustom = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Custom");
+                if (addlEffectCustom != "")
+                {
+                    condition = "{" + addlEffectCustom + " Customization} " + condition;
+                } 
             }
             else if (weaponRow[colIdx] == "DamageEffect") // alternate damage effect -- should be from a Customization
             {
@@ -831,6 +833,11 @@ function printWeaponElem(elem, header) {
                     maxPot = pot * (multPot / 100.0);
                     condition = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Condition") + ", damage is increased by " + (multPot / 100) + "x";
                 }
+                var addlEffectCustom = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Custom");
+                if (addlEffectCustom != "")
+                {
+                    condition = "{" + addlEffectCustom + " Customization} " + condition;
+                } 
             }
             else if (weaponRow[colIdx] == "DamageEffect") // alternate damage effect -- should be from a Customization
             {
