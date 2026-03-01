@@ -677,9 +677,11 @@ function printTimeWeapons() {
     printWeaponEffect("Status Ailment: Stun", "Equipment with Stun Effect:", false, false, true, false);
     printWeaponEffect("Status Ailment: Torpor", "Equipment with Torpor Effect (Tgt. Dmg. Rcvd. Up & Stun):", true, false, true, false);
     printWeaponEffect("Increases Command Gauge", "Equipment with Increase Command Gauge Effect:", true, false, false, false);
+    printWeaponEffect("Increases Overspeed Gauge", "Equipment with Increase Overspeed Gauge Effect:", true, false, false, false);
     printWeaponEffect("ATB+", "Equipment with ATB Bonus:", true, false, false, false);
     printWeaponEffect("Phys. ATB Conservation Effect", "Equipment with Phys. ATB Conservation Effect:",true, false, true, false);
     printWeaponEffect("Mag. ATB Conservation Effect", "Equipment with Mag. ATB Conservation Effect:", true, false, true, false);
+    printWeaponEffect("Gain Extra Use of Gear C. Ability", "Equipment with Gear C. Ability Bonus:", true, false, false, false);
 }
 
 function filterAll() {
@@ -707,7 +709,7 @@ function printElemWeapon(elem) {
 function printAllWeapon(elem, header) {
     readDatabase();
     let elemental;
-    elemental = [["Weapon Name", "Character", "Equipment Type", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Condition"]];
+    elemental = [["Weapon Name", "Character", "Equipment Type", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Condition", "Customization"]];
 
     let filteredWeaponData = weaponData; 
     for (var i = 0; i < weaponData.length; i++) {
@@ -732,6 +734,7 @@ function printAllWeapon(elem, header) {
         maxPot = pot;
 
         var condition = "";
+        var customization = "";
         for (colIdx in weaponColIdxToEffectTypeMap)
         {
             if (weaponRow[colIdx] == "AdditionalEffect")
@@ -752,6 +755,7 @@ function printAllWeapon(elem, header) {
         row.push(maxPot);
         row.push((maxPot / Math.max(atb,1)).toFixed(0));
         row.push(condition);
+        row.push(customization); // TODO
 
         elemental.push(row);
     }
@@ -764,7 +768,7 @@ function printAllWeapon(elem, header) {
 function printWeaponElem(elem, header) {
     readDatabase();
 
-    let elemental = [["Weapon Name", "Character",  "Equipment Type", "Range", "Type", "ATB", "Uses", "Pot%", "Max Pot%", "% per ATB", "Condition for Max"]];
+    let elemental = [["Weapon Name", "Character",  "Equipment Type", "Range", "Type", "ATB", "Uses", "Pot%", "Max Pot%", "% per ATB", "Condition for Max", "Customization"]];
 
     let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Ability Element", elem);
 
@@ -795,6 +799,7 @@ function printWeaponElem(elem, header) {
         maxPot = pot;
 
         var condition = "";
+        var customization = "";
         for (colIdx in weaponColIdxToEffectTypeMap)
         {
             if (weaponRow[colIdx] == "AdditionalEffect")
@@ -815,6 +820,7 @@ function printWeaponElem(elem, header) {
         row.push(maxPot);
         row.push((maxPot / Math.max(atb,1)).toFixed(0));
         row.push(condition);
+        row.push(customization); // TODO
 
         elemental.push(row);
     }
@@ -876,7 +882,7 @@ function printWeaponMateria(elemMateria, header) {
 function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDuration, includeEffectCount) {
     readDatabase();
 
-    let effectTable = [["Weapon Name", "Character", "Equipment Type", "Range", "Pot", "Max Pot", "Duration (s)", "Extension (s)", "Effect Count", "ATB", "Uses",  "Type","Condition"]];
+    let effectTable = [["Weapon Name", "Character", "Equipment Type", "Range", "Pot", "Max Pot", "Duration (s)", "Extension (s)", "Effect Count", "ATB", "Uses",  "Type", "Condition", "Customization"]];
     if (!includePot)
     {
         effectTable[0].splice(effectTable[0].indexOf("Pot"), 1);
@@ -908,6 +914,7 @@ function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDur
         var effectExtend = "";
         var effectCondition = "";
         var effectCount = "";
+        var effectCustomization = "";
 
         // find which effectIdx we're actually interested in
         for (colIdx in weaponColIdxToEffectMap)
@@ -923,6 +930,7 @@ function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDur
                 effectExtend = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Extend");
                 effectCondition = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_Condition");
                 effectCount = getValueFromDatabaseRow(weaponRow, "Effect" + effectIdx + "_EffectCount");
+                effectCustomization = ""; //TODO
             }
         }
 
@@ -951,6 +959,7 @@ function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDur
         row.push(getValueFromDatabaseRow(weaponRow, "Use Count"));
         row.push(getValueFromDatabaseRow(weaponRow, "Ability Type"));
         row.push(effectCondition);
+        row.push(effectCustomization);
 
         effectTable.push(row);
     }

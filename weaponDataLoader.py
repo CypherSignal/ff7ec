@@ -102,11 +102,13 @@ skill_buffdebuff_data = load_masterdata_json("SkillBuffDebuff.json")
 skill_buffdebuff_enhance_data = load_masterdata_json("SkillBuffDebuffEnhance.json")
 skill_cancel_effect_data = load_masterdata_json("SkillCancelEffect.json")
 skill_character_costume_data = load_masterdata_json("SkillCharacterCostume.json")
-skill_effect_data = load_masterdata_json("SkillEffect.json")
+skill_costume_count_change_effect_data = load_masterdata_json("SkillCostumeCountChangeEffect.json")
 skill_damage_data = load_masterdata_json("SkillDamageEffect.json")
+skill_effect_data = load_masterdata_json("SkillEffect.json")
 skill_legendary_data = load_masterdata_json("SkillLegendary.json")
 skill_notes_data = load_masterdata_json("SkillNotes.json")
 skill_notes_set_data = load_masterdata_json("SkillNotesSet.json")
+skill_overaccel_gauge_change_data = load_masterdata_json("SkillOveraccelGaugeChangeEffect.json")
 skill_passive_data = load_masterdata_json("SkillPassive.json")
 skill_special_gauge_change_data = load_masterdata_json("SkillSpecialGaugeChangeEffect.json")
 skill_status_change_effect_data = load_masterdata_json("SkillStatusChangeEffect.json")
@@ -115,11 +117,15 @@ skill_tactics_gauge_change_data = load_masterdata_json("SkillTacticsGaugeChangeE
 skill_trigger_condition_hp_data = load_masterdata_json("SkillTriggerConditionHp.json")
 skill_weapon_data = load_masterdata_json("SkillWeapon.json")
 weapon_data = load_masterdata_json("Weapon.json")
+weapon_evolve_data = load_masterdata_json("WeaponEvolve.json")
+weapon_evolve_effect_data = load_masterdata_json("WeaponEvolveEffect.json")
+weapon_evolve_parameter_data = load_masterdata_json("WeaponEvolveParameter.json")
 
 buffdebuff_group_data = load_group_json("BuffDebuffGroup.json", "SkillBuffDebuffType")
 skill_effectgroup_data = load_group_json("SkillEffectGroup.json", "SkillEffectId")
 status_condition_group_data = load_group_json("StatusConditionGroup.json", "SkillStatusConditionType")
 status_change_group_data = load_group_json("StatusChangeGroup.json", "SkillStatusChangeType")
+# weapon_evolve_weapon_skill_group_data = load_group_json("WeaponEvolveWeaponSkill.json", "WeaponSkillId")
 
 weapon_upgrade_skill_data = load_weapon_upgrade_skill_json()
 
@@ -186,6 +192,7 @@ status_effect_types = {
     23:"Wind Weakness",
     27:"Single-Tgt. Phys. Dmg. Rcvd. Up",
     28:"Single-Tgt. Mag. Dmg. Rcvd. Up",
+    43:"Torpor",
 }
 
 buffdebuff_types = {
@@ -243,6 +250,8 @@ skilleffect_types = {
     26:"SpecialGaugeChangeEffect",
     30:"TacticsGaugeChangeEffect",
     31:"BuffDebuffEnhance",
+    36:"OveraccelGaugeChangeEffect",
+    37:"CostumeCountChangeEffect",
 }
 
 special_gauge_types = [
@@ -560,7 +569,7 @@ def process_skill_effects(skill_effect_objs, base_ability_type):
                 weapon_ability_text += skill_cancel_effect + " "
                 weapon_ability_text += "[Rng: " + weapon_data[effect_detail_prefix + "_Range"] + "] "
 
-            case 7: # SkillAdditionalEffect (e.g. crits???)
+            case 7: # SkillAdditionalEffect (e.g. crits)
                 skill_additional_effect_obj = skill_additional_effect_data[skill_effect_detail_id]
                 match skill_additional_effect_obj["SkillAdditionalType"]:
                     case 14: # crits
@@ -635,6 +644,22 @@ def process_skill_effects(skill_effect_objs, base_ability_type):
                 weapon_ability_text += "[Dur: +" + weapon_data[effect_detail_prefix + "_Extend"] + "s] "
                 weapon_ability_text += "[Max Tier: " + weapon_data[effect_detail_prefix + "_PotMax"] + "] "
 
+            case 36: # SkillOveraccelGaugeChangeEffect
+                skill_overaccel_gauge_change_obj = skill_overaccel_gauge_change_data[skill_effect_detail_id]
+                weapon_data[effect_detail_prefix] = "Increases Overspeed Gauge"
+                weapon_data[effect_detail_prefix + "_Pot"] = str(round(skill_overaccel_gauge_change_obj["PermilValue"] / 10,0)) + "%"
+
+                weapon_ability_text +=  weapon_data[effect_detail_prefix] + " "
+                weapon_ability_text += "[Pot: " + weapon_data[effect_detail_prefix + "_Pot"] + "] "
+                weapon_ability_text += "[Rng: " + weapon_data[effect_detail_prefix + "_Range"] + "] "
+
+            case 37: # SkillCostumeCountChangeEffect
+                skill_costume_count_change_effect_obj = skill_costume_count_change_effect_data[skill_effect_detail_id]
+                weapon_data[effect_detail_prefix] = "Gain Extra Use of Gear C. Ability"
+                weapon_data[effect_detail_prefix + "_Pot"] = str(skill_costume_count_change_effect_obj["Value"])
+
+                weapon_ability_text +=  "Gains " + weapon_data[effect_detail_prefix + "_Pot"] + " extra uses of own Gear C. Ability"
+
             case _:
                 weapon_data[effect_detail_prefix] = "UNKNOWN EFFECT: " + str(skill_effect_obj["SkillEffectType"]) + " SkillEffectDetailId: " + str(skill_effect_detail_id)
         weapon_ability_text += "\\n"
@@ -646,7 +671,15 @@ def process_skill_effects(skill_effect_objs, base_ability_type):
     return weapon_data
 
 
+# TOOD for weapon evolves:
 
+# - each weapon evolve have a custom type, and either:
+#     - a new skill effect (With a condition and everything)
+#     - a damage multiplier (??)
+#     - a new r.ability 
+
+# - for skill effects or damage add it to ability text like 
+#     "Heart custom: Ability potency increased 1.5x"
 
 
 # start transforming all of the data into our own dict of weaponId to summarized-info
