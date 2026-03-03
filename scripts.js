@@ -37,7 +37,7 @@ function reportPerf(perfEvents)
 }
 
 /* Create a table to display the result */
-function tableCreate(tableClass, list, header) {
+function tableCreate(tableClass, columns, tableData, header) {
     let perfTableCreateStart = performance.now();
 
     //body reference 
@@ -50,9 +50,9 @@ function tableCreate(tableClass, list, header) {
     h1.appendChild(textNode);
     body.appendChild(h1);
 
-    console.log("Table Data:", list);
+    // console.log("Table Data:", list);
   
-    // create <table> and a <tbody>
+    // create <table> element for the dataTable to possess
     var tbl = document.createElement("table");
 
     // if we're showing the full ability description, we need a different table class
@@ -65,41 +65,6 @@ function tableCreate(tableClass, list, header) {
 
     let tblId = tableClass + Math.random().toString(36).substr(2, 9); // Generate a unique ID for each table
     tbl.id = tblId;
-    var tblBody = document.createElement("tbody");
-    console.log("Creating table: " + tableClass);
-
-    var headerRow = document.createElement("tr");
-    // create <tr> and <td>
-    const numRows = list.length;
-    const numCols = list[0].length;
-    for (var j = 0; j < numRows; j++) {
-        var row = document.createElement("tr");
-
-        for (var i = 0; i < numCols; i++) {
-            var cell;
-            if (j == 0) {
-                cell = document.createElement("th");
-                headerRow.appendChild(cell);
-            }
-            else {
-                cell = document.createElement("td");
-                row.appendChild(cell);
-            }
-            var cellText;
-            cellText = document.createTextNode(list[j][i] || ""); 
-            cell.appendChild(cellText);
-            
-        }
-        if (j > 0) {
-            tblBody.appendChild(row);
-        }
-    }
-
-    // append the <tbody> inside the <table>
-    var tblHead = document.createElement("thead");
-    tblHead.appendChild(headerRow);
-    tbl.appendChild(tblHead);
-    tbl.appendChild(tblBody);
 
     // put <table> in the <body>
     body.appendChild(tbl);
@@ -108,32 +73,49 @@ function tableCreate(tableClass, list, header) {
     // Add a column def to convert the '\n' into <li> tags for the description
     let tableColumnDefs = []
     tableColumnDefs.push({
-            render: function (data, type, row) { return data.replaceAll("\\n", '<li>').replaceAll("{", '<b>(').replaceAll("}", ')</b>'); },
+            render: function (data, type, row) {
+                if (typeof data === 'string')
+                {
+                    return data.replaceAll("\\n", '<li>').replaceAll("{", '<b>(').replaceAll("}", ')</b>');
+                }
+                else
+                {
+                    return data;
+                }
+                },
             targets: "_all"
         });
 
     if(!document.getElementById("show_full_ability").checked)
     {
-        tableColumnDefs.push({ visible: false, targets: list[0].indexOf("Ability Description"), });
+        tableColumnDefs.push({ visible: false, targets: columns.indexOf("Ability Description"), });
     }
     else
     {
         // show_full_ability is checked, so hide every column except the ability desc
         columnsToHide = []
-        for (let colIdx = 0; colIdx < list[0].length; ++colIdx)
+        for (let colIdx = 0; colIdx < columns.length; ++colIdx)
         {
-            if (list[0][colIdx] != "Weapon Name" &&
-                list[0][colIdx] != "Character" &&
-                list[0][colIdx] != "Equipment Type" &&
-                list[0][colIdx] != "Ability Description")
+            if (columns[colIdx] != "Weapon Name" &&
+                columns[colIdx] != "Character" &&
+                columns[colIdx] != "Equipment Type" &&
+                columns[colIdx] != "Ability Description")
             {
                 columnsToHide.push(colIdx);
             }
         }
         tableColumnDefs.push({visible: false, targets: columnsToHide});
     }
+    
+    let dataTableColumns = [];
+    for (let colIdx = 0; colIdx < columns.length; ++colIdx)
+    {
+        dataTableColumns.push({title: columns[colIdx]});
+    }
 
     let table = new DataTable('#' + tblId, {
+        columns: dataTableColumns,
+        data: tableData,
         paging: false,
         columnDefs: tableColumnDefs,
         autoWidth: false,
@@ -405,14 +387,14 @@ function getActiveWeaponTypeFilter()
     return weaponFilters;
 }
 
-function addAbilityTextToTable(weaponData, outputTable)
+function addAbilityTextToTable(weaponData, outputTableColumns, outputTable)
 {
-    outputTable[0].push("Ability Description");
+    outputTableColumns.push("Ability Description");
     let colIdxToFetch = weaponColIndexMap["Ability Text"];
 
     for (var i = 0; i < weaponData.length; i++) {
         let weaponRow = weaponData[i];
-        outputTable[i+1].push(weaponRow[colIdxToFetch]);
+        outputTable[i].push(weaponRow[colIdxToFetch]);
     }
 }
 
@@ -717,8 +699,8 @@ function printElemWeapon(elem) {
 
 function printAllWeapon(elem, header) {
     readDatabase();
-    let elemental;
-    elemental = [["Weapon Name", "Character", "Equipment Type", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Condition", "Dmg. Customization"]];
+    let columns = ["Weapon Name", "Character", "Equipment Type", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Condition", "Dmg. Customization"];
+    let tableData = []
 
     let filteredWeaponData = weaponData; 
     for (var i = 0; i < weaponData.length; i++) {
@@ -778,18 +760,19 @@ function printAllWeapon(elem, header) {
         row.push(condition);
         row.push(customization);
 
-        elemental.push(row);
+        tableData.push(row);
     }
-    addAbilityTextToTable(filteredWeaponData, elemental);
+    addAbilityTextToTable(filteredWeaponData, columns, tableData);
 
-    tableCreate("uniqueTable", elemental, header);
+    tableCreate("uniqueTable", columns,  tableData, header);
 }
 
 
 function printWeaponElem(elem, header) {
     readDatabase();
 
-    let elemental = [["Weapon Name", "Character",  "Equipment Type", "Range", "Type", "ATB", "Uses", "Pot%", "Max Pot%", "% per ATB", "Condition for Max", "Dmg. Customization"]];
+    let columns = ["Weapon Name", "Character",  "Equipment Type", "Range", "Type", "ATB", "Uses", "Pot%", "Max Pot%", "% per ATB", "Condition for Max", "Dmg. Customization"];
+    let tableData = []
 
     let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Ability Element", elem);
 
@@ -855,17 +838,18 @@ function printWeaponElem(elem, header) {
         row.push(condition);
         row.push(customization);
 
-        elemental.push(row);
+        tableData.push(row);
     }
-    addAbilityTextToTable(filteredWeaponData, elemental);
+    addAbilityTextToTable(filteredWeaponData, columns, tableData);
 
-    tableCreate("elemTable", elemental, header);
+    tableCreate("elemTable",  columns, tableData, header);
 }
 
 function printWeaponSigil(sigil, header) {
     readDatabase();
  
-    let elemental = [["Weapon Name", "Character",  "Equipment Type", "Range", "Type", "ATB", "Uses"]];
+    let columns = ["Weapon Name", "Character",  "Equipment Type", "Range", "Type", "ATB", "Uses"];
+    let tableData = []
 
     let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Command Sigil", sigil);
 
@@ -883,16 +867,17 @@ function printWeaponSigil(sigil, header) {
         row.push(getValueFromDatabaseRow(weaponRow, "Command ATB"));
         row.push(getValueFromDatabaseRow(weaponRow, "Use Count"));
 
-        elemental.push(row);
+        tableData.push(row);
     }
-    addAbilityTextToTable(filteredWeaponData, elemental);
+    addAbilityTextToTable(filteredWeaponData, columns, tableData);
 
-    tableCreate("sigilTable", elemental, header);
+    tableCreate("sigilTable", columns, tableData, header);
 }
 
 function printWeaponMateria(elemMateria, header) {
     readDatabase();
-    let materia = [["Weapon Name", "Character", "Equipment Type",  "Materia Slot 1", "Materia Slot 2", "Materia Slot 3"]];
+    let columns = ["Weapon Name", "Character", "Equipment Type",  "Materia Slot 1", "Materia Slot 2", "Materia Slot 3"];
+    let tableData = []
 
     let filteredWeaponData = getWeaponsWithMateriaMatchingFilter(weaponData, elemMateria);
     for (var i = 0; i < filteredWeaponData.length; i++) {
@@ -905,33 +890,37 @@ function printWeaponMateria(elemMateria, header) {
         row.push(getValueFromDatabaseRow(weaponRow, "MateriaSupport0"));
         row.push(getValueFromDatabaseRow(weaponRow, "MateriaSupport1"));
         row.push(getValueFromDatabaseRow(weaponRow, "MateriaSupport2"));
-        materia.push(row);
+        tableData.push(row);
     }
-    addAbilityTextToTable(filteredWeaponData, materia);
+    addAbilityTextToTable(filteredWeaponData, columns, tableData);
 
-    tableCreate("materiaTable", materia, header);
+    tableCreate("materiaTable", columns, tableData, header);
 }
 
 function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDuration, includeEffectCount) {
     readDatabase();
 
-    let effectTable = [["Weapon Name", "Character", "Equipment Type", "Range", "Pot.", "Max Pot.", "Dur. (s)", "Ext. (s)", "Effect Count", "ATB", "Uses",  "Type", "Condition", "Req. Customization"]];
-    if (!includePot)
+    let columns = ["Weapon Name", "Character", "Equipment Type", "Range"];
+    let tableData = []
+    
+    if (includePot)
     {
-        effectTable[0].splice(effectTable[0].indexOf("Pot."), 1);
+        columns.push("Pot.");
     }
-    if (!includeMaxPot)
+    if (includeMaxPot)
     {
-        effectTable[0].splice(effectTable[0].indexOf("Max Pot."), 1);
+        columns.push("Max Pot.");
     }
-    if (!includeDuration)
+    if (includeDuration)
     {
-        effectTable[0].splice(effectTable[0].indexOf("Dur. (s)"), 1);
+        columns.push("Dur. (s)");
     }
-    if (!includeEffectCount)
+    columns.push("Ext. (s)");
+    if (includeEffectCount)
     {
-        effectTable[0].splice(effectTable[0].indexOf("Effect Count"), 1);
+        columns.push("Effect Count");
     }
+    columns.push("ATB", "Uses",  "Type", "Condition", "Req. Customization");
     let filteredWeaponData = getWeaponsMatchingEffect(weaponData, effect);
     
     for (var i = 0; i < filteredWeaponData.length; i++) {
@@ -994,18 +983,19 @@ function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDur
         row.push(effectCondition);
         row.push(effectCustomization);
 
-        effectTable.push(row);
+        tableData.push(row);
     }
-    addAbilityTextToTable(filteredWeaponData, effectTable);
+    addAbilityTextToTable(filteredWeaponData, columns, tableData);
 
-    tableCreate("effectTable", effectTable, header);
+    tableCreate("effectTable", columns, tableData, header);
 }
 
 
 function printWeaponCancelEffect(header) {
     readDatabase();
 
-    let effectTable = [["Weapon Name", "Character", "Equipment Type","Range", "Effect", "ATB", "Uses", "Type","Condition"]];
+    let columns = ["Weapon Name", "Character", "Equipment Type","Range", "Effect", "ATB", "Uses", "Type","Condition"];
+    let tableData = []
 
     let filteredWeaponData = getWeaponsMatchingEffectType(weaponData, "CancelEffect");
     
@@ -1035,13 +1025,12 @@ function printWeaponCancelEffect(header) {
         row.push(getValueFromDatabaseRow(weaponRow, "Ability Type"));
         row.push(effectCondition);
 
-        effectTable.push(row);
+        tableData.push(row);
     }
-    addAbilityTextToTable(filteredWeaponData, effectTable);
+    addAbilityTextToTable(filteredWeaponData, columns, tableData);
 
-    tableCreate("effectTable", effectTable, header);
+    tableCreate("effectTable", columns, tableData, header);
 }
-
 
 // Load file from local server
 function loadFile(filePath) {
