@@ -530,6 +530,8 @@ function refreshTable()
             printWeaponEffect("Status Ailment: Stop", "Equipment with Stop Effect:", false, false, true, false);
             printWeaponEffect("Status Ailment: Stun", "Equipment with Stun Effect:", false, false, true, false);
             printWeaponEffect("Status Ailment: Torpor", "Equipment with Torpor Effect (Tgt. Dmg. Rcvd. Up & Stun):", true, false, true, false);
+            printWeaponEffect("Status Ailment: Silence", "Equipment with Silence Effect:", true, false, true, false);
+            printWeaponEffect("Status Ailment: Poison", "Equipment with Poison Effect:", true, false, true, false);
             break;
         case "GaugeEffect":
             printWeaponEffect("Increases Limit Gauge", "Equipment with Increase Limit Gauge Effect:", true, false, false, false);
@@ -716,7 +718,7 @@ function printElemWeapon(elem) {
 function printAllWeapon(elem, header) {
     readDatabase();
     let elemental;
-    elemental = [["Weapon Name", "Character", "Equipment Type", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Condition", "Customization"]];
+    elemental = [["Weapon Name", "Character", "Equipment Type", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Condition", "Dmg. Customization"]];
 
     let filteredWeaponData = weaponData; 
     for (var i = 0; i < weaponData.length; i++) {
@@ -787,7 +789,7 @@ function printAllWeapon(elem, header) {
 function printWeaponElem(elem, header) {
     readDatabase();
 
-    let elemental = [["Weapon Name", "Character",  "Equipment Type", "Range", "Type", "ATB", "Uses", "Pot%", "Max Pot%", "% per ATB", "Condition for Max", "Customization"]];
+    let elemental = [["Weapon Name", "Character",  "Equipment Type", "Range", "Type", "ATB", "Uses", "Pot%", "Max Pot%", "% per ATB", "Condition for Max", "Dmg. Customization"]];
 
     let filteredWeaponData = getWeaponsMatchingFilter(weaponData, "Ability Element", elem);
 
@@ -913,7 +915,7 @@ function printWeaponMateria(elemMateria, header) {
 function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDuration, includeEffectCount) {
     readDatabase();
 
-    let effectTable = [["Weapon Name", "Character", "Equipment Type", "Range", "Pot.", "Max Pot.", "Dur. (s)", "Ext. (s)", "Effect Count", "ATB", "Uses",  "Type", "Condition", "Customization"]];
+    let effectTable = [["Weapon Name", "Character", "Equipment Type", "Range", "Pot.", "Max Pot.", "Dur. (s)", "Ext. (s)", "Effect Count", "ATB", "Uses",  "Type", "Condition", "Req. Customization"]];
     if (!includePot)
     {
         effectTable[0].splice(effectTable[0].indexOf("Pot."), 1);
