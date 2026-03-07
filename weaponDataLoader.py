@@ -125,6 +125,47 @@ def get_damage_effect_ability_text(base_ability_type, skill_effect_damage_obj):
     weapon_damage_text += "[Rng: " + target_types[skill_effect_damage_obj["TargetType"]] + "] "
     return weapon_damage_text
 
+# helper function to do a deep comparison of skill effect properties
+# inspects all of the data fields as well as the detail effect
+def is_same_skill_effect(skill_effect_a, skill_effect_b):
+    # first compare the two objects minus their detailId
+    skill_effect_a_copy = skill_effect_a.copy()
+    skill_effect_b_copy = skill_effect_b.copy()
+    skill_effect_a_detailId = skill_effect_a_copy.pop("SkillEffectDetailId")
+    skill_effect_b_detailId = skill_effect_b_copy.pop("SkillEffectDetailId")
+    if (skill_effect_a_copy != skill_effect_b_copy):
+        return False
+    
+    # if the data is a match, then compare the effect detail as well
+    match skill_effect_a_copy["SkillEffectType"]:
+        case 1: # Damage effect
+            return skill_damage_data[skill_effect_a_detailId] == skill_damage_data[skill_effect_b_detailId] 
+        case 2: # Status Condition effect
+            return skill_status_effect_data[skill_effect_a_detailId] == skill_status_effect_data[skill_effect_b_detailId] 
+        case 3: # SkillBuffDebuff
+            return skill_buffdebuff_data[skill_effect_a_detailId] == skill_buffdebuff_data[skill_effect_b_detailId] 
+        case 5: # SkillStatusChangeEffect (e.g. exploit weakness)
+            return skill_status_change_effect_data[skill_effect_a_detailId] == skill_status_change_effect_data[skill_effect_b_detailId] 
+        case 6: # SkillCancelEffect (e.g. removes buff/debuff or removes status)
+            return skill_cancel_effect_data[skill_effect_a_detailId] == skill_cancel_effect_data[skill_effect_b_detailId] 
+        case 7: # SkillAdditionalEffect (e.g. crits)
+            return skill_additional_effect_data[skill_effect_a_detailId] == skill_additional_effect_data[skill_effect_b_detailId] 
+        case 16: # SkillAtbChangeEffect (+ATB!)
+            return skill_atbchange_effect_data[skill_effect_a_detailId] == skill_atbchange_effect_data[skill_effect_b_detailId] 
+        case 26: # SkillSpecialGaugeChangeEffect (+Limit/summon bar)
+            return skill_special_gauge_change_data[skill_effect_a_detailId] == skill_special_gauge_change_data[skill_effect_b_detailId] 
+        case 30: # SkillTacticsGaugeChangeEffect (+Stance change)
+            return skill_tactics_gauge_change_data[skill_effect_a_detailId] == skill_tactics_gauge_change_data[skill_effect_b_detailId] 
+        case 31: # SkillBuffDebuffEnhance (AC Gloves, Abraxas)
+            return skill_buffdebuff_enhance_data[skill_effect_a_detailId] == skill_buffdebuff_enhance_data[skill_effect_b_detailId] 
+        case 36: # SkillOveraccelGaugeChangeEffect
+            return skill_overaccel_gauge_change_data[skill_effect_a_detailId] == skill_overaccel_gauge_change_data[skill_effect_b_detailId] 
+        case 37: # SkillCostumeCountChangeEffect
+            return skill_costume_count_change_effect_data[skill_effect_a_detailId] == skill_costume_count_change_effect_data[skill_effect_b_detailId] 
+        case _:
+            print ("Unsupported case in is_same_skill_effect")
+    
+
 ## ----------------------------------------------------
 ## ----------------------------------------------------
 
@@ -521,7 +562,7 @@ def process_skill_effects(skill_effect_objs, base_ability_type):
                 weapon_damage_text = get_damage_effect_ability_text(base_ability_type, skill_effect_obj) 
                 weapon_data[effect_detail_prefix] = weapon_damage_text
                 weapon_ability_text += weapon_damage_text
-                skill_damage_effect_damage_obj = skill_damage_data[skill_effect_obj["SkillEffectDetailId"]]
+                skill_damage_effect_damage_obj = skill_damage_data[skill_effect_detail_id]
                 # save out the pot so that the page can do math with it
                 weapon_data[effect_detail_prefix + "_Pot"] = str(round(skill_damage_effect_damage_obj["MaxDamageCoefficient"] / 10,0))
 
@@ -829,7 +870,7 @@ for weapon_id,weapon_obj in weapon_data.items():
                         # ...then this will have to be rewritten 
                         weapon_evolve_skill_effect_is_common = False
                         for skill_effect_obj in skill_effect_objs:
-                            if weapon_evolve_skill_effect_obj == skill_effect_obj["skill_data"]:
+                            if is_same_skill_effect(weapon_evolve_skill_effect_obj, skill_effect_obj["skill_data"]):
                                 weapon_evolve_skill_effect_is_common = True
                                 break
                         if not weapon_evolve_skill_effect_is_common:
