@@ -698,7 +698,6 @@ function printElemWeapon(elem) {
 }
 
 function printAllWeapon(elem, header) {
-    readDatabase();
     let columns = ["Weapon Name", "Character", "Equipment Type", "AOE", "Type", "ATB", "Element", "Pot%", "Max%", "% per ATB", "Condition", "Dmg. Customization"];
     let tableData = []
 
@@ -769,8 +768,6 @@ function printAllWeapon(elem, header) {
 
 
 function printWeaponElem(elem, header) {
-    readDatabase();
-
     let columns = ["Weapon Name", "Character",  "Equipment Type", "Range", "Type", "ATB", "Uses", "Pot%", "Max Pot%", "% per ATB", "Condition for Max", "Dmg. Customization"];
     let tableData = []
 
@@ -846,8 +843,6 @@ function printWeaponElem(elem, header) {
 }
 
 function printWeaponSigil(sigil, header) {
-    readDatabase();
- 
     let columns = ["Weapon Name", "Character",  "Equipment Type", "Range", "Type", "ATB", "Uses"];
     let tableData = []
 
@@ -875,7 +870,6 @@ function printWeaponSigil(sigil, header) {
 }
 
 function printWeaponMateria(elemMateria, header) {
-    readDatabase();
     let columns = ["Weapon Name", "Character", "Equipment Type",  "Materia Slot 1", "Materia Slot 2", "Materia Slot 3"];
     let tableData = []
 
@@ -898,8 +892,6 @@ function printWeaponMateria(elemMateria, header) {
 }
 
 function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDuration, includeEffectCount) {
-    readDatabase();
-
     let columns = ["Weapon Name", "Character", "Equipment Type", "Range"];
     let tableData = []
     
@@ -992,8 +984,6 @@ function printWeaponEffect(effect, header, includePot, includeMaxPot, includeDur
 
 
 function printWeaponCancelEffect(header) {
-    readDatabase();
-
     let columns = ["Weapon Name", "Character", "Equipment Type","Range", "Effect", "ATB", "Uses", "Type","Condition"];
     let tableData = []
 
