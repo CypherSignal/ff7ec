@@ -477,6 +477,7 @@ function refreshTable()
             break;
         case "BuffWex":
             printWeaponEffect("Exploit Weakness", "Equipment with Exploit Weakness:",true, false, true, false);
+            printWeaponEffect("Applies Enliven", "Equipment with Enliven:",true, false, true, false);
             printWeaponEffect("Status Ailment: Enfeeble", "Equipment with Enfeeble:",true, false, true, false);
             printWeaponEffect("Applied Stats Buff Tier Increased", "Equipment with Buff Enhancement:", true, true, false, false);
             printWeaponEffect("Applied Stats Debuff Tier Increased", "Equipment with Debuff Enhancement:", true, true, false, false);

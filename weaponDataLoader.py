@@ -387,6 +387,7 @@ status_change_types = {
     41:"Wind Weapon Boost",
     44:"Phys. ATB Conservation Effect",
     45:"Mag. ATB Conservation Effect",
+    52:"Enliven",
 }
 
 # currently materia support only has 1 effect per slot,
