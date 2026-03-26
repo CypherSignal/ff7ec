@@ -447,10 +447,12 @@ function refreshTable()
         case "DebuffPdef":
             printWeaponEffect("PDEF Down", "Equipment with Debuff PDEF:", true, true, true, false );
             printWeaponEffect("Status Ailment: Single-Tgt. Phys. Dmg. Rcvd. Up", "Equipment with Single-Tgt. Phys. Dmg. Rcvd. Up:", true, false, true, false);
+            printWeaponEffect("Status Ailment: All-Tgt. Phys. Dmg. Rcvd. Up", "Equipment with All-Tgt. Phys. Dmg. Rcvd. Up:", true, false, true, false);
             break;
         case "DebuffMdef":
             printWeaponEffect("MDEF Down", "Equipment with Debuff MDEF:", true, true, true, false);
             printWeaponEffect("Status Ailment: Single-Tgt. Mag. Dmg. Rcvd. Up", "Equipment with Single-Tgt. Mag. Dmg. Rcvd. Up:", true, false, true, false);
+            printWeaponEffect("Status Ailment: All-Tgt. Mag. Dmg. Rcvd. Up", "Equipment with All-Tgt. Mag. Dmg. Rcvd. Up:", true, false, true, false);
             break;
         case "DebuffPatk":
             printWeaponEffect("PATK Down", "Equipment with Debuff PATK:", true, true, true, false);

@@ -283,6 +283,8 @@ status_effect_types = {
     23:"Wind Weakness",
     27:"Single-Tgt. Phys. Dmg. Rcvd. Up",
     28:"Single-Tgt. Mag. Dmg. Rcvd. Up",
+    29:"All-Tgt. Phys. Dmg. Rcvd. Up",
+    30:"All-Tgt. Mag. Dmg. Rcvd. Up",
     43:"Torpor",
 }
 
