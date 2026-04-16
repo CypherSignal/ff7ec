@@ -133,6 +133,12 @@ def is_same_skill_effect(skill_effect_a, skill_effect_b):
     skill_effect_b_copy = skill_effect_b.copy()
     skill_effect_a_detailId = skill_effect_a_copy.pop("SkillEffectDetailId")
     skill_effect_b_detailId = skill_effect_b_copy.pop("SkillEffectDetailId")
+    
+    # there are some other fields that we also cannot reliably compare.
+    skill_effect_a_copy.pop("TriggerConditionId")
+    skill_effect_b_copy.pop("TriggerConditionId")
+    skill_effect_a_copy.pop("ConditionTargetType")
+    skill_effect_b_copy.pop("ConditionTargetType")
     if (skill_effect_a_copy != skill_effect_b_copy):
         return False
     
@@ -389,6 +395,12 @@ status_change_types = {
     41:"Wind Weapon Boost",
     44:"Phys. ATB Conservation Effect",
     45:"Mag. ATB Conservation Effect",
+    46:"Fire ATB Conservation Effect",
+    47:"Ice ATB Conservation Effect",
+    48:"Lightning ATB Conservation Effect",
+    49:"Water ATB Conservation Effect",
+    50:"Wind ATB Conservation Effect",
+    51:"Earth ATB Conservation Effect",
     52:"Enliven",
 }
 
@@ -618,7 +630,7 @@ def process_skill_effects(skill_effect_objs, base_ability_type):
                     print (weapon_data[effect_detail_prefix])
 
                 # ATB conversation uses effect cofficient of 1 to say "save 1 atb"
-                if (skill_status_change_obj["SkillStatusChangeType"] == 44 or skill_status_change_obj["SkillStatusChangeType"] == 45):
+                if (skill_status_change_obj["SkillStatusChangeType"] >= 44 and skill_status_change_obj["SkillStatusChangeType"] <= 51):
                     weapon_data[effect_detail_prefix + "_Pot"] = str(skill_status_change_obj["EffectCoefficient"])
                 else:
                     weapon_data[effect_detail_prefix + "_Pot"] = str(round(skill_status_change_obj["EffectCoefficient"]/10,0)) + "%"

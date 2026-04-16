@@ -523,10 +523,16 @@ function refreshTable()
             printWeaponEffect("Increases Summon Gauge", "Equipment with Increase Summon Gauge Effect:", true, false, false, false);
             printWeaponEffect("Increases Command Gauge", "Equipment with Increase Command Gauge Effect:", true, false, false, false);
             printWeaponEffect("Increases Overspeed Gauge", "Equipment with Increase Overspeed Gauge Effect:", true, false, false, false);
+            printWeaponEffect("Gain Extra Use of Gear C. Ability", "Equipment with Gear C. Ability Bonus:", true, false, false, false);
             printWeaponEffect("ATB+", "Equipment with ATB Bonus:", true, false, false, false);
             printWeaponEffect("Phys. ATB Conservation Effect", "Equipment with Phys. ATB Conservation Effect:",true, false, true, false);
             printWeaponEffect("Mag. ATB Conservation Effect", "Equipment with Mag. ATB Conservation Effect:", true, false, true, false);
-            printWeaponEffect("Gain Extra Use of Gear C. Ability", "Equipment with Gear C. Ability Bonus:", true, false, false, false);
+            printWeaponEffect("Fire ATB Conservation Effect", "Equipment with Fire ATB Conservation Effect:", true, false, true, false);
+            printWeaponEffect("Ice ATB Conservation Effect", "Equipment with Ice ATB Conservation Effect:", true, false, true, false);
+            printWeaponEffect("Lightning ATB Conservation Effect", "Equipment with Lightning ATB Conservation Effect:", true, false, true, false);
+            printWeaponEffect("Water ATB Conservation Effect", "Equipment with Water ATB Conservation Effect:", true, false, true, false);
+            printWeaponEffect("Wind ATB Conservation Effect", "Equipment with Wind ATB Conservation Effect:", true, false, true, false);
+            printWeaponEffect("Earth ATB Conservation Effect", "Equipment with Earth ATB Conservation Effect:", true, false, true, false);
             break;
         case "All":
             printAllWeapon("", "List of All Weapons:");
