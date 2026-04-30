@@ -698,6 +698,7 @@ function printElemWeapon(elem) {
         printWeaponEffect(elem + " Damage Up",                     "Equipment with " + elem + " Damage Up:",true, true, true, false);
         printWeaponEffect(elem + " Damage Bonus",                  "Equipment with " + elem + " Damage Bonus:",true, false, true, false);
         printWeaponEffect(elem + " Weapon Boost",                  "Equipment with " + elem + " Weapon Boost:", true, false, true, false);
+        printWeaponEffect("Amp. " + elem + " Abilities",           "Equipment with Amp. " + elem + " Abilities:", true, false, true, true);
         printWeaponEffect("Status Ailment: " + elem + " Weakness", "Equipment with " + elem + " Weakness:",true, false, true, false);
         printWeaponEffect(elem + " Resistance Up",                 "Equipment with " + elem + " Resistance Up:", true, true, true, false);
         printWeaponEffect(elem + " Damage Down",                   "Equipment with " + elem + " Damage Down:", true, true, true, false);
