@@ -243,7 +243,8 @@ function findElement(arr, propName, propValue) {
 
 // Returns the value from the weapondb row for the column "name"
 function getValueFromDatabaseRow(row, name) {
-    return row[weaponColIndexMap[name]];
+    let val = row[weaponColIndexMap[name]];
+    return (val != undefined) ? val : "";
 }
 
 function findWeaponWithProperty(arr, propName, propValue) {

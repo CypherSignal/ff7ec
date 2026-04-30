@@ -416,9 +416,9 @@ status_change_types = {
     46:"Fire ATB Conservation Effect",
     47:"Ice ATB Conservation Effect",
     48:"Lightning ATB Conservation Effect",
-    49:"Water ATB Conservation Effect",
+    49:"Earth ATB Conservation Effect",
     50:"Wind ATB Conservation Effect",
-    51:"Earth ATB Conservation Effect",
+    51:"Water ATB Conservation Effect",
     52:"Enliven",
 }
 
@@ -668,7 +668,7 @@ def process_skill_effects(skill_effect_objs, base_ability_type):
                         weapon_ability_text += "[Pot: +" + weapon_data[effect_detail_prefix + "_Pot"] + " of target's max HP] "
                     case 10: # hp gain
                         weapon_ability_text += "[When triggered: restores " + weapon_data[effect_detail_prefix + "_Pot"] + " of target's max HP] "
-                    case 12 | 13: # Amp phys/mag
+                    case 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19: # Amp phys/mag
                         weapon_ability_text += "[Damage +" + weapon_data[effect_detail_prefix + "_Pot"] + " up to " + weapon_data[effect_detail_prefix + "_EffectCount"] + " time(s)] "
                     case 14: # Amp heal
                         weapon_ability_text += "[Healing +" + weapon_data[effect_detail_prefix + "_Pot"] + " up to " + weapon_data[effect_detail_prefix + "_EffectCount"] + " time(s)] "
