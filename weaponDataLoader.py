@@ -839,6 +839,7 @@ for weapon_id,weapon_obj in weapon_data.items():
 
     # save out all c.ability data that is agnostic of  weapon being ult/OB1/6/10
     out_weapon["Ability Type"] = attack_types[skill_base_base_obj["BaseAttackType"]]
+    out_weapon["Ability Name"] = loc_table[skill_base_base_obj["NameLanguageId"]]
 
     skill_effect_objs = []
     if (not weapon_is_ultimate):
@@ -961,6 +962,8 @@ for costume_id,costume_obj in character_costume_data.items():
     skill_base_base_obj = skill_base_data[costume_skill_base_id]
 
     out_costume["Ability Type"] = attack_types[skill_base_base_obj["BaseAttackType"]]
+    out_costume["Ability Name"] = loc_table[skill_base_base_obj["NameLanguageId"]]
+
     out_costume["Command ATB"] = skill_active_obj["Cost"]
     out_costume["GachaType"] = "Costume"
     out_costume["Use Count"] = skill_active_obj["UseCountLimit"]
@@ -993,6 +996,7 @@ out_sorted_weapon_fields = [
     "Id",
     "Character",
     "Name",
+    "Ability Name",
 ]
 for field in out_sorted_weapon_fields:
     out_weapon_fields.remove(field)

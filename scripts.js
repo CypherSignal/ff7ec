@@ -88,7 +88,9 @@ function tableCreate(tableClass, columns, tableData, header) {
 
     if(!document.getElementById("show_full_ability").checked)
     {
-        tableColumnDefs.push({ visible: false, targets: columns.indexOf("Ability Description"), });
+        tableColumnDefs.push({ visible: false, targets: 
+            [columns.indexOf("Ability Description"), columns.indexOf("Ability Name")]
+         });
     }
     else
     {
@@ -99,7 +101,10 @@ function tableCreate(tableClass, columns, tableData, header) {
             if (columns[colIdx] != "Weapon Name" &&
                 columns[colIdx] != "Character" &&
                 columns[colIdx] != "Equipment Type" &&
-                columns[colIdx] != "Ability Description")
+                columns[colIdx] != "Ability Name" &&
+                columns[colIdx] != "Ability Description" &&
+                true
+            )
             {
                 columnsToHide.push(colIdx);
             }
@@ -390,12 +395,16 @@ function getActiveWeaponTypeFilter()
 
 function addAbilityTextToTable(weaponData, outputTableColumns, outputTable)
 {
+    outputTableColumns.push("Ability Name");
     outputTableColumns.push("Ability Description");
-    let colIdxToFetch = weaponColIndexMap["Ability Text"];
+    
+    let colIdxAbilityName = weaponColIndexMap["Ability Name"];
+    let colIdxAbilityText = weaponColIndexMap["Ability Text"];
 
     for (var i = 0; i < weaponData.length; i++) {
         let weaponRow = weaponData[i];
-        outputTable[i].push(weaponRow[colIdxToFetch]);
+        outputTable[i].push(weaponRow[colIdxAbilityName]);
+        outputTable[i].push(weaponRow[colIdxAbilityText]);
     }
 }
 
