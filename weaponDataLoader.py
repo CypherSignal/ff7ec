@@ -497,6 +497,7 @@ custom_weapon_types = {
     6033 :"Crossover", # Bird of Prey
     6039 :"Crossover", # Fatum Ex Machina
     20023 :"Crossover", # Zinogre Blade
+    20027 :"Crossover", # Beatrix Sword
     20032 :"Crossover", # Zenithian Sword
     49016 :"Crossover", # Kuja's Spirit Blade
     49028 :"Crossover", # Edgar's Coiled Blade
