@@ -506,14 +506,17 @@ function refreshTable()
             printWeaponEffect("Veil", "Equipment with Veil:", true, false, true, false);
             break;
         case "SigilCircle":
+            printWeaponEffect("◯ Sigil Resistance Down", "Equipment with ◯ Sigil Resistance Down", true, true, true, false);
             printWeaponMateria("Circle", "Equipment with ◯ Sigil Materia Slot:");
             printWeaponSigil("◯ Circle", "Equipment with ◯ Sigil Materia on Ability:");
             break;
         case "SigilCross":
+            printWeaponEffect("✕ Sigil Resistance Down", "Equipment with ✕ Cross Resistance Down", true, true, true, false);
             printWeaponMateria("Cross", "Equipment with ✕ Sigil Materia Slot:");
             printWeaponSigil("✕ Cross", "Equipment with ✕ Sigil Materia on Ability:");
             break;
         case "SigilTriangle":
+            printWeaponEffect("△ Sigil Resistance Down", "Equipment with △ Triangle Resistance Down", true, true, true, false);
             printWeaponMateria("Triangle", "Equipment with △ Sigil Materia Slot:");
             printWeaponSigil("△ Triangle", "Equipment with △ Sigil Materia on Ability:");
             break;

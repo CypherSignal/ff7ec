@@ -339,6 +339,9 @@ buffdebuff_types = {
     36: "Water Damage Down",
     37: "Wind Damage Up",
     38: "Wind Damage Down",
+    48: "◯ Sigil Resistance Down",
+    49: "△ Sigil Resistance Down",
+    50: "✕ Sigil Resistance Down",
 }
 
 buffdebuff_tiers = [
