@@ -533,6 +533,8 @@ function refreshTable()
             break;
         case "GaugeEffect":
             printWeaponEffect("Increases Limit Gauge", "Equipment with Increase Limit Gauge Effect:", true, false, false, false);
+            printWeaponEffect("LB Ultimate.", "Equipment with LB Ultimate. Effect:", true, false, true, false);
+            printWeaponEffect("LB Amp.", "Equipment with LB Amp. Effect:", true, false, false, true);
             printWeaponEffect("Increases Summon Gauge", "Equipment with Increase Summon Gauge Effect:", true, false, false, false);
             printWeaponEffect("Increases Command Gauge", "Equipment with Increase Command Gauge Effect:", true, false, false, false);
             printWeaponEffect("Increases Overspeed Gauge", "Equipment with Increase Overspeed Gauge Effect:", true, false, false, false);
